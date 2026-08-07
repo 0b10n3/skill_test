@@ -1,5 +1,7 @@
 # Syntaxis Skill Check
 
+[![CI](https://github.com/0b10n3/skill_test/actions/workflows/ci.yml/badge.svg)](https://github.com/0b10n3/skill_test/actions/workflows/ci.yml)
+
 Quiz adaptativo de diagnóstico de conhecimento técnico em finanças/matemática financeira, com seleção de perguntas por senioridade, scoring no servidor e captura de lead via MailerLite.
 
 Especificação completa do produto em [`/specs`](./specs).
