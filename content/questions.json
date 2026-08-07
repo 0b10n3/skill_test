@@ -1,0 +1,565 @@
+[
+  {
+    "id": "q00",
+    "type": "seniority",
+    "category": "perfil-senioridade",
+    "question": "Como você descreveria seu momento atual no mercado financeiro?",
+    "options": [
+      {
+        "id": "aspirante",
+        "text": "Aspirante / Investidor — ainda não trabalho no mercado financeiro"
+      },
+      { "id": "estagiario", "text": "Estagiário" },
+      { "id": "junior", "text": "Analista Júnior" },
+      { "id": "pleno", "text": "Analista Pleno" },
+      { "id": "senior", "text": "Analista Sênior" }
+    ]
+  },
+  {
+    "id": "q01",
+    "type": "knowledge",
+    "category": "produtos-renda-fixa",
+    "difficultyLevel": "easy",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "De forma simples, o que caracteriza um investimento de renda fixa?",
+    "options": [
+      {
+        "id": "a",
+        "text": "O investidor conhece antecipadamente a regra de remuneração (taxa fixa ou indexada a um índice), diferente da renda variável"
+      },
+      { "id": "b", "text": "O investimento sempre rende mais do que a poupança" },
+      { "id": "c", "text": "É um tipo de ação negociada na bolsa de valores" },
+      { "id": "d", "text": "É um empréstimo que o banco concede ao investidor" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "\"Renda fixa\" se refere à regra de rentabilidade ser conhecida desde a aplicação (taxa prefixada, % do CDI, IPCA + taxa etc.) — não significa retorno garantido acima de qualquer referência, nem se confunde com renda variável."
+  },
+  {
+    "id": "q02",
+    "type": "knowledge",
+    "category": "produtos-renda-fixa",
+    "difficultyLevel": "easy",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Qual é a função do FGC (Fundo Garantidor de Créditos) em relação a um CDB emitido por um banco?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Garantir, até um limite, o valor investido caso o banco emissor quebre"
+      },
+      { "id": "b", "text": "Garantir uma rentabilidade mínima acima do CDI" },
+      { "id": "c", "text": "Isentar o investimento de Imposto de Renda" },
+      { "id": "d", "text": "Avaliar o risco de crédito do banco antes da emissão do título" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "O FGC protege o investidor do risco de crédito da instituição emissora, garantindo o valor investido até um limite em caso de intervenção ou falência do banco — não garante rentabilidade nem concede benefício fiscal."
+  },
+  {
+    "id": "q03",
+    "type": "knowledge",
+    "category": "produtos-renda-fixa",
+    "difficultyLevel": "medium",
+    "targetSeniority": ["aspirante", "estagiario", "junior"],
+    "question": "O Tesouro Direto permite que uma pessoa física invista diretamente em:",
+    "options": [
+      { "id": "a", "text": "Títulos públicos emitidos pelo governo federal" },
+      { "id": "b", "text": "Ações de empresas estatais listadas na bolsa" },
+      { "id": "c", "text": "Imóveis pertencentes ao governo" },
+      { "id": "d", "text": "Moedas estrangeiras negociadas pelo Banco Central" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "O Tesouro Direto é o programa que permite a compra fracionada de títulos públicos federais (Tesouro Selic, Prefixado, IPCA+ etc.) diretamente pela pessoa física."
+  },
+  {
+    "id": "q04",
+    "type": "knowledge",
+    "category": "produtos-renda-fixa",
+    "difficultyLevel": "medium",
+    "targetSeniority": ["estagiario", "junior", "pleno"],
+    "question": "Qual característica diferencia as debêntures incentivadas (Lei 12.431) das debêntures comuns?",
+    "options": [
+      { "id": "a", "text": "Isenção de Imposto de Renda sobre os rendimentos para pessoa física" },
+      { "id": "b", "text": "Garantia do FGC sobre o valor investido" },
+      { "id": "c", "text": "Emissão exclusiva por instituições financeiras" },
+      { "id": "d", "text": "Prazo máximo de 12 meses" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "As debêntures incentivadas financiam projetos de infraestrutura e têm isenção de IR para pessoa física como benefício fiscal previsto em lei; nenhuma debênture conta com garantia do FGC."
+  },
+  {
+    "id": "q05",
+    "type": "knowledge",
+    "category": "produtos-renda-fixa",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["junior", "pleno", "senior"],
+    "question": "Um título público federal prefixado é marcado a mercado diariamente. O que explica a queda no preço desse título quando a taxa de juros de mercado sobe?",
+    "options": [
+      {
+        "id": "a",
+        "text": "O fluxo de caixa futuro passa a ser descontado a uma taxa maior, reduzindo o valor presente do título"
+      },
+      { "id": "b", "text": "O governo reduz o valor de face do título" },
+      {
+        "id": "c",
+        "text": "O risco de crédito do Tesouro Nacional aumenta junto com a taxa de juros"
+      },
+      { "id": "d", "text": "A data de vencimento do título é antecipada" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Marcação a mercado reflete o valor presente dos fluxos futuros descontados à taxa vigente; quando a taxa sobe, o desconto aumenta e o preço presente cai."
+  },
+  {
+    "id": "q06",
+    "type": "knowledge",
+    "category": "produtos-renda-fixa",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Em um cenário de alta da taxa de juros, qual tipo de título de renda fixa tende a sofrer maior perda de valor de mercado no curto prazo?",
+    "options": [
+      { "id": "a", "text": "Títulos prefixados de prazo longo" },
+      { "id": "b", "text": "Títulos pós-fixados atrelados ao CDI" },
+      { "id": "c", "text": "Títulos indexados à inflação com vencimento em poucos meses" },
+      { "id": "d", "text": "CDBs pós-fixados com liquidez diária" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Quanto maior o prazo de um título prefixado, maior sua duration e, portanto, maior a sensibilidade do preço de mercado a variações na taxa de juros — títulos pós-fixados e de curtíssimo prazo sofrem bem menos com esse efeito."
+  },
+  {
+    "id": "q07",
+    "type": "knowledge",
+    "category": "produtos-renda-fixa",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Do ponto de vista de gestão de risco de crédito, qual é a principal diferença entre investir em uma debênture comum e em uma cota de FIDC (Fundo de Investimento em Direitos Creditórios)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No FIDC o risco está pulverizado em uma carteira de recebíveis, com estrutura de subordinação entre cotas, enquanto na debênture o risco está concentrado no emissor único"
+      },
+      { "id": "b", "text": "FIDC sempre tem garantia do FGC" },
+      { "id": "c", "text": "Debênture nunca envolve risco de crédito" },
+      { "id": "d", "text": "FIDC é sempre mais líquido do que debênture" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "FIDCs estruturam o risco por meio de uma carteira pulverizada de recebíveis e cotas com diferentes níveis de subordinação (sênior/subordinada), diluindo o risco de um único devedor — diferente da exposição a um único emissor numa debênture."
+  },
+  {
+    "id": "q08",
+    "type": "knowledge",
+    "category": "matematica-financeira-estatistica",
+    "difficultyLevel": "easy",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "O que representa a taxa de juros em uma aplicação financeira?",
+    "options": [
+      {
+        "id": "a",
+        "text": "O custo (ou remuneração) do dinheiro ao longo do tempo — quanto o capital rende, ou custa, por período"
+      },
+      { "id": "b", "text": "Uma taxa fixa cobrada apenas na abertura da conta" },
+      { "id": "c", "text": "O valor total que será resgatado no vencimento" },
+      { "id": "d", "text": "Um imposto cobrado sobre qualquer investimento" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Taxa de juros é o preço do dinheiro no tempo: remunera quem empresta/aplica e custa a quem toma emprestado, por unidade de tempo."
+  },
+  {
+    "id": "q09",
+    "type": "knowledge",
+    "category": "matematica-financeira-estatistica",
+    "difficultyLevel": "easy",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Qual a principal diferença entre juros simples e juros compostos?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Juros compostos incidem também sobre os juros acumulados de períodos anteriores, enquanto juros simples incidem sempre sobre o capital inicial"
+      },
+      { "id": "b", "text": "Juros simples sempre rendem mais no longo prazo" },
+      { "id": "c", "text": "Juros compostos só existem em investimentos de renda variável" },
+      { "id": "d", "text": "Não há diferença, são termos equivalentes" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Em juros compostos, o rendimento de cada período passa a compor a base de cálculo do período seguinte ('juros sobre juros'); em juros simples, a base de cálculo permanece sempre o capital inicial."
+  },
+  {
+    "id": "q10",
+    "type": "knowledge",
+    "category": "matematica-financeira-estatistica",
+    "difficultyLevel": "medium",
+    "targetSeniority": ["aspirante", "estagiario", "junior"],
+    "question": "Um investimento de R$ 10.000 rende 1% ao mês em juros compostos. Qual expressão representa corretamente o valor futuro (VF) após n meses?",
+    "options": [
+      { "id": "a", "text": "VF = 10.000 × (1 + 0,01)^n" },
+      { "id": "b", "text": "VF = 10.000 × (1 + 0,01 × n)" },
+      { "id": "c", "text": "VF = 10.000 / (1 + 0,01)^n" },
+      { "id": "d", "text": "VF = 10.000 × 0,01 × n" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Em juros compostos, o valor futuro cresce exponencialmente: cada período aplica a taxa sobre o montante já acumulado, daí o expoente n."
+  },
+  {
+    "id": "q11",
+    "type": "knowledge",
+    "category": "matematica-financeira-estatistica",
+    "difficultyLevel": "medium",
+    "targetSeniority": ["estagiario", "junior", "pleno"],
+    "question": "Em uma distribuição normal, aproximadamente qual percentual das observações está dentro de ±1 desvio-padrão em torno da média?",
+    "options": [
+      { "id": "a", "text": "50%" },
+      { "id": "b", "text": "68%" },
+      { "id": "c", "text": "95%" },
+      { "id": "d", "text": "99,7%" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "É a regra empírica (68-95-99,7): cerca de 68% das observações caem dentro de 1 desvio-padrão, 95% dentro de 2 e 99,7% dentro de 3."
+  },
+  {
+    "id": "q12",
+    "type": "knowledge",
+    "category": "matematica-financeira-estatistica",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["junior", "pleno", "senior"],
+    "question": "Simulações de Monte Carlo são usadas em finanças principalmente para:",
+    "options": [
+      { "id": "a", "text": "Calcular com exatidão o preço futuro de um ativo" },
+      {
+        "id": "b",
+        "text": "Estimar a distribuição de possíveis resultados de uma variável incerta a partir de múltiplos cenários aleatórios"
+      },
+      { "id": "c", "text": "Eliminar completamente o risco de mercado de uma carteira" },
+      { "id": "d", "text": "Substituir o cálculo de valor presente líquido de um projeto" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Monte Carlo não prevê um único resultado exato: gera milhares de cenários aleatórios a partir de premissas de distribuição para mapear a faixa provável de resultados e seus riscos."
+  },
+  {
+    "id": "q13",
+    "type": "knowledge",
+    "category": "matematica-financeira-estatistica",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "O Value at Risk (VaR) de uma carteira busca estimar:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A perda máxima esperada em um horizonte de tempo, dado um nível de confiança estatístico"
+      },
+      { "id": "b", "text": "O retorno médio garantido da carteira" },
+      { "id": "c", "text": "O valor contábil da carteira no balanço" },
+      { "id": "d", "text": "A taxa de juros livre de risco aplicável" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "VaR resume, em um único número, a pior perda esperada dentro de um horizonte e nível de confiança definidos (ex: 95%) — é uma medida de risco, não de retorno."
+  },
+  {
+    "id": "q14",
+    "type": "knowledge",
+    "category": "matematica-financeira-estatistica",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Ao combinar dois ativos com correlação negativa em uma carteira, o efeito esperado sobre o risco total (medido pela volatilidade) é:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Redução do risco total da carteira, mesmo mantendo o retorno esperado combinado"
+      },
+      { "id": "b", "text": "Aumento proporcional do risco, já que os riscos individuais se somam" },
+      {
+        "id": "c",
+        "text": "Nenhum efeito — o risco da carteira é sempre a soma dos riscos individuais"
+      },
+      { "id": "d", "text": "Eliminação total do risco, tornando a carteira livre de volatilidade" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "É o princípio central da diversificação: ativos com correlação negativa (ou baixa) reduzem a volatilidade combinada da carteira abaixo da média ponderada das volatilidades individuais."
+  },
+  {
+    "id": "q15",
+    "type": "knowledge",
+    "category": "dados-tecnologia",
+    "difficultyLevel": "easy",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "No mercado financeiro atual, ferramentas como planilhas, SQL e Python são usadas principalmente para:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Organizar, consultar e analisar grandes volumes de dados de forma mais rápida e confiável do que manualmente"
+      },
+      { "id": "b", "text": "Substituir totalmente a necessidade de entender produtos financeiros" },
+      {
+        "id": "c",
+        "text": "Uso exclusivo de times de tecnologia, sem relação com áreas de negócio"
+      },
+      { "id": "d", "text": "Criar sites e aplicativos, sem relação com análise financeira" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Essas ferramentas são meios para lidar com volume e velocidade de dados — não substituem o conhecimento de negócio, e hoje são usadas por áreas de negócio, não só por TI."
+  },
+  {
+    "id": "q16",
+    "type": "knowledge",
+    "category": "dados-tecnologia",
+    "difficultyLevel": "easy",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Em uma planilha, qual tipo de fórmula é usada para somar valores de uma coluna que atendem a uma condição específica (ex: somar apenas vendas de um determinado mês)?",
+    "options": [
+      { "id": "a", "text": "Uma função condicional de soma, como SOMASE/SUMIF" },
+      { "id": "b", "text": "Uma função de texto, como CONCATENAR" },
+      { "id": "c", "text": "Uma função de data, como HOJE()" },
+      { "id": "d", "text": "Uma função de arredondamento, como ARRED" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "SOMASE/SUMIF soma valores de um intervalo apenas quando uma condição é atendida — é a base de qualquer análise condicional em planilha."
+  },
+  {
+    "id": "q17",
+    "type": "knowledge",
+    "category": "dados-tecnologia",
+    "difficultyLevel": "medium",
+    "targetSeniority": ["aspirante", "estagiario", "junior"],
+    "question": "Em SQL, qual comando é usado para filtrar linhas de uma tabela com base em uma condição?",
+    "options": [
+      { "id": "a", "text": "WHERE" },
+      { "id": "b", "text": "GROUP BY" },
+      { "id": "c", "text": "ORDER BY" },
+      { "id": "d", "text": "SELECT *" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "WHERE filtra linhas com base em uma condição antes de qualquer agregação ou ordenação; GROUP BY agrupa, ORDER BY ordena, e SELECT * apenas seleciona todas as colunas sem filtrar."
+  },
+  {
+    "id": "q18",
+    "type": "knowledge",
+    "category": "dados-tecnologia",
+    "difficultyLevel": "medium",
+    "targetSeniority": ["estagiario", "junior", "pleno"],
+    "question": "Em SQL, qual comando é usado para agrupar linhas e aplicar uma função de agregação (como soma ou média) por categoria?",
+    "options": [
+      { "id": "a", "text": "ORDER BY" },
+      { "id": "b", "text": "GROUP BY" },
+      { "id": "c", "text": "WHERE" },
+      { "id": "d", "text": "JOIN" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "GROUP BY agrupa linhas que compartilham um valor em comum para que funções de agregação (SUM, AVG, COUNT etc.) sejam aplicadas por grupo, em vez de à tabela inteira."
+  },
+  {
+    "id": "q19",
+    "type": "knowledge",
+    "category": "dados-tecnologia",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["junior", "pleno", "senior"],
+    "question": "Em Python, qual biblioteca é mais usada para manipulação e análise de dados tabulares (DataFrames) em finanças?",
+    "options": [
+      { "id": "a", "text": "pandas" },
+      { "id": "b", "text": "matplotlib" },
+      { "id": "c", "text": "requests" },
+      { "id": "d", "text": "flask" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "pandas é a biblioteca padrão para estruturar, limpar e analisar dados tabulares em Python; matplotlib é para visualização, requests para chamadas HTTP e flask para construir APIs/web apps."
+  },
+  {
+    "id": "q20",
+    "type": "knowledge",
+    "category": "dados-tecnologia",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "O conceito de \"lakehouse\", usado por plataformas como Databricks, combina características de quais duas arquiteturas de dados?",
+    "options": [
+      { "id": "a", "text": "Data warehouse e data lake" },
+      { "id": "b", "text": "CRM e ERP" },
+      { "id": "c", "text": "Blockchain e data lake" },
+      { "id": "d", "text": "Data warehouse e planilha eletrônica" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Lakehouse busca unir a governança, performance e estrutura de um data warehouse com a flexibilidade e o baixo custo de armazenamento de um data lake, num único ambiente."
+  },
+  {
+    "id": "q21",
+    "type": "knowledge",
+    "category": "dados-tecnologia",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Do ponto de vista de governança de dados em uma instituição financeira, qual é o principal risco de times de negócio usarem múltiplas fontes de dados não centralizadas e não versionadas para tomar decisões?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Inconsistência entre relatórios e decisões, já que diferentes times podem partir de números diferentes para a mesma métrica"
+      },
+      { "id": "b", "text": "Aumento do custo de armazenamento em nuvem" },
+      {
+        "id": "c",
+        "text": "Lentidão exclusivamente no treinamento de modelos de machine learning"
+      },
+      { "id": "d", "text": "Impossibilidade técnica de usar Python nesse cenário" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Sem uma fonte única de verdade, times diferentes chegam a números diferentes para a mesma métrica de negócio — o risco de governança é decisório, não apenas técnico ou de custo."
+  },
+  {
+    "id": "q22",
+    "type": "knowledge",
+    "category": "ia-aplicada-financas",
+    "difficultyLevel": "easy",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "De forma geral, por que instituições financeiras têm investido cada vez mais em inteligência artificial?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Para analisar grandes volumes de dados e apoiar decisões mais rápidas e consistentes, como na detecção de fraudes"
+      },
+      { "id": "b", "text": "Porque é uma exigência legal em todos os países" },
+      {
+        "id": "c",
+        "text": "Porque substitui integralmente a necessidade de qualquer analista humano"
+      },
+      { "id": "d", "text": "Porque reduz a zero o risco de crédito" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "O motor principal é operacional/analítico: processar volume e velocidade de dados que seriam inviáveis manualmente, apoiando (não substituindo integralmente) decisões humanas."
+  },
+  {
+    "id": "q23",
+    "type": "knowledge",
+    "category": "ia-aplicada-financas",
+    "difficultyLevel": "easy",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Qual das opções abaixo é um exemplo real de uso de IA no mercado financeiro hoje?",
+    "options": [
+      { "id": "a", "text": "Detecção de transações fraudulentas em tempo real" },
+      { "id": "b", "text": "Definição da taxa Selic pelo Banco Central" },
+      { "id": "c", "text": "Emissão de moeda pelo governo" },
+      {
+        "id": "d",
+        "text": "Assinatura de contratos com validade jurídica automática, sem qualquer revisão humana"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Detecção de fraude é um dos usos mais maduros e consolidados de IA em instituições financeiras; as demais opções são decisões institucionais/jurídicas que não são delegadas a modelos de IA."
+  },
+  {
+    "id": "q24",
+    "type": "knowledge",
+    "category": "ia-aplicada-financas",
+    "difficultyLevel": "medium",
+    "targetSeniority": ["aspirante", "estagiario", "junior"],
+    "question": "No mercado financeiro, um dos usos mais consolidados de IA/machine learning hoje é:",
+    "options": [
+      { "id": "a", "text": "Detecção de fraude e transações anômalas" },
+      { "id": "b", "text": "Substituição total dos analistas de crédito" },
+      { "id": "c", "text": "Emissão automática de títulos públicos" },
+      { "id": "d", "text": "Definição da taxa básica de juros da economia" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Modelos analisam grandes volumes de transações em tempo real para identificar padrões anômalos — é um dos casos de uso mais maduros do setor."
+  },
+  {
+    "id": "q25",
+    "type": "knowledge",
+    "category": "ia-aplicada-financas",
+    "difficultyLevel": "medium",
+    "targetSeniority": ["estagiario", "junior", "pleno"],
+    "question": "Técnicas como SHAP e LIME, usadas em modelos de IA aplicados a finanças, servem principalmente para:",
+    "options": [
+      { "id": "a", "text": "Acelerar o tempo de treinamento do modelo" },
+      {
+        "id": "b",
+        "text": "Explicar quais variáveis mais influenciaram uma previsão ou decisão do modelo"
+      },
+      { "id": "c", "text": "Eliminar a necessidade de dados históricos" },
+      { "id": "d", "text": "Garantir retorno financeiro positivo do investimento" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "SHAP e LIME são técnicas de explicabilidade (XAI): não mudam o desempenho do modelo, ajudam a entender e justificar por que ele chegou a determinada previsão."
+  },
+  {
+    "id": "q26",
+    "type": "knowledge",
+    "category": "ia-aplicada-financas",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["junior", "pleno", "senior"],
+    "question": "Um dos principais riscos de usar modelos de IA para decisões de crédito, do ponto de vista de compliance, é:",
+    "options": [
+      {
+        "id": "a",
+        "text": "O modelo pode reproduzir vieses presentes nos dados históricos usados no treinamento, gerando decisões discriminatórias sem que isso seja evidente"
+      },
+      { "id": "b", "text": "Modelos de IA nunca cometem erros de classificação" },
+      { "id": "c", "text": "Modelos de IA eliminam totalmente a necessidade de auditoria" },
+      {
+        "id": "d",
+        "text": "Modelos de IA são sempre mais baratos que analistas humanos, sem outros riscos envolvidos"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Um modelo treinado com dados históricos enviesados tende a reproduzir (e às vezes amplificar) esse viés nas decisões futuras — daí a importância de auditoria e explicabilidade em decisões de crédito."
+  },
+  {
+    "id": "q27",
+    "type": "knowledge",
+    "category": "ia-aplicada-financas",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Do ponto de vista de governança, por que a explicabilidade de modelos de IA se tornou relevante para instituições financeiras?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Porque reguladores e áreas de risco/compliance exigem entender o racional por trás de decisões automatizadas de crédito e risco"
+      },
+      { "id": "b", "text": "Porque modelos explicáveis são sempre estatisticamente mais precisos" },
+      { "id": "c", "text": "Porque reduz diretamente o custo de infraestrutura em nuvem" },
+      { "id": "d", "text": "Porque é uma exigência aplicável apenas a modelos de IA generativa" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Em decisões que afetam clientes, reguladores e compliance exigem rastreabilidade do racional do modelo — explicabilidade é sobre governança e prestação de contas, não sobre performance estatística."
+  },
+  {
+    "id": "q28",
+    "type": "knowledge",
+    "category": "ia-aplicada-financas",
+    "difficultyLevel": "hard",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Ao liderar a adoção de IA em uma área de negócio (ex: crédito, risco ou investimentos), um dos principais papéis de um profissional sênior é:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Equilibrar ganhos de eficiência com governança, explicabilidade e gestão de riscos regulatórios do modelo"
+      },
+      {
+        "id": "b",
+        "text": "Garantir que a IA seja implementada o mais rápido possível, independentemente de testes de viés"
+      },
+      {
+        "id": "c",
+        "text": "Delegar toda a responsabilidade de decisão para o modelo, sem supervisão humana"
+      },
+      { "id": "d", "text": "Evitar qualquer uso de IA até que não haja mais risco algum envolvido" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Liderança sênior nesse contexto é sobre equilíbrio: capturar o ganho de eficiência da IA sem abrir mão de governança, supervisão e gestão de risco regulatório — nem acelerar sem controle, nem travar por aversão total ao risco."
+  },
+  {
+    "id": "q29",
+    "type": "self_assessment",
+    "category": "perfil-tecnico",
+    "question": "Qual opção descreve melhor o seu nível atual de uso de ferramentas de dados (SQL, Python, Power BI ou similares) no seu dia a dia de trabalho ou estudos?",
+    "options": [
+      { "id": "a", "text": "Nunca usei essas ferramentas", "profileTag": "sem_experiencia_dados" },
+      {
+        "id": "b",
+        "text": "Já usei em cursos ou estudos, mas pouco na prática",
+        "profileTag": "iniciante_dados"
+      },
+      {
+        "id": "c",
+        "text": "Uso com certa frequência para análises pontuais",
+        "profileTag": "usuario_intermediario_dados"
+      },
+      {
+        "id": "d",
+        "text": "Uso no dia a dia e já construí análises ou soluções completas com essas ferramentas",
+        "profileTag": "usuario_avancado_dados"
+      }
+    ]
+  }
+]
