@@ -40,3 +40,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# gerado a partir de content/tokens.json — ver npm run generate:tokens
+/app/tokens.generated.css
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

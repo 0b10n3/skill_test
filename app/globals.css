@@ -1,26 +1,81 @@
 @import 'tailwindcss';
+@import './tokens.generated.css';
+@import 'tw-animate-css';
 
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * "O Sinal no Escuro" — dark-mode-first por identidade, sem toggle de tema
+ * (a classe .dark é fixa em <html>, ver app/layout.tsx).
+ *
+ * Nenhuma cor deve ser hardcoded fora de content/tokens.json /
+ * app/tokens.generated.css (gerado via `npm run generate:tokens`). Os papéis
+ * semânticos abaixo (usados pelos componentes shadcn/ui) apenas apontam para
+ * os tokens da marca — não introduzem cores novas.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-obsidian);
+  --foreground: var(--color-text-high);
+
+  --card: var(--color-carbon);
+  --card-foreground: var(--color-text-high);
+  --popover: var(--color-carbon-hi);
+  --popover-foreground: var(--color-text-high);
+
+  --primary: var(--color-volt-500);
+  --primary-foreground: var(--color-obsidian);
+  --secondary: var(--color-carbon-hi);
+  --secondary-foreground: var(--color-text-high);
+  --muted: var(--color-graphite);
+  --muted-foreground: var(--color-text-medium);
+  --accent: var(--color-pine);
+  --accent-foreground: var(--color-text-high);
+  --destructive: var(--color-error);
+  --destructive-foreground: var(--color-text-high);
+
+  --border: var(--color-line);
+  --input: var(--color-line-hi);
+  --ring: var(--color-volt-500);
+
+  --radius: var(--radius-lg);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-display: var(--font-space-grotesk);
+  --font-heading: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
