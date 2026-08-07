@@ -45,7 +45,7 @@ Ver [`.env.example`](./.env.example) para a lista completa e documentada. Nenhum
 ## Deploy
 
 - Preview: gerado automaticamente pela Vercel a cada Pull Request.
-- Produção: `[a preencher após conexão com a Vercel]`
+- Produção: https://skill-test-mocha.vercel.app/
 
 ## Fluxo de contribuição
 
