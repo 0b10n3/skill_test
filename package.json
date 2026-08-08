@@ -15,7 +15,9 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "test:e2e:update-snapshots": "playwright test --update-snapshots"
+    "test:e2e:update-snapshots": "playwright test --update-snapshots",
+    "lighthouse": "node scripts/lighthouse-check.mjs http://localhost:3000/",
+    "test:lighthouse": "start-server-and-test start http://localhost:3000 lighthouse"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -40,12 +42,15 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.5",
+    "chrome-launcher": "^1.2.1",
     "eslint": "^9",
     "eslint-config-next": "15.5.23",
     "eslint-config-prettier": "^10.1.8",
     "jsdom": "^30.0.1",
+    "lighthouse": "^13.4.1",
     "prettier": "^3.9.6",
     "shadcn": "^4.16.2",
+    "start-server-and-test": "^3.0.12",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.10"
