@@ -32,6 +32,27 @@ Cobrem: seleção adaptativa e scoring (Épico 3), design system e contraste
 fluxo completo até `/resultado` nos 3 cenários de classificação (Épico 8),
 acessibilidade e cross-device nas 4 rotas públicas (Épico 9).
 
+**A suíte Playwright completa (39/39) também rodou verde contra um
+deployment de preview real da Vercel** (não só `localhost`), como o Épico 9
+exige ("rodando verde... contra o ambiente de preview"):
+
+```bash
+PLAYWRIGHT_BASE_URL="https://<preview-url>.vercel.app" \
+VERCEL_AUTOMATION_BYPASS_SECRET="<secret>" \
+npm run test:e2e
+```
+
+A proteção SSO padrão de previews da Vercel bloqueava acesso direto; foi
+habilitado o "Protection Bypass for Automation" nativo da plataforma
+(`vercel project protection enable --protection-bypass`), que gera um
+secret dedicado para scripts automatizados sem desativar a proteção para
+mais ninguém. Achado incidental: a própria toolbar de preview da Vercel
+grava algumas chaves em `sessionStorage` (`vc-*`, `__vtkb-*`) — não são
+respostas do quiz, são infraestrutura da plataforma que só existe em
+preview; os testes de storage foram ajustados para filtrar essas chaves
+especificamente, sem afrouxar a checagem real (nenhum dado do app em
+storage).
+
 ## 2. Lighthouse — as 4 rotas públicas
 
 `/quiz`, `/lead` e `/resultado` só existem com conteúdo real depois de
