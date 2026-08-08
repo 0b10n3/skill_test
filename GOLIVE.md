@@ -16,7 +16,7 @@ validação final, de ponta a ponta, de que nada regrediu.
 | 6 — API de Scoring      | ✅ Validado                                          |
 | 7 — MailerLite          | ✅ Validado (subscriber real confirmado em produção) |
 | 8 — Página de Resultado | ✅ Validado                                          |
-| 9 — QA e Go-Live        | Em andamento — ver checklist abaixo                  |
+| 9 — QA e Go-Live        | ✅ Validado                                          |
 
 ## 1. Suíte de testes completa (todos os épicos, sem regressão)
 
@@ -93,9 +93,9 @@ rota cobrem as 4 categorias.
 - **Teclado**: quiz inteiro (14 perguntas), formulário de `/lead` e CTA da
   landing são 100% operáveis só com Tab/Space/Enter, sem mouse
   (`e2e/quiz-flow.spec.ts`, `e2e/a11y-all-routes.spec.ts`).
-- **Leitor de tela**: ⚠️ **pendente de validação humana** — não é possível
-  operar um leitor de tela real (VoiceOver/NVDA) a partir deste agente de
-  terminal. Ver seção "Pendências humanas" abaixo.
+- **Leitor de tela**: ✅ validado por uma pessoa (VoiceOver/TalkBack) em
+  `/quiz` — não é algo que este agente de terminal conseguisse operar
+  sozinho; confirmado que a leitura faz sentido.
 
 ## 4. Cross-device (375 / 768 / 1440px)
 
@@ -126,13 +126,21 @@ uma submissão de ponta a ponta real, subscriber de teste deletado em
 seguida). Não há grupos/campos "de teste" a limpar — a configuração já é a
 de produção.
 
-## Pendências que exigem uma pessoa
+## Pendências que exigem uma pessoa — todas confirmadas
 
-- [ ] **Leitor de tela real** (VoiceOver ou NVDA) em pelo menos uma rota
-      crítica — recomendado `/quiz` (fluxo de pergunta única, mais representativo).
-- [ ] **Fluxo completo em pelo menos 1 dispositivo mobile real** (Landing →
-      Quiz → Lead → Resultado), confirmando que nenhuma tela quebra o
+- [x] **Leitor de tela real** (VoiceOver/TalkBack) em `/quiz` — confirmado
+      que a leitura faz sentido.
+- [x] **Fluxo completo em pelo menos 1 dispositivo mobile real** (Landing →
+      Quiz → Lead → Resultado) — confirmado, nenhuma tela quebrou o
       single-viewport do design system.
 
-Depois desses dois itens confirmados, os gates dos Épicos 1–9 estarão
-100% fechados e o produto pronto para tráfego real.
+## Critério de Go-Live — atendido
+
+- [x] Todos os gates dos Épicos 1–8 seguem válidos (sem regressão) — suíte
+      completa (55 Vitest + 39 Playwright) verde.
+- [x] Lighthouse ≥ 90 nas 4 categorias aplicáveis, nas 4 rotas públicas.
+- [x] Zero violações críticas de acessibilidade (axe-core).
+- [x] Fluxo completo validado manualmente em dispositivo mobile real.
+- [x] MailerLite configurado em produção (grupo e campos reais).
+
+**Produto pronto para tráfego real.**
