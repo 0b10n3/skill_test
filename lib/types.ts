@@ -64,3 +64,13 @@ export interface ScoreResult {
   scorePorCategoria: CategoryScore[];
   classification: Classification;
 }
+
+export interface ResultNarrative {
+  headline: string;
+  body: string;
+}
+
+/** Shape retornado por POST /api/submit — o que /resultado (Épico 8) consome. */
+export interface SubmitResult extends ScoreResult {
+  narrative: ResultNarrative;
+}
