@@ -16,8 +16,11 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:update-snapshots": "playwright test --update-snapshots",
+    "test:e2e:remote": "PLAYWRIGHT_BASE_URL=$URL playwright test",
     "lighthouse": "node scripts/lighthouse-check.mjs http://localhost:3000/",
-    "test:lighthouse": "start-server-and-test start http://localhost:3000 lighthouse"
+    "test:lighthouse": "start-server-and-test start http://localhost:3000 lighthouse",
+    "lighthouse:flow": "node scripts/lighthouse-flow-check.mjs http://localhost:3000",
+    "test:lighthouse:flow": "start-server-and-test start http://localhost:3000 lighthouse:flow"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -51,6 +54,7 @@
     "jsdom": "^30.0.1",
     "lighthouse": "^13.4.1",
     "prettier": "^3.9.6",
+    "puppeteer-core": "^25.5.0",
     "shadcn": "^4.16.2",
     "start-server-and-test": "^3.0.12",
     "tailwindcss": "^4",

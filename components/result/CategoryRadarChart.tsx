@@ -29,7 +29,13 @@ export function CategoryRadarChart({ scorePorCategoria }: CategoryRadarChartProp
 
   return (
     <div className="flex w-full flex-col gap-3">
-      <div aria-hidden="true" className="h-56 w-full">
+      {/*
+        inert (não só aria-hidden): o SVG do Recharts inclui elementos
+        focáveis por padrão — aria-hidden sozinho os esconderia do leitor de
+        tela mas deixaria "fantasmas" alcançáveis via Tab. inert remove o
+        elemento tanto da árvore de acessibilidade quanto da ordem de tab.
+      */}
+      <div inert className="h-56 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <RadarChart
             data={data}

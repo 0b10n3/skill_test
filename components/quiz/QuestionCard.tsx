@@ -53,6 +53,7 @@ export function QuestionCard({ question, onAnswer }: QuestionCardProps) {
           ))}
         </RadioGroup>
         <Button
+          data-testid="quiz-next-button"
           disabled={!selected}
           onClick={() => {
             if (selected) onAnswer(selected);

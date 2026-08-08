@@ -10,6 +10,7 @@ Especificação completa do produto em [`/specs`](./specs).
 
 - Next.js 15 (App Router) + TypeScript estrito
 - Tailwind CSS v4 + shadcn/ui (`@base-ui/react`)
+- Recharts (gráfico radar do resultado)
 - Zod (validação client + server)
 - MailerLite (`@mailerlite/mailerlite-nodejs`, captura de lead)
 - ESLint + Prettier
@@ -29,20 +30,21 @@ Copie `.env.example` para `.env.local` e preencha as variáveis necessárias (ve
 
 ## Scripts disponíveis
 
-| Script                              | Descrição                                                         |
-| ----------------------------------- | ----------------------------------------------------------------- |
-| `npm run dev`                       | Servidor de desenvolvimento (Turbopack)                           |
-| `npm run build`                     | Build de produção                                                 |
-| `npm run start`                     | Roda o build de produção localmente                               |
-| `npm run lint`                      | ESLint                                                            |
-| `npm run typecheck`                 | `tsc --noEmit`                                                    |
-| `npm run format`                    | Formata o código com Prettier                                     |
-| `npm run format:check`              | Verifica formatação sem alterar arquivos                          |
-| `npm run test`                      | Suíte de testes unitários/integração (Vitest)                     |
-| `npm run test:e2e`                  | Suíte E2E (Playwright) contra um build de produção                |
-| `npm run test:e2e:update-snapshots` | Regenera os snapshots visuais do Playwright                       |
-| `npm run test:lighthouse`           | Auditoria Lighthouse (Performance/A11y/SEO) contra `/`            |
-| `npm run generate:tokens`           | Gera `app/tokens.generated.css` a partir de `content/tokens.json` |
+| Script                              | Descrição                                                                                |
+| ----------------------------------- | ---------------------------------------------------------------------------------------- |
+| `npm run dev`                       | Servidor de desenvolvimento (Turbopack)                                                  |
+| `npm run build`                     | Build de produção                                                                        |
+| `npm run start`                     | Roda o build de produção localmente                                                      |
+| `npm run lint`                      | ESLint                                                                                   |
+| `npm run typecheck`                 | `tsc --noEmit`                                                                           |
+| `npm run format`                    | Formata o código com Prettier                                                            |
+| `npm run format:check`              | Verifica formatação sem alterar arquivos                                                 |
+| `npm run test`                      | Suíte de testes unitários/integração (Vitest)                                            |
+| `npm run test:e2e`                  | Suíte E2E (Playwright) contra um build de produção                                       |
+| `npm run test:e2e:update-snapshots` | Regenera os snapshots visuais do Playwright                                              |
+| `npm run test:lighthouse`           | Auditoria Lighthouse (Performance/A11y/SEO) contra `/`                                   |
+| `npm run test:lighthouse:flow`      | Auditoria Lighthouse nas 4 rotas públicas via User Flow (ver [`GOLIVE.md`](./GOLIVE.md)) |
+| `npm run generate:tokens`           | Gera `app/tokens.generated.css` a partir de `content/tokens.json`                        |
 
 ## Variáveis de ambiente
 
@@ -69,6 +71,15 @@ A chamada à MailerLite é sempre **não-bloqueante**: se falhar (rede, credenci
 
 - Preview: gerado automaticamente pela Vercel a cada Pull Request.
 - Produção: https://skill-test-mocha.vercel.app/
+
+Variáveis de ambiente de produção são configuradas em Vercel → Settings →
+Environment Variables (nunca via `.env` commitado). Passos completos de
+setup local em "Setup local" acima; setup do MailerLite na seção anterior.
+
+## Go-live
+
+Checklist final de QA, acessibilidade, performance (Lighthouse nas 4 rotas
+públicas) e critério de go-live: ver [`GOLIVE.md`](./GOLIVE.md).
 
 ## Fluxo de contribuição
 
