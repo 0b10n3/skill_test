@@ -56,12 +56,17 @@ test.describe('/lead', () => {
     expect(response.status()).toBe(200);
     await expect(page).toHaveURL(/\/resultado$/);
 
+    // Em deployments de preview da Vercel, a própria toolbar da plataforma
+    // grava algumas chaves em sessionStorage (vc-*, __vtkb-*) — não são
+    // respostas do quiz, são infraestrutura da Vercel que só existe em
+    // preview. Filtradas para testar o que o app de fato grava.
+    const isPlatformKey = (key: string) => key.startsWith('vc-') || key.startsWith('__vtkb');
     const storage = await page.evaluate(() => ({
       localStorage: Object.keys(window.localStorage),
       sessionStorage: Object.keys(window.sessionStorage),
     }));
-    expect(storage.localStorage).toHaveLength(0);
-    expect(storage.sessionStorage).toHaveLength(0);
+    expect(storage.localStorage.filter((k) => !isPlatformKey(k))).toHaveLength(0);
+    expect(storage.sessionStorage.filter((k) => !isPlatformKey(k))).toHaveLength(0);
   });
 
   test('acesso direto a /lead sem ter feito o quiz redireciona para /', async ({ page }) => {
