@@ -16,6 +16,16 @@ export default defineConfig({
   use: {
     baseURL,
     trace: 'on-first-retry',
+    // Bypassa a proteção SSO de deployments de preview/produção da Vercel
+    // quando testando contra um ambiente remoto protegido — não afeta
+    // localhost, onde não há proteção nenhuma.
+    ...(process.env.VERCEL_AUTOMATION_BYPASS_SECRET
+      ? {
+          extraHTTPHeaders: {
+            'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+          },
+        }
+      : {}),
   },
   projects: [
     {
