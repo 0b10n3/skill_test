@@ -1,28 +1,14 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { z } from 'zod';
 import { questionsBank } from '@/lib/questions-bank';
 import { calculateScore } from '@/lib/scoring';
 import { buildResultNarrative } from '@/lib/narrative';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
+import { submitPayloadSchema } from '@/lib/validations';
+import { syncLeadToMailerLite } from '@/lib/mailerlite';
 import type { Question, SeniorityLevel } from '@/lib/types';
 
 const EXPECTED_KNOWLEDGE_PER_CATEGORY = 3;
 const EXPECTED_KNOWLEDGE_CATEGORIES = 4;
-
-const leadSchema = z.object({
-  name: z.string().trim().min(1, 'Nome é obrigatório'),
-  email: z.string().trim().email('E-mail inválido'),
-  optIn: z.literal(true, {
-    message: 'É necessário aceitar receber comunicações da Syntaxis para prosseguir',
-  }),
-});
-
-const submitPayloadSchema = z.object({
-  answers: z
-    .record(z.string(), z.string())
-    .refine((answers) => Object.keys(answers).length > 0, 'Nenhuma resposta enviada'),
-  lead: leadSchema,
-});
 
 function badRequest(message: string, extra?: Record<string, unknown>) {
   return NextResponse.json({ error: message, ...extra }, { status: 400 });
@@ -50,7 +36,7 @@ export async function POST(request: NextRequest) {
     return badRequest('Payload inválido', { issues: parsed.error.issues });
   }
 
-  const { answers } = parsed.data;
+  const { answers, lead } = parsed.data;
 
   // --- Senioridade: derivada da resposta a q00, nunca de um campo solto que
   // o client poderia enviar dessincronizado das respostas de fato marcadas.
@@ -134,8 +120,20 @@ export async function POST(request: NextRequest) {
     scorePorCategoria: score.scorePorCategoria,
   });
 
-  // A sincronização com a MailerLite (Épico 7) consome parsed.data.lead, já
-  // validado aqui — falha nela não pode bloquear a resposta deste endpoint.
+  // Aguardamos a sincronização (a especificação prevê essa ordem: sincroniza
+  // e só então libera o resultado), mas syncLeadToMailerLite nunca rejeita —
+  // qualquer falha é tratada e logada internamente, sem propagar para cá.
+  // Isso evita tanto bloquear o resultado por causa de um erro quanto o
+  // risco de a chamada ser interrompida no meio por causa da função
+  // serverless encerrar após a resposta (fire-and-forget sem await).
+  await syncLeadToMailerLite({
+    email: lead.email,
+    name: lead.name,
+    seniority,
+    scoreGeral: score.scoreGeral,
+    classification: score.classification,
+    profileTag,
+  });
 
   return NextResponse.json({
     scoreGeral: score.scoreGeral,

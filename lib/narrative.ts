@@ -1,9 +1,4 @@
-import type { CategoryScore, Classification } from './types';
-
-export interface ResultNarrative {
-  headline: string;
-  body: string;
-}
+import type { CategoryScore, Classification, ResultNarrative } from './types';
 
 /**
  * ⚠️ PLACEHOLDER — copy provisória, não é texto de marca final.
