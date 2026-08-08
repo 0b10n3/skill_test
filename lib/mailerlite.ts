@@ -1,12 +1,6 @@
 import MailerLite from '@mailerlite/mailerlite-nodejs';
 import type { Classification, SeniorityLevel } from './types';
 
-const GROUP_ID_BY_CLASSIFICATION: Record<Classification, string | undefined> = {
-  baixo: process.env.MAILERLITE_GROUP_ID_BAIXO,
-  medio: process.env.MAILERLITE_GROUP_ID_MEDIO,
-  alto: process.env.MAILERLITE_GROUP_ID_ALTO,
-};
-
 export interface SyncLeadParams {
   email: string;
   name: string;
@@ -23,10 +17,14 @@ function getClient(): MailerLite | null {
 }
 
 /**
- * Sincroniza o lead com a MailerLite (upsert por e-mail, nos Grupos/Campos
- * documentados no README). Nunca lança para o chamador — falha aqui é
- * sempre não-bloqueante: loga no servidor e retorna, o resultado do quiz
- * precisa ser exibido de qualquer forma (regra crítica do produto).
+ * Sincroniza o lead com a MailerLite (upsert por e-mail). Todos os leads vão
+ * para o mesmo grupo (MAILERLITE_GROUP_ID, "SYNTAXIS_SKILL_APP" na conta
+ * real) — a classificação/senioridade/score são gravados como Campos
+ * customizados no subscriber, não como segmentação por Grupo.
+ *
+ * Nunca lança para o chamador — falha aqui é sempre não-bloqueante: loga no
+ * servidor e retorna, o resultado do quiz precisa ser exibido de qualquer
+ * forma (regra crítica do produto).
  */
 export async function syncLeadToMailerLite(params: SyncLeadParams): Promise<void> {
   const client = getClient();
@@ -37,12 +35,10 @@ export async function syncLeadToMailerLite(params: SyncLeadParams): Promise<void
     return;
   }
 
-  const groupId = GROUP_ID_BY_CLASSIFICATION[params.classification];
+  const groupId = process.env.MAILERLITE_GROUP_ID;
   const groups = groupId ? [groupId] : [];
   if (!groupId) {
-    console.error(
-      `[mailerlite] Group ID não configurado para a classificação "${params.classification}" — subscriber será criado sem grupo.`,
-    );
+    console.error('[mailerlite] MAILERLITE_GROUP_ID não configurado — subscriber sem grupo.');
   }
 
   try {

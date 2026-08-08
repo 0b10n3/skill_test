@@ -53,18 +53,15 @@ Ver [`.env.example`](./.env.example) para a lista completa e documentada. Nenhum
 A captura de lead (rota `/lead`) sincroniza cada submissão com uma conta MailerLite via API. Antes de rodar qualquer teste de integração real (ou de configurar `MAILERLITE_API_KEY` em produção), é preciso preparar a conta no painel:
 
 1. **Gerar a API key**: painel MailerLite → _Integrations_ → _MailerLite API_ → gerar uma chave. Colar em `MAILERLITE_API_KEY` (`.env.local` local, e nas variáveis de ambiente do projeto na Vercel para produção). Essa chave é usada **somente em código server-side** — nunca em componente client, nunca em variável `NEXT_PUBLIC_*`.
-2. **Criar os 3 Grupos** que representam a classificação final do quiz — os nomes exatos não importam para o código, mas o **ID numérico** de cada um precisa ir em `.env.local`:
-   - Um grupo para a classificação **Baixo** → `MAILERLITE_GROUP_ID_BAIXO`
-   - Um grupo para a classificação **Médio** → `MAILERLITE_GROUP_ID_MEDIO`
-   - Um grupo para a classificação **Alto** → `MAILERLITE_GROUP_ID_ALTO`
-   - O ID de cada grupo aparece na URL do grupo no painel (`.../groups/<ID>`) ou via `GET /api/groups` com a API key.
+2. **Criar (ou reaproveitar) um Grupo** para onde todos os leads do quiz vão — na conta em uso, esse grupo é o `SYNTAXIS_SKILL_APP`. Colar o **ID numérico** do grupo em `MAILERLITE_GROUP_ID` (`.env.local`). O ID aparece na URL do grupo no painel (`.../groups/<ID>`) ou via `GET /api/groups` com a API key.
+   - A classificação final (`baixo`/`medio`/`alto`), a senioridade e o score **não** segmentam por grupo — ficam gravados como Campos customizados no próprio subscriber (item 3).
 3. **Criar os Campos customizados** (painel → _Subscribers_ → _Custom fields_, ou via `POST /fields`) com exatamente estas chaves (o código em `lib/mailerlite.ts` envia esses nomes):
    - `seniority` (texto) — a senioridade declarada em q00
    - `score_geral` (número) — percentual geral do quiz
    - `classificacao` (texto) — `baixo` / `medio` / `alto`
    - `perfil_tecnico` (texto) — `profileTag` da pergunta de autoavaliação
 
-Sem os grupos/campos criados, o `POST /subscribers` ainda funciona (grupos/campos ausentes são apenas ignorados pela API), mas o subscriber não fica segmentado corretamente — **confirme que os 3 grupos e os 4 campos existem antes de considerar a integração validada**.
+Sem o grupo/campos criados, o `POST /subscribers` ainda funciona (grupo/campos ausentes são apenas ignorados pela API), mas o subscriber não fica no lugar certo — **confirme que o grupo e os 4 campos existem antes de considerar a integração validada**.
 
 A chamada à MailerLite é sempre **não-bloqueante**: se falhar (rede, credencial inválida, etc.), o erro é logado no servidor e o resultado do quiz é exibido normalmente ao usuário.
 

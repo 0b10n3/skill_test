@@ -20,9 +20,7 @@ describe('syncLeadToMailerLite', () => {
     createOrUpdateMock.mockReset();
     createOrUpdateMock.mockResolvedValue({ data: {} });
     process.env.MAILERLITE_API_KEY = 'test-api-key';
-    process.env.MAILERLITE_GROUP_ID_BAIXO = 'group-baixo';
-    process.env.MAILERLITE_GROUP_ID_MEDIO = 'group-medio';
-    process.env.MAILERLITE_GROUP_ID_ALTO = 'group-alto';
+    process.env.MAILERLITE_GROUP_ID = 'group-syntaxis-skill-app';
   });
 
   afterEach(() => {
@@ -45,7 +43,7 @@ describe('syncLeadToMailerLite', () => {
     const [payload] = createOrUpdateMock.mock.calls[0];
 
     expect(payload.email).toBe('lead@example.com');
-    expect(payload.groups).toEqual(['group-medio']);
+    expect(payload.groups).toEqual(['group-syntaxis-skill-app']);
     expect(payload.fields).toMatchObject({
       name: 'Lead Teste',
       seniority: 'pleno',
@@ -55,7 +53,7 @@ describe('syncLeadToMailerLite', () => {
     });
   });
 
-  it('mapeia cada classificação para o Group ID correspondente', async () => {
+  it('todas as classificações vão para o mesmo grupo único', async () => {
     const { syncLeadToMailerLite } = await importFreshMailerLiteModule();
 
     await syncLeadToMailerLite({
@@ -65,7 +63,7 @@ describe('syncLeadToMailerLite', () => {
       scoreGeral: 90,
       classification: 'alto',
     });
-    expect(createOrUpdateMock.mock.calls[0][0].groups).toEqual(['group-alto']);
+    expect(createOrUpdateMock.mock.calls[0][0].groups).toEqual(['group-syntaxis-skill-app']);
 
     await syncLeadToMailerLite({
       email: 'b@example.com',
@@ -74,7 +72,7 @@ describe('syncLeadToMailerLite', () => {
       scoreGeral: 10,
       classification: 'baixo',
     });
-    expect(createOrUpdateMock.mock.calls[1][0].groups).toEqual(['group-baixo']);
+    expect(createOrUpdateMock.mock.calls[1][0].groups).toEqual(['group-syntaxis-skill-app']);
   });
 
   it('nunca lança erro para o chamador quando a chamada à API falha (não-bloqueante)', async () => {

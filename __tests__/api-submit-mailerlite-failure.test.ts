@@ -42,9 +42,7 @@ describe('POST /api/submit — falha simulada na MailerLite não bloqueia o resu
   beforeEach(() => {
     createOrUpdateMock.mockReset();
     process.env.MAILERLITE_API_KEY = 'test-key';
-    process.env.MAILERLITE_GROUP_ID_BAIXO = 'g-baixo';
-    process.env.MAILERLITE_GROUP_ID_MEDIO = 'g-medio';
-    process.env.MAILERLITE_GROUP_ID_ALTO = 'g-alto';
+    process.env.MAILERLITE_GROUP_ID = 'g-syntaxis-skill-app';
   });
 
   afterEach(() => {
