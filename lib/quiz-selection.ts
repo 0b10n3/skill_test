@@ -65,6 +65,20 @@ function selectKnowledgeQuestions(seniority: SeniorityLevel): Question[] {
 }
 
 /**
+ * Retorna só a pergunta fixa de senioridade (q00), para renderizar a
+ * primeira tela do quiz antes de sabermos a senioridade do participante.
+ */
+export function getSeniorityQuestion(): ClientQuestion {
+  const seniorityQuestion = questionsBank.find((question) => question.type === 'seniority');
+
+  if (!seniorityQuestion) {
+    throw new Error('Banco de perguntas não contém a pergunta de senioridade (type "seniority")');
+  }
+
+  return toClientQuestion(seniorityQuestion);
+}
+
+/**
  * Monta a sessão completa do quiz para uma senioridade declarada: a pergunta
  * fixa de senioridade, 12 perguntas de conhecimento (3 por categoria, elegíveis
  * e sorteadas, embaralhadas entre categorias) e a pergunta de autoavaliação.

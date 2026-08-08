@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
+import { QuizAnswersProvider } from '@/lib/quiz-context';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -46,7 +47,9 @@ export default function RootLayout({
       lang="pt-BR"
       className={`dark ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <QuizAnswersProvider>{children}</QuizAnswersProvider>
+      </body>
     </html>
   );
 }
