@@ -24,7 +24,7 @@ export function QuestionCard({ question, onAnswer }: QuestionCardProps) {
   return (
     <Card
       size="sm"
-      className="flex w-full max-w-lg flex-col gap-3 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 motion-safe:duration-300"
+      className="flex w-full max-w-lg flex-col gap-3 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 motion-safe:duration-200"
     >
       <CardHeader>
         <CardTitle
