@@ -1,12 +1,11 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { questionsBank } from '@/lib/questions-bank';
-import { calculateScore } from '@/lib/scoring';
-import { buildResultNarrative } from '@/lib/narrative';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
 import { submitPayloadSchema } from '@/lib/validations';
 import { syncLeadToMailerLite } from '@/lib/mailerlite';
 import { computeDiagnostico, persistDiagnostico } from '@/lib/diagnostico';
-import type { Question, SeniorityLevel } from '@/lib/types';
+import { buildGabarito } from '@/lib/gabarito';
+import type { Question, SeniorityLevel, SubmitResult } from '@/lib/types';
 
 const EXPECTED_KNOWLEDGE_PER_CATEGORY = 3;
 const EXPECTED_KNOWLEDGE_CATEGORIES = 5;
@@ -86,9 +85,9 @@ export async function POST(request: NextRequest) {
     knowledgeQuestionsAnswered.push(question);
   }
 
-  // --- Integridade da sessão: exatamente 3 perguntas por categoria, nas 4
-  // categorias de conhecimento — protege contra payloads manipulados que
-  // tentem inflar ou distorcer o denominador do score.
+  // --- Integridade da sessão: exatamente 3 perguntas por dimensão, nas 5
+  // dimensões do blueprint — protege contra payloads manipulados que tentem
+  // inflar ou distorcer o denominador do score.
   const countByCategory = new Map<string, number>();
   for (const question of knowledgeQuestionsAnswered) {
     countByCategory.set(question.category, (countByCategory.get(question.category) ?? 0) + 1);
@@ -99,23 +98,14 @@ export async function POST(request: NextRequest) {
 
   if (!sessionIsWellFormed) {
     return badRequest(
-      `Conjunto de respostas de conhecimento incompleto: esperado ${EXPECTED_KNOWLEDGE_PER_CATEGORY} por categoria em ${EXPECTED_KNOWLEDGE_CATEGORIES} categorias`,
+      `Conjunto de respostas de conhecimento incompleto: esperado ${EXPECTED_KNOWLEDGE_PER_CATEGORY} por dimensão em ${EXPECTED_KNOWLEDGE_CATEGORIES} dimensões`,
     );
   }
 
-  const score = calculateScore(answers, knowledgeQuestionsAnswered);
-
-  const narrative = buildResultNarrative({
-    classification: score.classification,
-    scorePorCategoria: score.scorePorCategoria,
-  });
-
-  // Motor de diagnóstico v2 (Épico 11) — computado e persistido em paralelo
-  // ao cálculo "antigo" acima. A resposta HTTP abaixo continua no formato
-  // consumido pelo /resultado atual; o relatório que consome o diagnóstico
-  // completo é o Épico 12.
   const diagnostico = computeDiagnostico(answers, seniority, knowledgeQuestionsAnswered);
   persistDiagnostico({ seniority, diagnostico });
+
+  const gabarito = buildGabarito(diagnostico.respostas, knowledgeQuestionsAnswered);
 
   // Aguardamos a sincronização (a especificação prevê essa ordem: sincroniza
   // e só então libera o resultado), mas syncLeadToMailerLite nunca rejeita —
@@ -127,14 +117,17 @@ export async function POST(request: NextRequest) {
     email: lead.email,
     name: lead.name,
     seniority,
-    scoreGeral: score.scoreGeral,
-    classification: score.classification,
+    scoreGeral: diagnostico.scoreGlobal * 100,
+    classification: diagnostico.classificacao,
   });
 
-  return NextResponse.json({
-    scoreGeral: score.scoreGeral,
-    scorePorCategoria: score.scorePorCategoria,
-    classification: score.classification,
-    narrative,
-  });
+  const result: SubmitResult = {
+    seniority,
+    participantName: lead.name,
+    submittedAt: new Date().toISOString(),
+    diagnostico,
+    gabarito,
+  };
+
+  return NextResponse.json(result);
 }

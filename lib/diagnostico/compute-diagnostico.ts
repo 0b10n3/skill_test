@@ -144,7 +144,7 @@ function computeTopicosParaRevisar(
  * conhecimento de uma sessão em score por dimensão, classificação global,
  * pontos fortes/atenção e ranking de prioridade de desenvolvimento.
  * `banco` é a lista de perguntas (com gabarito) efetivamente respondidas na
- * sessão — mesmo padrão de `lib/scoring.ts`. Fonte: AVALIACAO.md §5.
+ * sessão. Fonte: AVALIACAO.md §5.
  */
 export function computeDiagnostico(
   respostas: AnswerMap,

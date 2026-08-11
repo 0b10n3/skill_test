@@ -67,8 +67,8 @@ describe('POST /api/submit — falha simulada na MailerLite não bloqueia o resu
 
     expect(response.status).toBe(200);
     const body = await response.json();
-    expect(body.scoreGeral).toBe(100);
-    expect(body.classification).toBe('alto');
+    expect(body.diagnostico.scoreGlobal).toBe(1);
+    expect(body.diagnostico.classificacao).toBe('alto');
     expect(createOrUpdateMock).toHaveBeenCalledTimes(1);
   });
 });

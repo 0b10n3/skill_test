@@ -24,3 +24,17 @@ export const submitPayloadSchema = z.object({
 });
 
 export type SubmitPayload = z.infer<typeof submitPayloadSchema>;
+
+/**
+ * Payload do botão "Receber este relatório por e-mail" (S7) — re-sincroniza
+ * o subscriber já opt-in na MailerLite (não é uma nova coleta de opt-in).
+ */
+export const resendReportSchema = z.object({
+  name: z.string().trim().min(1, 'Nome é obrigatório'),
+  email: z.string().trim().email('E-mail inválido'),
+  seniority: z.enum(['aspirante', 'estagiario', 'junior', 'pleno', 'senior']),
+  scoreGeral: z.number().min(0).max(100),
+  classification: z.enum(['baixo', 'medio', 'alto']),
+});
+
+export type ResendReportPayload = z.infer<typeof resendReportSchema>;
