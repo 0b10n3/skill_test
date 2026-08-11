@@ -5,41 +5,16 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * "O Sinal no Escuro" — dark-mode-first por identidade, sem toggle de tema
- * (a classe .dark é fixa em <html>, ver app/layout.tsx).
+ * Identidade Syntaxis (Forest/Grove/Amber), temas light/dark de primeira
+ * classe — ver design/tokens.json (SSOT) e DESIGN.md. A camada semântica
+ * (--background, --primary, --border etc.) é gerada por completo em
+ * app/tokens.generated.css (`npm run generate:tokens`), a partir de
+ * color.theme.light|dark — este arquivo só faz a ponte para o Tailwind
+ * (@theme inline) e não introduz nenhuma cor nova.
  *
- * Nenhuma cor deve ser hardcoded fora de content/tokens.json /
- * app/tokens.generated.css (gerado via `npm run generate:tokens`). Os papéis
- * semânticos abaixo (usados pelos componentes shadcn/ui) apenas apontam para
- * os tokens da marca — não introduzem cores novas.
+ * Tema ativo via classe `dark` em <html>, controlada pelo next-themes
+ * (components/theme-provider.tsx) — nunca hardcoded.
  */
-:root {
-  --background: var(--color-obsidian);
-  --foreground: var(--color-text-high);
-
-  --card: var(--color-carbon);
-  --card-foreground: var(--color-text-high);
-  --popover: var(--color-carbon-hi);
-  --popover-foreground: var(--color-text-high);
-
-  --primary: var(--color-volt-500);
-  --primary-foreground: var(--color-obsidian);
-  --secondary: var(--color-carbon-hi);
-  --secondary-foreground: var(--color-text-high);
-  --muted: var(--color-graphite);
-  --muted-foreground: var(--color-text-medium);
-  --accent: var(--color-pine);
-  --accent-foreground: var(--color-text-high);
-  --destructive: var(--color-error);
-  --destructive-foreground: var(--color-text-high);
-
-  --border: var(--color-line);
-  --input: var(--color-line-hi);
-  --ring: var(--color-volt-500);
-
-  --radius: var(--radius-lg);
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -57,20 +32,28 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-error-text: var(--error-text);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-display: var(--font-space-grotesk);
-  --font-heading: var(--font-space-grotesk);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-dm-serif-display);
+  --font-heading: var(--font-dm-serif-display);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-space-mono);
+  --font-data: var(--font-space-mono);
 }
 
 html {
-  color-scheme: dark;
   /* O app nunca tem scroll horizontal por design (single-viewport por seção). */
   overflow-x: hidden;
+}
+
+/* Todo número-métrica (score, progresso, "N de 15") usa Space Mono e
+   alinhamento tabular — DESIGN.md §4.2. */
+.metric {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
 }
 
 @layer base {

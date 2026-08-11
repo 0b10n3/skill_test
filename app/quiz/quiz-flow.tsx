@@ -46,7 +46,7 @@ export function QuizFlow({ seniorityQuestion }: QuizFlowProps) {
   if (isLoadingRest) {
     return (
       <main className="flex h-dvh flex-col items-center justify-center gap-4 px-6">
-        <p className="font-mono text-sm text-text-medium" role="status" aria-live="polite">
+        <p className="font-mono text-sm text-muted-foreground" role="status" aria-live="polite">
           Preparando suas próximas perguntas…
         </p>
       </main>

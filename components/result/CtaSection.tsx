@@ -82,7 +82,7 @@ export function CtaSection({
             />
           </div>
           {resendStatus === 'erro' && (
-            <p className="text-xs text-error">
+            <p className="text-xs text-error-text">
               Não foi possível reenviar agora. Tente novamente em instantes.
             </p>
           )}

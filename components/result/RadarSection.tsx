@@ -72,15 +72,15 @@ export function RadarSection({ dimensoes, dimensaoDominante }: RadarSectionProps
               outerRadius="65%"
               margin={{ top: 16, right: 24, bottom: 16, left: 24 }}
             >
-              <PolarGrid stroke="var(--color-line)" />
+              <PolarGrid stroke="var(--border)" />
               <PolarAngleAxis
                 dataKey="dimensao"
-                tick={{ fill: 'var(--color-text-medium)', fontSize: 11 }}
+                tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
               />
               <Radar
                 name="Expectativa do nível"
                 dataKey="expectativa"
-                stroke="var(--color-text-medium)"
+                stroke="var(--muted-foreground)"
                 strokeDasharray="4 4"
                 fill="transparent"
                 dot={false}
@@ -89,14 +89,14 @@ export function RadarSection({ dimensoes, dimensaoDominante }: RadarSectionProps
               <Radar
                 name="Seu perfil"
                 dataKey="seuPerfil"
-                stroke="var(--color-volt-500)"
-                fill="var(--color-volt-500)"
+                stroke="var(--primary)"
+                fill="var(--primary)"
                 fillOpacity={0.35}
                 isAnimationActive={!prefersReducedMotion}
                 animationDuration={600}
               />
               <Legend
-                wrapperStyle={{ fontSize: 11, color: 'var(--color-text-medium)' }}
+                wrapperStyle={{ fontSize: 11, color: 'var(--muted-foreground)' }}
                 iconType="line"
               />
             </RadarChart>
