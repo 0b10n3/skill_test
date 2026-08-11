@@ -41,6 +41,12 @@ jobs:
       - name: Lint one-pattern-per-file
         run: npm run lint:patterns
 
+      - name: Verify asset manifest
+        run: npm run assets:verify-manifest
+
+      - name: Verify asset palette
+        run: npm run assets:verify-palette
+
       - name: Test
         run: npm run test
 
