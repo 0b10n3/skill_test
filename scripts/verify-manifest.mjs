@@ -6,7 +6,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { withinBudget } from './lib/asset-plan.mjs';
+import { BUDGET_EXEMPT_FORMATS, withinBudget } from './lib/asset-plan.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
@@ -49,7 +49,12 @@ for (const asset of manifest.assets) {
       continue;
     }
     const actualSize = statSync(fullPath).size;
-    if (!withinBudget(actualSize, asset.weightBudgetKb)) {
+    // PNG é fallback legado, isento do orçamento — ver
+    // scripts/lib/asset-plan.mjs (BUDGET_EXEMPT_FORMATS).
+    if (
+      !BUDGET_EXEMPT_FORMATS.includes(file.format) &&
+      !withinBudget(actualSize, asset.weightBudgetKb)
+    ) {
       errors.push(
         `${asset.slug}: ${file.path} (${Math.round(actualSize / 1024)}KB) excede o orçamento (${asset.weightBudgetKb}KB)`,
       );

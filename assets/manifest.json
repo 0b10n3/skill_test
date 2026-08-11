@@ -25,6 +25,12 @@
           "sizeBytes": 7558
         },
         {
+          "path": "public/img/hero-landing/light-640.png",
+          "width": 640,
+          "format": "png",
+          "sizeBytes": 15287
+        },
+        {
           "path": "public/img/hero-landing/light-1024.avif",
           "width": 1024,
           "format": "avif",
@@ -37,6 +43,12 @@
           "sizeBytes": 12980
         },
         {
+          "path": "public/img/hero-landing/light-1024.png",
+          "width": 1024,
+          "format": "png",
+          "sizeBytes": 39288
+        },
+        {
           "path": "public/img/hero-landing/light-1920.avif",
           "width": 1920,
           "format": "avif",
@@ -47,6 +59,12 @@
           "width": 1920,
           "format": "webp",
           "sizeBytes": 22708
+        },
+        {
+          "path": "public/img/hero-landing/light-1920.png",
+          "width": 1920,
+          "format": "png",
+          "sizeBytes": 95502
         }
       ],
       "usedIn": []
@@ -75,6 +93,12 @@
           "sizeBytes": 10452
         },
         {
+          "path": "public/img/hero-landing/dark-640.png",
+          "width": 640,
+          "format": "png",
+          "sizeBytes": 43173
+        },
+        {
           "path": "public/img/hero-landing/dark-1024.avif",
           "width": 1024,
           "format": "avif",
@@ -87,6 +111,12 @@
           "sizeBytes": 23134
         },
         {
+          "path": "public/img/hero-landing/dark-1024.png",
+          "width": 1024,
+          "format": "png",
+          "sizeBytes": 131484
+        },
+        {
           "path": "public/img/hero-landing/dark-1920.avif",
           "width": 1920,
           "format": "avif",
@@ -97,6 +127,12 @@
           "width": 1920,
           "format": "webp",
           "sizeBytes": 45640
+        },
+        {
+          "path": "public/img/hero-landing/dark-1920.png",
+          "width": 1920,
+          "format": "png",
+          "sizeBytes": 320803
         }
       ],
       "usedIn": []
@@ -125,6 +161,12 @@
           "sizeBytes": 3658
         },
         {
+          "path": "public/img/dimensao-ia-aplicada/400.png",
+          "width": 400,
+          "format": "png",
+          "sizeBytes": 13336
+        },
+        {
           "path": "public/img/dimensao-ia-aplicada/800.avif",
           "width": 800,
           "format": "avif",
@@ -135,6 +177,12 @@
           "width": 800,
           "format": "webp",
           "sizeBytes": 8716
+        },
+        {
+          "path": "public/img/dimensao-ia-aplicada/800.png",
+          "width": 800,
+          "format": "png",
+          "sizeBytes": 38258
         }
       ],
       "usedIn": []
@@ -163,6 +211,12 @@
           "sizeBytes": 10870
         },
         {
+          "path": "public/img/dimensao-mercados-produtos/400.png",
+          "width": 400,
+          "format": "png",
+          "sizeBytes": 25875
+        },
+        {
           "path": "public/img/dimensao-mercados-produtos/800.avif",
           "width": 800,
           "format": "avif",
@@ -173,6 +227,12 @@
           "width": 800,
           "format": "webp",
           "sizeBytes": 21174
+        },
+        {
+          "path": "public/img/dimensao-mercados-produtos/800.png",
+          "width": 800,
+          "format": "png",
+          "sizeBytes": 103541
         }
       ],
       "usedIn": []
@@ -201,6 +261,12 @@
           "sizeBytes": 9904
         },
         {
+          "path": "public/img/dimensao-risco-regulacao/400.png",
+          "width": 400,
+          "format": "png",
+          "sizeBytes": 33467
+        },
+        {
           "path": "public/img/dimensao-risco-regulacao/800.avif",
           "width": 800,
           "format": "avif",
@@ -211,6 +277,12 @@
           "width": 800,
           "format": "webp",
           "sizeBytes": 21440
+        },
+        {
+          "path": "public/img/dimensao-risco-regulacao/800.png",
+          "width": 800,
+          "format": "png",
+          "sizeBytes": 168750
         }
       ],
       "usedIn": []
@@ -239,6 +311,12 @@
           "sizeBytes": 664
         },
         {
+          "path": "public/img/estado-vazio/300.png",
+          "width": 300,
+          "format": "png",
+          "sizeBytes": 10565
+        },
+        {
           "path": "public/img/estado-vazio/600.avif",
           "width": 600,
           "format": "avif",
@@ -249,6 +327,12 @@
           "width": 600,
           "format": "webp",
           "sizeBytes": 1724
+        },
+        {
+          "path": "public/img/estado-vazio/600.png",
+          "width": 600,
+          "format": "png",
+          "sizeBytes": 53673
         }
       ],
       "usedIn": []
@@ -275,6 +359,12 @@
           "width": 1200,
           "format": "webp",
           "sizeBytes": 1804
+        },
+        {
+          "path": "public/img/og-social-background/1200.png",
+          "width": 1200,
+          "format": "png",
+          "sizeBytes": 137579
         }
       ],
       "usedIn": []
@@ -303,6 +393,12 @@
           "sizeBytes": 718
         },
         {
+          "path": "public/img/radar-card-textura/light-540.png",
+          "width": 540,
+          "format": "png",
+          "sizeBytes": 40400
+        },
+        {
           "path": "public/img/radar-card-textura/light-1080.avif",
           "width": 1080,
           "format": "avif",
@@ -313,6 +409,12 @@
           "width": 1080,
           "format": "webp",
           "sizeBytes": 2508
+        },
+        {
+          "path": "public/img/radar-card-textura/light-1080.png",
+          "width": 1080,
+          "format": "png",
+          "sizeBytes": 176740
         }
       ],
       "usedIn": []
@@ -341,6 +443,12 @@
           "sizeBytes": 726
         },
         {
+          "path": "public/img/radar-card-textura/dark-540.png",
+          "width": 540,
+          "format": "png",
+          "sizeBytes": 108026
+        },
+        {
           "path": "public/img/radar-card-textura/dark-1080.avif",
           "width": 1080,
           "format": "avif",
@@ -351,6 +459,12 @@
           "width": 1080,
           "format": "webp",
           "sizeBytes": 2750
+        },
+        {
+          "path": "public/img/radar-card-textura/dark-1080.png",
+          "width": 1080,
+          "format": "png",
+          "sizeBytes": 435406
         }
       ],
       "usedIn": []

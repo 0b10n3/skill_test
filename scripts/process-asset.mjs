@@ -14,7 +14,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { processAssetToFiles } from './lib/process-asset-core.mjs';
-import { withinBudget } from './lib/asset-plan.mjs';
+import { largestBudgetedFileSize, withinBudget } from './lib/asset-plan.mjs';
 import { parsePromptFile } from './lib/prompt-frontmatter.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -27,7 +27,7 @@ function parseArgs(argv) {
       'Uso: node scripts/process-asset.mjs <slug> --raw <path> --dark <hex> --light <hex> --widths <n,n,...> [--formats avif,webp] [--variant <name>]',
     );
   }
-  const args = { slug, formats: ['avif', 'webp'] };
+  const args = { slug, formats: ['avif', 'webp', 'png'] };
   for (let i = 0; i < rest.length; i += 2) {
     const key = rest[i].replace(/^--/, '');
     const value = rest[i + 1];
@@ -73,7 +73,7 @@ function updateManifest(args, publishedFiles, weightBudgetKb) {
 
   writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
-  const largest = Math.max(...publishedFiles.map((f) => f.sizeBytes));
+  const largest = largestBudgetedFileSize(publishedFiles);
   if (!withinBudget(largest, weightBudgetKb)) {
     console.error(
       `✗ ${args.slug}: maior arquivo publicado (${Math.round(largest / 1024)}KB) excede o orçamento (${weightBudgetKb}KB).`,

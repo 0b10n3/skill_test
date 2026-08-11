@@ -20,7 +20,7 @@ import { planAssetOutputs } from './asset-plan.mjs';
  * @param {string} params.dark - hex exato do token usado como ponto escuro do duotone
  * @param {string} params.light - hex exato do token usado como ponto claro do duotone
  * @param {number[]} params.widths
- * @param {string[]} params.formats - subconjunto de ['avif', 'webp']
+ * @param {string[]} params.formats - subconjunto de ['avif', 'webp', 'png']
  * @returns {Promise<Array<{path: string, width: number, format: string, sizeBytes: number}>>}
  */
 export async function processAssetToFiles({
@@ -51,6 +51,12 @@ export async function processAssetToFiles({
     const pipeline = correctedImage.clone().resize(output.width);
     if (output.format === 'avif') await pipeline.avif({ quality: 60 }).toFile(outPath);
     else if (output.format === 'webp') await pipeline.webp({ quality: 75 }).toFile(outPath);
+    // Fallback para navegadores sem suporte a AVIF/WebP (REDESIGN.md §4
+    // item 5: "AVIF/WebP + fallback") — paleta indexada (8 bits, sem
+    // dithering) mantém o peso baixo mesmo para PNG, adequada aqui porque
+    // o duotone já limita a imagem a um gradiente de 2 cores.
+    else if (output.format === 'png')
+      await pipeline.png({ palette: true, colors: 64, dither: 0 }).toFile(outPath);
     else throw new Error(`Formato não suportado: ${output.format}`);
 
     results.push({
