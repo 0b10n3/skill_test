@@ -43,4 +43,11 @@ describe('RadarSection', () => {
     render(<RadarSection dimensoes={dimensoes} dimensaoDominante="dados-programacao" />);
     expect(screen.getByText(RADAR_SUMMARY['dados-programacao'])).toBeInTheDocument();
   });
+
+  // A cor da série "Seu perfil" (Grove fixo — S2, Épico 18) não é
+  // testável aqui: jsdom não mede layout, então o ResponsiveContainer do
+  // Recharts renderiza 0×0 e nem monta o SVG interno (mesma limitação que
+  // já vale para os outros testes deste arquivo, que por isso testam a
+  // tabela acessível, não o gráfico). Verificado visualmente via
+  // screenshot nos dois temas — ver PR do Épico 18.
 });

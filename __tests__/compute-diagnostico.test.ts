@@ -171,6 +171,29 @@ describe('computeDiagnostico — extremos e pureza', () => {
   });
 });
 
+describe('computeDiagnostico — ordem determinística de dimensoes/prioridades (Épico 18)', () => {
+  it('dimensoes/prioridades saem em ordem canônica mesmo com o banco embaralhado por categoria', () => {
+    const { banco, respostas } = buildScenario(allDimensions(3));
+
+    // Embaralha o banco por categoria (simula lib/quiz-selection.ts sorteando
+    // a ordem das perguntas por sessão) — mantém as respostas intactas,
+    // apenas reordena `banco`, que é o único input de onde computeDimensoes
+    // deriva a ordem das categorias.
+    const shuffledBanco = [...banco].sort((a, b) => (a.id < b.id ? 1 : -1));
+    expect(shuffledBanco.map((q) => q.category)).not.toEqual(banco.map((q) => q.category));
+
+    const canonical = computeDiagnostico(respostas, 'pleno', banco);
+    const shuffled = computeDiagnostico(respostas, 'pleno', shuffledBanco);
+
+    expect(shuffled.dimensoes.map((d) => d.category)).toEqual(
+      canonical.dimensoes.map((d) => d.category),
+    );
+    expect(shuffled.prioridades.map((p) => p.category)).toEqual(
+      canonical.prioridades.map((p) => p.category),
+    );
+  });
+});
+
 describe('computeDiagnostico — topicosParaRevisar', () => {
   it('lista temas das questões erradas nas dimensões de atenção, nunca "questão X"', () => {
     const dist = allDimensions(3);

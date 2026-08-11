@@ -1,5 +1,7 @@
 import { Badge } from '@/components/ui/badge';
+import { Logo } from '@/components/logo';
 import { CLASSIFICATION_CONTEXT, CLASSIFICATION_LABEL, SENIORITY_LABEL } from '@/content/relatorio';
+import { cn } from '@/lib/utils';
 import type { Classification, SeniorityLevel } from '@/lib/types';
 
 const CLASSIFICATION_BADGE_VARIANT: Record<
@@ -38,9 +40,7 @@ export function ReportHeader({
 
   return (
     <header className="flex w-full max-w-md flex-col items-center gap-3 text-center">
-      <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">
-        Syntaxis Skill Check
-      </p>
+      <Logo />
       <h1 className="font-display text-2xl text-foreground">Diagnóstico de Competências</h1>
 
       <dl className="flex flex-col gap-0.5 text-sm text-muted-foreground">
@@ -64,7 +64,10 @@ export function ReportHeader({
         <Badge
           data-testid="score-classificacao"
           variant={CLASSIFICATION_BADGE_VARIANT[classificacao]}
-          className="text-sm"
+          // shadow.amber é exclusivo do selo ALTO (DESIGN.md §5.4: Amber é
+          // conquista real) — única aparição de sombra colorida fora do
+          // Card padrão (shadow.syntaxis).
+          className={cn('text-sm', classificacao === 'alto' && 'shadow-amber')}
         >
           {CLASSIFICATION_LABEL[classificacao]}
         </Badge>

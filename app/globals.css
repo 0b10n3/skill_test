@@ -35,6 +35,7 @@
   --color-error-text: var(--error-text);
   --color-achievement-foreground: var(--achievement-foreground);
   --color-link-foreground: var(--link-foreground);
+  --color-attention-text: var(--attention-text);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -42,6 +43,7 @@
   --shadow-syntaxis-sm: var(--shadow-syntaxis-sm);
   --shadow-syntaxis: var(--shadow-syntaxis);
   --shadow-syntaxis-lg: var(--shadow-syntaxis-lg);
+  --shadow-amber: var(--shadow-amber);
 
   --font-display: var(--font-dm-serif-display);
   --font-heading: var(--font-dm-serif-display);
@@ -93,5 +95,13 @@ html {
 
   [data-slot='accordion-trigger-icon'] {
     display: none !important;
+  }
+
+  /* Tinta economizável (Épico 18, S8): shadow.syntaxis/shadow.amber são
+     decoração de tela — não impressa, papel não tem elevação. O tema
+     claro é forçado via next-themes em app/resultado/page.tsx, não aqui,
+     para não duplicar hexes já definidos em design/tokens.json. */
+  * {
+    box-shadow: none !important;
   }
 }

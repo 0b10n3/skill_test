@@ -137,13 +137,13 @@ mais axe-core com zero violações críticas).
 
 ## Pipeline de assets generativos (Épico 16)
 
-> **Estado atual: infraestrutura pronta, lote inicial ainda não gerado.**
-> Este épico foi entregue como _scaffold_ — a geração de imagem real via
-> Nano Banana Pro depende do `agy` (Antigravity CLI), que não está
-> disponível no ambiente onde este pipeline foi montado. `assets/manifest.json`
-> está vazio de propósito; os Épicos 17-18 não podem consumir os 9 assets
-> do lote inicial até alguém rodar a skill de geração (abaixo) com acesso
-> ao `agy` de verdade.
+> **Estado atual: lote inicial gerado e publicado.** Este épico foi
+> entregue como _scaffold_ — a geração de imagem real via Nano Banana Pro
+> depende do `agy` (Antigravity CLI), que não estava disponível no
+> ambiente onde o pipeline foi montado. Os 9 assets do lote inicial foram
+> gerados e aprovados posteriormente (via `agy`, fora deste ambiente) e já
+> estão em `assets/manifest.json`/`public/img/`, consumidos pelos Épicos
+> 17-18.
 
 Geração de imagem tratada como build reprodutível (REDESIGN.md §4): o
 prompt versionado é código-fonte, a saída bruta é artefato imutável, a

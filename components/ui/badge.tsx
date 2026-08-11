@@ -24,6 +24,12 @@ const badgeVariants = cva(
         // variant do sistema que usa a cor accent. Nunca usar para estado
         // neutro/informativo.
         achievement: 'bg-accent/10 text-achievement-foreground dark:bg-accent/20',
+        // Alerta construtivo (Épico 18, S3: "ponto de atenção" de
+        // dimensão) — texto/borda em Amber-700/300 (attention-text), sem
+        // preenchimento, para não ser confundido com o selo de conquista
+        // (achievement, acima). Nunca destructive: um resultado baixo é
+        // mapa de desenvolvimento, não erro de sistema.
+        attention: 'border-attention-text/40 text-attention-text',
       },
     },
     defaultVariants: {

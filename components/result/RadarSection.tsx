@@ -87,10 +87,13 @@ export function RadarSection({ dimensoes, dimensaoDominante }: RadarSectionProps
                 isAnimationActive={false}
               />
               <Radar
+                // Grove fixo (não --primary, que é Forest no Light Mode) —
+                // Grove é a cor de "ação" da marca (DESIGN.md §4.1),
+                // mesmo token usado na barra de Progress (Épico 15).
                 name="Seu perfil"
                 dataKey="seuPerfil"
-                stroke="var(--primary)"
-                fill="var(--primary)"
+                stroke="var(--color-semantic-progress-bar)"
+                fill="var(--color-semantic-progress-bar)"
                 fillOpacity={0.35}
                 isAnimationActive={!prefersReducedMotion}
                 animationDuration={600}

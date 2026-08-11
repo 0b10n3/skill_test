@@ -37,4 +37,27 @@ describe('DimensionScoreCards', () => {
     expect(screen.getAllByText('Ponto forte')).toHaveLength(3);
     expect(screen.getAllByText('Ponto de atenção')).toHaveLength(2);
   });
+
+  it('S3 (Épico 18): "N/total" usa a escala tipográfica dataXl (Space Mono)', () => {
+    const dimensoes = makeDimensoes();
+    const { container } = render(<DimensionScoreCards dimensoes={dimensoes} />);
+
+    const values = container.querySelectorAll('.text-data-xl');
+    expect(values.length).toBe(dimensoes.length);
+  });
+
+  it('S3 (Épico 18): "ponto de atenção" nunca usa a variante destructive — é mapa de desenvolvimento, não erro', () => {
+    const dimensoes = makeDimensoes();
+    const { container } = render(<DimensionScoreCards dimensoes={dimensoes} />);
+
+    expect(container.querySelector('[data-variant="destructive"]')).toBeNull();
+  });
+
+  it('S3 (Épico 18): "ponto forte" usa a variante secondary (família Grove), não default (Forest)', () => {
+    const dimensoes = makeDimensoes();
+    const { container } = render(<DimensionScoreCards dimensoes={dimensoes} />);
+
+    const strongBadges = container.querySelectorAll('[data-variant="secondary"]');
+    expect(strongBadges.length).toBe(3);
+  });
 });
