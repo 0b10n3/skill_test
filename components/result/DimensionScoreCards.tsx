@@ -49,7 +49,7 @@ export function DimensionScoreCards({ dimensoes }: DimensionScoreCardsProps) {
           return (
             <Card key={dimensao.category} size="sm" className="flex flex-col gap-2">
               <CardHeader className="flex flex-row items-center gap-2">
-                <Icon aria-hidden className="size-4 text-text-medium" />
+                <Icon aria-hidden className="size-4 text-muted-foreground" />
                 <CardTitle className="font-display text-sm text-foreground">
                   {CATEGORY_LABEL[dimensao.category]}
                 </CardTitle>
@@ -67,7 +67,7 @@ export function DimensionScoreCards({ dimensoes }: DimensionScoreCardsProps) {
                   value={dimensao.score * 100}
                   aria-label={`Progresso em ${CATEGORY_LABEL[dimensao.category]}`}
                 />
-                <p className="text-xs text-text-medium">
+                <p className="text-xs text-muted-foreground">
                   {SCORE_CARD_COPY[dimensao.category][dimensao.etiqueta]}
                 </p>
               </CardContent>

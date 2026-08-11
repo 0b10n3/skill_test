@@ -46,11 +46,11 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
             </CardHeader>
             <CardContent className="flex flex-col gap-2 text-sm">
               <div>
-                <p className="font-medium text-text-medium">Por que agora</p>
+                <p className="font-medium text-muted-foreground">Por que agora</p>
                 <p className="text-foreground">{POR_QUE_IMPORTA[priority.category][seniority]}</p>
               </div>
               <div>
-                <p className="font-medium text-text-medium">Primeiro passo</p>
+                <p className="font-medium text-muted-foreground">Primeiro passo</p>
                 <p className="text-foreground">{PRIMEIRO_PASSO[priority.category][seniority]}</p>
               </div>
             </CardContent>
@@ -72,14 +72,14 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
                 <YAxis
                   type="category"
                   dataKey="dimensao"
-                  tick={{ fill: 'var(--color-text-medium)', fontSize: 11 }}
+                  tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
                   width={64}
                 />
                 <Bar dataKey="prioridade" radius={4}>
                   {chartData.map((entry) => (
                     <Cell
                       key={entry.dimensao}
-                      fill={entry.destaque ? 'var(--color-volt-500)' : 'var(--color-line-hi)'}
+                      fill={entry.destaque ? 'var(--primary)' : 'var(--border)'}
                     />
                   ))}
                 </Bar>

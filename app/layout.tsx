@@ -1,27 +1,33 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
+import { DM_Sans, DM_Serif_Display, Space_Mono } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { QuizAnswersProvider } from '@/lib/quiz-context';
 import './globals.css';
 
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
+const dmSerifDisplay = DM_Serif_Display({
+  variable: '--font-dm-serif-display',
   subsets: ['latin'],
-  weight: ['500', '700'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
   display: 'swap',
+  fallback: ['Georgia', 'serif'],
 });
 
-const inter = Inter({
-  variable: '--font-inter',
+const dmSans = DM_Sans({
+  variable: '--font-dm-sans',
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   display: 'swap',
+  fallback: ['system-ui', 'sans-serif'],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-jetbrains-mono',
+const spaceMono = Space_Mono({
+  variable: '--font-space-mono',
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '700'],
   display: 'swap',
+  fallback: ['Courier New', 'monospace'],
 });
 
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -45,10 +51,16 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`dark ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${dmSerifDisplay.variable} ${dmSans.variable} ${spaceMono.variable}`}
+      suppressHydrationWarning
     >
       <body className="font-sans antialiased">
-        <QuizAnswersProvider>{children}</QuizAnswersProvider>
+        <ThemeProvider>
+          <div className="fixed top-3 right-3 z-50">
+            <ThemeToggle />
+          </div>
+          <QuizAnswersProvider>{children}</QuizAnswersProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

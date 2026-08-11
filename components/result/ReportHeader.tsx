@@ -35,12 +35,12 @@ export function ReportHeader({
 
   return (
     <header className="flex w-full max-w-md flex-col items-center gap-3 text-center">
-      <p className="font-mono text-xs tracking-wide text-text-medium uppercase">
+      <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">
         Syntaxis Skill Check
       </p>
       <h1 className="font-display text-2xl text-foreground">Diagnóstico de Competências</h1>
 
-      <dl className="flex flex-col gap-0.5 text-sm text-text-medium">
+      <dl className="flex flex-col gap-0.5 text-sm text-muted-foreground">
         <div>
           <dt className="sr-only">Participante</dt>
           <dd data-testid="report-participant-name" className="text-foreground">
@@ -65,10 +65,10 @@ export function ReportHeader({
         >
           {CLASSIFICATION_LABEL[classificacao]}
         </Badge>
-        <p className="text-sm text-text-medium">
+        <p className="text-sm text-muted-foreground">
           {CLASSIFICATION_CONTEXT[classificacao](seniorityLabel)}
         </p>
-        <p data-testid="score-geral" className="font-mono text-xs text-text-medium">
+        <p data-testid="score-geral" className="font-mono text-xs text-muted-foreground">
           {Math.round(scoreGlobal * 100)}% de acerto geral
         </p>
       </div>

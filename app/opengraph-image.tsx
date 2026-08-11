@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import tokens from '@/content/tokens.json';
+import tokens from '@/design/tokens.json';
 
 export const runtime = 'nodejs';
 export const alt = 'Syntaxis Skill Check — Descubra seu nível técnico em finanças';
@@ -20,67 +20,68 @@ async function loadGoogleFont(family: string, weight: number): Promise<ArrayBuff
 }
 
 export default async function OpengraphImage() {
-  const [spaceGroteskBold, interRegular] = await Promise.all([
-    loadGoogleFont('Space Grotesk', 700),
-    loadGoogleFont('Inter', 400),
+  const [dmSerifDisplayRegular, dmSansRegular] = await Promise.all([
+    loadGoogleFont('DM Serif Display', 400),
+    loadGoogleFont('DM Sans', 400),
   ]);
 
   return new ImageResponse(
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        gap: 24,
-        padding: 96,
-        backgroundColor: tokens.neutrals.obsidian.hex,
-        backgroundImage: `radial-gradient(circle at 15% 15%, ${tokens.neutrals.pine.hex} 0%, transparent 45%)`,
-      }}
-    >
+    (
       <div
         style={{
+          width: '100%',
+          height: '100%',
           display: 'flex',
-          fontFamily: 'Inter',
-          fontSize: 28,
-          letterSpacing: 4,
-          textTransform: 'uppercase',
-          color: tokens.text.volt.hex,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          gap: 24,
+          padding: 96,
+          backgroundColor: tokens.color.neutral.ink.$value,
+          backgroundImage: `radial-gradient(circle at 15% 15%, ${tokens.color.forest[900].$value} 0%, transparent 45%)`,
         }}
       >
-        Syntaxis Skill Check
+        <div
+          style={{
+            display: 'flex',
+            fontFamily: 'DM Sans',
+            fontSize: 28,
+            letterSpacing: 4,
+            textTransform: 'uppercase',
+            color: tokens.color.grove[500].$value,
+          }}
+        >
+          Syntaxis Skill Check
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            fontFamily: 'DM Serif Display',
+            fontSize: 64,
+            lineHeight: 1.15,
+            color: tokens.color.neutral.chalk.$value,
+            maxWidth: 900,
+          }}
+        >
+          Descubra seu nível técnico em finanças em alguns minutos
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            fontFamily: 'DM Sans',
+            fontSize: 30,
+            color: tokens.color.neutral.slate.$value,
+          }}
+        >
+          10–15 min · 15 perguntas · múltipla escolha
+        </div>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          fontFamily: 'Space Grotesk',
-          fontSize: 64,
-          fontWeight: 700,
-          lineHeight: 1.15,
-          color: tokens.text.high.hex,
-          maxWidth: 900,
-        }}
-      >
-        Descubra seu nível técnico em finanças em alguns minutos
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          fontFamily: 'Inter',
-          fontSize: 30,
-          color: tokens.text.medium.hex,
-        }}
-      >
-        10–15 min · 14 perguntas · múltipla escolha
-      </div>
-    </div>,
+    ),
     {
       ...size,
       fonts: [
-        { name: 'Space Grotesk', data: spaceGroteskBold, weight: 700, style: 'normal' },
-        { name: 'Inter', data: interRegular, weight: 400, style: 'normal' },
+        { name: 'DM Serif Display', data: dmSerifDisplayRegular, weight: 400, style: 'italic' },
+        { name: 'DM Sans', data: dmSansRegular, weight: 400, style: 'normal' },
       ],
     },
   );

@@ -44,7 +44,9 @@ Copie `.env.example` para `.env.local` e preencha as variáveis necessárias (ve
 | `npm run test:e2e:update-snapshots` | Regenera os snapshots visuais do Playwright                                                                         |
 | `npm run test:lighthouse`           | Auditoria Lighthouse (Performance/A11y/SEO) contra `/`                                                              |
 | `npm run test:lighthouse:flow`      | Auditoria Lighthouse nas 4 rotas públicas via User Flow (ver [`GOLIVE.md`](./GOLIVE.md))                            |
-| `npm run generate:tokens`           | Gera `app/tokens.generated.css` a partir de `content/tokens.json`                                                   |
+| `npm run generate:tokens`           | Gera `app/tokens.generated.css` (gitignored) a partir de `design/tokens.json`                                       |
+| `npm run lint:colors`               | Falha se algum `.ts`/`.tsx` em `app/`, `components/`, `lib/`, `content/` tiver cor hex/rgb/hsl fora dos tokens      |
+| `npm run audit:contrast`            | Gera `design/contrast-report.md` checando contraste WCAG AA de todos os pares semânticos claro/escuro               |
 | `npm run validate:questions`        | Valida `content/questions.json` contra o blueprint de senioridade (`docs/metodologia.md`)                           |
 | `npm run item-stats`                | Agrega os logs de telemetria de itens em taxa de acerto/distribuição por alternativa (ver `docs/metodologia.md` §7) |
 
@@ -67,6 +69,38 @@ score por dimensão, classificação, prioridades de carreira e pontos
 fortes/atenção — modelo completo em `docs/metodologia.md`. Cada submissão
 também alimenta a telemetria de itens (taxa de acerto e distribuição por
 alternativa, por item e por nível) via `npm run item-stats`.
+
+## Tokens de design e tema (Épico 14)
+
+`design/tokens.json` é a fonte canônica (formato DTCG) de toda cor,
+tipografia, espaçamento, raio, sombra e token de padrão geométrico da marca
+Syntaxis — nunca editar CSS com valores literais diretamente. `npm run
+generate:tokens` (parte do `prebuild`) lê esse arquivo e escreve
+`app/tokens.generated.css` (gitignored, gerado a cada build), que alimenta o
+`@theme` do Tailwind v4 e as variáveis semânticas `:root`/`.dark` consumidas
+pelos componentes. Dois scripts bloqueantes em CI garantem que essa é
+sempre a única fonte de cor: `npm run lint:colors` (nenhum literal
+hex/rgb/hsl fora dos arquivos de token) e `npm run audit:contrast` (todo par
+semântico claro/escuro precisa manter contraste AA — falhas documentadas
+como aceitáveis ficam no `KNOWN_SUBSTITUTES` de `scripts/audit-contrast.mjs`,
+qualquer outra falha quebra o build).
+
+O tema claro/escuro usa `next-themes` (`components/theme-provider.tsx`,
+alternância em `components/theme-toggle.tsx`), seguindo preferência do
+sistema por padrão. Estados de hover dos variants `default`/`secondary` de
+botão e badge escurecem a cor com `color-mix(in oklch, var(--X), black 20%)`
+em vez de reduzir opacidade ou clarear em direção ao texto — a paleta
+Forest/Grove é mais escura que o sistema visual anterior, e opacidade/mix
+para claro derruba o contraste abaixo do AA (achado real de QA do Épico 14,
+ver comentário em `components/ui/button.tsx`).
+
+`components/logo.tsx` e `app/icon.svg` são **placeholders** (wordmark
+tipográfico e favicon geométrico) até que um asset de marca real seja
+fornecido. O antigo catálogo `/dev/design-system` (construído em cima do
+sistema de tokens anterior, "O Sinal no Escuro") foi removido — o
+substituto (`/dev/ui`) é entregue no Épico 15. Tokens/catálogos
+substituídos vão para `design/archive/` (nunca apagados) — ver
+`design/archive/README.md`.
 
 ## Setup do MailerLite
 

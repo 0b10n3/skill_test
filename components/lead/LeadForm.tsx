@@ -71,12 +71,12 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
           <div className="flex flex-col gap-1.5">
-            <span className="text-sm text-text-medium">Seu momento no mercado</span>
+            <span className="text-sm text-muted-foreground">Seu momento no mercado</span>
             <p className="font-mono text-sm text-foreground">{seniorityLabel}</p>
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="lead-name" className="text-sm text-text-medium">
+            <label htmlFor="lead-name" className="text-sm text-muted-foreground">
               Nome
             </label>
             <Input
@@ -87,11 +87,11 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
               onChange={(event) => setName(event.target.value)}
               aria-invalid={Boolean(fieldErrors.name)}
             />
-            {fieldErrors.name && <p className="text-xs text-error">{fieldErrors.name}</p>}
+            {fieldErrors.name && <p className="text-xs text-error-text">{fieldErrors.name}</p>}
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="lead-email" className="text-sm text-text-medium">
+            <label htmlFor="lead-email" className="text-sm text-muted-foreground">
               E-mail
             </label>
             <Input
@@ -103,7 +103,7 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
               onChange={(event) => setEmail(event.target.value)}
               aria-invalid={Boolean(fieldErrors.email)}
             />
-            {fieldErrors.email && <p className="text-xs text-error">{fieldErrors.email}</p>}
+            {fieldErrors.email && <p className="text-xs text-error-text">{fieldErrors.email}</p>}
           </div>
 
           <label className="flex items-start gap-2 text-sm text-foreground">
@@ -114,9 +114,9 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
             />
             Aceito receber comunicações da Syntaxis por e-mail
           </label>
-          {fieldErrors.optIn && <p className="text-xs text-error">{fieldErrors.optIn}</p>}
+          {fieldErrors.optIn && <p className="text-xs text-error-text">{fieldErrors.optIn}</p>}
 
-          {submitError && <p className="text-sm text-error">{submitError}</p>}
+          {submitError && <p className="text-sm text-error-text">{submitError}</p>}
 
           <Button type="submit" size="lg" disabled={isSubmitting} className="self-end">
             {isSubmitting ? 'Enviando…' : 'Ver meu resultado'}

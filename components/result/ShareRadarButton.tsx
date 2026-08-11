@@ -38,12 +38,16 @@ function drawShareCard(
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
+  // Lê a camada semântica (não primitivos): já resolve para o tema ativo
+  // no momento do clique, sem precisar checar light/dark manualmente. As
+  // variáveis vêm de app/tokens.generated.css, aplicado globalmente — não
+  // há fallback aqui de propósito (ver scripts/lint-hardcoded-colors.mjs).
   const styles = getComputedStyle(document.documentElement);
-  const background = styles.getPropertyValue('--color-obsidian').trim() || '#0A0F0D';
-  const line = styles.getPropertyValue('--color-line').trim() || '#1E2C27';
-  const volt = styles.getPropertyValue('--color-volt-500').trim() || '#1FE07A';
-  const textHigh = styles.getPropertyValue('--color-text-high').trim() || '#EAF3EE';
-  const textMedium = styles.getPropertyValue('--color-text-medium').trim() || '#9DB0A8';
+  const background = styles.getPropertyValue('--background').trim();
+  const line = styles.getPropertyValue('--border').trim();
+  const primary = styles.getPropertyValue('--primary').trim();
+  const textHigh = styles.getPropertyValue('--foreground').trim();
+  const textMedium = styles.getPropertyValue('--muted-foreground').trim();
 
   canvas.width = CANVAS_SIZE;
   canvas.height = CANVAS_SIZE;
@@ -73,9 +77,9 @@ function drawShareCard(
     else ctx.lineTo(point.x, point.y);
   });
   ctx.closePath();
-  ctx.fillStyle = `${volt}59`; // ~35% de opacidade
+  ctx.fillStyle = `${primary}59`; // ~35% de opacidade
   ctx.fill();
-  ctx.strokeStyle = volt;
+  ctx.strokeStyle = primary;
   ctx.lineWidth = 2;
   ctx.stroke();
 
@@ -95,7 +99,7 @@ function drawShareCard(
   ctx.textAlign = 'left';
   ctx.fillText('Syntaxis Skill Check', 32, 48);
 
-  ctx.fillStyle = volt;
+  ctx.fillStyle = primary;
   ctx.font = 'bold 22px sans-serif';
   ctx.fillText(`Classificação: ${CLASSIFICATION_LABEL[classificacao]}`, 32, CANVAS_SIZE - 32);
 }

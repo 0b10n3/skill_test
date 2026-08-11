@@ -32,6 +32,12 @@ jobs:
       - name: Validate questions bank
         run: npm run validate:questions
 
+      - name: Lint hardcoded colors
+        run: npm run lint:colors
+
+      - name: Audit token contrast
+        run: npm run audit:contrast
+
       - name: Test
         run: npm run test
 

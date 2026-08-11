@@ -103,14 +103,14 @@ export function AnswerReview({ gabarito }: AnswerReviewProps) {
                           {item.correct ? (
                             <CheckCircle2
                               aria-hidden
-                              className="mt-0.5 size-4 shrink-0 text-success"
+                              className="mt-0.5 size-4 shrink-0 text-semantic-success"
                             />
                           ) : (
-                            <XCircle aria-hidden className="mt-0.5 size-4 shrink-0 text-warning" />
+                            <XCircle aria-hidden className="mt-0.5 size-4 shrink-0 text-semantic-warning" />
                           )}
                           <div className="flex flex-col gap-1">
                             <p className="text-sm font-medium text-foreground">{item.question}</p>
-                            <p className="text-xs text-text-medium">
+                            <p className="text-xs text-muted-foreground">
                               <span className="sr-only">Status: </span>
                               {item.correct ? 'Correta' : 'Incorreta'} — sua resposta:{' '}
                               {selectedOption?.text ?? 'não respondida'}
@@ -121,7 +121,7 @@ export function AnswerReview({ gabarito }: AnswerReviewProps) {
                                 </>
                               )}
                             </p>
-                            <p className="text-xs text-text-medium">{item.explanation}</p>
+                            <p className="text-xs text-muted-foreground">{item.explanation}</p>
                           </div>
                         </div>
                       </Card>
