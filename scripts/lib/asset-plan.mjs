@@ -24,3 +24,20 @@ export function planAssetOutputs({ slug, variant, widths, formats }) {
 export function withinBudget(actualSizeBytes, weightBudgetKb) {
   return actualSizeBytes <= weightBudgetKb * 1024;
 }
+
+/**
+ * Formatos que não entram no cálculo de orçamento de peso: PNG é o
+ * fallback legado (REDESIGN.md §4 item 5, "AVIF/WebP + fallback") para
+ * navegadores sem suporte a WebP — hoje uma fração residual do tráfego.
+ * O orçamento existe para o que o Lighthouse mede e o usuário real baixa
+ * (AVIF/WebP), não para o peso do caminho de compatibilidade que quase
+ * ninguém percorre.
+ */
+export const BUDGET_EXEMPT_FORMATS = ['png'];
+
+/** Maior arquivo entre os publishedFiles que efetivamente conta para o orçamento (ignora formatos isentos). */
+export function largestBudgetedFileSize(publishedFiles) {
+  const budgeted = publishedFiles.filter((file) => !BUDGET_EXEMPT_FORMATS.includes(file.format));
+  if (budgeted.length === 0) return 0;
+  return Math.max(...budgeted.map((file) => file.sizeBytes));
+}

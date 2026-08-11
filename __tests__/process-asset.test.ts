@@ -53,15 +53,17 @@ describe('processAssetToFiles (entrada de referência → variantes, formatos e 
       dark: '#1B6A45',
       light: '#F7F7F5',
       widths: [100, 200],
-      formats: ['avif', 'webp'],
+      formats: ['avif', 'webp', 'png'],
     });
 
-    expect(results).toHaveLength(4);
+    expect(results).toHaveLength(6);
     const paths = results.map((r) => r.path).sort();
     expect(paths).toEqual([
       'public/img/hero-landing/light-100.avif',
+      'public/img/hero-landing/light-100.png',
       'public/img/hero-landing/light-100.webp',
       'public/img/hero-landing/light-200.avif',
+      'public/img/hero-landing/light-200.png',
       'public/img/hero-landing/light-200.webp',
     ]);
 
@@ -76,31 +78,34 @@ describe('processAssetToFiles (entrada de referência → variantes, formatos e 
     }
   });
 
-  it('o resultado corrigido por duotone só usa cores dentro da reta entre os dois hexes — passa na verificação de paleta', async () => {
-    const results = await processAssetToFiles({
-      rawPath,
-      outDir,
-      slug: 'hero-landing',
-      variant: 'palette-check',
-      dark: '#1B6A45',
-      light: '#F7F7F5',
-      widths: [200],
-      formats: ['webp'],
-    });
+  it.each(['webp', 'png'] as const)(
+    'o resultado corrigido por duotone só usa cores dentro da reta entre os dois hexes (%s) — passa na verificação de paleta',
+    async (format) => {
+      const results = await processAssetToFiles({
+        rawPath,
+        outDir,
+        slug: 'hero-landing',
+        variant: `palette-check-${format}`,
+        dark: '#1B6A45',
+        light: '#F7F7F5',
+        widths: [200],
+        formats: [format],
+      });
 
-    const outputPath = path.join(outDir, path.basename(results[0].path));
-    const { data, info } = await sharp(outputPath)
-      .removeAlpha()
-      .raw()
-      .toBuffer({ resolveWithObject: true });
+      const outputPath = path.join(outDir, path.basename(results[0].path));
+      const { data, info } = await sharp(outputPath)
+        .removeAlpha()
+        .raw()
+        .toBuffer({ resolveWithObject: true });
 
-    const pixels = [];
-    for (let i = 0; i < info.width * info.height; i += 1) {
-      const offset = i * info.channels;
-      pixels.push({ r: data[offset], g: data[offset + 1], b: data[offset + 2] });
-    }
+      const pixels = [];
+      for (let i = 0; i < info.width * info.height; i += 1) {
+        const offset = i * info.channels;
+        pixels.push({ r: data[offset], g: data[offset + 1], b: data[offset + 2] });
+      }
 
-    const adherence = sampleSegmentAdherence(pixels, '#1B6A45', '#F7F7F5');
-    expect(passesAdherence(adherence)).toBe(true);
-  });
+      const adherence = sampleSegmentAdherence(pixels, '#1B6A45', '#F7F7F5');
+      expect(passesAdherence(adherence)).toBe(true);
+    },
+  );
 });

@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { planAssetOutputs, withinBudget } from '../scripts/lib/asset-plan.mjs';
+import {
+  largestBudgetedFileSize,
+  planAssetOutputs,
+  withinBudget,
+} from '../scripts/lib/asset-plan.mjs';
 
 describe('planAssetOutputs', () => {
   it('gera um output por combinação de largura × formato', () => {
@@ -43,5 +47,22 @@ describe('withinBudget', () => {
 
   it('false quando excede o orçamento', () => {
     expect(withinBudget(121 * 1024, 120)).toBe(false);
+  });
+});
+
+describe('largestBudgetedFileSize', () => {
+  it('ignora arquivos PNG (fallback legado isento de orçamento) no cálculo do maior arquivo', () => {
+    const files = [
+      { path: 'a.avif', width: 800, format: 'avif', sizeBytes: 10_000 },
+      { path: 'a.webp', width: 800, format: 'webp', sizeBytes: 12_000 },
+      { path: 'a.png', width: 800, format: 'png', sizeBytes: 300_000 },
+    ];
+    expect(largestBudgetedFileSize(files)).toBe(12_000);
+  });
+
+  it('retorna 0 quando só existem arquivos isentos', () => {
+    expect(
+      largestBudgetedFileSize([{ path: 'a.png', width: 800, format: 'png', sizeBytes: 999 }]),
+    ).toBe(0);
   });
 });
