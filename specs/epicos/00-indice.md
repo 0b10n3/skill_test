@@ -14,14 +14,14 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 
 Épicos 2 e 3 podem ser executados em paralelo (nenhum depende do outro, ambos dependem só do Épico 1). Todos os demais são sequenciais — os gates existem justamente para impedir avançar com uma base não validada.
 
-### Fase 2 — Quiz v2 (banco de questões, diagnóstico de carreira e relatório)
+### Fase 2 — Quiz v2 (banco de questões, diagnóstico de carreira e relatório) — ✅ concluída
 
-**Fontes de verdade:** `AVALIACAO.md` e `QUESTIONS.json` (raiz do repositório).
+**Fonte de verdade viva:** [`docs/metodologia.md`](../../docs/metodologia.md) (incorporado do `AVALIACAO.md`/`QUESTIONS.json`/`REPORT.md` originais, removidos da raiz no Épico 13 após o go-live — ver `GOLIVE.md`).
 
-10. `epico-10-banco-questoes-v2.md` — Banco de questões v2 (49 itens, 5 dimensões) e seleção por blueprint de senioridade
-11. `epico-11-motor-diagnostico.md` — Motor de pontuação e diagnóstico de carreira (função pura)
-12. `epico-12-relatorio-resultados.md` — Relatório de resultados v2 (radar, diagnóstico e CTA), conforme `REPORT.md`
-13. `epico-13-qa-regressao-golive-v2.md` — QA de regressão, telemetria de itens e go-live da v2 (remove `AVALIACAO.md`, `REPORT.md`, `QUESTIONS.json` da raiz e os épicos 10–13 após incorporar o conteúdo permanente a `docs/metodologia.md`)
+10. ~~`epico-10-banco-questoes-v2.md`~~ — Banco de questões v2 (49 itens, 5 dimensões) e seleção por blueprint de senioridade (arquivo removido da raiz no Épico 13; histórico no git)
+11. ~~`epico-11-motor-diagnostico.md`~~ — Motor de pontuação e diagnóstico de carreira (função pura) (arquivo removido da raiz no Épico 13; histórico no git)
+12. ~~`epico-12-relatorio-resultados.md`~~ — Relatório de resultados v2 (radar, diagnóstico e CTA) (arquivo removido da raiz no Épico 13; histórico no git)
+13. ~~`epico-13-qa-regressao-golive-v2.md`~~ — QA de regressão, telemetria de itens e go-live da v2 (arquivo removido da raiz no Épico 13; histórico no git)
 
 ### Fase 3 — Redesign de identidade (marca Syntaxis)
 
