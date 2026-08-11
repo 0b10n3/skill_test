@@ -15,551 +15,1052 @@
       { "id": "senior", "text": "Analista Sênior" }
     ]
   },
+
   {
     "id": "q01",
     "type": "knowledge",
-    "category": "produtos-renda-fixa",
+    "category": "mercados-produtos",
     "difficultyLevel": "easy",
-    "targetSeniority": ["aspirante", "estagiario"],
-    "question": "De forma simples, o que caracteriza um investimento de renda fixa?",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante"],
+    "question": "Para uma pessoa física, qual é a principal diferença tributária entre um CDB e uma LCI/LCA?",
     "options": [
+      { "id": "a", "text": "O CDB é isento de Imposto de Renda e a LCI/LCA é tributada" },
       {
-        "id": "a",
-        "text": "O investidor conhece antecipadamente a regra de remuneração (taxa fixa ou indexada a um índice), diferente da renda variável"
+        "id": "b",
+        "text": "A LCI/LCA é isenta de Imposto de Renda para pessoa física, enquanto o rendimento do CDB é tributado"
       },
-      { "id": "b", "text": "O investimento sempre rende mais do que a poupança" },
-      { "id": "c", "text": "É um tipo de ação negociada na bolsa de valores" },
-      { "id": "d", "text": "É um empréstimo que o banco concede ao investidor" }
+      { "id": "c", "text": "Ambos são isentos de Imposto de Renda em qualquer prazo" },
+      { "id": "d", "text": "A diferença é que a LCI/LCA não conta com garantia do FGC" }
     ],
-    "correctOptionId": "a",
-    "explanation": "\"Renda fixa\" se refere à regra de rentabilidade ser conhecida desde a aplicação (taxa prefixada, % do CDI, IPCA + taxa etc.) — não significa retorno garantido acima de qualquer referência, nem se confunde com renda variável."
+    "correctOptionId": "b",
+    "explanation": "LCI e LCA financiam os setores imobiliário e do agronegócio e, por isso, têm isenção de IR para pessoa física. O rendimento do CDB segue a tabela regressiva de IR. Ambos contam com cobertura do FGC até os limites vigentes."
   },
   {
     "id": "q02",
     "type": "knowledge",
-    "category": "produtos-renda-fixa",
+    "category": "mercados-produtos",
     "difficultyLevel": "easy",
+    "cognitiveLevel": "compreender",
     "targetSeniority": ["aspirante", "estagiario"],
-    "question": "Qual é a função do FGC (Fundo Garantidor de Créditos) em relação a um CDB emitido por um banco?",
+    "question": "Um título anunciado como \"IPCA + 6% ao ano\" oferece ao investidor que o carrega até o vencimento:",
     "options": [
       {
         "id": "a",
-        "text": "Garantir, até um limite, o valor investido caso o banco emissor quebre"
+        "text": "Rentabilidade nominal fixa de 6% ao ano, independentemente da inflação"
       },
-      { "id": "b", "text": "Garantir uma rentabilidade mínima acima do CDI" },
-      { "id": "c", "text": "Isentar o investimento de Imposto de Renda" },
-      { "id": "d", "text": "Avaliar o risco de crédito do banco antes da emissão do título" }
+      { "id": "b", "text": "Rentabilidade igual à inflação, com teto de 6% ao ano" },
+      {
+        "id": "c",
+        "text": "Rentabilidade real de 6% ao ano, ou seja, 6% acima da variação da inflação medida pelo IPCA"
+      },
+      { "id": "d", "text": "6% ao ano apenas se a inflação for zero" }
     ],
-    "correctOptionId": "a",
-    "explanation": "O FGC protege o investidor do risco de crédito da instituição emissora, garantindo o valor investido até um limite em caso de intervenção ou falência do banco — não garante rentabilidade nem concede benefício fiscal."
+    "correctOptionId": "c",
+    "explanation": "Títulos indexados ao IPCA pagam a variação do índice de inflação mais uma taxa prefixada — a chamada taxa de juro real. Levado ao vencimento, o investidor garante ganho de poder de compra de 6% ao ano."
   },
   {
     "id": "q03",
     "type": "knowledge",
-    "category": "produtos-renda-fixa",
+    "category": "mercados-produtos",
     "difficultyLevel": "medium",
-    "targetSeniority": ["aspirante", "estagiario", "junior"],
-    "question": "O Tesouro Direto permite que uma pessoa física invista diretamente em:",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Por que o CDI é usado como principal referência de rentabilidade da renda fixa pós-fixada no Brasil?",
     "options": [
-      { "id": "a", "text": "Títulos públicos emitidos pelo governo federal" },
-      { "id": "b", "text": "Ações de empresas estatais listadas na bolsa" },
-      { "id": "c", "text": "Imóveis pertencentes ao governo" },
-      { "id": "d", "text": "Moedas estrangeiras negociadas pelo Banco Central" }
+      {
+        "id": "a",
+        "text": "Porque é a taxa definida por lei como remuneração mínima de qualquer investimento"
+      },
+      {
+        "id": "b",
+        "text": "Porque reflete a taxa média dos empréstimos de curtíssimo prazo entre bancos, acompanhando de perto a taxa Selic"
+      },
+      { "id": "c", "text": "Porque é calculado a partir do desempenho médio das ações da bolsa" },
+      { "id": "d", "text": "Porque é a taxa que o governo paga em todos os títulos públicos" }
     ],
-    "correctOptionId": "a",
-    "explanation": "O Tesouro Direto é o programa que permite a compra fracionada de títulos públicos federais (Tesouro Selic, Prefixado, IPCA+ etc.) diretamente pela pessoa física."
+    "correctOptionId": "b",
+    "explanation": "O CDI reflete o custo do dinheiro nas operações interbancárias de um dia e caminha colado à Selic. Por representar o custo de oportunidade de curto prazo da economia, virou o benchmark natural dos produtos pós-fixados (ex.: '105% do CDI')."
   },
   {
     "id": "q04",
     "type": "knowledge",
-    "category": "produtos-renda-fixa",
+    "category": "mercados-produtos",
     "difficultyLevel": "medium",
-    "targetSeniority": ["estagiario", "junior", "pleno"],
-    "question": "Qual característica diferencia as debêntures incentivadas (Lei 12.431) das debêntures comuns?",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["estagiario", "junior"],
+    "question": "Um cliente resgata um CDB após 8 meses de aplicação. Pela tabela regressiva de IR sobre renda fixa, a alíquota incidente sobre o rendimento será:",
     "options": [
-      { "id": "a", "text": "Isenção de Imposto de Renda sobre os rendimentos para pessoa física" },
-      { "id": "b", "text": "Garantia do FGC sobre o valor investido" },
-      { "id": "c", "text": "Emissão exclusiva por instituições financeiras" },
-      { "id": "d", "text": "Prazo máximo de 12 meses" }
+      { "id": "a", "text": "22,5%, alíquota única para qualquer prazo" },
+      { "id": "b", "text": "15%, alíquota mínima da tabela" },
+      { "id": "c", "text": "20%, faixa aplicável a prazos entre 181 e 360 dias" },
+      { "id": "d", "text": "Zero, pois CDBs são isentos após 6 meses" }
     ],
-    "correctOptionId": "a",
-    "explanation": "As debêntures incentivadas financiam projetos de infraestrutura e têm isenção de IR para pessoa física como benefício fiscal previsto em lei; nenhuma debênture conta com garantia do FGC."
+    "correctOptionId": "c",
+    "explanation": "A tabela regressiva de IR da renda fixa: 22,5% até 180 dias; 20% de 181 a 360; 17,5% de 361 a 720; 15% acima de 720 dias. Oito meses (~240 dias) cai na faixa de 20%."
   },
   {
     "id": "q05",
     "type": "knowledge",
-    "category": "produtos-renda-fixa",
-    "difficultyLevel": "hard",
-    "targetSeniority": ["junior", "pleno", "senior"],
-    "question": "Um título público federal prefixado é marcado a mercado diariamente. O que explica a queda no preço desse título quando a taxa de juros de mercado sobe?",
+    "category": "mercados-produtos",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["junior", "pleno"],
+    "question": "Uma debênture é negociada a uma taxa superior à do título público federal de prazo equivalente. Esse diferencial (spread de crédito) remunera principalmente:",
     "options": [
       {
         "id": "a",
-        "text": "O fluxo de caixa futuro passa a ser descontado a uma taxa maior, reduzindo o valor presente do título"
+        "text": "O risco de crédito do emissor e a menor liquidez do papel em relação ao título público"
       },
-      { "id": "b", "text": "O governo reduz o valor de face do título" },
+      { "id": "b", "text": "A expectativa de inflação futura, ausente nos títulos públicos" },
+      { "id": "c", "text": "O custo de custódia mais alto das debêntures" },
       {
-        "id": "c",
-        "text": "O risco de crédito do Tesouro Nacional aumenta junto com a taxa de juros"
-      },
-      { "id": "d", "text": "A data de vencimento do título é antecipada" }
+        "id": "d",
+        "text": "A tributação mais elevada das debêntures em relação aos títulos públicos"
+      }
     ],
     "correctOptionId": "a",
-    "explanation": "Marcação a mercado reflete o valor presente dos fluxos futuros descontados à taxa vigente; quando a taxa sobe, o desconto aumenta e o preço presente cai."
+    "explanation": "O título público é a referência 'livre de risco de crédito' local. O que se paga acima dele em um emissor privado compensa, essencialmente, a probabilidade de inadimplência (e perda dado o default) e o prêmio de liquidez do papel."
   },
   {
     "id": "q06",
     "type": "knowledge",
-    "category": "produtos-renda-fixa",
+    "category": "mercados-produtos",
     "difficultyLevel": "hard",
-    "targetSeniority": ["pleno", "senior"],
-    "question": "Em um cenário de alta da taxa de juros, qual tipo de título de renda fixa tende a sofrer maior perda de valor de mercado no curto prazo?",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["junior", "pleno"],
+    "question": "O que diferencia estruturalmente um CRI/CRA de uma debênture comum?",
     "options": [
-      { "id": "a", "text": "Títulos prefixados de prazo longo" },
-      { "id": "b", "text": "Títulos pós-fixados atrelados ao CDI" },
-      { "id": "c", "text": "Títulos indexados à inflação com vencimento em poucos meses" },
-      { "id": "d", "text": "CDBs pós-fixados com liquidez diária" }
+      { "id": "a", "text": "CRI/CRA são emitidos por bancos e contam com garantia do FGC" },
+      {
+        "id": "b",
+        "text": "CRI/CRA são títulos de securitização: emitidos por securitizadora com lastro em recebíveis (imobiliários ou do agronegócio), e não uma dívida corporativa direta do originador"
+      },
+      {
+        "id": "c",
+        "text": "CRI/CRA são títulos públicos vinculados a programas habitacionais e agrícolas do governo"
+      },
+      { "id": "d", "text": "A única diferença é o prazo: CRI/CRA vencem sempre em até 2 anos" }
     ],
-    "correctOptionId": "a",
-    "explanation": "Quanto maior o prazo de um título prefixado, maior sua duration e, portanto, maior a sensibilidade do preço de mercado a variações na taxa de juros — títulos pós-fixados e de curtíssimo prazo sofrem bem menos com esse efeito."
+    "correctOptionId": "b",
+    "explanation": "No CRI/CRA, uma securitizadora emite o certificado com lastro em uma carteira de créditos (recebíveis imobiliários ou do agro). O investidor está exposto ao desempenho desse lastro e da estrutura, não a uma dívida direta do emissor corporativo como na debênture. Para PF, há isenção de IR, e não há cobertura do FGC."
   },
   {
     "id": "q07",
     "type": "knowledge",
-    "category": "produtos-renda-fixa",
+    "category": "mercados-produtos",
     "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
     "targetSeniority": ["pleno", "senior"],
-    "question": "Do ponto de vista de gestão de risco de crédito, qual é a principal diferença entre investir em uma debênture comum e em uma cota de FIDC (Fundo de Investimento em Direitos Creditórios)?",
+    "question": "Em um FIDC com cotas sênior e subordinada, qual é a função econômica da cota subordinada na estrutura?",
     "options": [
+      { "id": "a", "text": "Garantir liquidez diária para os cotistas seniores" },
       {
-        "id": "a",
-        "text": "No FIDC o risco está pulverizado em uma carteira de recebíveis, com estrutura de subordinação entre cotas, enquanto na debênture o risco está concentrado no emissor único"
+        "id": "b",
+        "text": "Receber os pagamentos antes das demais cotas, por ter prioridade no fluxo"
       },
-      { "id": "b", "text": "FIDC sempre tem garantia do FGC" },
-      { "id": "c", "text": "Debênture nunca envolve risco de crédito" },
-      { "id": "d", "text": "FIDC é sempre mais líquido do que debênture" }
+      {
+        "id": "c",
+        "text": "Absorver as primeiras perdas da carteira de recebíveis, funcionando como reforço de crédito (proteção) para a cota sênior"
+      },
+      { "id": "d", "text": "Isentar o fundo de tributação sobre os rendimentos" }
     ],
-    "correctOptionId": "a",
-    "explanation": "FIDCs estruturam o risco por meio de uma carteira pulverizada de recebíveis e cotas com diferentes níveis de subordinação (sênior/subordinada), diluindo o risco de um único devedor — diferente da exposição a um único emissor numa debênture."
+    "correctOptionId": "c",
+    "explanation": "A subordinação é o principal mecanismo de credit enhancement de um FIDC: a cota subordinada (geralmente retida pelo cedente) absorve a inadimplência inicial da carteira, de modo que a cota sênior só sofre perda se a inadimplência ultrapassar esse colchão."
   },
   {
     "id": "q08",
     "type": "knowledge",
-    "category": "matematica-financeira-estatistica",
-    "difficultyLevel": "easy",
-    "targetSeniority": ["aspirante", "estagiario"],
-    "question": "O que representa a taxa de juros em uma aplicação financeira?",
+    "category": "mercados-produtos",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["senior"],
+    "question": "Do ponto de vista do investidor, qual é a função dos covenants financeiros previstos na escritura de uma debênture?",
     "options": [
       {
         "id": "a",
-        "text": "O custo (ou remuneração) do dinheiro ao longo do tempo — quanto o capital rende, ou custa, por período"
+        "text": "Definir a taxa de remuneração mínima que o emissor deve pagar em qualquer cenário"
       },
-      { "id": "b", "text": "Uma taxa fixa cobrada apenas na abertura da conta" },
-      { "id": "c", "text": "O valor total que será resgatado no vencimento" },
-      { "id": "d", "text": "Um imposto cobrado sobre qualquer investimento" }
+      {
+        "id": "b",
+        "text": "Estabelecer gatilhos contratuais (ex.: limites de alavancagem) que, se violados, permitem aos debenturistas exigir vencimento antecipado ou renegociar condições antes da deterioração completa do crédito"
+      },
+      { "id": "c", "text": "Transferir o risco de crédito do emissor para o agente fiduciário" },
+      { "id": "d", "text": "Garantir a recompra do papel pelo emissor a qualquer momento, ao par" }
     ],
-    "correctOptionId": "a",
-    "explanation": "Taxa de juros é o preço do dinheiro no tempo: remunera quem empresta/aplica e custa a quem toma emprestado, por unidade de tempo."
+    "correctOptionId": "b",
+    "explanation": "Covenants são compromissos contratuais (ex.: Dívida Líquida/EBITDA abaixo de um teto) que funcionam como alarme antecipado: a violação dá aos credores alavancas de proteção — vencimento antecipado, waiver negociado, reprecificação — antes de o crédito se deteriorar até o default."
   },
   {
     "id": "q09",
     "type": "knowledge",
-    "category": "matematica-financeira-estatistica",
-    "difficultyLevel": "easy",
-    "targetSeniority": ["aspirante", "estagiario"],
-    "question": "Qual a principal diferença entre juros simples e juros compostos?",
+    "category": "mercados-produtos",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["senior"],
+    "question": "Em uma emissão de debêntures, o papel do agente fiduciário é:",
     "options": [
       {
         "id": "a",
-        "text": "Juros compostos incidem também sobre os juros acumulados de períodos anteriores, enquanto juros simples incidem sempre sobre o capital inicial"
+        "text": "Representar e proteger os interesses da comunhão de debenturistas perante o emissor, monitorando o cumprimento da escritura"
       },
-      { "id": "b", "text": "Juros simples sempre rendem mais no longo prazo" },
-      { "id": "c", "text": "Juros compostos só existem em investimentos de renda variável" },
-      { "id": "d", "text": "Não há diferença, são termos equivalentes" }
+      { "id": "b", "text": "Garantir o pagamento das debêntures em caso de default do emissor" },
+      { "id": "c", "text": "Definir a taxa de emissão no processo de bookbuilding" },
+      { "id": "d", "text": "Auditar as demonstrações financeiras do emissor" }
     ],
     "correctOptionId": "a",
-    "explanation": "Em juros compostos, o rendimento de cada período passa a compor a base de cálculo do período seguinte ('juros sobre juros'); em juros simples, a base de cálculo permanece sempre o capital inicial."
+    "explanation": "O agente fiduciário é a figura que representa os debenturistas: acompanha covenants e garantias, convoca assembleias e age em nome dos credores quando a escritura é descumprida. Ele não garante o pagamento nem substitui auditoria."
   },
+
   {
     "id": "q10",
     "type": "knowledge",
-    "category": "matematica-financeira-estatistica",
-    "difficultyLevel": "medium",
-    "targetSeniority": ["aspirante", "estagiario", "junior"],
-    "question": "Um investimento de R$ 10.000 rende 1% ao mês em juros compostos. Qual expressão representa corretamente o valor futuro (VF) após n meses?",
+    "category": "matematica-quant",
+    "difficultyLevel": "easy",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante"],
+    "question": "O que diferencia o regime de juros compostos do regime de juros simples?",
     "options": [
-      { "id": "a", "text": "VF = 10.000 × (1 + 0,01)^n" },
-      { "id": "b", "text": "VF = 10.000 × (1 + 0,01 × n)" },
-      { "id": "c", "text": "VF = 10.000 / (1 + 0,01)^n" },
-      { "id": "d", "text": "VF = 10.000 × 0,01 × n" }
+      {
+        "id": "a",
+        "text": "Nos juros compostos, os juros de cada período são incorporados ao capital e passam a render juros nos períodos seguintes"
+      },
+      { "id": "b", "text": "Nos juros compostos, a taxa diminui a cada período" },
+      { "id": "c", "text": "Juros compostos só existem em investimentos de renda variável" },
+      { "id": "d", "text": "Nos juros simples, o rendimento total é sempre maior no longo prazo" }
     ],
     "correctOptionId": "a",
-    "explanation": "Em juros compostos, o valor futuro cresce exponencialmente: cada período aplica a taxa sobre o montante já acumulado, daí o expoente n."
+    "explanation": "É o efeito 'juros sobre juros': a base de cálculo cresce a cada período. Por isso, no longo prazo, o crescimento composto supera (e muito) o crescimento linear dos juros simples."
   },
   {
     "id": "q11",
     "type": "knowledge",
-    "category": "matematica-financeira-estatistica",
-    "difficultyLevel": "medium",
-    "targetSeniority": ["estagiario", "junior", "pleno"],
-    "question": "Em uma distribuição normal, aproximadamente qual percentual das observações está dentro de ±1 desvio-padrão em torno da média?",
+    "category": "matematica-quant",
+    "difficultyLevel": "easy",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Uma aplicação rende 1% ao mês em regime de juros compostos. Ao fim de 12 meses, o rendimento acumulado será:",
     "options": [
-      { "id": "a", "text": "50%" },
-      { "id": "b", "text": "68%" },
-      { "id": "c", "text": "95%" },
-      { "id": "d", "text": "99,7%" }
+      { "id": "a", "text": "Exatamente 12%" },
+      {
+        "id": "b",
+        "text": "Um pouco mais de 12% (aproximadamente 12,7%), por causa da capitalização mensal"
+      },
+      { "id": "c", "text": "Menos de 12%, por causa dos descontos de capitalização" },
+      { "id": "d", "text": "Exatamente 24%" }
     ],
     "correctOptionId": "b",
-    "explanation": "É a regra empírica (68-95-99,7): cerca de 68% das observações caem dentro de 1 desvio-padrão, 95% dentro de 2 e 99,7% dentro de 3."
+    "explanation": "Com capitalização composta, (1,01)^12 − 1 ≈ 12,68%. A equivalência entre taxas de períodos diferentes é multiplicativa, não aditiva — um dos erros de conta mais comuns do mercado."
   },
   {
     "id": "q12",
     "type": "knowledge",
-    "category": "matematica-financeira-estatistica",
-    "difficultyLevel": "hard",
-    "targetSeniority": ["junior", "pleno", "senior"],
-    "question": "Simulações de Monte Carlo são usadas em finanças principalmente para:",
+    "category": "matematica-quant",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "O conceito de valor presente responde a qual pergunta?",
     "options": [
-      { "id": "a", "text": "Calcular com exatidão o preço futuro de um ativo" },
+      {
+        "id": "a",
+        "text": "Quanto um fluxo de caixa futuro vale hoje, descontado a uma taxa que reflete o custo do dinheiro no tempo"
+      },
       {
         "id": "b",
-        "text": "Estimar a distribuição de possíveis resultados de uma variável incerta a partir de múltiplos cenários aleatórios"
+        "text": "Quanto um investimento renderá no futuro, somando os juros de cada período"
       },
-      { "id": "c", "text": "Eliminar completamente o risco de mercado de uma carteira" },
-      { "id": "d", "text": "Substituir o cálculo de valor presente líquido de um projeto" }
+      { "id": "c", "text": "Qual é o valor de face de um título no vencimento" },
+      { "id": "d", "text": "Qual é a inflação acumulada entre duas datas" }
     ],
-    "correctOptionId": "b",
-    "explanation": "Monte Carlo não prevê um único resultado exato: gera milhares de cenários aleatórios a partir de premissas de distribuição para mapear a faixa provável de resultados e seus riscos."
+    "correctOptionId": "a",
+    "explanation": "Valor presente é a tradução de um valor futuro para 'dinheiro de hoje': VP = VF / (1 + i)^n. É a base da precificação de qualquer ativo de renda fixa."
   },
   {
     "id": "q13",
     "type": "knowledge",
-    "category": "matematica-financeira-estatistica",
-    "difficultyLevel": "hard",
-    "targetSeniority": ["pleno", "senior"],
-    "question": "O Value at Risk (VaR) de uma carteira busca estimar:",
+    "category": "matematica-quant",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["estagiario", "junior"],
+    "question": "Um investimento rendeu 10% em um ano em que a inflação foi de 5%. A rentabilidade real aproximada foi:",
     "options": [
-      {
-        "id": "a",
-        "text": "A perda máxima esperada em um horizonte de tempo, dado um nível de confiança estatístico"
-      },
-      { "id": "b", "text": "O retorno médio garantido da carteira" },
-      { "id": "c", "text": "O valor contábil da carteira no balanço" },
-      { "id": "d", "text": "A taxa de juros livre de risco aplicável" }
+      { "id": "a", "text": "15%, somando as duas taxas" },
+      { "id": "b", "text": "5%, subtraindo diretamente a inflação" },
+      { "id": "c", "text": "Cerca de 4,8%, calculada por (1,10 ÷ 1,05) − 1" },
+      { "id": "d", "text": "10%, pois a inflação não afeta a rentabilidade real" }
     ],
-    "correctOptionId": "a",
-    "explanation": "VaR resume, em um único número, a pior perda esperada dentro de um horizonte e nível de confiança definidos (ex: 95%) — é uma medida de risco, não de retorno."
+    "correctOptionId": "c",
+    "explanation": "A relação de Fisher é multiplicativa: (1 + real) = (1 + nominal) ÷ (1 + inflação). A subtração direta (10% − 5% = 5%) é apenas uma aproximação, que superestima o ganho real."
   },
   {
     "id": "q14",
     "type": "knowledge",
-    "category": "matematica-financeira-estatistica",
-    "difficultyLevel": "hard",
-    "targetSeniority": ["pleno", "senior"],
-    "question": "Ao combinar dois ativos com correlação negativa em uma carteira, o efeito esperado sobre o risco total (medido pela volatilidade) é:",
+    "category": "matematica-quant",
+    "difficultyLevel": "easy",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["junior"],
+    "question": "Ao analisar a distribuição de valores de uma carteira de recebíveis com alguns tickets muito acima dos demais (outliers), qual medida de tendência central descreve melhor o 'ticket típico'?",
     "options": [
-      {
-        "id": "a",
-        "text": "Redução do risco total da carteira, mesmo mantendo o retorno esperado combinado"
-      },
-      { "id": "b", "text": "Aumento proporcional do risco, já que os riscos individuais se somam" },
-      {
-        "id": "c",
-        "text": "Nenhum efeito — o risco da carteira é sempre a soma dos riscos individuais"
-      },
-      { "id": "d", "text": "Eliminação total do risco, tornando a carteira livre de volatilidade" }
+      { "id": "a", "text": "A média aritmética, pois considera todos os valores" },
+      { "id": "b", "text": "A mediana, pois é pouco sensível a valores extremos" },
+      { "id": "c", "text": "O valor máximo, pois representa o maior risco" },
+      { "id": "d", "text": "A soma total dividida pelo número de outliers" }
     ],
-    "correctOptionId": "a",
-    "explanation": "É o princípio central da diversificação: ativos com correlação negativa (ou baixa) reduzem a volatilidade combinada da carteira abaixo da média ponderada das volatilidades individuais."
+    "correctOptionId": "b",
+    "explanation": "Em distribuições assimétricas, poucos valores extremos 'puxam' a média. A mediana (valor central) resiste a outliers e representa melhor o caso típico — distinção essencial em análise de carteiras de crédito."
   },
   {
     "id": "q15",
     "type": "knowledge",
-    "category": "dados-tecnologia",
-    "difficultyLevel": "easy",
-    "targetSeniority": ["aspirante", "estagiario"],
-    "question": "No mercado financeiro atual, ferramentas como planilhas, SQL e Python são usadas principalmente para:",
+    "category": "matematica-quant",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["junior", "pleno"],
+    "question": "A duration (de Macaulay/modificada) de um título de renda fixa é utilizada principalmente para:",
     "options": [
-      {
-        "id": "a",
-        "text": "Organizar, consultar e analisar grandes volumes de dados de forma mais rápida e confiável do que manualmente"
-      },
-      { "id": "b", "text": "Substituir totalmente a necessidade de entender produtos financeiros" },
+      { "id": "a", "text": "Calcular a rentabilidade acumulada do título desde a emissão" },
+      { "id": "b", "text": "Determinar o prazo legal máximo em que o título pode ser negociado" },
       {
         "id": "c",
-        "text": "Uso exclusivo de times de tecnologia, sem relação com áreas de negócio"
+        "text": "Medir a sensibilidade do preço do título a variações na taxa de juros, a partir do prazo médio ponderado dos seus fluxos"
       },
-      { "id": "d", "text": "Criar sites e aplicativos, sem relação com análise financeira" }
+      { "id": "d", "text": "Estimar a probabilidade de default do emissor" }
     ],
-    "correctOptionId": "a",
-    "explanation": "Essas ferramentas são meios para lidar com volume e velocidade de dados — não substituem o conhecimento de negócio, e hoje são usadas por áreas de negócio, não só por TI."
+    "correctOptionId": "c",
+    "explanation": "A duration resume, em um número, o prazo médio ponderado dos fluxos de caixa e serve como medida de primeira ordem do risco de taxa: pela duration modificada, ΔP/P ≈ −D_mod × Δi."
   },
   {
     "id": "q16",
     "type": "knowledge",
-    "category": "dados-tecnologia",
-    "difficultyLevel": "easy",
-    "targetSeniority": ["aspirante", "estagiario"],
-    "question": "Em uma planilha, qual tipo de fórmula é usada para somar valores de uma coluna que atendem a uma condição específica (ex: somar apenas vendas de um determinado mês)?",
+    "category": "matematica-quant",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["pleno"],
+    "question": "Por que combinar ativos com correlação baixa (ou negativa) entre si reduz o risco total de uma carteira?",
     "options": [
-      { "id": "a", "text": "Uma função condicional de soma, como SOMASE/SUMIF" },
-      { "id": "b", "text": "Uma função de texto, como CONCATENAR" },
-      { "id": "c", "text": "Uma função de data, como HOJE()" },
-      { "id": "d", "text": "Uma função de arredondamento, como ARRED" }
+      {
+        "id": "a",
+        "text": "Porque a correlação baixa aumenta o retorno esperado de cada ativo individualmente"
+      },
+      {
+        "id": "b",
+        "text": "Porque as oscilações dos ativos tendem a não ocorrer na mesma direção ao mesmo tempo, e parte da volatilidade individual se cancela no agregado"
+      },
+      { "id": "c", "text": "Porque ativos descorrelacionados são isentos de risco de mercado" },
+      { "id": "d", "text": "Porque a correlação baixa elimina o risco de crédito dos emissores" }
     ],
-    "correctOptionId": "a",
-    "explanation": "SOMASE/SUMIF soma valores de um intervalo apenas quando uma condição é atendida — é a base de qualquer análise condicional em planilha."
+    "correctOptionId": "b",
+    "explanation": "A volatilidade da carteira depende das covariâncias entre os ativos, não só das volatilidades individuais. Com correlação < 1, o risco da carteira é menor que a média ponderada dos riscos — é o único 'almoço grátis' da teoria de portfólio."
   },
   {
     "id": "q17",
     "type": "knowledge",
-    "category": "dados-tecnologia",
-    "difficultyLevel": "medium",
-    "targetSeniority": ["aspirante", "estagiario", "junior"],
-    "question": "Em SQL, qual comando é usado para filtrar linhas de uma tabela com base em uma condição?",
+    "category": "matematica-quant",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Para variações grandes na taxa de juros, estimar a variação de preço de um título usando apenas a duration modificada leva a que tipo de erro?",
     "options": [
-      { "id": "a", "text": "WHERE" },
-      { "id": "b", "text": "GROUP BY" },
-      { "id": "c", "text": "ORDER BY" },
-      { "id": "d", "text": "SELECT *" }
+      { "id": "a", "text": "Nenhum erro: a relação entre preço e taxa é exatamente linear" },
+      {
+        "id": "b",
+        "text": "Superestimar os ganhos quando a taxa cai e subestimar as perdas quando a taxa sobe"
+      },
+      {
+        "id": "c",
+        "text": "Subestimar os ganhos quando a taxa cai e superestimar as perdas quando a taxa sobe, por ignorar a convexidade da curva preço-taxa"
+      },
+      { "id": "d", "text": "Errar apenas em títulos pós-fixados, nunca em prefixados" }
     ],
-    "correctOptionId": "a",
-    "explanation": "WHERE filtra linhas com base em uma condição antes de qualquer agregação ou ordenação; GROUP BY agrupa, ORDER BY ordena, e SELECT * apenas seleciona todas as colunas sem filtrar."
+    "correctOptionId": "c",
+    "explanation": "A relação preço-taxa é convexa: a aproximação linear da duration fica 'abaixo' da curva real nos dois sentidos. O ajuste de convexidade corrige isso — para o investidor comprado, a convexidade positiva é favorável (ganha mais na queda, perde menos na alta)."
   },
   {
     "id": "q18",
     "type": "knowledge",
-    "category": "dados-tecnologia",
-    "difficultyLevel": "medium",
-    "targetSeniority": ["estagiario", "junior", "pleno"],
-    "question": "Em SQL, qual comando é usado para agrupar linhas e aplicar uma função de agregação (como soma ou média) por categoria?",
+    "category": "matematica-quant",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["senior"],
+    "question": "Um relatório informa: \"o VaR de 1 dia da carteira, a 95% de confiança, é R$ 1 milhão\". A leitura correta é:",
     "options": [
-      { "id": "a", "text": "ORDER BY" },
-      { "id": "b", "text": "GROUP BY" },
-      { "id": "c", "text": "WHERE" },
-      { "id": "d", "text": "JOIN" }
+      { "id": "a", "text": "A perda máxima possível da carteira em um dia é R$ 1 milhão" },
+      {
+        "id": "b",
+        "text": "Em condições normais, espera-se que a perda diária exceda R$ 1 milhão em cerca de 5% dos dias; o VaR nada diz sobre o tamanho da perda nesses dias"
+      },
+      { "id": "c", "text": "A carteira perderá exatamente R$ 1 milhão uma vez por mês" },
+      { "id": "d", "text": "Há 95% de chance de a carteira ganhar R$ 1 milhão em um dia" }
     ],
     "correctOptionId": "b",
-    "explanation": "GROUP BY agrupa linhas que compartilham um valor em comum para que funções de agregação (SUM, AVG, COUNT etc.) sejam aplicadas por grupo, em vez de à tabela inteira."
+    "explanation": "VaR é um quantil da distribuição de perdas, não um teto: ele delimita a perda que não deve ser excedida com dada confiança, mas é silencioso sobre a cauda além dele — por isso métricas complementares como o Expected Shortfall (CVaR)."
   },
   {
     "id": "q19",
     "type": "knowledge",
-    "category": "dados-tecnologia",
+    "category": "matematica-quant",
     "difficultyLevel": "hard",
-    "targetSeniority": ["junior", "pleno", "senior"],
-    "question": "Em Python, qual biblioteca é mais usada para manipulação e análise de dados tabulares (DataFrames) em finanças?",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["senior"],
+    "question": "Retornos de ativos financeiros costumam exibir 'caudas gordas' (excesso de curtose) em relação à distribuição normal. A consequência prática para modelos de risco que assumem normalidade é:",
     "options": [
-      { "id": "a", "text": "pandas" },
-      { "id": "b", "text": "matplotlib" },
-      { "id": "c", "text": "requests" },
-      { "id": "d", "text": "flask" }
+      {
+        "id": "a",
+        "text": "Superestimar sistematicamente o risco, tornando os modelos conservadores demais"
+      },
+      { "id": "b", "text": "Nenhuma: a curtose não afeta medidas de risco" },
+      {
+        "id": "c",
+        "text": "Subestimar a frequência e a magnitude de perdas extremas, exigindo complementos como testes de estresse e análise de cenários"
+      },
+      { "id": "d", "text": "Tornar a média dos retornos indefinida" }
     ],
-    "correctOptionId": "a",
-    "explanation": "pandas é a biblioteca padrão para estruturar, limpar e analisar dados tabulares em Python; matplotlib é para visualização, requests para chamadas HTTP e flask para construir APIs/web apps."
+    "correctOptionId": "c",
+    "explanation": "Sob normalidade, eventos de muitos desvios-padrão seriam raríssimos; na prática de mercado, ocorrem com frequência relevante. Modelos gaussianos, portanto, subestimam a cauda — daí o papel de stress tests, cenários históricos e distribuições de cauda pesada na gestão de risco."
   },
+
   {
     "id": "q20",
     "type": "knowledge",
-    "category": "dados-tecnologia",
-    "difficultyLevel": "hard",
-    "targetSeniority": ["pleno", "senior"],
-    "question": "O conceito de \"lakehouse\", usado por plataformas como Databricks, combina características de quais duas arquiteturas de dados?",
+    "category": "dados-programacao",
+    "difficultyLevel": "easy",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante"],
+    "question": "Para que serve a linguagem SQL no dia a dia de uma instituição financeira?",
     "options": [
-      { "id": "a", "text": "Data warehouse e data lake" },
-      { "id": "b", "text": "CRM e ERP" },
-      { "id": "c", "text": "Blockchain e data lake" },
-      { "id": "d", "text": "Data warehouse e planilha eletrônica" }
+      { "id": "a", "text": "Criar apresentações e relatórios visuais automaticamente" },
+      {
+        "id": "b",
+        "text": "Consultar, filtrar e cruzar dados armazenados em bancos de dados relacionais"
+      },
+      { "id": "c", "text": "Substituir o Excel na formatação de planilhas" },
+      { "id": "d", "text": "Criptografar as transações bancárias dos clientes" }
     ],
-    "correctOptionId": "a",
-    "explanation": "Lakehouse busca unir a governança, performance e estrutura de um data warehouse com a flexibilidade e o baixo custo de armazenamento de um data lake, num único ambiente."
+    "correctOptionId": "b",
+    "explanation": "SQL é a linguagem padrão para conversar com bancos de dados relacionais — onde vivem posições, operações, cadastros e preços. É hoje uma das habilidades técnicas mais pedidas em vagas do mercado financeiro."
   },
   {
     "id": "q21",
     "type": "knowledge",
-    "category": "dados-tecnologia",
-    "difficultyLevel": "hard",
-    "targetSeniority": ["pleno", "senior"],
-    "question": "Do ponto de vista de governança de dados em uma instituição financeira, qual é o principal risco de times de negócio usarem múltiplas fontes de dados não centralizadas e não versionadas para tomar decisões?",
+    "category": "dados-programacao",
+    "difficultyLevel": "easy",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Por que Python se tornou uma das linguagens mais usadas em finanças?",
     "options": [
+      { "id": "a", "text": "Porque é a única linguagem aceita pelos reguladores do mercado" },
       {
-        "id": "a",
-        "text": "Inconsistência entre relatórios e decisões, já que diferentes times podem partir de números diferentes para a mesma métrica"
+        "id": "b",
+        "text": "Porque roda apenas em servidores de bancos, garantindo segurança total"
       },
-      { "id": "b", "text": "Aumento do custo de armazenamento em nuvem" },
       {
         "id": "c",
-        "text": "Lentidão exclusivamente no treinamento de modelos de machine learning"
+        "text": "Porque combina sintaxe acessível com um ecossistema forte de bibliotecas para análise de dados, como pandas e NumPy, permitindo automatizar análises e rotinas"
       },
-      { "id": "d", "text": "Impossibilidade técnica de usar Python nesse cenário" }
+      { "id": "d", "text": "Porque dispensa qualquer conhecimento de lógica de programação" }
     ],
-    "correctOptionId": "a",
-    "explanation": "Sem uma fonte única de verdade, times diferentes chegam a números diferentes para a mesma métrica de negócio — o risco de governança é decisório, não apenas técnico ou de custo."
+    "correctOptionId": "c",
+    "explanation": "O ecossistema científico do Python (pandas, NumPy, matplotlib, scikit-learn) transformou a linguagem no canivete-suíço de análise de dados financeiros — da automação de rotinas à modelagem quantitativa."
   },
   {
     "id": "q22",
     "type": "knowledge",
-    "category": "ia-aplicada-financas",
-    "difficultyLevel": "easy",
-    "targetSeniority": ["aspirante", "estagiario"],
-    "question": "De forma geral, por que instituições financeiras têm investido cada vez mais em inteligência artificial?",
+    "category": "dados-programacao",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante"],
+    "question": "Em que situação uma planilha de Excel deixa de ser a ferramenta adequada e um banco de dados passa a ser necessário?",
     "options": [
       {
         "id": "a",
-        "text": "Para analisar grandes volumes de dados e apoiar decisões mais rápidas e consistentes, como na detecção de fraudes"
+        "text": "Quando o volume de dados cresce, várias pessoas precisam acessar a mesma base e é necessário garantir consistência e histórico das informações"
       },
-      { "id": "b", "text": "Porque é uma exigência legal em todos os países" },
-      {
-        "id": "c",
-        "text": "Porque substitui integralmente a necessidade de qualquer analista humano"
-      },
-      { "id": "d", "text": "Porque reduz a zero o risco de crédito" }
+      { "id": "b", "text": "Quando é preciso fazer qualquer tipo de gráfico" },
+      { "id": "c", "text": "Nunca: planilhas substituem bancos de dados em qualquer cenário" },
+      { "id": "d", "text": "Apenas quando a empresa é obrigada por lei a abandonar planilhas" }
     ],
     "correctOptionId": "a",
-    "explanation": "O motor principal é operacional/analítico: processar volume e velocidade de dados que seriam inviáveis manualmente, apoiando (não substituindo integralmente) decisões humanas."
+    "explanation": "Planilhas são ótimas para análises individuais e protótipos, mas sofrem com volume, acesso simultâneo, versões conflitantes e falta de trilha de auditoria — exatamente o que bancos de dados resolvem."
   },
   {
     "id": "q23",
     "type": "knowledge",
-    "category": "ia-aplicada-financas",
+    "category": "dados-programacao",
     "difficultyLevel": "easy",
-    "targetSeniority": ["aspirante", "estagiario"],
-    "question": "Qual das opções abaixo é um exemplo real de uso de IA no mercado financeiro hoje?",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["estagiario", "junior"],
+    "question": "O que retorna a consulta SQL: SELECT nome, taxa FROM cdbs WHERE prazo_dias > 360 ?",
     "options": [
-      { "id": "a", "text": "Detecção de transações fraudulentas em tempo real" },
-      { "id": "b", "text": "Definição da taxa Selic pelo Banco Central" },
-      { "id": "c", "text": "Emissão de moeda pelo governo" },
+      { "id": "a", "text": "Todas as colunas da tabela cdbs, ordenadas por prazo" },
       {
-        "id": "d",
-        "text": "Assinatura de contratos com validade jurídica automática, sem qualquer revisão humana"
-      }
+        "id": "b",
+        "text": "As colunas nome e taxa apenas das linhas da tabela cdbs cujo prazo é superior a 360 dias"
+      },
+      { "id": "c", "text": "A quantidade de CDBs com prazo superior a 360 dias" },
+      { "id": "d", "text": "Uma nova tabela chamada prazo_dias" }
     ],
-    "correctOptionId": "a",
-    "explanation": "Detecção de fraude é um dos usos mais maduros e consolidados de IA em instituições financeiras; as demais opções são decisões institucionais/jurídicas que não são delegadas a modelos de IA."
+    "correctOptionId": "b",
+    "explanation": "SELECT define as colunas projetadas; FROM, a tabela de origem; WHERE, o filtro de linhas. É o esqueleto básico de qualquer consulta SQL."
   },
   {
     "id": "q24",
     "type": "knowledge",
-    "category": "ia-aplicada-financas",
+    "category": "dados-programacao",
     "difficultyLevel": "medium",
-    "targetSeniority": ["aspirante", "estagiario", "junior"],
-    "question": "No mercado financeiro, um dos usos mais consolidados de IA/machine learning hoje é:",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["estagiario"],
+    "question": "Em SQL, para que serve um JOIN entre duas tabelas?",
     "options": [
-      { "id": "a", "text": "Detecção de fraude e transações anômalas" },
-      { "id": "b", "text": "Substituição total dos analistas de crédito" },
-      { "id": "c", "text": "Emissão automática de títulos públicos" },
-      { "id": "d", "text": "Definição da taxa básica de juros da economia" }
+      { "id": "a", "text": "Apagar registros duplicados de uma tabela" },
+      { "id": "b", "text": "Somar todas as colunas numéricas de duas tabelas" },
+      {
+        "id": "c",
+        "text": "Combinar linhas de tabelas diferentes a partir de uma chave em comum — por exemplo, unir a tabela de operações à de cadastro de emissores pelo código do emissor"
+      },
+      { "id": "d", "text": "Copiar uma tabela para outro banco de dados" }
     ],
-    "correctOptionId": "a",
-    "explanation": "Modelos analisam grandes volumes de transações em tempo real para identificar padrões anômalos — é um dos casos de uso mais maduros do setor."
+    "correctOptionId": "c",
+    "explanation": "O JOIN relaciona tabelas por colunas-chave (ex.: id_emissor), permitindo enriquecer uma base com atributos de outra — operação central do modelo relacional e do dia a dia de análise."
   },
   {
     "id": "q25",
     "type": "knowledge",
-    "category": "ia-aplicada-financas",
+    "category": "dados-programacao",
     "difficultyLevel": "medium",
-    "targetSeniority": ["estagiario", "junior", "pleno"],
-    "question": "Técnicas como SHAP e LIME, usadas em modelos de IA aplicados a finanças, servem principalmente para:",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["junior", "pleno"],
+    "question": "Em Python/pandas, qual operação calcula a taxa média das debêntures em uma base, separada por setor do emissor?",
     "options": [
-      { "id": "a", "text": "Acelerar o tempo de treinamento do modelo" },
-      {
-        "id": "b",
-        "text": "Explicar quais variáveis mais influenciaram uma previsão ou decisão do modelo"
-      },
-      { "id": "c", "text": "Eliminar a necessidade de dados históricos" },
-      { "id": "d", "text": "Garantir retorno financeiro positivo do investimento" }
+      { "id": "a", "text": "df.groupby('setor')['taxa'].mean()" },
+      { "id": "b", "text": "df.sort_values('taxa')" },
+      { "id": "c", "text": "df['taxa'].sum() / df['setor']" },
+      { "id": "d", "text": "df.merge('setor', on='taxa')" }
     ],
-    "correctOptionId": "b",
-    "explanation": "SHAP e LIME são técnicas de explicabilidade (XAI): não mudam o desempenho do modelo, ajudam a entender e justificar por que ele chegou a determinada previsão."
+    "correctOptionId": "a",
+    "explanation": "O padrão split-apply-combine do pandas: groupby particiona a base pela chave (setor) e a agregação (mean) é aplicada a cada grupo. É o equivalente do GROUP BY do SQL."
   },
   {
     "id": "q26",
     "type": "knowledge",
-    "category": "ia-aplicada-financas",
-    "difficultyLevel": "hard",
-    "targetSeniority": ["junior", "pleno", "senior"],
-    "question": "Um dos principais riscos de usar modelos de IA para decisões de crédito, do ponto de vista de compliance, é:",
+    "category": "dados-programacao",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["junior", "pleno"],
+    "question": "Em SQL, qual é a diferença entre as cláusulas WHERE e HAVING?",
     "options": [
+      { "id": "a", "text": "São sinônimos e podem ser usadas de forma intercambiável" },
       {
-        "id": "a",
-        "text": "O modelo pode reproduzir vieses presentes nos dados históricos usados no treinamento, gerando decisões discriminatórias sem que isso seja evidente"
+        "id": "b",
+        "text": "WHERE filtra linhas antes da agregação; HAVING filtra os grupos depois da agregação feita pelo GROUP BY"
       },
-      { "id": "b", "text": "Modelos de IA nunca cometem erros de classificação" },
-      { "id": "c", "text": "Modelos de IA eliminam totalmente a necessidade de auditoria" },
-      {
-        "id": "d",
-        "text": "Modelos de IA são sempre mais baratos que analistas humanos, sem outros riscos envolvidos"
-      }
+      { "id": "c", "text": "HAVING só funciona com números; WHERE, só com textos" },
+      { "id": "d", "text": "WHERE é usada em consultas e HAVING apenas em inserções de dados" }
     ],
-    "correctOptionId": "a",
-    "explanation": "Um modelo treinado com dados históricos enviesados tende a reproduzir (e às vezes amplificar) esse viés nas decisões futuras — daí a importância de auditoria e explicabilidade em decisões de crédito."
+    "correctOptionId": "b",
+    "explanation": "WHERE atua linha a linha, antes do GROUP BY; HAVING atua sobre o resultado agregado (ex.: HAVING AVG(taxa) > 0.12 filtra grupos pela média já calculada)."
   },
   {
     "id": "q27",
     "type": "knowledge",
-    "category": "ia-aplicada-financas",
+    "category": "dados-programacao",
     "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
     "targetSeniority": ["pleno", "senior"],
-    "question": "Do ponto de vista de governança, por que a explicabilidade de modelos de IA se tornou relevante para instituições financeiras?",
+    "question": "Em arquiteturas de dados modernas (ex.: lakehouse com Databricks/Delta Lake), qual é o propósito de organizar os dados em camadas bronze, silver e gold?",
     "options": [
       {
         "id": "a",
-        "text": "Porque reguladores e áreas de risco/compliance exigem entender o racional por trás de decisões automatizadas de crédito e risco"
+        "text": "Separar os dados por nível de sigilo, do público (bronze) ao confidencial (gold)"
       },
-      { "id": "b", "text": "Porque modelos explicáveis são sempre estatisticamente mais precisos" },
-      { "id": "c", "text": "Porque reduz diretamente o custo de infraestrutura em nuvem" },
-      { "id": "d", "text": "Porque é uma exigência aplicável apenas a modelos de IA generativa" }
+      {
+        "id": "b",
+        "text": "Aplicar refinamento progressivo — dado bruto (bronze), limpo e padronizado (silver), agregado e pronto para consumo de negócio (gold) — preservando rastreabilidade da origem ao relatório"
+      },
+      { "id": "c", "text": "Reduzir custo de armazenamento comprimindo os dados três vezes" },
+      {
+        "id": "d",
+        "text": "Atender a uma exigência regulatória do Banco Central sobre nomenclatura de tabelas"
+      }
     ],
-    "correctOptionId": "a",
-    "explanation": "Em decisões que afetam clientes, reguladores e compliance exigem rastreabilidade do racional do modelo — explicabilidade é sobre governança e prestação de contas, não sobre performance estatística."
+    "correctOptionId": "b",
+    "explanation": "A arquitetura em medalhão padroniza o ciclo de vida do dado: cada camada agrega qualidade e semântica, e qualquer número no relatório final pode ser rastreado de volta ao dado bruto — fundamental em ambiente regulado."
   },
   {
     "id": "q28",
     "type": "knowledge",
-    "category": "ia-aplicada-financas",
-    "difficultyLevel": "hard",
-    "targetSeniority": ["pleno", "senior"],
-    "question": "Ao liderar a adoção de IA em uma área de negócio (ex: crédito, risco ou investimentos), um dos principais papéis de um profissional sênior é:",
+    "category": "dados-programacao",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["senior"],
+    "question": "No contexto de governança de dados, por que a linhagem de dados (data lineage) é importante para uma instituição financeira?",
     "options": [
       {
         "id": "a",
-        "text": "Equilibrar ganhos de eficiência com governança, explicabilidade e gestão de riscos regulatórios do modelo"
+        "text": "Porque permite rastrear a origem e as transformações de cada informação, sustentando auditoria, atendimento a reguladores e confiança nos números reportados"
       },
-      {
-        "id": "b",
-        "text": "Garantir que a IA seja implementada o mais rápido possível, independentemente de testes de viés"
-      },
-      {
-        "id": "c",
-        "text": "Delegar toda a responsabilidade de decisão para o modelo, sem supervisão humana"
-      },
-      { "id": "d", "text": "Evitar qualquer uso de IA até que não haja mais risco algum envolvido" }
+      { "id": "b", "text": "Porque aumenta automaticamente a velocidade das consultas SQL" },
+      { "id": "c", "text": "Porque elimina a necessidade de backup dos dados" },
+      { "id": "d", "text": "Porque substitui a validação de qualidade dos dados na entrada" }
     ],
     "correctOptionId": "a",
-    "explanation": "Liderança sênior nesse contexto é sobre equilíbrio: capturar o ganho de eficiência da IA sem abrir mão de governança, supervisão e gestão de risco regulatório — nem acelerar sem controle, nem travar por aversão total ao risco."
+    "explanation": "Lineage responde 'de onde veio esse número e o que aconteceu com ele no caminho'. Sem isso, não há como defender um valor reportado perante auditoria ou regulador, nem diagnosticar rapidamente a raiz de uma divergência."
   },
   {
     "id": "q29",
-    "type": "self_assessment",
-    "category": "perfil-tecnico",
-    "question": "Qual opção descreve melhor o seu nível atual de uso de ferramentas de dados (SQL, Python, Power BI ou similares) no seu dia a dia de trabalho ou estudos?",
+    "type": "knowledge",
+    "category": "dados-programacao",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["senior"],
+    "question": "Um relatório regulatório diário é montado manualmente em planilha a partir de três sistemas. Do ponto de vista de risco operacional, a evolução mais adequada é:",
     "options": [
-      { "id": "a", "text": "Nunca usei essas ferramentas", "profileTag": "sem_experiencia_dados" },
+      {
+        "id": "a",
+        "text": "Manter o processo manual, mas dobrar o número de conferências visuais"
+      },
       {
         "id": "b",
-        "text": "Já usei em cursos ou estudos, mas pouco na prática",
-        "profileTag": "iniciante_dados"
+        "text": "Migrar para um pipeline automatizado com código versionado, testes e validações de dados, mantendo revisão humana por exceção"
       },
       {
         "id": "c",
-        "text": "Uso com certa frequência para análises pontuais",
-        "profileTag": "usuario_intermediario_dados"
+        "text": "Distribuir a planilha entre mais analistas para diluir a responsabilidade"
+      },
+      { "id": "d", "text": "Enviar o relatório com menos frequência para reduzir a chance de erro" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Processos manuais recorrentes concentram risco operacional (erro humano, dependência de pessoas-chave, ausência de trilha). Pipeline versionado e testado torna o processo reprodutível e auditável — e desloca o humano para onde agrega: tratar exceções."
+  },
+
+  {
+    "id": "q30",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "easy",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante"],
+    "question": "De forma geral, o que caracteriza um modelo de machine learning (aprendizado de máquina)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Um programa cujas regras são todas escritas manualmente por especialistas"
+      },
+      {
+        "id": "b",
+        "text": "Um sistema que aprende padrões a partir de dados históricos para fazer previsões ou classificações sobre casos novos"
+      },
+      { "id": "c", "text": "Um robô físico que executa tarefas repetitivas em agências bancárias" },
+      { "id": "d", "text": "Qualquer software instalado em servidores de nuvem" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "A diferença essencial para o software tradicional: em vez de regras programadas à mão, o modelo extrai os padrões dos dados de treinamento — e por isso sua qualidade depende diretamente da qualidade desses dados."
+  },
+  {
+    "id": "q31",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "easy",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Qual das opções abaixo é um uso consolidado de machine learning em bancos e financeiras no Brasil?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Modelos de score de crédito, que estimam a probabilidade de inadimplência de um cliente a partir de dados históricos"
+      },
+      { "id": "b", "text": "Definição da meta de inflação pelo Conselho Monetário Nacional" },
+      { "id": "c", "text": "Impressão de cédulas de real" },
+      { "id": "d", "text": "Registro de imóveis em cartório" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Credit scoring é um dos usos mais antigos e maduros de ML no setor: modelos estimam a probabilidade de default e apoiam decisões de concessão e precificação de crédito — sempre sujeitos a governança e supervisão humana."
+  },
+  {
+    "id": "q32",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "Ao usar uma IA generativa (como um assistente de linguagem) para produzir uma análise financeira, qual cuidado é indispensável?",
+    "options": [
+      { "id": "a", "text": "Nenhum: modelos de linguagem não cometem erros factuais" },
+      {
+        "id": "b",
+        "text": "Usar apenas perguntas em inglês, pois em português os modelos não funcionam"
+      },
+      {
+        "id": "c",
+        "text": "Verificar números, fontes e conclusões, pois o modelo pode gerar informações incorretas com aparência de confiança (alucinações)"
+      },
+      { "id": "d", "text": "Evitar fornecer contexto, para não enviesar a resposta" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Modelos generativos produzem texto plausível, não necessariamente verdadeiro. Em finanças, onde um número errado tem consequência, a verificação humana de fatos, cálculos e fontes é etapa obrigatória do fluxo de trabalho."
+  },
+  {
+    "id": "q33",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["estagiario", "junior"],
+    "question": "Um modelo de crédito acerta 99% dos casos na base usada para treiná-lo, mas erra muito em dados novos. Esse fenômeno é chamado de:",
+    "options": [
+      { "id": "a", "text": "Underfitting: o modelo é simples demais para os dados" },
+      {
+        "id": "b",
+        "text": "Overfitting: o modelo 'decorou' particularidades do histórico em vez de aprender padrões generalizáveis — por isso se avalia desempenho em dados separados do treino"
+      },
+      { "id": "c", "text": "Normalização: um passo obrigatório de qualquer modelo" },
+      { "id": "d", "text": "Convergência: sinal de que o modelo está pronto para produção" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Overfitting é o ajuste excessivo ao ruído do histórico. A defesa padrão é avaliar o modelo em dados que ele nunca viu (hold-out/validação cruzada) — desempenho no treino nunca é evidência suficiente."
+  },
+  {
+    "id": "q34",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["junior", "pleno"],
+    "question": "Prever se uma operação de crédito entrará em default (sim/não) e prever o valor esperado de perda em caso de default são, respectivamente, problemas de:",
+    "options": [
+      { "id": "a", "text": "Regressão e classificação" },
+      { "id": "b", "text": "Classificação e regressão" },
+      { "id": "c", "text": "Clusterização e classificação" },
+      { "id": "d", "text": "Ambos são problemas de clusterização" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Prever uma categoria (default sim/não) é classificação; prever um valor numérico contínuo (perda esperada) é regressão. Identificar o tipo do problema é o primeiro passo de qualquer projeto de ML."
+  },
+  {
+    "id": "q35",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["junior"],
+    "question": "Em uma base de transações, apenas 0,5% são fraudes. Um modelo que classifica tudo como 'não fraude' atinge 99,5% de acurácia. O que isso revela?",
+    "options": [
+      { "id": "a", "text": "Que o modelo é excelente e está pronto para produção" },
+      { "id": "b", "text": "Que a base de dados está com erro de coleta" },
+      {
+        "id": "c",
+        "text": "Que acurácia é uma métrica enganosa em problemas desbalanceados; métricas como precisão, recall e F1 descrevem melhor o desempenho na classe rara"
+      },
+      { "id": "d", "text": "Que fraudes não podem ser detectadas por modelos estatísticos" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Com classes muito desbalanceadas, a acurácia é dominada pela classe majoritária. O que importa é a capacidade de capturar a classe rara (recall) sem gerar excesso de falsos positivos (precisão) — trade-off central em detecção de fraude e crédito."
+  },
+  {
+    "id": "q36",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Um modelo de risco de crédito treinado em anos de juros baixos passa a errar sistematicamente após uma mudança brusca no ciclo econômico. Esse fenômeno e sua mitigação são:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Model drift; mitiga-se com monitoramento contínuo de desempenho e das distribuições de entrada, com gatilhos de recalibração ou retreino"
+      },
+      { "id": "b", "text": "Overfitting; mitiga-se aumentando o número de variáveis do modelo" },
+      { "id": "c", "text": "Bug de software; mitiga-se reiniciando o servidor de produção" },
+      {
+        "id": "d",
+        "text": "Um problema sem solução: modelos não podem ser atualizados após implantados"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "Quando a relação entre variáveis e resultado muda (mudança de regime), o modelo degrada — drift. A resposta madura é operacional: monitorar métricas e distribuições em produção e definir de antemão os gatilhos de retreino e revalidação."
+  },
+  {
+    "id": "q37",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["pleno"],
+    "question": "No backtest de uma estratégia quantitativa, usar o balanço anual de uma empresa como se estivesse disponível em 1º de janeiro — quando na prática só é publicado em março — introduz qual problema?",
+    "options": [
+      { "id": "a", "text": "Viés de sobrevivência, por excluir empresas que faliram" },
+      {
+        "id": "b",
+        "text": "Look-ahead bias (vazamento de informação futura), que infla artificialmente o resultado do backtest e o torna irreplicável em operação real"
+      },
+      { "id": "c", "text": "Apenas um problema estético, sem efeito no resultado" },
+      { "id": "d", "text": "Excesso de custo computacional" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Look-ahead bias é usar, na simulação, informação que não existia na data da decisão. O backtest fica ótimo no papel e falha em produção. A disciplina de point-in-time data é o antídoto."
+  },
+  {
+    "id": "q38",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "aplicar",
+    "targetSeniority": ["senior"],
+    "question": "Para um time sênior de análise, qual é o uso mais maduro de IA generativa no fluxo de trabalho hoje?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Delegar ao modelo a decisão final de investimento ou de crédito, sem revisão"
+      },
+      { "id": "b", "text": "Proibir o uso de IA até que os modelos parem completamente de errar" },
+      {
+        "id": "c",
+        "text": "Acelerar etapas de alto volume — leitura de documentos, primeiras versões de análises e códigos, resumos — mantendo revisão humana e responsabilidade final do analista"
       },
       {
         "id": "d",
-        "text": "Uso no dia a dia e já construí análises ou soluções completas com essas ferramentas",
-        "profileTag": "usuario_avancado_dados"
+        "text": "Usar IA apenas para tarefas sem nenhuma relação com o trabalho da área"
       }
-    ]
+    ],
+    "correctOptionId": "c",
+    "explanation": "O padrão que se consolidou no mercado é IA como multiplicador de produtividade com human-in-the-loop: o modelo produz rascunhos e sínteses; o julgamento, a verificação e a responsabilidade permanecem com o profissional."
+  },
+  {
+    "id": "q39",
+    "type": "knowledge",
+    "category": "ia-aplicada",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["senior"],
+    "question": "Antes de um modelo de ML passar a influenciar decisões de crédito em uma instituição financeira, a boa prática de governança de modelos exige:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Apenas a aprovação do time que desenvolveu o modelo, que é quem melhor o conhece"
+      },
+      {
+        "id": "b",
+        "text": "Validação independente (segunda linha) cobrindo desempenho, estabilidade, viés e explicabilidade, com documentação, alçadas de aprovação e plano de monitoramento"
+      },
+      { "id": "c", "text": "Somente um teste de velocidade de processamento em produção" },
+      {
+        "id": "d",
+        "text": "Nenhum processo formal, desde que o modelo tenha boa acurácia no treino"
+      }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Governança de modelos separa quem desenvolve de quem valida: a segunda linha desafia premissas, testa viés e estabilidade e exige explicabilidade antes da aprovação — prática esperada por reguladores para decisões automatizadas que afetam clientes."
+  },
+
+  {
+    "id": "q40",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "easy",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante", "estagiario"],
+    "question": "O que significa, na prática, a relação entre risco e retorno nos investimentos?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Investimentos com maior retorno esperado tendem a envolver maior risco — retornos altos 'garantidos' e sem risco devem acender sinal de alerta"
+      },
+      { "id": "b", "text": "Quanto maior o risco, menor o retorno possível" },
+      { "id": "c", "text": "Risco e retorno não têm relação entre si" },
+      { "id": "d", "text": "Todo investimento de risco alto entrega retorno alto com certeza" }
+    ],
+    "correctOptionId": "a",
+    "explanation": "O retorno esperado mais alto é o preço que o mercado paga para alguém carregar mais risco — é um prêmio, não uma garantia. Promessas de ganho alto sem risco são o padrão clássico de fraude financeira."
+  },
+  {
+    "id": "q41",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante"],
+    "question": "O que é o risco de liquidez de um investimento?",
+    "options": [
+      { "id": "a", "text": "O risco de o emissor não pagar o que deve" },
+      {
+        "id": "b",
+        "text": "O risco de não conseguir vender o ativo rapidamente sem aceitar um desconto relevante no preço"
+      },
+      { "id": "c", "text": "O risco de a inflação corroer o rendimento" },
+      { "id": "d", "text": "O risco de o banco cobrar tarifas de custódia" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Liquidez é a facilidade de transformar o ativo em dinheiro a preço justo. Um ativo pode ser seguro do ponto de vista de crédito e ainda assim ilíquido — dois riscos diferentes que costumam ser confundidos."
+  },
+  {
+    "id": "q42",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["aspirante"],
+    "question": "Por que diversificar uma carteira entre diferentes emissores e classes de ativos é considerado boa prática?",
+    "options": [
+      { "id": "a", "text": "Porque garante que nenhum investimento da carteira terá prejuízo" },
+      { "id": "b", "text": "Porque aumenta a rentabilidade de todos os ativos ao mesmo tempo" },
+      {
+        "id": "c",
+        "text": "Porque reduz o impacto que o problema de um único emissor ou setor pode causar no patrimônio total"
+      },
+      { "id": "d", "text": "Porque é uma exigência legal para pessoas físicas" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Diversificar dilui o risco específico: o evento ruim de um emissor (default, escândalo, quebra) passa a atingir só uma fração da carteira. Não elimina o risco de mercado, mas evita que um único erro seja fatal."
+  },
+  {
+    "id": "q43",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["estagiario"],
+    "question": "Qual é o papel da CVM (Comissão de Valores Mobiliários) no mercado brasileiro?",
+    "options": [
+      { "id": "a", "text": "Definir a taxa Selic nas reuniões do Copom" },
+      {
+        "id": "b",
+        "text": "Regular e fiscalizar o mercado de valores mobiliários (ações, debêntures, fundos), protegendo investidores e a integridade do mercado"
+      },
+      { "id": "c", "text": "Garantir os depósitos bancários até R$ 250 mil" },
+      { "id": "d", "text": "Emitir os títulos públicos federais" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "A CVM é a autarquia que normatiza e fiscaliza o mercado de capitais. A Selic é do Banco Central (Copom); a garantia de depósitos é do FGC; a emissão de títulos públicos é do Tesouro Nacional — mapa institucional básico do SFN."
+  },
+  {
+    "id": "q44",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["estagiario", "junior"],
+    "question": "Qual é a diferença entre marcação a mercado e marcação na curva na precificação de um título de renda fixa?",
+    "options": [
+      { "id": "a", "text": "São dois nomes para o mesmo procedimento contábil" },
+      {
+        "id": "b",
+        "text": "Marcação a mercado atualiza o preço pelo valor de negociação atual do título; marcação na curva apropria diariamente a taxa contratada, ignorando oscilações de mercado"
+      },
+      {
+        "id": "c",
+        "text": "Marcação na curva só se aplica a ações; marcação a mercado, só a títulos públicos"
+      },
+      { "id": "d", "text": "Marcação a mercado altera o valor de face que será pago no vencimento" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Na curva, o valor evolui suavemente pela taxa da compra; a mercado, o valor reflete o preço pelo qual o título seria vendido hoje. Nenhuma das duas muda o fluxo no vencimento — mudam apenas a fotografia do valor ao longo do caminho."
+  },
+  {
+    "id": "q45",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["junior", "pleno"],
+    "question": "O rating de crédito atribuído por uma agência a uma emissão de debêntures representa:",
+    "options": [
+      { "id": "a", "text": "Uma garantia contratual de que o emissor pagará a dívida" },
+      { "id": "b", "text": "O preço mínimo pelo qual o papel pode ser negociado" },
+      {
+        "id": "c",
+        "text": "Uma opinião independente sobre a capacidade e a disposição do emissor de honrar aquela dívida, que pode ser revisada ao longo do tempo"
+      },
+      { "id": "d", "text": "A rentabilidade esperada do papel até o vencimento" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Rating é opinião sobre risco de crédito, não seguro nem garantia — a história recente do crédito privado brasileiro tem exemplos de papéis bem avaliados que entraram em default. Serve como insumo da análise, nunca como substituto dela."
+  },
+  {
+    "id": "q46",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["junior", "pleno"],
+    "question": "Um fundo oferece resgate em D+1, mas aloca parte relevante da carteira em crédito privado de baixa liquidez. Qual risco essa combinação cria?",
+    "options": [
+      { "id": "a", "text": "Risco cambial, pela exposição a moedas estrangeiras" },
+      {
+        "id": "b",
+        "text": "Descasamento entre a liquidez do passivo (resgates rápidos) e a do ativo: em ondas de resgate, o fundo pode ser forçado a vender papéis ilíquidos com desconto, penalizando os cotistas que ficam"
+      },
+      { "id": "c", "text": "Nenhum risco: o prazo de resgate independe da carteira do fundo" },
+      { "id": "d", "text": "Apenas risco de o administrador cobrar taxa de saída" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "É o clássico descasamento ativo-passivo de liquidez, no centro de episódios de estresse em fundos de crédito privado no Brasil. A gestão prudente alinha prazo de resgate, colchão de liquidez e perfil dos ativos."
+  },
+  {
+    "id": "q47",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["pleno", "senior"],
+    "question": "Por que a regulação prudencial (arcabouço de Basileia) exige que bancos mantenham capital proporcional ao risco dos seus ativos?",
+    "options": [
+      { "id": "a", "text": "Para aumentar a arrecadação de impostos sobre o sistema bancário" },
+      { "id": "b", "text": "Para impedir que bancos concedam qualquer tipo de crédito arriscado" },
+      {
+        "id": "c",
+        "text": "Para que perdas inesperadas sejam absorvidas pelo capital dos acionistas antes de atingirem depositantes e o sistema, reduzindo o risco de crises sistêmicas"
+      },
+      { "id": "d", "text": "Para padronizar as taxas de juros cobradas em todos os países" }
+    ],
+    "correctOptionId": "c",
+    "explanation": "Capital regulatório é o colchão que fica entre a perda e o depositante: quanto mais arriscado o ativo, mais capital próprio o banco imobiliza contra ele. É o mecanismo central de prevenção de contágio sistêmico desde Basileia I."
+  },
+  {
+    "id": "q48",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "medium",
+    "cognitiveLevel": "compreender",
+    "targetSeniority": ["senior"],
+    "question": "No arcabouço regulatório brasileiro, o dever de suitability exige que o distribuidor de produtos de investimento:",
+    "options": [
+      { "id": "a", "text": "Ofereça sempre o produto de maior rentabilidade histórica disponível" },
+      {
+        "id": "b",
+        "text": "Verifique a adequação do produto ao perfil do cliente — objetivos, situação financeira e conhecimento — antes de recomendar, documentando o processo"
+      },
+      { "id": "c", "text": "Garanta a rentabilidade prometida em material publicitário" },
+      { "id": "d", "text": "Restrinja investidores de varejo a aplicações em poupança" }
+    ],
+    "correctOptionId": "b",
+    "explanation": "Suitability (regulado pela CVM) é o dever de adequação: recomendar considerando perfil, objetivos e capacidade do cliente, com processo documentado. É pilar da conduta no mercado e tema central das certificações ANBIMA."
+  },
+  {
+    "id": "q49",
+    "type": "knowledge",
+    "category": "risco-regulacao",
+    "difficultyLevel": "hard",
+    "cognitiveLevel": "analisar",
+    "targetSeniority": ["senior"],
+    "question": "No modelo de três linhas de defesa da gestão de riscos, qual é a divisão de papéis esperada?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1ª linha: áreas de negócio, donas dos riscos que originam; 2ª linha: risco e compliance, que definem políticas e desafiam a 1ª; 3ª linha: auditoria interna, com avaliação independente das duas anteriores"
+      },
+      {
+        "id": "b",
+        "text": "1ª linha: auditoria externa; 2ª linha: o conselho de administração; 3ª linha: os clientes"
+      },
+      {
+        "id": "c",
+        "text": "As três linhas devem se reportar ao mesmo gestor comercial, para agilidade"
+      },
+      {
+        "id": "d",
+        "text": "O modelo determina que apenas a área de risco responde por qualquer perda"
+      }
+    ],
+    "correctOptionId": "a",
+    "explanation": "A força do modelo está na independência entre as linhas: quem origina o risco não é quem o controla, e quem controla não é quem audita. Diluir essa separação — ex.: risco reportando ao comercial — anula o propósito da estrutura."
   }
 ]

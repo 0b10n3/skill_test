@@ -16,7 +16,7 @@ describe('fetchRestOfSession (Server Action usada por /quiz)', () => {
     async (seniority) => {
       const { knowledgeQuestions } = await fetchRestOfSession(seniority);
 
-      expect(knowledgeQuestions).toHaveLength(12);
+      expect(knowledgeQuestions).toHaveLength(15);
       for (const question of knowledgeQuestions) {
         expect(question.targetSeniority).toContain(seniority);
       }
@@ -24,9 +24,9 @@ describe('fetchRestOfSession (Server Action usada por /quiz)', () => {
   );
 
   it('não inclui correctOptionId em nenhuma pergunta retornada', async () => {
-    const { knowledgeQuestions, selfAssessmentQuestion } = await fetchRestOfSession('pleno');
+    const { knowledgeQuestions } = await fetchRestOfSession('pleno');
 
-    for (const question of [...knowledgeQuestions, selfAssessmentQuestion]) {
+    for (const question of knowledgeQuestions) {
       expect(question).not.toHaveProperty('correctOptionId');
     }
   });

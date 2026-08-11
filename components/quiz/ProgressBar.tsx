@@ -1,6 +1,6 @@
 import { Progress } from '@/components/ui/progress';
 
-const TOTAL_QUESTIONS = 14;
+const TOTAL_QUESTIONS = 15;
 
 interface ProgressBarProps {
   currentQuestionNumber: number;

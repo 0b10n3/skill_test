@@ -6,7 +6,7 @@ function makeKnowledgeQuestion(overrides: Partial<Question>): Question {
   return {
     id: 'qx',
     type: 'knowledge',
-    category: 'produtos-renda-fixa',
+    category: 'mercados-produtos',
     targetSeniority: ['aspirante'],
     question: 'pergunta',
     options: [
@@ -41,12 +41,13 @@ describe('classifyScore — fronteiras exatas', () => {
 });
 
 describe('calculateScore', () => {
-  it('calcula 8 acertos em 12 como 66.67% e classificação "medio"', () => {
+  it('calcula 9 acertos em 15 como 60% e classificação "medio"', () => {
     const categories = [
-      'produtos-renda-fixa',
-      'matematica-financeira-estatistica',
-      'dados-tecnologia',
-      'ia-aplicada-financas',
+      'mercados-produtos',
+      'matematica-quant',
+      'dados-programacao',
+      'ia-aplicada',
+      'risco-regulacao',
     ] as const;
 
     const questionsBank: Question[] = [];
@@ -58,7 +59,7 @@ describe('calculateScore', () => {
         const id = `${category}-${i}`;
         questionsBank.push(makeKnowledgeQuestion({ id, category, correctOptionId: 'a' }));
 
-        const shouldBeCorrect = correctCount < 8;
+        const shouldBeCorrect = correctCount < 9;
         answers[id] = shouldBeCorrect ? 'a' : 'b';
         if (shouldBeCorrect) correctCount += 1;
       }
@@ -66,7 +67,7 @@ describe('calculateScore', () => {
 
     const result = calculateScore(answers, questionsBank);
 
-    expect(result.scoreGeral).toBe(66.67);
+    expect(result.scoreGeral).toBe(60);
     expect(result.classification).toBe('medio');
   });
 

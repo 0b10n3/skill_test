@@ -28,7 +28,7 @@ export function QuizFlow({ seniorityQuestion }: QuizFlowProps) {
       setIsLoadingRest(true);
       const seniority = optionId as SeniorityLevel;
       const rest = await fetchRestOfSession(seniority);
-      setQuestions([seniorityQuestion, ...rest.knowledgeQuestions, rest.selfAssessmentQuestion]);
+      setQuestions([seniorityQuestion, ...rest.knowledgeQuestions]);
       setIsLoadingRest(false);
       setCurrentIndex(1);
       return;
@@ -53,9 +53,13 @@ export function QuizFlow({ seniorityQuestion }: QuizFlowProps) {
     );
   }
 
+  // q00 (senioridade) é uma etapa prévia, fora da contagem "N de 15" — as 15
+  // questões do blueprint (AVALIACAO.md §3) começam a contar a partir dela.
+  const isSeniorityStep = currentQuestion.type === 'seniority';
+
   return (
     <main className="flex h-dvh flex-col items-center justify-center gap-3 px-6 py-3">
-      <ProgressBar currentQuestionNumber={currentIndex + 1} />
+      {!isSeniorityStep && <ProgressBar currentQuestionNumber={currentIndex} />}
       <QuestionCard key={currentQuestion.id} question={currentQuestion} onAnswer={handleAnswer} />
     </main>
   );

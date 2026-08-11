@@ -7,7 +7,7 @@ interface BankOption {
 }
 interface BankQuestion {
   id: string;
-  type: 'seniority' | 'knowledge' | 'self_assessment';
+  type: 'seniority' | 'knowledge';
   question: string;
   options: BankOption[];
   correctOptionId?: string;
@@ -28,7 +28,7 @@ async function clickOptionWithText(page: Page, text: string) {
  * Responde o quiz inteiro pela UI real (sem nunca ler correctOptionId do
  * client — o teste só sabe o gabarito porque lê o mesmo content/questions.json
  * que o servidor usa, fora de banda). `correctCount` determina quantas das
- * 12 perguntas de conhecimento respondemos certo, para produzir um score
+ * 15 perguntas de conhecimento respondemos certo, para produzir um score
  * previsível e conferir contra o que a página de resultado exibe.
  */
 async function answerQuizDeterministically(
@@ -44,22 +44,18 @@ async function answerQuizDeterministically(
 
   let remainingCorrect = correctCount;
 
-  for (let i = 0; i < 13; i += 1) {
+  for (let i = 0; i < 15; i += 1) {
     await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
     const questionText = (await page.locator('[data-slot="card-title"]').textContent())?.trim();
     const question = bank.find((q) => q.question.trim() === questionText);
     if (!question) throw new Error(`Pergunta não encontrada no banco: ${questionText}`);
 
-    if (question.type === 'self_assessment') {
-      await clickOptionWithText(page, question.options[0].text);
-    } else {
-      const shouldBeCorrect = remainingCorrect > 0;
-      if (shouldBeCorrect) remainingCorrect -= 1;
-      const option = shouldBeCorrect
-        ? question.options.find((o) => o.id === question.correctOptionId)!
-        : question.options.find((o) => o.id !== question.correctOptionId)!;
-      await clickOptionWithText(page, option.text);
-    }
+    const shouldBeCorrect = remainingCorrect > 0;
+    if (shouldBeCorrect) remainingCorrect -= 1;
+    const option = shouldBeCorrect
+      ? question.options.find((o) => o.id === question.correctOptionId)!
+      : question.options.find((o) => o.id !== question.correctOptionId)!;
+    await clickOptionWithText(page, option.text);
 
     await page.getByRole('button', { name: 'Próxima' }).click();
   }
@@ -79,19 +75,19 @@ async function submitLead(page: Page, email: string) {
 }
 
 test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () => {
-  test('8 acertos em 12 exibe 66.67% e classificação Médio', async ({ page }) => {
+  test('9 acertos em 15 exibe 60% e classificação Médio', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'Iniciar avaliação' }).click();
     await expect(page).toHaveURL(/\/quiz$/);
 
-    await answerQuizDeterministically(page, 'pleno', 8);
+    await answerQuizDeterministically(page, 'pleno', 9);
     await submitLead(page, `e2e-medio-${Date.now()}@example.com`);
 
-    await expect(page.getByTestId('score-geral')).toHaveText('66.67%');
+    await expect(page.getByTestId('score-geral')).toHaveText('60%');
     await expect(page.getByTestId('score-classificacao')).toHaveText('Médio');
   });
 
-  test('0 acertos em 12 exibe 0% e classificação Baixo', async ({ page }) => {
+  test('0 acertos em 15 exibe 0% e classificação Baixo', async ({ page }) => {
     await answerQuizDeterministically(page, 'aspirante', 0);
     await submitLead(page, `e2e-baixo-${Date.now()}@example.com`);
 
@@ -99,10 +95,10 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
     await expect(page.getByTestId('score-classificacao')).toHaveText('Baixo');
   });
 
-  test('12 acertos em 12 exibe 100% e classificação Alto, com oferta de mentoria', async ({
+  test('15 acertos em 15 exibe 100% e classificação Alto, com oferta de mentoria', async ({
     page,
   }) => {
-    await answerQuizDeterministically(page, 'senior', 12);
+    await answerQuizDeterministically(page, 'senior', 15);
     await submitLead(page, `e2e-alto-${Date.now()}@example.com`);
 
     await expect(page.getByTestId('score-geral')).toHaveText('100%');

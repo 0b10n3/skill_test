@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 async function completeQuiz(page: import('@playwright/test').Page) {
   await page.goto('/quiz');
-  for (let question = 1; question <= 14; question += 1) {
+  for (let question = 1; question <= 16; question += 1) {
     await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
     await page.getByRole('radio').first().click();
     await page.getByRole('button', { name: 'Próxima' }).click();

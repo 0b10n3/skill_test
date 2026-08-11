@@ -8,7 +8,7 @@ interface BankOption {
 }
 interface BankQuestion {
   id: string;
-  type: 'seniority' | 'knowledge' | 'self_assessment';
+  type: 'seniority' | 'knowledge';
   question: string;
   options: BankOption[];
   correctOptionId?: string;
@@ -23,7 +23,7 @@ test('/resultado — sem violações de contraste (axe-core)', async ({ page }) 
   await page.locator('label').filter({ hasText: seniorityOptionText }).getByRole('radio').click();
   await page.getByRole('button', { name: 'Próxima' }).click();
 
-  for (let i = 0; i < 13; i += 1) {
+  for (let i = 0; i < 15; i += 1) {
     await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
     await page.getByRole('radio').first().click();
     await page.getByRole('button', { name: 'Próxima' }).click();

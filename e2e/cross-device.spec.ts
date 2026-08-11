@@ -34,7 +34,7 @@ for (const viewport of VIEWPORTS) {
 
     test('/lead não tem overflow horizontal', async ({ page }) => {
       await page.goto('/quiz');
-      for (let i = 0; i < 14; i += 1) {
+      for (let i = 0; i < 16; i += 1) {
         await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
         await page.getByRole('radio').first().click();
         await page.getByRole('button', { name: 'Próxima' }).click();
@@ -45,7 +45,7 @@ for (const viewport of VIEWPORTS) {
 
     test('/resultado não tem overflow horizontal', async ({ page }) => {
       await page.goto('/quiz');
-      for (let i = 0; i < 14; i += 1) {
+      for (let i = 0; i < 16; i += 1) {
         await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
         await page.getByRole('radio').first().click();
         await page.getByRole('button', { name: 'Próxima' }).click();

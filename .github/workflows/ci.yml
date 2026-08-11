@@ -29,6 +29,9 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Validate questions bank
+        run: npm run validate:questions
+
       - name: Test
         run: npm run test
 

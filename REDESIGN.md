@@ -8,14 +8,14 @@
 
 O app foi construído sobre a camada visual anterior ("O Sinal no Escuro"). Este redesign migra o produto inteiro para o sistema de marca consolidado:
 
-| | Sistema anterior | Sistema novo (SSOT) |
-|---|---|---|
-| Fonte de verdade | tokens antigos | **`tokens.json` v1.1.0 (DTCG)** + **`DESIGN.md` v1.0** |
-| Paleta | Volt green, dark-first | **Forest `#1B6A45` / Grove `#2D9E67` / Amber `#C9832A`** + neutros (Chalk/Ink/Slate/Mint/Cream/Mist) |
-| Tipografia | Space Grotesk / Inter / JetBrains Mono | **DM Serif Display (display) / DM Sans (corpo/UI) / Space Mono (dados, código, métricas)** |
-| Temas | dark-first | **Light e Dark de primeira classe** via `color.theme.light` / `color.theme.dark` (com as inversões intencionais do dark: Grove como primary, Mint como secondary) |
-| Padrões visuais | — | **Três famílias:** nó-e-galho (primário), grade de dados, linha de conquista (`pattern.*` nos tokens; regras no `DESIGN.md` §5) |
-| Logo | — | Símbolo Syntaxis em duas variantes de verde (fundos claros / escuros) |
+|                  | Sistema anterior                       | Sistema novo (SSOT)                                                                                                                                               |
+| ---------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fonte de verdade | tokens antigos                         | **`tokens.json` v1.1.0 (DTCG)** + **`DESIGN.md` v1.0**                                                                                                            |
+| Paleta           | Volt green, dark-first                 | **Forest `#1B6A45` / Grove `#2D9E67` / Amber `#C9832A`** + neutros (Chalk/Ink/Slate/Mint/Cream/Mist)                                                              |
+| Tipografia       | Space Grotesk / Inter / JetBrains Mono | **DM Serif Display (display) / DM Sans (corpo/UI) / Space Mono (dados, código, métricas)**                                                                        |
+| Temas            | dark-first                             | **Light e Dark de primeira classe** via `color.theme.light` / `color.theme.dark` (com as inversões intencionais do dark: Grove como primary, Mint como secondary) |
+| Padrões visuais  | —                                      | **Três famílias:** nó-e-galho (primário), grade de dados, linha de conquista (`pattern.*` nos tokens; regras no `DESIGN.md` §5)                                   |
+| Logo             | —                                      | Símbolo Syntaxis em duas variantes de verde (fundos claros / escuros)                                                                                             |
 
 **Regra de precedência:** onde qualquer decisão anterior do app (inclusive `REPORT.md`, escrito antes desta migração) conflitar com `DESIGN.md`/`tokens.json` v1.1.0, **os novos arquivos vencem**. A estrutura S1–S8 do `REPORT.md` permanece válida; sua camada visual é substituída por este redesign.
 
@@ -33,15 +33,18 @@ O app foi construído sobre a camada visual anterior ("O Sinal no Escuro"). Este
 ## 3. Inventário de assets
 
 ### 3.1 Logos (fornecidos — pasta `public/brand/`)
+
 - `logo_nbg_{8,48,96}px.png` — variante verde-escuro (Forest), para fundos claros.
 - `logo_nbg2_{8,48,64}px.png` — variante verde-médio (Grove), para fundos escuros.
 - Convenção no repo: renomear para `public/brand/logo-forest-{size}.png` e `logo-grove-{size}.png`; mapa de uso: header light → forest; header dark → grove; favicon → 48px com fallback 8px; OG/social → 96px sobre superfície da marca.
 - **Lacuna declarada:** não há SVG master. Épico 14 inclui vetorização (traçado fiel do símbolo) OU obtenção do SVG original com o founder — PNG upscalado não é aceitável em hero/impressão. Até lá, usar os PNGs nos tamanhos exatos fornecidos, sem escalar acima do fornecido.
 
 ### 3.2 Padrões geométricos (programáticos — nunca gerados por IA)
+
 Nó-e-galho, grade de dados e linha de conquista são **SVG/CSS paramétricos** construídos a partir dos tokens `pattern.*` (raio de nó 2.5px, traço 0.75px, dot-grid 14px, degraus Amber 2px). Precisão geométrica e aderência exata de cor são requisitos — por isso ficam fora do pipeline generativo.
 
 ### 3.3 Assets generativos (Nano Banana Pro via agy)
+
 Imagens ilustrativas onde a geração agrega: hero da landing, ilustrações de dimensão de competência, fundos de OG/social card, texturas de superfície. Governadas pelo pipeline do §4 e pelo Épico 16.
 
 ## 4. Pipeline de assets generativos — Nano Banana Pro via agy
@@ -64,11 +67,11 @@ O fluxo usa o agy (Antigravity CLI) para invocar o Nano Banana Pro de forma repr
 
 ## 6. Sequência de épicos
 
-| Épico | Entrega | Depende de |
-|---|---|---|
-| 14 | Fundação: tokens v1.1.0 no código, tipografia, temas light/dark, logos | 13 (ou 9, se a v2 funcional ainda não iniciou) |
-| 15 | Padrões geométricos + restyle da biblioteca de componentes | 14 |
-| 16 | Pipeline agy + Nano Banana Pro e primeiro lote de assets aprovados | 14 (paralelo a 15) |
-| 17 | Redesign das páginas do fluxo: landing, quiz, lead | 15, 16 |
-| 18 | Redesign do relatório `/resultado` | 12, 15, 16 |
-| 19 | QA visual, acessibilidade, performance e go-live do redesign | 17, 18 |
+| Épico | Entrega                                                                | Depende de                                     |
+| ----- | ---------------------------------------------------------------------- | ---------------------------------------------- |
+| 14    | Fundação: tokens v1.1.0 no código, tipografia, temas light/dark, logos | 13 (ou 9, se a v2 funcional ainda não iniciou) |
+| 15    | Padrões geométricos + restyle da biblioteca de componentes             | 14                                             |
+| 16    | Pipeline agy + Nano Banana Pro e primeiro lote de assets aprovados     | 14 (paralelo a 15)                             |
+| 17    | Redesign das páginas do fluxo: landing, quiz, lead                     | 15, 16                                         |
+| 18    | Redesign do relatório `/resultado`                                     | 12, 15, 16                                     |
+| 19    | QA visual, acessibilidade, performance e go-live do redesign           | 17, 18                                         |

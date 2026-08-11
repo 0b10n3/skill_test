@@ -80,23 +80,16 @@ export function getSeniorityQuestion(): ClientQuestion {
 
 /**
  * Monta a sessão completa do quiz para uma senioridade declarada: a pergunta
- * fixa de senioridade, 12 perguntas de conhecimento (3 por categoria, elegíveis
- * e sorteadas, embaralhadas entre categorias) e a pergunta de autoavaliação.
- * Retorna apenas ClientQuestion — nenhum correctOptionId trafega neste objeto.
+ * fixa de senioridade e as 15 perguntas de conhecimento do blueprint (3 por
+ * dimensão, elegíveis e sorteadas, embaralhadas entre dimensões — ver
+ * AVALIACAO.md §4.3). Retorna apenas ClientQuestion — nenhum correctOptionId
+ * trafega neste objeto.
  */
 export function buildQuizSession(seniority: SeniorityLevel): QuizSession {
   const seniorityQuestion = questionsBank.find((question) => question.type === 'seniority');
-  const selfAssessmentQuestion = questionsBank.find(
-    (question) => question.type === 'self_assessment',
-  );
 
   if (!seniorityQuestion) {
     throw new Error('Banco de perguntas não contém a pergunta de senioridade (type "seniority")');
-  }
-  if (!selfAssessmentQuestion) {
-    throw new Error(
-      'Banco de perguntas não contém a pergunta de autoavaliação (type "self_assessment")',
-    );
   }
 
   const knowledgeQuestions = shuffle(selectKnowledgeQuestions(seniority));
@@ -104,6 +97,5 @@ export function buildQuizSession(seniority: SeniorityLevel): QuizSession {
   return {
     seniorityQuestion: toClientQuestion(seniorityQuestion),
     knowledgeQuestions: knowledgeQuestions.map(toClientQuestion),
-    selfAssessmentQuestion: toClientQuestion(selfAssessmentQuestion),
   };
 }

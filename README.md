@@ -45,10 +45,20 @@ Copie `.env.example` para `.env.local` e preencha as variáveis necessárias (ve
 | `npm run test:lighthouse`           | Auditoria Lighthouse (Performance/A11y/SEO) contra `/`                                   |
 | `npm run test:lighthouse:flow`      | Auditoria Lighthouse nas 4 rotas públicas via User Flow (ver [`GOLIVE.md`](./GOLIVE.md)) |
 | `npm run generate:tokens`           | Gera `app/tokens.generated.css` a partir de `content/tokens.json`                        |
+| `npm run validate:questions`        | Valida `content/questions.json` contra o blueprint de senioridade (`AVALIACAO.md` §3–§4) |
 
 ## Variáveis de ambiente
 
 Ver [`.env.example`](./.env.example) para a lista completa e documentada. Nenhuma chave sensível é commitada — `.env.local` está no `.gitignore`.
+
+## Banco de questões
+
+`content/questions.json` é o banco canônico (v2, desde o Épico 10): 5
+dimensões de competência × 5 senioridades, com seleção determinística de 15
+itens por nível (3 por dimensão) em `lib/quiz-selection.ts`, conforme o
+blueprint de `AVALIACAO.md` §3–§4. Toda alteração de item passa por
+`npm run validate:questions` (também bloqueante em CI). Bancos substituídos
+vão para `data/archive/` (nunca apagados) — ver `data/archive/README.md`.
 
 ## Setup do MailerLite
 

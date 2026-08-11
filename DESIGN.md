@@ -1,11 +1,12 @@
 # Syntaxis — DESIGN.md
+
 **Manual de Marca** · Fonte única da verdade para identidade visual, voz e aplicação de marca
 
 ---
 
 > Este documento consolida e substitui a camada de marca de `syntaxis_brand_book_v1.md` para o novo momento da Syntaxis: de newsletter de educação financeira para **plataforma de treinamento técnico para profissionais do mercado de capitais brasileiro**. A paleta de cores é mantida integralmente — nenhuma alteração cromática foi feita. O que muda é para quem falamos, o que prometemos, e como isso se traduz em voz e em elementos visuais de apoio.
 >
-> Este arquivo é a peça que faltava identificada pelo `MARKETING_REVIEW.md` §12: *"Nenhum guia de voz de marca existe... Ação recomendada: criar um `VOICE.md`."* A Seção 3 deste documento cumpre esse papel, integrada ao restante da identidade.
+> Este arquivo é a peça que faltava identificada pelo `MARKETING_REVIEW.md` §12: _"Nenhum guia de voz de marca existe... Ação recomendada: criar um `VOICE.md`."_ A Seção 3 deste documento cumpre esse papel, integrada ao restante da identidade.
 
 ---
 
@@ -25,17 +26,17 @@
 
 ## 0. O que mudou e por quê
 
-| Antes (Substack de investimentos) | Agora (plataforma de treinamento) |
-|---|---|
-| Público: investidores pessoa física | Público: estagiários e analistas do mercado de capitais brasileiro |
-| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA, para alcançar o próximo nível da carreira |
-| Formato: newsletter editorial | Formato: aulas expositivas + cases reais + skills de IA entregáveis |
-| Metodologia implícita | Metodologia explícita e rigorosa (`METHODOLOGY.md`): andragogia, backward design, alinhamento construtivo, carga cognitiva, AI-first |
-| Voz: analítica e humana | Voz: **técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada** |
-| Paleta Forest/Grove/Amber | **Inalterada** |
-| Tipografia DM Serif Display/DM Sans/Space Mono | Mantida — Space Mono ganha mais relevância prática (código, SQL, notebooks) |
+| Antes (Substack de investimentos)                | Agora (plataforma de treinamento)                                                                                                    |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Público: investidores pessoa física              | Público: estagiários e analistas do mercado de capitais brasileiro                                                                   |
+| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA, para alcançar o próximo nível da carreira                |
+| Formato: newsletter editorial                    | Formato: aulas expositivas + cases reais + skills de IA entregáveis                                                                  |
+| Metodologia implícita                            | Metodologia explícita e rigorosa (`METHODOLOGY.md`): andragogia, backward design, alinhamento construtivo, carga cognitiva, AI-first |
+| Voz: analítica e humana                          | Voz: **técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada**                                                     |
+| Paleta Forest/Grove/Amber                        | **Inalterada**                                                                                                                       |
+| Tipografia DM Serif Display/DM Sans/Space Mono   | Mantida — Space Mono ganha mais relevância prática (código, SQL, notebooks)                                                          |
 
-O nome "Syntaxis" na verdade fica **mais** preciso com o pivô, não menos: sintaxe é a estrutura que dá sentido — seja a estrutura de uma frase, de uma árvore de decisão de crédito, ou de uma árvore de sintaxe de código (*abstract syntax tree*, o termo técnico que todo aluno de Python vai encontrar). Essa tripla coincidência de sentido é a base do sistema de padrões geométricos da Seção 5.
+O nome "Syntaxis" na verdade fica **mais** preciso com o pivô, não menos: sintaxe é a estrutura que dá sentido — seja a estrutura de uma frase, de uma árvore de decisão de crédito, ou de uma árvore de sintaxe de código (_abstract syntax tree_, o termo técnico que todo aluno de Python vai encontrar). Essa tripla coincidência de sentido é a base do sistema de padrões geométricos da Seção 5.
 
 ---
 
@@ -49,16 +50,16 @@ A Syntaxis existe para transformar a estrutura de uma decisão real de mercado �
 
 ### 1.2. Estrutura Estratégica
 
-| Pilar | Definição |
-|---|---|
-| **Propósito** | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real. |
-| **Visão** | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo. |
-| **Missão** | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as *skills* de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
-| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing. |
+| Pilar               | Definição                                                                                                                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Propósito**       | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real.    |
+| **Visão**           | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo.                                                      |
+| **Missão**          | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as _skills_ de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
+| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing.                                                |
 
 ### 1.3. Promessa de Resultado
 
-> *Skills e ferramentas de trabalho real — incluindo IA — para alcançar o próximo nível da carreira.*
+> _Skills e ferramentas de trabalho real — incluindo IA — para alcançar o próximo nível da carreira._
 
 Esta é a promessa-guia definida em `MARKETING_REVIEW.md` §4 e deve substituir qualquer formulação genérica ("aprenda finanças", "domine investimentos") em toda peça de copy, aula ou material de curso.
 
@@ -67,24 +68,28 @@ Esta é a promessa-guia definida em `MARKETING_REVIEW.md` §4 e deve substituir 
 ### 1.4. Valores Fundamentais
 
 #### Rigor sem enfeite
+
 Todo conteúdo segue o estado da arte acadêmico — bibliografia real, taxonomia de Bloom, cognitive load theory. Rigor não é forma; é a razão pela qual o aluno confia no professor híbrido.
 
 #### Tensão real, não exercício limpo
+
 Um case da Syntaxis reconstrói uma decisão sob incerteza institucional brasileira. Nunca um enunciado com resposta única — a competência que importa é decidir e defender, não calcular.
 
 #### IA como ferramenta, não como enfeite
+
 `METHODOLOGY.md` §2 é claro: a IA é competência entregável. Toda peça de marca — copy, curso, material — deve tratar IA com a mesma seriedade técnica que trata renda fixa ou modelagem.
 
 #### Leveza que não abre mão do rigor
-Humor e leveza de tom nunca substituem precisão técnica. A leveza vive no *como* se diz, nunca no *o quê* se afirma — ver Seção 3.3.
+
+Humor e leveza de tom nunca substituem precisão técnica. A leveza vive no _como_ se diz, nunca no _o quê_ se afirma — ver Seção 3.3.
 
 ---
 
 ## 2. Público — a moldura de marca sobre `AUDIENCES.md`
 
-`AUDIENCES.md` é o SSOT (*single source of truth*) de segmentação para copy de vendas e continua sendo — este documento não o duplica nem o substitui. Os quatro segmentos (`#Millennials-FEAR`, `#Millennials-GREED`, `#GENZ-FEAR`, `#GENZ-GREED`) seguem governando *estrutura de argumento* em qualquer peça comercial.
+`AUDIENCES.md` é o SSOT (_single source of truth_) de segmentação para copy de vendas e continua sendo — este documento não o duplica nem o substitui. Os quatro segmentos (`#Millennials-FEAR`, `#Millennials-GREED`, `#GENZ-FEAR`, `#GENZ-GREED`) seguem governando _estrutura de argumento_ em qualquer peça comercial.
 
-O que este `DESIGN.md` acrescenta é a **moldura comum** que sobrevive acima dos quatro eixos — o que é verdade sobre a marca *independente* de qual segmento está sendo endereçado:
+O que este `DESIGN.md` acrescenta é a **moldura comum** que sobrevive acima dos quatro eixos — o que é verdade sobre a marca _independente_ de qual segmento está sendo endereçado:
 
 - O público é sempre um **profissional adulto** (mesmo o estagiário de 19 anos) — `METHODOLOGY.md` §2 exige tratamento andragógico sem exceção. Nenhuma peça de marca, em nenhum segmento, deve soar como se estivesse ensinando uma criança ou vendendo para um leigo total.
 - O contexto é sempre o **mercado de capitais brasileiro**, com sua ambiguidade institucional específica (CVM, CMN, Anbima) — nunca conteúdo genérico traduzido.
@@ -111,27 +116,27 @@ A instrução do founder é explícita e deve ser tratada como regra, não como 
 
 Isso são dois eixos independentes, não um meio-termo:
 
-| Eixo | O que significa | O que NÃO significa |
-|---|---|---|
-| **Rigor acadêmico** | Toda afirmação tem lastro — bibliografia real, dado com fonte, verbo de Bloom correto no objetivo de aprendizado | Jargão por jargão; complicar para parecer inteligente |
-| **Leveza e humor** | Analogias vívidas, autoironia ocasional sobre o próprio mercado financeiro, ritmo de frase que não cansa | Piada forçada; meme; infantilização; humor que descredibiliza o conteúdo técnico |
+| Eixo                | O que significa                                                                                                  | O que NÃO significa                                                              |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Rigor acadêmico** | Toda afirmação tem lastro — bibliografia real, dado com fonte, verbo de Bloom correto no objetivo de aprendizado | Jargão por jargão; complicar para parecer inteligente                            |
+| **Leveza e humor**  | Analogias vívidas, autoironia ocasional sobre o próprio mercado financeiro, ritmo de frase que não cansa         | Piada forçada; meme; infantilização; humor que descredibiliza o conteúdo técnico |
 
 A regra de ouro: **o rigor nunca é sacrificado pela leveza, e a leveza nunca é sacrificada pelo rigor.** Um case sobre CDB vs. LCI pode abrir com uma analogia engraçada sobre por que ninguém lê o regulamento do produto — mas a comparação tributária em si tem que estar tecnicamente impecável.
 
 ### 3.3. Onde o humor vive (e onde não vive)
 
-| Local | Humor permitido? |
-|---|---|
-| Abertura de aula ("por que isso importa no trabalho") | Sim — é o lugar ideal para uma analogia leve que prende atenção antes do conteúdo técnico |
-| Transições entre blocos de conteúdo | Sim, com moderação |
-| Objeções de venda ("acho que já é tarde para mim") | Sim — reconhecer a objeção com leveza antes de responder com dado real desarma sem soar corporativo |
-| A tensão institucional de um case | **Não** — a ambiguidade regulatória é o ponto pedagógico; humor aqui dilui a dificuldade que o aluno precisa sentir |
-| Dado numérico ou afirmação técnica | **Não** — precisão em números e fontes é inegociável |
-| Nota de Ensino (documento para o professor) | Tom mais direto e técnico; humor mínimo — é documento de trabalho, não de engajamento |
+| Local                                                 | Humor permitido?                                                                                                    |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Abertura de aula ("por que isso importa no trabalho") | Sim — é o lugar ideal para uma analogia leve que prende atenção antes do conteúdo técnico                           |
+| Transições entre blocos de conteúdo                   | Sim, com moderação                                                                                                  |
+| Objeções de venda ("acho que já é tarde para mim")    | Sim — reconhecer a objeção com leveza antes de responder com dado real desarma sem soar corporativo                 |
+| A tensão institucional de um case                     | **Não** — a ambiguidade regulatória é o ponto pedagógico; humor aqui dilui a dificuldade que o aluno precisa sentir |
+| Dado numérico ou afirmação técnica                    | **Não** — precisão em números e fontes é inegociável                                                                |
+| Nota de Ensino (documento para o professor)           | Tom mais direto e técnico; humor mínimo — é documento de trabalho, não de engajamento                               |
 
 ### 3.4. Regras de Vocabulário
 
-- **Português como padrão.** Termos técnicos em inglês são aceitáveis quando são o termo de mercado real (*duration*, *case*, *asset*, *trainee*, *yield*) — nunca por afetação.
+- **Português como padrão.** Termos técnicos em inglês são aceitáveis quando são o termo de mercado real (_duration_, _case_, _asset_, _trainee_, _yield_) — nunca por afetação.
 - **Nomes comerciais em português.** Conforme recomendação de `MARKETING_REVIEW.md` §12: trilhas e pacotes recebem nome comercial em português. Nomenclatura interna de projeto (ex: `EPIC 0`) pode continuar em inglês, mas nunca vaza para a página de vendas ou para o aluno.
 - **Tratamento: "você".** Direto, sem formalidade excessiva, sem intimidade forçada de "tu" regionalizado.
 - **Sem emoji em material técnico.** Emoji pode aparecer em canais informais (Slack da turma, redes sociais) mas nunca em aula, case, nota de ensino ou material de avaliação.
@@ -147,14 +152,14 @@ A regra de ouro: **o rigor nunca é sacrificado pela leveza, e a leveza nunca é
 
 ### 3.6. Guia rápido Do / Don't
 
-| Faça | Não faça |
-|---|---|
-| Abrir com o problema de mercado antes da definição técnica | Abrir com "Hoje vamos aprender sobre..." |
-| Citar a fonte de todo dado numérico | Afirmar percentual sem origem rastreável |
-| Usar analogia leve para destravar um conceito difícil | Usar piada que trivializa o risco ou a tensão de um case |
-| Tratar o aluno como colega júnior competente | Tratar o aluno como leigo total ou como criança |
-| Nomear trilhas e produtos em português | Misturar inglês de vaidade em nome comercial |
-| Reconhecer a objeção do aluno com leveza antes de rebater | Ignorar a objeção e insistir só com entusiasmo |
+| Faça                                                       | Não faça                                                 |
+| ---------------------------------------------------------- | -------------------------------------------------------- |
+| Abrir com o problema de mercado antes da definição técnica | Abrir com "Hoje vamos aprender sobre..."                 |
+| Citar a fonte de todo dado numérico                        | Afirmar percentual sem origem rastreável                 |
+| Usar analogia leve para destravar um conceito difícil      | Usar piada que trivializa o risco ou a tensão de um case |
+| Tratar o aluno como colega júnior competente               | Tratar o aluno como leigo total ou como criança          |
+| Nomear trilhas e produtos em português                     | Misturar inglês de vaidade em nome comercial             |
+| Reconhecer a objeção do aluno com leveza antes de rebater  | Ignorar a objeção e insistir só com entusiasmo           |
 
 ---
 
@@ -164,28 +169,28 @@ Reprodução integral de `syntaxis_brand_book_v1.md`. **Nenhuma cor foi alterada
 
 ### 4.1. Paleta
 
-| Nome | Hex | Papel |
-|---|---|---|
-| **Forest** | `#1B6A45` | Âncora — títulos, UI institucional |
-| **Grove** | `#2D9E67` | Ação — CTAs, links, destaques, progresso |
-| **Amber** | `#C9832A` | Aspiração — conquistas, metas atingidas |
-| Mint | `#E6F4EE` | Fundos suaves, cards informativos |
-| Cream | `#F5EDD6` | Fundos de conquista/objetivo |
-| Deep Forest | `#0F3D27` | Dark Mode, superfícies escuras |
-| Chalk | `#F7F7F5` | Fundo Light Mode |
-| Ink | `#141414` | Fundo Dark Mode |
-| Slate | `#4A5568` | Texto secundário |
-| Mist | `#E2E8F0` | Bordas, linhas divisórias |
+| Nome        | Hex       | Papel                                    |
+| ----------- | --------- | ---------------------------------------- |
+| **Forest**  | `#1B6A45` | Âncora — títulos, UI institucional       |
+| **Grove**   | `#2D9E67` | Ação — CTAs, links, destaques, progresso |
+| **Amber**   | `#C9832A` | Aspiração — conquistas, metas atingidas  |
+| Mint        | `#E6F4EE` | Fundos suaves, cards informativos        |
+| Cream       | `#F5EDD6` | Fundos de conquista/objetivo             |
+| Deep Forest | `#0F3D27` | Dark Mode, superfícies escuras           |
+| Chalk       | `#F7F7F5` | Fundo Light Mode                         |
+| Ink         | `#141414` | Fundo Dark Mode                          |
+| Slate       | `#4A5568` | Texto secundário                         |
+| Mist        | `#E2E8F0` | Bordas, linhas divisórias                |
 
 Escalas completas (Forest-100 a Forest-900, Grove-100 a Grove-900, Amber-100 a Amber-900) permanecem as definidas em `syntaxis_brand_book_v1.md` §3.2 e nos templates LaTeX já entregues.
 
 ### 4.2. Tipografia — mantida, com relevância ampliada
 
-| Papel | Fonte | Uso |
-|---|---|---|
-| Display | DM Serif Display | Títulos editoriais, capas de módulo, citações de abertura de aula |
-| Body | DM Sans | Corpo de texto, UI, slides |
-| **Data/Code** | **Space Mono** | Métricas, **e agora também trechos de código Python/SQL, nomes de variáveis, paths de arquivo, comandos de terminal** |
+| Papel         | Fonte            | Uso                                                                                                                   |
+| ------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Display       | DM Serif Display | Títulos editoriais, capas de módulo, citações de abertura de aula                                                     |
+| Body          | DM Sans          | Corpo de texto, UI, slides                                                                                            |
+| **Data/Code** | **Space Mono**   | Métricas, **e agora também trechos de código Python/SQL, nomes de variáveis, paths de arquivo, comandos de terminal** |
 
 O pivô para uma plataforma técnica torna o papel do Space Mono mais central do que era na versão anterior do Brand Book — não é mais só para exibir taxa de Sharpe, é a fonte de todo o material que envolve a tech stack (Databricks, Python, SQL, Claude Code). Recomenda-se:
 
@@ -206,28 +211,28 @@ Três leituras, uma forma. É por isso que o padrão nó-e-galho é o padrão pr
 
 ### 5.2. As três famílias de padrão
 
-**1. Nó-e-galho** *(padrão primário)*
+**1. Nó-e-galho** _(padrão primário)_
 Pequenos nós (círculos, 2–3px) conectados por linhas finas (0.5–1pt) em estrutura ramificada. Sempre em tom único — Grove sobre Ink, ou Forest sobre Chalk — nunca dois tons de nó no mesmo desenho.
-*Uso:* capas de módulo, fundo de slide de título/seção (opacidade baixa, atrás do texto), elemento de marca d'água em certificados.
+_Uso:_ capas de módulo, fundo de slide de título/seção (opacidade baixa, atrás do texto), elemento de marca d'água em certificados.
 
 **2. Grade de dados**
 Grade fina de pontos (dot-grid, ~14px de espaçamento) evocando planilha/dataframe. Tom único, baixa opacidade.
-*Uso:* fundo de páginas ou slides de conteúdo técnico pesado (SQL, modelagem, Databricks) — nunca atrás de texto denso, apenas em áreas de respiro ou cabeçalhos de seção técnica.
+_Uso:_ fundo de páginas ou slides de conteúdo técnico pesado (SQL, modelagem, Databricks) — nunca atrás de texto denso, apenas em áreas de respiro ou cabeçalhos de seção técnica.
 
 **3. Linha de conquista**
 Linha em degraus ascendentes (não um candlestick — evite o clichê visual de gráfico de vela, que é genérico demais no espaço financeiro). Sempre em Amber, sempre reta e geométrica, nunca curva orgânica.
-*Uso:* certificados, badges de conclusão de módulo, indicadores de progresso — sempre ligado a uma conquista real do aluno, nunca como decoração ambiente.
+_Uso:_ certificados, badges de conclusão de módulo, indicadores de progresso — sempre ligado a uma conquista real do aluno, nunca como decoração ambiente.
 
 ### 5.3. Matriz de uso
 
-| Contexto | Padrão recomendado | Opacidade |
-|---|---|---|
-| Capa de módulo / slide de título | Nó-e-galho, canto inferior | 25–35% |
-| Slide divisor de seção | Nó-e-galho, campo completo atrás do painel de cor sólida | 30–40% |
-| Fundo de slide de conteúdo técnico (SQL/Python) | Grade de dados, apenas nas margens | 15–20% |
-| Certificado de conclusão | Linha de conquista + nó-e-galho como moldura | 100% (elementos são o design, não fundo) |
-| Post de rede social — anúncio de módulo | Nó-e-galho como moldura de canto | 40–60% |
-| Página de vendas — seção de prova social | Nenhum padrão — priorizar depoimento e clareza | — |
+| Contexto                                        | Padrão recomendado                                       | Opacidade                                |
+| ----------------------------------------------- | -------------------------------------------------------- | ---------------------------------------- |
+| Capa de módulo / slide de título                | Nó-e-galho, canto inferior                               | 25–35%                                   |
+| Slide divisor de seção                          | Nó-e-galho, campo completo atrás do painel de cor sólida | 30–40%                                   |
+| Fundo de slide de conteúdo técnico (SQL/Python) | Grade de dados, apenas nas margens                       | 15–20%                                   |
+| Certificado de conclusão                        | Linha de conquista + nó-e-galho como moldura             | 100% (elementos são o design, não fundo) |
+| Post de rede social — anúncio de módulo         | Nó-e-galho como moldura de canto                         | 40–60%                                   |
+| Página de vendas — seção de prova social        | Nenhum padrão — priorizar depoimento e clareza           | —                                        |
 
 ### 5.4. Regras de uso
 
@@ -269,13 +274,13 @@ Os templates LaTeX já entregues (`syntaxis-notas-v1.tex`, `syntaxis-beamer-v1.t
 
 ## 6. Aplicação em Materiais de Curso
 
-| Material | Elementos de marca aplicáveis |
-|---|---|
-| Notas de estudo (Tufte-handout) | Paleta completa, tipografia, ambientes `conceito`/`objetivo`/`alerta`/`pratica` já implementados em `syntaxis-notas-v1.tex` |
-| Slides (Beamer/Metropolis) | Paleta completa, `\titleframe`/`\sectionframe`/`\bignumbercard` já implementados em `syntaxis-beamer-v1.tex` — candidatos naturais a receber o padrão nó-e-galho de fundo |
-| Case (documento de decisão) | Voz da Seção 3, sem padrão decorativo — o documento deve imitar o formato de trabalho real (memorando, nota ao comitê), priorizando credibilidade de formato sobre identidade visual |
-| Nota de Ensino | Tom técnico e direto (Seção 3.3), Space Mono para qualquer referência a código ou dado, sem padrão decorativo |
-| Certificado de módulo | Linha de conquista + nó-e-galho como moldura — o único material onde os padrões geométricos são protagonistas, não fundo |
+| Material                        | Elementos de marca aplicáveis                                                                                                                                                        |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Notas de estudo (Tufte-handout) | Paleta completa, tipografia, ambientes `conceito`/`objetivo`/`alerta`/`pratica` já implementados em `syntaxis-notas-v1.tex`                                                          |
+| Slides (Beamer/Metropolis)      | Paleta completa, `\titleframe`/`\sectionframe`/`\bignumbercard` já implementados em `syntaxis-beamer-v1.tex` — candidatos naturais a receber o padrão nó-e-galho de fundo            |
+| Case (documento de decisão)     | Voz da Seção 3, sem padrão decorativo — o documento deve imitar o formato de trabalho real (memorando, nota ao comitê), priorizando credibilidade de formato sobre identidade visual |
+| Nota de Ensino                  | Tom técnico e direto (Seção 3.3), Space Mono para qualquer referência a código ou dado, sem padrão decorativo                                                                        |
+| Certificado de módulo           | Linha de conquista + nó-e-galho como moldura — o único material onde os padrões geométricos são protagonistas, não fundo                                                             |
 
 ---
 
@@ -305,4 +310,4 @@ Itens sinalizados por este documento que ainda dependem de decisão ou material 
 
 ---
 
-*Syntaxis DESIGN.md v1.0 · Consolida `syntaxis_brand_book_v1.md`, `AUDIENCES.md`, `METHODOLOGY.md` e os gaps identificados em `MARKETING_REVIEW.md` §12 numa única fonte de verdade de marca.*
+_Syntaxis DESIGN.md v1.0 · Consolida `syntaxis_brand_book_v1.md`, `AUDIENCES.md`, `METHODOLOGY.md` e os gaps identificados em `MARKETING_REVIEW.md` §12 numa única fonte de verdade de marca._
