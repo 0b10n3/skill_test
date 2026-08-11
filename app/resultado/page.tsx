@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
+import { useTheme } from 'next-themes';
 import { AnswerReview } from '@/components/result/AnswerReview';
 import { CtaSection } from '@/components/result/CtaSection';
 import { DimensionScoreCards } from '@/components/result/DimensionScoreCards';
@@ -26,6 +27,9 @@ const PriorityCareerSkills = dynamic(
 export default function ResultadoPage() {
   const router = useRouter();
   const { result, leadEmail } = useQuizAnswers();
+  const { theme, setTheme } = useTheme();
+  const themeRef = useRef(theme);
+  themeRef.current = theme;
 
   // Acesso direto (URL sem ter passado pelo fluxo real, ou refresh que
   // perdeu o estado em memória) nunca mostra um resultado vazio/fictício.
@@ -34,6 +38,28 @@ export default function ResultadoPage() {
       router.replace('/');
     }
   }, [result, router]);
+
+  // S8 (Épico 18): impressão sempre em fundo claro, mesmo com o app no
+  // tema escuro — trocar o tema de verdade via next-themes (não duplicar
+  // os hexes do tema claro num override de CSS, que teria que ser mantido
+  // manualmente em sincronia com design/tokens.json). Restaura o tema
+  // anterior ao sair do modo de impressão.
+  useEffect(() => {
+    const query = window.matchMedia('print');
+    let themeBeforePrint: string | undefined;
+
+    const listener = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        themeBeforePrint = themeRef.current;
+        setTheme('light');
+      } else if (themeBeforePrint) {
+        setTheme(themeBeforePrint);
+      }
+    };
+
+    query.addEventListener('change', listener);
+    return () => query.removeEventListener('change', listener);
+  }, [setTheme]);
 
   if (!result) {
     return null;

@@ -9,10 +9,16 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { GeneratedImage } from '@/components/generated-image';
+import { DIMENSAO_ASSET_SLUG } from '@/content/landing';
 import { CATEGORY_LABEL, SCORE_CARD_COPY } from '@/content/relatorio';
 import type { DimensaoDiagnostico, DimensionEtiqueta } from '@/lib/diagnostico';
 import type { KnowledgeCategory } from '@/lib/types';
 
+// Ícone de fallback para as 2 dimensões sem ilustração aprovada do Épico
+// 16 ainda (dimensao-matematica-quant, dimensao-dados-programacao — achado
+// de Amber fora de contexto, PR #20) — troca automática por
+// DIMENSAO_ASSET_SLUG assim que forem regeneradas e publicadas.
 const CATEGORY_ICON: Record<KnowledgeCategory, LucideIcon> = {
   'mercados-produtos': Landmark,
   'matematica-quant': Sigma,
@@ -27,10 +33,15 @@ const ETIQUETA_LABEL: Record<DimensionEtiqueta, string> = {
   atencao: 'Ponto de atenção',
 };
 
-const ETIQUETA_BADGE_VARIANT: Record<DimensionEtiqueta, 'default' | 'secondary' | 'outline'> = {
-  forte: 'default',
-  neutro: 'secondary',
-  atencao: 'outline',
+// forte → secondary (família Grove/ação, DESIGN.md §4.1); neutro → outline
+// (neutro, sem cor de marca); atencao → attention (Amber-700/300 como
+// texto de alerta construtivo — nunca destructive: um resultado baixo é
+// mapa de desenvolvimento, não erro de sistema, ver DESIGN.md §18 "boas
+// práticas aplicadas").
+const ETIQUETA_BADGE_VARIANT: Record<DimensionEtiqueta, 'secondary' | 'outline' | 'attention'> = {
+  forte: 'secondary',
+  neutro: 'outline',
+  atencao: 'attention',
 };
 
 interface DimensionScoreCardsProps {
@@ -46,17 +57,30 @@ export function DimensionScoreCards({ dimensoes }: DimensionScoreCardsProps) {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {dimensoes.map((dimensao) => {
           const Icon = CATEGORY_ICON[dimensao.category];
+          const illustrationSlug = DIMENSAO_ASSET_SLUG[dimensao.category];
           return (
             <Card key={dimensao.category} size="sm" className="flex flex-col gap-2">
               <CardHeader className="flex flex-row items-center gap-2">
-                <Icon aria-hidden className="size-4 text-muted-foreground" />
+                {illustrationSlug ? (
+                  <div className="size-6 shrink-0 overflow-hidden rounded-sm">
+                    <GeneratedImage
+                      slug={illustrationSlug}
+                      widths={[400]}
+                      sizes="24px"
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <Icon aria-hidden className="size-4 shrink-0 text-muted-foreground" />
+                )}
                 <CardTitle className="font-display text-sm text-foreground">
                   {CATEGORY_LABEL[dimensao.category]}
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-lg font-bold text-foreground">
+                  <span className="text-data-xl text-foreground">
                     {dimensao.acertos}/{dimensao.total}
                   </span>
                   <Badge variant={ETIQUETA_BADGE_VARIANT[dimensao.etiqueta]}>

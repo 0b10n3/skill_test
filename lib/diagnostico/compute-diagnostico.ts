@@ -18,6 +18,23 @@ const FORTE_THRESHOLD = 0.67;
 const ATENCAO_THRESHOLD = 0.33;
 const MAX_SELECTED_DIMENSIONS = 2;
 
+/**
+ * Ordem canônica das dimensões — mesma ordem de content/relatorio.ts
+ * (CATEGORY_LABEL) e career-impact-weights.ts. `dimensoes`/`prioridades`
+ * precisam ser deterministas para um mesmo perfil de score: sem isso, a
+ * ordem herdava a sequência embaralhada de perguntas da sessão
+ * (lib/quiz-selection.ts), fazendo os cards de dimensão/prioridade
+ * trocarem de posição entre sessões com notas idênticas (achado real ao
+ * baselinar o teste visual de /resultado no Épico 18).
+ */
+const CATEGORY_ORDER: readonly KnowledgeCategory[] = [
+  'mercados-produtos',
+  'matematica-quant',
+  'dados-programacao',
+  'ia-aplicada',
+  'risco-regulacao',
+];
+
 function round(value: number, decimals: number): number {
   const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
@@ -33,7 +50,8 @@ function computeDimensoes(
   respostas: AnswerMap,
   knowledgeQuestions: Question[],
 ): DimensaoDiagnostico[] {
-  const categories = [...new Set(knowledgeQuestions.map((q) => q.category))] as KnowledgeCategory[];
+  const categoriesPresent = new Set(knowledgeQuestions.map((q) => q.category));
+  const categories = CATEGORY_ORDER.filter((category) => categoriesPresent.has(category));
 
   return categories.map((category) => {
     const items = knowledgeQuestions.filter((q) => q.category === category);

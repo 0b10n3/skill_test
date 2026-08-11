@@ -10,9 +10,27 @@ import {
 } from '@/components/ui/accordion';
 import { Card } from '@/components/ui/card';
 import { CATEGORY_LABEL } from '@/content/relatorio';
+import { splitCodeTerms } from '@/lib/highlight-code-terms';
 import type { KnowledgeCategory, QuestionReviewItem } from '@/lib/types';
 
 const GABARITO_VALUE = 'gabarito';
+
+/** Termos técnicos/código embutidos na explicação (S6, Épico 18) em Space Mono. */
+function ExplanationText({ text }: { text: string }) {
+  return (
+    <>
+      {splitCodeTerms(text).map((segment, index) =>
+        segment.isCode ? (
+          <code key={index} className="font-data text-foreground">
+            {segment.text}
+          </code>
+        ) : (
+          <span key={index}>{segment.text}</span>
+        ),
+      )}
+    </>
+  );
+}
 
 /**
  * O gabarito abre automaticamente na impressão. CSS não resolve isso: o
@@ -124,7 +142,9 @@ export function AnswerReview({ gabarito }: AnswerReviewProps) {
                                 </>
                               )}
                             </p>
-                            <p className="text-xs text-muted-foreground">{item.explanation}</p>
+                            <p className="text-xs text-muted-foreground">
+                              <ExplanationText text={item.explanation} />
+                            </p>
                           </div>
                         </div>
                       </Card>

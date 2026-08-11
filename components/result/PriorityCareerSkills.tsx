@@ -1,7 +1,8 @@
 'use client';
 
-import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { PatternGrowthLine } from '@/components/patterns';
 import {
   CATEGORY_LABEL,
   CATEGORY_LABEL_SHORT,
@@ -32,16 +33,28 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
       aria-labelledby="priority-skills-heading"
       className="flex w-full max-w-4xl flex-col gap-3"
     >
-      <h2 id="priority-skills-heading" className="font-display text-lg text-foreground">
-        Onde investir primeiro para chegar a {NEXT_LEVEL_LABEL[seniority]}
-      </h2>
+      <div className="flex flex-col gap-2">
+        <h2 id="priority-skills-heading" className="font-display text-lg text-foreground">
+          Onde investir primeiro para chegar a {NEXT_LEVEL_LABEL[seniority]}
+        </h2>
+        {/* Linha de conquista como protagonista (DESIGN.md §5.2/§5.4) —
+            os degraus ilustram "onde você está" → "próximo nível", nunca
+            decoração de fundo atrás de texto. */}
+        <PatternGrowthLine steps={3} className="h-12 w-40" />
+      </div>
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {topPriorities.map((priority, index) => (
-          <Card key={priority.category} className="border-primary/40">
+          <Card key={priority.category}>
             <CardHeader>
-              <CardTitle className="font-display text-base text-foreground">
-                #{index + 1} {CATEGORY_LABEL[priority.category]}
+              <CardTitle className="flex items-center gap-2 font-display text-base text-foreground">
+                <span
+                  aria-hidden
+                  className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-data text-achievement-foreground dark:bg-accent/20"
+                >
+                  {index + 1}
+                </span>
+                {CATEGORY_LABEL[priority.category]}
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-2 text-sm">
@@ -61,13 +74,13 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
       <Card>
         <CardHeader>
           <CardTitle className="font-display text-sm text-foreground">
-            Impacto na sua promoção, por dimensão
+            Impacto no próximo degrau, por dimensão
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="h-40 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} layout="vertical" margin={{ left: 8, right: 16 }}>
+              <BarChart data={chartData} layout="vertical" margin={{ left: 8, right: 32 }}>
                 <XAxis type="number" hide />
                 <YAxis
                   type="category"
@@ -79,9 +92,18 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
                   {chartData.map((entry) => (
                     <Cell
                       key={entry.dimensao}
-                      fill={entry.destaque ? 'var(--primary)' : 'var(--border)'}
+                      fill={entry.destaque ? 'var(--color-semantic-progress-bar)' : 'var(--border)'}
                     />
                   ))}
+                  <LabelList
+                    dataKey="prioridade"
+                    position="right"
+                    style={{
+                      fontFamily: 'var(--font-data)',
+                      fontSize: 11,
+                      fill: 'var(--muted-foreground)',
+                    }}
+                  />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

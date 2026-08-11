@@ -2,15 +2,31 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import {
+  generateGrowthLineLayout,
+  type GrowthLineLayout,
+} from '@/components/patterns/lib/growth-line-layout';
+import {
+  generateNodeBranchLayout,
+  type NodeBranchLayout,
+} from '@/components/patterns/lib/node-branch-layout';
 import { CATEGORY_LABEL_SHORT, CLASSIFICATION_LABEL } from '@/content/relatorio';
 import type { DimensaoDiagnostico } from '@/lib/diagnostico';
 import type { Classification } from '@/lib/types';
 
 const CANVAS_SIZE = 600;
 const CENTER = CANVAS_SIZE / 2;
-const RADAR_RADIUS = 190;
+const RADAR_RADIUS = 160;
 
-interface ShareRadarButtonProps {
+// DESIGN.md §6: "Certificado de módulo — linha de conquista + nó-e-galho
+// como moldura — o único material onde os padrões geométricos são
+// protagonistas, não fundo". Só esta peça combina os dois padrões: uma
+// exceção documentada, não uma violação de "um padrão por peça"
+// (DESIGN.md §5.4, que fala de composições comuns, não de certificados).
+const FRAME_SCALE = 0.42;
+const FRAME_INSET = 24;
+
+export interface ShareRadarButtonProps {
   dimensoes: DimensaoDiagnostico[];
   classificacao: Classification;
 }
@@ -24,13 +40,89 @@ function radarPoint(index: number, total: number, fraction: number) {
   };
 }
 
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = src;
+  });
+}
+
+/** Um canto da moldura nó-e-galho, espelhado conforme o canto do card. */
+function drawNodeBranchCorner(
+  ctx: CanvasRenderingContext2D,
+  layout: NodeBranchLayout,
+  corner: 'tl' | 'tr' | 'bl' | 'br',
+  color: string,
+) {
+  ctx.save();
+  const flipX = corner === 'tr' || corner === 'br' ? -1 : 1;
+  const flipY = corner === 'bl' || corner === 'br' ? -1 : 1;
+  const originX = corner === 'tr' || corner === 'br' ? CANVAS_SIZE - FRAME_INSET : FRAME_INSET;
+  const originY = corner === 'bl' || corner === 'br' ? CANVAS_SIZE - FRAME_INSET : FRAME_INSET;
+
+  ctx.translate(originX, originY);
+  ctx.scale(flipX * FRAME_SCALE, flipY * FRAME_SCALE);
+
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5 / FRAME_SCALE;
+  for (const edge of layout.edges) {
+    const from = layout.nodes[edge.from];
+    const to = layout.nodes[edge.to];
+    ctx.beginPath();
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(to.x, to.y);
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = color;
+  const nodeRadius = 2.5 / FRAME_SCALE;
+  for (const node of layout.nodes) {
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+/** Linha de conquista — protagonista, nunca decorativa (DESIGN.md §5.4). */
+function drawGrowthLine(
+  ctx: CanvasRenderingContext2D,
+  layout: GrowthLineLayout,
+  originX: number,
+  originY: number,
+  scale: number,
+  color: string,
+) {
+  const points = layout.points.split(' ').map((pair) => {
+    const [x, y] = pair.split(',').map(Number);
+    return { x: originX + x * scale, y: originY - y * scale };
+  });
+
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  points.forEach((point, index) => {
+    if (index === 0) ctx.moveTo(point.x, point.y);
+    else ctx.lineTo(point.x, point.y);
+  });
+  ctx.stroke();
+  ctx.restore();
+}
+
 /**
- * Gera o card compartilhável (S7): radar + classificação + wordmark, sem
- * nenhum dado de contato do lead. Render client-side via Canvas 2D, para
- * download — a textura de logo real chega no Épico 16; até lá, um wordmark
- * textual basta.
+ * Gera o card compartilhável — o "mini-certificado" (S7, DESIGN.md §6):
+ * textura de fundo do Épico 16, moldura nó-e-galho + linha de conquista
+ * como protagonistas, radar e classificação. Client-side via Canvas 2D
+ * para download. Assinatura só recebe dimensoes/classificacao — nenhum
+ * dado de contato do lead entra na função por construção (ver
+ * __tests__/share-radar-button.test.tsx).
  */
-function drawShareCard(
+async function drawShareCard(
   canvas: HTMLCanvasElement,
   dimensoes: DimensaoDiagnostico[],
   classificacao: Classification,
@@ -38,25 +130,32 @@ function drawShareCard(
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  // Lê a camada semântica (não primitivos): já resolve para o tema ativo
-  // no momento do clique, sem precisar checar light/dark manualmente. As
-  // variáveis vêm de app/tokens.generated.css, aplicado globalmente — não
-  // há fallback aqui de propósito (ver scripts/lint-hardcoded-colors.mjs).
-  const styles = getComputedStyle(document.documentElement);
-  const background = styles.getPropertyValue('--background').trim();
-  const line = styles.getPropertyValue('--border').trim();
-  const primary = styles.getPropertyValue('--primary').trim();
-  const textHigh = styles.getPropertyValue('--foreground').trim();
-  const textMedium = styles.getPropertyValue('--muted-foreground').trim();
-
   canvas.width = CANVAS_SIZE;
   canvas.height = CANVAS_SIZE;
 
-  ctx.fillStyle = background;
-  ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+  const isDark = document.documentElement.classList.contains('dark');
+  const styles = getComputedStyle(document.documentElement);
+  const textHigh = styles.getPropertyValue('--foreground').trim();
+  const textMedium = styles.getPropertyValue('--muted-foreground').trim();
+  const grove = styles.getPropertyValue('--color-semantic-progress-bar').trim();
+  const nodeBranchColor = styles.getPropertyValue('--pattern-node-branch-color').trim();
+  const growthLineColor = styles.getPropertyValue('--pattern-growth-line-color').trim();
+
+  // Fundo: textura do Épico 16 (radar-card-textura), variante por tema.
+  const backgroundSrc = `/img/radar-card-textura/${isDark ? 'dark' : 'light'}-1080.png`;
+  const background = await loadImage(backgroundSrc);
+  ctx.drawImage(background, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+  // Moldura nó-e-galho — mesma geometria determinística dos padrões do
+  // Épico 15, nos 4 cantos.
+  const cornerLayout = generateNodeBranchLayout('sparse', 'corner');
+  for (const corner of ['tl', 'tr', 'bl', 'br'] as const) {
+    drawNodeBranchCorner(ctx, cornerLayout, corner, nodeBranchColor);
+  }
 
   // Grade do radar (3 anéis de referência)
-  ctx.strokeStyle = line;
+  ctx.strokeStyle = textMedium;
+  ctx.globalAlpha = 0.4;
   ctx.lineWidth = 1;
   for (const fraction of [0.33, 0.67, 1]) {
     ctx.beginPath();
@@ -68,8 +167,9 @@ function drawShareCard(
     ctx.closePath();
     ctx.stroke();
   }
+  ctx.globalAlpha = 1;
 
-  // Área "Seu perfil"
+  // Área "Seu perfil" — Grove fixo, mesmo token do RadarSection (S2).
   ctx.beginPath();
   dimensoes.forEach((dimensao, index) => {
     const point = radarPoint(index, dimensoes.length, dimensao.score);
@@ -77,40 +177,45 @@ function drawShareCard(
     else ctx.lineTo(point.x, point.y);
   });
   ctx.closePath();
-  ctx.fillStyle = `${primary}59`; // ~35% de opacidade
+  ctx.fillStyle = `${grove}59`; // ~35% de opacidade
   ctx.fill();
-  ctx.strokeStyle = primary;
+  ctx.strokeStyle = grove;
   ctx.lineWidth = 2;
   ctx.stroke();
 
   // Rótulos das dimensões
   ctx.fillStyle = textMedium;
-  ctx.font = '14px monospace';
+  ctx.font = '13px "Space Mono", monospace';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   dimensoes.forEach((dimensao, index) => {
-    const point = radarPoint(index, dimensoes.length, 1.18);
+    const point = radarPoint(index, dimensoes.length, 1.22);
     ctx.fillText(CATEGORY_LABEL_SHORT[dimensao.category], point.x, point.y);
   });
 
-  // Wordmark + classificação
-  ctx.fillStyle = textHigh;
-  ctx.font = 'bold 28px sans-serif';
-  ctx.textAlign = 'left';
-  ctx.fillText('Syntaxis Skill Check', 32, 48);
+  // Linha de conquista — protagonista, entre o radar e a classificação.
+  const growthLineLayout = generateGrowthLineLayout(3);
+  drawGrowthLine(ctx, growthLineLayout, CANVAS_SIZE - 190, CANVAS_SIZE - 96, 1.4, growthLineColor);
 
-  ctx.fillStyle = primary;
-  ctx.font = 'bold 22px sans-serif';
+  // Wordmark + classificação — sem nenhum dado de contato do lead.
+  ctx.fillStyle = textHigh;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+  ctx.font = 'italic bold 26px "DM Serif Display", Georgia, serif';
+  ctx.fillText('Syntaxis', 32, 52);
+
+  ctx.fillStyle = grove;
+  ctx.font = 'bold 20px "DM Sans", sans-serif';
   ctx.fillText(`Classificação: ${CLASSIFICATION_LABEL[classificacao]}`, 32, CANVAS_SIZE - 32);
 }
 
 export function ShareRadarButton({ dimensoes, classificacao }: ShareRadarButtonProps) {
   const [status, setStatus] = useState<'idle' | 'gerando' | 'pronto'>('idle');
 
-  function handleShare() {
+  async function handleShare() {
     setStatus('gerando');
     const canvas = document.createElement('canvas');
-    drawShareCard(canvas, dimensoes, classificacao);
+    await drawShareCard(canvas, dimensoes, classificacao);
 
     canvas.toBlob((blob) => {
       if (!blob) {
