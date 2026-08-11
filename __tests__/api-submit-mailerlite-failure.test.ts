@@ -15,7 +15,6 @@ const ORIGINAL_ENV = { ...process.env };
 
 function buildAnswers(seniority: SeniorityLevel): AnswerMap {
   const seniorityQuestion = questionsBank.find((q) => q.type === 'seniority')!;
-  const selfAssessmentQuestion = questionsBank.find((q) => q.type === 'self_assessment')!;
   const categories = [
     ...new Set(questionsBank.filter((q) => q.type === 'knowledge').map((q) => q.category)),
   ];
@@ -34,7 +33,6 @@ function buildAnswers(seniority: SeniorityLevel): AnswerMap {
       answers[question.id] = question.correctOptionId!;
     }
   }
-  answers[selfAssessmentQuestion.id] = selfAssessmentQuestion.options[0].id;
   return answers;
 }
 

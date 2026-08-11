@@ -1,18 +1,25 @@
-export type QuestionType = 'seniority' | 'knowledge' | 'self_assessment';
+export type QuestionType = 'seniority' | 'knowledge';
 
 export type SeniorityLevel = 'aspirante' | 'estagiario' | 'junior' | 'pleno' | 'senior';
 
+/**
+ * As 5 dimensões de competência do banco v2 (AVALIACAO.md §3) — eixos do
+ * radar de resultado e unidade de seleção do quiz (3 itens por dimensão).
+ */
 export type Category =
-  | 'produtos-renda-fixa'
-  | 'matematica-financeira-estatistica'
-  | 'dados-tecnologia'
-  | 'ia-aplicada-financas'
-  | 'perfil-senioridade'
-  | 'perfil-tecnico';
+  | 'mercados-produtos'
+  | 'matematica-quant'
+  | 'dados-programacao'
+  | 'ia-aplicada'
+  | 'risco-regulacao'
+  | 'perfil-senioridade';
 
-export type KnowledgeCategory = Exclude<Category, 'perfil-senioridade' | 'perfil-tecnico'>;
+export type KnowledgeCategory = Exclude<Category, 'perfil-senioridade'>;
 
 export type Difficulty = 'easy' | 'medium' | 'hard';
+
+/** Nível cognitivo do item (Bloom revisado), AVALIACAO.md §2.2. */
+export type CognitiveLevel = 'compreender' | 'aplicar' | 'analisar';
 
 export interface Option {
   id: string;
@@ -29,6 +36,7 @@ export interface Question {
   type: QuestionType;
   category: Category;
   difficultyLevel?: Difficulty;
+  cognitiveLevel?: CognitiveLevel;
   targetSeniority?: SeniorityLevel[];
   question: string;
   options: Option[];
@@ -45,7 +53,6 @@ export type ClientQuestion = Omit<Question, 'correctOptionId'>;
 export interface QuizSession {
   seniorityQuestion: ClientQuestion;
   knowledgeQuestions: ClientQuestion[];
-  selfAssessmentQuestion: ClientQuestion;
 }
 
 export type AnswerMap = Record<string, string>;

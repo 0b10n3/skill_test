@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const TOTAL_QUESTIONS = 14;
+const TOTAL_QUESTIONS = 15;
 
 async function assertNoVerticalScroll(page: import('@playwright/test').Page) {
   const { scrollHeight, clientHeight } = await page.evaluate(() => ({
@@ -13,11 +13,23 @@ async function assertNoVerticalScroll(page: import('@playwright/test').Page) {
 }
 
 test.describe('/quiz — fluxo completo (mouse)', () => {
-  test('responder as 14 perguntas em sequência leva a /lead, sem scroll e sem dados em storage', async ({
+  test('responder a senioridade + 15 perguntas em sequência leva a /lead, sem scroll e sem dados em storage', async ({
     page,
   }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/quiz');
+
+    // q00 (senioridade) é uma etapa prévia, sem contador "N de 15".
+    await assertNoVerticalScroll(page);
+    await page.getByRole('radio').first().click();
+    const seniorityNextButton = page.getByRole('button', { name: 'Próxima' });
+    await expect(seniorityNextButton).toBeEnabled();
+    await seniorityNextButton.click();
+
+    // após responder a senioridade, o app busca o resto da sessão via Server Action
+    await expect(page.getByText(`Pergunta 1 de ${TOTAL_QUESTIONS}`)).toBeVisible({
+      timeout: 10_000,
+    });
 
     for (let questionNumber = 1; questionNumber <= TOTAL_QUESTIONS; questionNumber += 1) {
       await expect(
@@ -31,13 +43,6 @@ test.describe('/quiz — fluxo completo (mouse)', () => {
       const nextButton = page.getByRole('button', { name: 'Próxima' });
       await expect(nextButton).toBeEnabled();
       await nextButton.click();
-
-      if (questionNumber === 1) {
-        // após responder a senioridade, o app busca o resto da sessão via Server Action
-        await expect(page.getByText(`Pergunta 2 de ${TOTAL_QUESTIONS}`)).toBeVisible({
-          timeout: 10_000,
-        });
-      }
     }
 
     await expect(page).toHaveURL(/\/lead$/);
@@ -75,7 +80,7 @@ test.describe('/quiz — prefers-reduced-motion', () => {
 
     await page.getByRole('radio').first().click();
     await page.getByRole('button', { name: 'Próxima' }).click();
-    await expect(page.getByText(`Pergunta 2 de ${TOTAL_QUESTIONS}`)).toBeVisible({
+    await expect(page.getByText(`Pergunta 1 de ${TOTAL_QUESTIONS}`)).toBeVisible({
       timeout: 10_000,
     });
 
@@ -90,11 +95,7 @@ test.describe('/quiz — acessibilidade de teclado', () => {
   test('o quiz inteiro é completável só com Tab + Enter/Space, sem mouse', async ({ page }) => {
     await page.goto('/quiz');
 
-    for (let questionNumber = 1; questionNumber <= TOTAL_QUESTIONS; questionNumber += 1) {
-      await expect(page.getByText(`Pergunta ${questionNumber} de ${TOTAL_QUESTIONS}`)).toBeVisible({
-        timeout: 10_000,
-      });
-
+    async function answerCurrentQuestionByKeyboard() {
       // Tab a partir do heading (que recebe foco automaticamente) até o radiogroup,
       // seleciona com Espaço, depois Tab até "Próxima" ficar focado e confirma com Enter.
       await page.keyboard.press('Tab');
@@ -112,6 +113,19 @@ test.describe('/quiz — acessibilidade de teclado', () => {
       expect(isNextButtonFocused, 'Tab deveria alcançar o botão Próxima').toBe(true);
       await expect(nextButton).toBeEnabled();
       await page.keyboard.press('Enter');
+    }
+
+    // q00 (senioridade) é uma etapa prévia, sem contador "N de 15".
+    await answerCurrentQuestionByKeyboard();
+    await expect(page.getByText(`Pergunta 1 de ${TOTAL_QUESTIONS}`)).toBeVisible({
+      timeout: 10_000,
+    });
+
+    for (let questionNumber = 1; questionNumber <= TOTAL_QUESTIONS; questionNumber += 1) {
+      await expect(page.getByText(`Pergunta ${questionNumber} de ${TOTAL_QUESTIONS}`)).toBeVisible({
+        timeout: 10_000,
+      });
+      await answerCurrentQuestionByKeyboard();
     }
 
     await expect(page).toHaveURL(/\/lead$/);

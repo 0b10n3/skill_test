@@ -12,28 +12,40 @@ const ALL_SENIORITY_LEVELS: SeniorityLevel[] = [
 
 describe('buildQuizSession', () => {
   it.each(ALL_SENIORITY_LEVELS)(
-    'monta uma sessão válida de 14 perguntas para seniority "%s"',
+    'monta uma sessão válida de 15 perguntas de conhecimento para seniority "%s"',
     (seniority) => {
       const session = buildQuizSession(seniority);
 
       expect(session.seniorityQuestion.type).toBe('seniority');
-      expect(session.selfAssessmentQuestion.type).toBe('self_assessment');
-      expect(session.knowledgeQuestions).toHaveLength(12);
+      expect(session.knowledgeQuestions).toHaveLength(15);
       expect(session.knowledgeQuestions.every((q) => q.type === 'knowledge')).toBe(true);
     },
   );
 
   it.each(ALL_SENIORITY_LEVELS)(
-    'retorna exatamente 3 perguntas por categoria, todas elegíveis, para seniority "%s"',
+    'retorna exatamente 3 perguntas por dimensão, todas elegíveis, para seniority "%s"',
     (seniority) => {
       const session = buildQuizSession(seniority);
       const categories = [...new Set(session.knowledgeQuestions.map((q) => q.category))];
 
-      expect(categories).toHaveLength(4);
+      expect(categories).toHaveLength(5);
       for (const category of categories) {
         const inCategory = session.knowledgeQuestions.filter((q) => q.category === category);
         expect(inCategory).toHaveLength(3);
       }
+    },
+  );
+
+  it.each(ALL_SENIORITY_LEVELS)(
+    'o conjunto de questões é determinístico entre montagens para seniority "%s"',
+    (seniority) => {
+      const first = buildQuizSession(seniority);
+      const second = buildQuizSession(seniority);
+
+      const idsOf = (session: ReturnType<typeof buildQuizSession>) =>
+        [...session.knowledgeQuestions.map((q) => q.id)].sort();
+
+      expect(idsOf(second)).toEqual(idsOf(first));
     },
   );
 
@@ -43,11 +55,7 @@ describe('buildQuizSession', () => {
 
   it('nunca inclui correctOptionId em nenhuma pergunta da sessão (objeto client)', () => {
     const session = buildQuizSession('senior');
-    const allQuestions = [
-      session.seniorityQuestion,
-      ...session.knowledgeQuestions,
-      session.selfAssessmentQuestion,
-    ];
+    const allQuestions = [session.seniorityQuestion, ...session.knowledgeQuestions];
 
     for (const question of allQuestions) {
       expect(question).not.toHaveProperty('correctOptionId');

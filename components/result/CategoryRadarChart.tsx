@@ -4,17 +4,19 @@ import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } fro
 import type { CategoryScore, KnowledgeCategory } from '@/lib/types';
 
 const CATEGORY_LABEL: Record<KnowledgeCategory, string> = {
-  'produtos-renda-fixa': 'Renda Fixa',
-  'matematica-financeira-estatistica': 'Mat. Financeira',
-  'dados-tecnologia': 'Dados & Tech',
-  'ia-aplicada-financas': 'IA Aplicada',
+  'mercados-produtos': 'Mercados & Produtos',
+  'matematica-quant': 'Matemática & Quant',
+  'dados-programacao': 'Dados & Programação',
+  'ia-aplicada': 'IA Aplicada',
+  'risco-regulacao': 'Risco & Regulação',
 };
 
 const CATEGORY_LABEL_SHORT: Record<KnowledgeCategory, string> = {
-  'produtos-renda-fixa': 'Renda',
-  'matematica-financeira-estatistica': 'Mat.',
-  'dados-tecnologia': 'Dados',
-  'ia-aplicada-financas': 'IA',
+  'mercados-produtos': 'Mercados',
+  'matematica-quant': 'Quant',
+  'dados-programacao': 'Dados',
+  'ia-aplicada': 'IA',
+  'risco-regulacao': 'Risco',
 };
 
 interface CategoryRadarChartProps {

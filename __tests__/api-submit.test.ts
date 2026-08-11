@@ -26,7 +26,6 @@ function buildKnowledgeCategoriesFor(seniority: SeniorityLevel) {
 /** Monta um payload legítimo (formato de sessão real) com exatamente `correctCount` acertos. */
 function buildAnswers(seniority: SeniorityLevel, correctCount: number): AnswerMap {
   const seniorityQuestion = questionsBank.find((q) => q.type === 'seniority')!;
-  const selfAssessmentQuestion = questionsBank.find((q) => q.type === 'self_assessment')!;
   const categoriesOfThree = buildKnowledgeCategoriesFor(seniority);
 
   const answers: AnswerMap = { [seniorityQuestion.id]: seniority };
@@ -42,7 +41,6 @@ function buildAnswers(seniority: SeniorityLevel, correctCount: number): AnswerMa
     }
   }
 
-  answers[selfAssessmentQuestion.id] = selfAssessmentQuestion.options[0].id;
   return answers;
 }
 
@@ -56,18 +54,18 @@ function postSubmit(body: unknown) {
 }
 
 describe('POST /api/submit — cenários de scoring', () => {
-  it('8 acertos em 12 → scoreGeral 66.67% e classificação "medio"', async () => {
-    const answers = buildAnswers('pleno', 8);
+  it('9 acertos em 15 → scoreGeral 60% e classificação "medio"', async () => {
+    const answers = buildAnswers('pleno', 9);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     expect(response.status).toBe(200);
 
     const body = await response.json();
-    expect(body.scoreGeral).toBe(66.67);
+    expect(body.scoreGeral).toBe(60);
     expect(body.classification).toBe('medio');
-    expect(body.scorePorCategoria).toHaveLength(4);
+    expect(body.scorePorCategoria).toHaveLength(5);
   });
 
-  it('0 acertos em 12 → scoreGeral 0% e classificação "baixo"', async () => {
+  it('0 acertos em 15 → scoreGeral 0% e classificação "baixo"', async () => {
     const answers = buildAnswers('aspirante', 0);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     expect(response.status).toBe(200);
@@ -77,8 +75,8 @@ describe('POST /api/submit — cenários de scoring', () => {
     expect(body.classification).toBe('baixo');
   });
 
-  it('12 acertos em 12 → scoreGeral 100% e classificação "alto"', async () => {
-    const answers = buildAnswers('senior', 12);
+  it('15 acertos em 15 → scoreGeral 100% e classificação "alto"', async () => {
+    const answers = buildAnswers('senior', 15);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     expect(response.status).toBe(200);
 
@@ -102,7 +100,7 @@ describe('POST /api/submit — cenários de scoring', () => {
   });
 
   it('retorna narrativa personalizada além do score', async () => {
-    const answers = buildAnswers('pleno', 8);
+    const answers = buildAnswers('pleno', 9);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     const body = await response.json();
 
@@ -114,7 +112,7 @@ describe('POST /api/submit — cenários de scoring', () => {
 
 describe('POST /api/submit — segurança: gabarito nunca vaza na resposta', () => {
   it('a resposta HTTP não contém correctOptionId em nenhum lugar', async () => {
-    const answers = buildAnswers('pleno', 8);
+    const answers = buildAnswers('pleno', 9);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     const rawText = JSON.stringify(await response.json());
 

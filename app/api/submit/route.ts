@@ -8,7 +8,7 @@ import { syncLeadToMailerLite } from '@/lib/mailerlite';
 import type { Question, SeniorityLevel } from '@/lib/types';
 
 const EXPECTED_KNOWLEDGE_PER_CATEGORY = 3;
-const EXPECTED_KNOWLEDGE_CATEGORIES = 4;
+const EXPECTED_KNOWLEDGE_CATEGORIES = 5;
 
 function badRequest(message: string, extra?: Record<string, unknown>) {
   return NextResponse.json({ error: message, ...extra }, { status: 400 });
@@ -104,19 +104,8 @@ export async function POST(request: NextRequest) {
 
   const score = calculateScore(answers, knowledgeQuestionsAnswered);
 
-  const selfAssessmentQuestion = questionsBank.find(
-    (question) => question.type === 'self_assessment',
-  );
-  const selfAssessmentAnswerId = selfAssessmentQuestion
-    ? answers[selfAssessmentQuestion.id]
-    : undefined;
-  const profileTag = selfAssessmentQuestion?.options.find(
-    (option) => option.id === selfAssessmentAnswerId,
-  )?.profileTag;
-
   const narrative = buildResultNarrative({
     classification: score.classification,
-    profileTag,
     scorePorCategoria: score.scorePorCategoria,
   });
 
@@ -132,7 +121,6 @@ export async function POST(request: NextRequest) {
     seniority,
     scoreGeral: score.scoreGeral,
     classification: score.classification,
-    profileTag,
   });
 
   return NextResponse.json({

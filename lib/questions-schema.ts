@@ -3,15 +3,17 @@ import { z } from 'zod';
 const seniorityLevelSchema = z.enum(['aspirante', 'estagiario', 'junior', 'pleno', 'senior']);
 
 const categorySchema = z.enum([
-  'produtos-renda-fixa',
-  'matematica-financeira-estatistica',
-  'dados-tecnologia',
-  'ia-aplicada-financas',
+  'mercados-produtos',
+  'matematica-quant',
+  'dados-programacao',
+  'ia-aplicada',
+  'risco-regulacao',
   'perfil-senioridade',
-  'perfil-tecnico',
 ]);
 
 const difficultySchema = z.enum(['easy', 'medium', 'hard']);
+
+const cognitiveLevelSchema = z.enum(['compreender', 'aplicar', 'analisar']);
 
 const optionSchema = z.object({
   id: z.string().min(1),
@@ -23,6 +25,7 @@ const baseQuestionSchema = z.object({
   id: z.string().min(1),
   category: categorySchema,
   difficultyLevel: difficultySchema.optional(),
+  cognitiveLevel: cognitiveLevelSchema.optional(),
   targetSeniority: z.array(seniorityLevelSchema).optional(),
   question: z.string().min(1),
   options: z.array(optionSchema).min(2),
@@ -41,14 +44,9 @@ const knowledgeQuestionSchema = baseQuestionSchema.extend({
   explanation: z.string().min(1),
 });
 
-const selfAssessmentQuestionSchema = baseQuestionSchema.extend({
-  type: z.literal('self_assessment'),
-});
-
 export const questionSchema = z.discriminatedUnion('type', [
   seniorityQuestionSchema,
   knowledgeQuestionSchema,
-  selfAssessmentQuestionSchema,
 ]);
 
 export const questionsBankSchema = z.array(questionSchema).superRefine((questions, ctx) => {

@@ -26,7 +26,7 @@ test('/quiz — sem violações de acessibilidade (axe-core, wcag2aa)', async ({
 
 test('/lead — sem violações de acessibilidade (axe-core, wcag2aa)', async ({ page }) => {
   await page.goto('/quiz');
-  for (let i = 0; i < 14; i += 1) {
+  for (let i = 0; i < 16; i += 1) {
     await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
     await page.getByRole('radio').first().click();
     await page.getByRole('button', { name: 'Próxima' }).click();
@@ -52,7 +52,7 @@ test.describe('navegação manual por teclado (além do /quiz, já coberto no É
 
   test('/lead — formulário inteiro preenchível e enviável só com teclado', async ({ page }) => {
     await page.goto('/quiz');
-    for (let i = 0; i < 14; i += 1) {
+    for (let i = 0; i < 16; i += 1) {
       await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
       await page.getByRole('radio').first().click();
       await page.getByRole('button', { name: 'Próxima' }).click();
