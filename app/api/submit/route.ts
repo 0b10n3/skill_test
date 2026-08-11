@@ -5,6 +5,7 @@ import { buildResultNarrative } from '@/lib/narrative';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
 import { submitPayloadSchema } from '@/lib/validations';
 import { syncLeadToMailerLite } from '@/lib/mailerlite';
+import { computeDiagnostico, persistDiagnostico } from '@/lib/diagnostico';
 import type { Question, SeniorityLevel } from '@/lib/types';
 
 const EXPECTED_KNOWLEDGE_PER_CATEGORY = 3;
@@ -108,6 +109,13 @@ export async function POST(request: NextRequest) {
     classification: score.classification,
     scorePorCategoria: score.scorePorCategoria,
   });
+
+  // Motor de diagnóstico v2 (Épico 11) — computado e persistido em paralelo
+  // ao cálculo "antigo" acima. A resposta HTTP abaixo continua no formato
+  // consumido pelo /resultado atual; o relatório que consome o diagnóstico
+  // completo é o Épico 12.
+  const diagnostico = computeDiagnostico(answers, seniority, knowledgeQuestionsAnswered);
+  persistDiagnostico({ seniority, diagnostico });
 
   // Aguardamos a sincronização (a especificação prevê essa ordem: sincroniza
   // e só então libera o resultado), mas syncLeadToMailerLite nunca rejeita —
