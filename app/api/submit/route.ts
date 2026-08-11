@@ -119,6 +119,7 @@ export async function POST(request: NextRequest) {
     seniority,
     scoreGeral: diagnostico.scoreGlobal * 100,
     classification: diagnostico.classificacao,
+    topPriorityCategory: diagnostico.prioridades[0].category,
   });
 
   const result: SubmitResult = {

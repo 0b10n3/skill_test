@@ -1,16 +1,27 @@
 'use client';
 
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { AnswerReview } from '@/components/result/AnswerReview';
 import { CtaSection } from '@/components/result/CtaSection';
 import { DimensionScoreCards } from '@/components/result/DimensionScoreCards';
 import { MethodFooter } from '@/components/result/MethodFooter';
-import { PriorityCareerSkills } from '@/components/result/PriorityCareerSkills';
-import { RadarSection } from '@/components/result/RadarSection';
 import { ReportHeader } from '@/components/result/ReportHeader';
 import { StrengthsAndFocus } from '@/components/result/StrengthsAndFocus';
 import { useQuizAnswers } from '@/lib/quiz-context';
+
+// Recharts é o maior contribuinte de JS da página — code-split dos dois
+// consumidores (Radar e barras de prioridade) tira esse peso do caminho
+// crítico da transição /lead → /resultado (achado de Lighthouse do Épico 13).
+const RadarSection = dynamic(
+  () => import('@/components/result/RadarSection').then((mod) => mod.RadarSection),
+  { loading: () => <div className="h-64 w-full max-w-md" aria-hidden /> },
+);
+const PriorityCareerSkills = dynamic(
+  () => import('@/components/result/PriorityCareerSkills').then((mod) => mod.PriorityCareerSkills),
+  { loading: () => <div className="h-40 w-full max-w-4xl" aria-hidden /> },
+);
 
 export default function ResultadoPage() {
   const router = useRouter();

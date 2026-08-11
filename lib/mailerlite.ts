@@ -7,7 +7,13 @@ export interface SyncLeadParams {
   seniority: SeniorityLevel;
   scoreGeral: number;
   classification: Classification;
-  profileTag?: string;
+  /**
+   * Dimensão de maior prioridade de desenvolvimento (`diagnostico.prioridades[0].category`,
+   * Épico 11). Reaproveita o campo `perfil_tecnico` já provisionado na conta
+   * MailerLite (Épico 7) — a v1 usava esse campo para o profileTag da
+   * pergunta de autoavaliação, removida no banco v2 (Épico 10).
+   */
+  topPriorityCategory?: string;
 }
 
 function getClient(): MailerLite | null {
@@ -49,7 +55,7 @@ export async function syncLeadToMailerLite(params: SyncLeadParams): Promise<void
         seniority: params.seniority,
         score_geral: params.scoreGeral,
         classificacao: params.classification,
-        perfil_tecnico: params.profileTag ?? '',
+        perfil_tecnico: params.topPriorityCategory ?? '',
       },
       groups,
     });

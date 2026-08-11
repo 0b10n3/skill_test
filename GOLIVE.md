@@ -6,17 +6,21 @@ validação final, de ponta a ponta, de que nada regrediu.
 
 ## Status geral
 
-| Épico                   | Status                                               |
-| ----------------------- | ---------------------------------------------------- |
-| 1 — Fundação            | ✅ Validado                                          |
-| 2 — Design System       | ✅ Validado                                          |
-| 3 — Motor de Seleção    | ✅ Validado                                          |
-| 4 — Landing Page        | ✅ Validado                                          |
-| 5 — Fluxo do Quiz       | ✅ Validado                                          |
-| 6 — API de Scoring      | ✅ Validado                                          |
-| 7 — MailerLite          | ✅ Validado (subscriber real confirmado em produção) |
-| 8 — Página de Resultado | ✅ Validado                                          |
-| 9 — QA e Go-Live        | ✅ Validado                                          |
+| Épico                             | Status                                               |
+| --------------------------------- | ---------------------------------------------------- |
+| 1 — Fundação                      | ✅ Validado                                          |
+| 2 — Design System                 | ✅ Validado                                          |
+| 3 — Motor de Seleção              | ✅ Validado                                          |
+| 4 — Landing Page                  | ✅ Validado                                          |
+| 5 — Fluxo do Quiz                 | ✅ Validado                                          |
+| 6 — API de Scoring                | ✅ Validado                                          |
+| 7 — MailerLite                    | ✅ Validado (subscriber real confirmado em produção) |
+| 8 — Página de Resultado           | ✅ Validado                                          |
+| 9 — QA e Go-Live                  | ✅ Validado                                          |
+| 10 — Banco de questões v2         | ✅ Validado                                          |
+| 11 — Motor de diagnóstico         | ✅ Validado                                          |
+| 12 — Relatório de resultados v2   | ✅ Validado                                          |
+| 13 — QA de regressão e go-live v2 | Ver [Go-Live da v2](#go-live-da-v2-épico-13) abaixo  |
 
 ## 1. Suíte de testes completa (todos os épicos, sem regressão)
 
@@ -144,3 +148,133 @@ de produção.
 - [x] MailerLite configurado em produção (grupo e campos reais).
 
 **Produto pronto para tráfego real.**
+
+---
+
+## Go-Live da v2 (Épico 13)
+
+Re-execução do checklist acima sobre a v2 (banco de questões novo + motor
+de diagnóstico + relatório reconstruído — Épicos 10–12), conforme
+`specs/epicos/epico-13-qa-regressao-golive-v2.md`.
+
+### 1. Suíte de testes completa (todos os épicos, sem regressão)
+
+**78 testes Vitest** + **42 testes Playwright**, todos verdes (execução
+local; ver seção 6 do épico 9 para o método de execução contra preview).
+Cobrem, além de tudo do go-live v1: banco de questões v2 e seleção por
+blueprint (Épico 10), motor de diagnóstico — fronteiras de classificação,
+fórmula de prioridade, as 1024 combinações de acertos por dimensão, extremos
+0/15 e 15/15 (Épico 11), e o relatório completo — 3 personas
+(aspirante/baixo, pleno/médio, sênior/alto), impressão, gabarito, matriz
+editorial exaustiva (Épico 12).
+
+### 2. Lighthouse — as 4 rotas públicas
+
+O script `scripts/lighthouse-flow-check.mjs` tinha dois bugs que impediam a
+medição completa desde a migração para o banco v2: contagem de perguntas
+hardcoded na v1 (13, não as 15 do blueprint v2) e um `finally` que engolia
+qualquer erro do fluxo sem reportar. Ambos corrigidos neste épico.
+
+Resultado após a correção — **achado real**: a transição `/lead → /resultado`
+caiu para Performance 87 (era 92–100 na v1) com o relatório mais pesado do
+Épico 12 (dois gráficos Recharts). Corrigido com code-splitting
+(`next/dynamic`) do radar e do gráfico de prioridades em
+`app/resultado/page.tsx` — First Load JS de `/resultado` caiu de 279KB para
+177KB. Resultado final:
+
+| Rota                                                 | Performance | Acessibilidade | Boas práticas | SEO  |
+| ---------------------------------------------------- | ----------- | -------------- | ------------- | ---- |
+| `/` (navegação completa)                             | 97–99       | 100            | 100           | 100  |
+| `/quiz` (navegação completa)                         | 100         | 100            | 100           | 100  |
+| transição → `/lead`                                  | 100         | n/a¹           | 100           | n/a¹ |
+| `/lead` (snapshot)                                   | n/a¹        | 100            | 100           | 100  |
+| transição → `/resultado` (inclui `POST /api/submit`) | 100         | n/a¹           | 100           | n/a¹ |
+| `/resultado` (snapshot)                              | n/a¹        | 100            | 100           | 100  |
+
+¹ Ver nota do go-live v1 acima — mesma limitação de cobertura por modo de
+coleta do Lighthouse, não é lacuna.
+
+### 3. Acessibilidade (axe-core + teclado + leitor de tela)
+
+- **axe-core (WCAG2AA)**: 0 violações em `/resultado`, incluindo com o
+  gabarito aberto (`e2e/resultado-a11y.spec.ts`) — a rota mais alterada
+  pelos Épicos 10–12.
+- **Contraste**: encontrado e corrigido 1 par abaixo do AA (3.57:1) no texto
+  de score geral do cabeçalho do relatório (`text-text-low` →
+  `text-text-medium`).
+- **Teclado**: fluxo completo (15 perguntas + gabarito) segue 100% operável
+  sem mouse.
+- **Leitor de tela em `/resultado`**: ⬜ **pendente** — precisa de uma
+  pessoa (VoiceOver/TalkBack), mesma limitação já documentada no go-live v1.
+
+### 4. Cross-device (375 / 768 / 1440px)
+
+Zero scroll horizontal nas 4 rotas públicas, incluindo `/resultado` com o
+relatório completo (`e2e/cross-device.spec.ts`). **Achado real durante este
+épico**: a tabela acessível (`sr-only`) do radar vazava como overflow
+horizontal em 375px — a legenda (`<caption>`) herdava `white-space: nowrap`
+do `sr-only` e tem regra própria de dimensionamento que ignora
+`table-layout: fixed`, escapando da caixa de 1px. Corrigido envolvendo a
+tabela num `<div className="sr-only">` em vez de aplicar a classe na
+própria `<table>` (`components/result/RadarSection.tsx`).
+
+### 5. Variáveis de ambiente em produção (Vercel)
+
+Confirmado via `vercel env ls production` (inalterado desde o go-live v1):
+`MAILERLITE_API_KEY` e `MAILERLITE_GROUP_ID`, ambas Sensitive, em Preview e
+Production — nenhuma nova variável introduzida pela v2.
+
+### 6. Telemetria de itens (novo na v2 — AVALIACAO.md §6)
+
+Cada submissão registra, por item respondido, o id e a alternativa
+escolhida via log estruturado `[diagnostico]`
+(`lib/diagnostico/persist-diagnostico.ts`, Épico 11 — sem PII).
+`scripts/item-stats.mjs` (`npm run item-stats`) agrega esses logs em taxa de
+acerto e distribuição por alternativa, por item e por nível, com saída CSV.
+Testado com um lote de submissões de amostra — funcional. Limiares e
+processo de revisão documentados em `docs/metodologia.md` §7.
+
+### 7. MailerLite — segmentação v2
+
+O campo `perfil_tecnico` (já provisionado na conta desde o Épico 7) passa a
+carregar a dimensão de maior prioridade de desenvolvimento
+(`diagnostico.prioridades[0].category`) em vez do `profileTag` da pergunta
+de autoavaliação — removida do banco v2 no Épico 10, o campo ficava sempre
+vazio desde então. `classificacao` e `score_geral` já vinham do diagnóstico
+v2 desde o Épico 11.
+
+⬜ **Pendente**: confirmação manual, na conta real da MailerLite, de que um
+subscriber de teste chega com `perfil_tecnico` preenchido com o slug da
+dimensão (ex.: `dados-programacao`) — mesmo padrão de verificação do Épico
+7, não executável por este agente (sem acesso à conta).
+
+## Pendências que exigem uma pessoa — v2
+
+- ⬜ **Leitor de tela real** em `/resultado` (o gabarito, o radar e o CTA
+  são o conteúdo novo mais relevante a validar).
+- ⬜ **Fluxo completo em mobile real**, uma persona por nível (5 execuções)
+  — confirmar que o relatório correto aparece e que o lead chega à
+  MailerLite com os campos de segmentação v2 preenchidos.
+- ⬜ **MailerLite em produção**: confirmar `perfil_tecnico` preenchido
+  (ver seção 7 acima).
+
+## Critério de Go-Live da v2 — status
+
+- [x] Todos os gates dos Épicos 1–12 seguem válidos (sem regressão) — 78
+      Vitest + 42 Playwright verdes.
+- [x] Lighthouse ≥ 90 nas 4 categorias, nas 4 rotas públicas.
+- [x] Zero violações críticas de acessibilidade (axe-core), incluindo
+      `/resultado`.
+- [x] Telemetria de itens ativa e `item-stats` funcional.
+- [x] `docs/metodologia.md` criado; specs do banco v2 removidas da raiz
+      neste commit (`AVALIACAO.md`, `REPORT.md`, `QUESTIONS.json`,
+      `specs/epicos/epico-10..13.md`).
+- [ ] Fluxo completo validado manualmente em mobile real, para os 5 níveis
+      — **pendente de execução humana**.
+- [ ] MailerLite de produção com `perfil_tecnico` v2 confirmado —
+      **pendente de execução humana**.
+
+**Produto v2 pronto para tráfego real quanto ao que é verificável por CI/E2E
+— as duas pendências acima exigem uma pessoa com acesso a dispositivo móvel
+real e à conta MailerLite, e devem ser confirmadas antes de considerar o
+go-live da v2 encerrado.**

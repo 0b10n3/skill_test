@@ -65,12 +65,14 @@ async function runFlow() {
     await clickRadioWithText(page, seniorityQuestion.options[0].text);
     await clickNext(page);
 
-    for (let i = 0; i < 13; i += 1) {
+    // 15 perguntas de conhecimento do blueprint v2 (Épico 10) — sem
+    // pergunta de autoavaliação (removida do banco v2).
+    for (let i = 0; i < 15; i += 1) {
       await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
       const firstRadio = await page.$('[role="radio"]');
       await firstRadio.click();
 
-      const isLastQuestion = i === 12;
+      const isLastQuestion = i === 14;
       if (isLastQuestion) {
         await flow.startTimespan({ name: 'transição /quiz → /lead' });
         await page.click('[data-testid="quiz-next-button"]');
@@ -93,12 +95,16 @@ async function runFlow() {
     await page.waitForSelector('[data-testid="score-geral"]', { timeout: 10_000 });
     await flow.endTimespan();
     await flow.snapshot({ name: '/resultado (a11y/best-practices/seo)' });
-  } finally {
-    const flowResult = await flow.createFlowResult();
+  } catch (error) {
     await browser.disconnect();
     await chrome.kill();
-    return flowResult;
+    throw error;
   }
+
+  const flowResult = await flow.createFlowResult();
+  await browser.disconnect();
+  await chrome.kill();
+  return flowResult;
 }
 
 // Cada modo de coleta do Lighthouse só produz um subconjunto válido de

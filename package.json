@@ -5,6 +5,7 @@
   "scripts": {
     "generate:tokens": "node scripts/generate-tokens-css.mjs",
     "validate:questions": "node scripts/validate-questions.mjs",
+    "item-stats": "node scripts/item-stats.mjs",
     "predev": "npm run generate:tokens",
     "prebuild": "npm run generate:tokens && npm run validate:questions",
     "dev": "next dev --turbopack",
