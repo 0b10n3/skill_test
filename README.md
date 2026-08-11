@@ -48,6 +48,9 @@ Copie `.env.example` para `.env.local` e preencha as variáveis necessárias (ve
 | `npm run lint:colors`               | Falha se algum `.ts`/`.tsx` em `app/`, `components/`, `lib/`, `content/` tiver cor hex/rgb/hsl fora dos tokens      |
 | `npm run audit:contrast`            | Gera `design/contrast-report.md` checando contraste WCAG AA de todos os pares semânticos claro/escuro               |
 | `npm run lint:patterns`             | Falha se algum arquivo importar mais de um padrão geométrico (`components/patterns`) — "um padrão por peça"         |
+| `npm run assets:process`            | Corrige cor (duotone), gera variantes AVIF/WebP e publica um asset aprovado em `public/img/` (ver `--help` no uso)  |
+| `npm run assets:verify-manifest`    | Falha se algum asset publicado não tiver origem/orçamento no manifest, ou se houver arquivo órfão em `public/img/`  |
+| `npm run assets:verify-palette`     | Falha se a amostragem de pixels de algum asset publicado cair fora da tolerância de paleta da marca                 |
 | `npm run validate:questions`        | Valida `content/questions.json` contra o blueprint de senioridade (`docs/metodologia.md`)                           |
 | `npm run item-stats`                | Agrega os logs de telemetria de itens em taxa de acerto/distribuição por alternativa (ver `docs/metodologia.md` §7) |
 
@@ -131,6 +134,46 @@ três padrões, nos dois temas, com a matriz de uso dos padrões (DESIGN.md
 indexada, não linkada) e é a base do teste visual de referência
 (`e2e/dev-ui-catalog.spec.ts`: screenshots em 375px/1440px × claro/escuro,
 mais axe-core com zero violações críticas).
+
+## Pipeline de assets generativos (Épico 16)
+
+> **Estado atual: infraestrutura pronta, lote inicial ainda não gerado.**
+> Este épico foi entregue como _scaffold_ — a geração de imagem real via
+> Nano Banana Pro depende do `agy` (Antigravity CLI), que não está
+> disponível no ambiente onde este pipeline foi montado. `assets/manifest.json`
+> está vazio de propósito; os Épicos 17-18 não podem consumir os 9 assets
+> do lote inicial até alguém rodar a skill de geração (abaixo) com acesso
+> ao `agy` de verdade.
+
+Geração de imagem tratada como build reprodutível (REDESIGN.md §4): o
+prompt versionado é código-fonte, a saída bruta é artefato imutável, a
+aprovação é registrada, o publicado é sempre derivado por script.
+
+- **`assets/prompts/<slug>.md`** — um arquivo por asset (frontmatter com
+  uso/proporção/resolução/variantes/orçamento de peso + corpo com o
+  prompt e restrições negativas específicas). `assets/prompts/_brand-block.md`
+  é o bloco de marca compartilhado (paleta, direção estética, proibições)
+  — nunca copiado dentro de cada prompt individual, sempre concatenado na
+  hora de montar o prompt final.
+- **`.agents/skills/gerar-asset-marca/SKILL.md`** — contrato completo de
+  como invocar o Nano Banana Pro via `agy` a partir de um slug, gravar a
+  saída versionada em `assets/generated/raw/<slug>/<data>-vN.png` (nunca
+  sobrescrevendo), e como iterar um prompt reprovado no gate de revisão
+  humana.
+- **`npm run assets:process -- <slug> --raw <path> --dark <hex> --light <hex> --widths <n,n,...>`**
+  (`scripts/process-asset.mjs`) — publica um asset aprovado: aplica
+  correção de cor por **duotone** (remapeia cada pixel para um ponto
+  exato na reta entre dois hexes dos tokens — aderência à paleta garantida
+  por construção, não "aproximada"), gera as variantes AVIF/WebP
+  configuradas em `public/img/<slug>/`, e atualiza `assets/manifest.json`.
+- **`npm run assets:verify-manifest`** / **`npm run assets:verify-palette`**
+  (parte do `prebuild`) — todo asset publicado tem origem (prompt + raw
+  aprovado) e orçamento no manifest, nenhum arquivo em `public/img/` fica
+  órfão; e todo pixel amostrado de cada asset publicado cai dentro da
+  tolerância de paleta documentada em `scripts/lib/palette.mjs` (o
+  segmento dark↔light do duotone registrado no manifest, não uma lista
+  solta de cores — ver comentário no topo de `scripts/verify-asset-palette.mjs`
+  para o porquê).
 
 ## Setup do MailerLite
 

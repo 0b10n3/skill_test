@@ -9,8 +9,11 @@
     "lint:colors": "node scripts/lint-hardcoded-colors.mjs",
     "audit:contrast": "node scripts/audit-contrast.mjs",
     "lint:patterns": "node scripts/lint-one-pattern-per-file.mjs",
+    "assets:process": "node scripts/process-asset.mjs",
+    "assets:verify-manifest": "node scripts/verify-manifest.mjs",
+    "assets:verify-palette": "node scripts/verify-asset-palette.mjs",
     "predev": "npm run generate:tokens",
-    "prebuild": "npm run generate:tokens && npm run validate:questions && npm run lint:colors && npm run audit:contrast && npm run lint:patterns",
+    "prebuild": "npm run generate:tokens && npm run validate:questions && npm run lint:colors && npm run audit:contrast && npm run lint:patterns && npm run assets:verify-manifest && npm run assets:verify-palette",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
@@ -62,9 +65,11 @@
     "prettier": "^3.9.6",
     "puppeteer-core": "^25.5.0",
     "shadcn": "^4.16.2",
+    "sharp": "^0.35.3",
     "start-server-and-test": "^3.0.12",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "yaml": "^2.9.0"
   }
 }

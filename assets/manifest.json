@@ -1,0 +1,4 @@
+{
+  "$description": "Manifesto de assets publicados (Épico 16) — liga cada arquivo em public/img/ ao prompt de origem e à versão raw aprovada. Nunca editar publishedFiles à mão: gerado por scripts/process-asset.mjs. Vazio até o primeiro asset ser gerado e aprovado (ver .agents/skills/gerar-asset-marca/SKILL.md).",
+  "assets": []
+}
