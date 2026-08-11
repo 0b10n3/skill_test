@@ -30,22 +30,23 @@ Copie `.env.example` para `.env.local` e preencha as variáveis necessárias (ve
 
 ## Scripts disponíveis
 
-| Script                              | Descrição                                                                                |
-| ----------------------------------- | ---------------------------------------------------------------------------------------- |
-| `npm run dev`                       | Servidor de desenvolvimento (Turbopack)                                                  |
-| `npm run build`                     | Build de produção                                                                        |
-| `npm run start`                     | Roda o build de produção localmente                                                      |
-| `npm run lint`                      | ESLint                                                                                   |
-| `npm run typecheck`                 | `tsc --noEmit`                                                                           |
-| `npm run format`                    | Formata o código com Prettier                                                            |
-| `npm run format:check`              | Verifica formatação sem alterar arquivos                                                 |
-| `npm run test`                      | Suíte de testes unitários/integração (Vitest)                                            |
-| `npm run test:e2e`                  | Suíte E2E (Playwright) contra um build de produção                                       |
-| `npm run test:e2e:update-snapshots` | Regenera os snapshots visuais do Playwright                                              |
-| `npm run test:lighthouse`           | Auditoria Lighthouse (Performance/A11y/SEO) contra `/`                                   |
-| `npm run test:lighthouse:flow`      | Auditoria Lighthouse nas 4 rotas públicas via User Flow (ver [`GOLIVE.md`](./GOLIVE.md)) |
-| `npm run generate:tokens`           | Gera `app/tokens.generated.css` a partir de `content/tokens.json`                        |
-| `npm run validate:questions`        | Valida `content/questions.json` contra o blueprint de senioridade (`AVALIACAO.md` §3–§4) |
+| Script                              | Descrição                                                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`                       | Servidor de desenvolvimento (Turbopack)                                                                             |
+| `npm run build`                     | Build de produção                                                                                                   |
+| `npm run start`                     | Roda o build de produção localmente                                                                                 |
+| `npm run lint`                      | ESLint                                                                                                              |
+| `npm run typecheck`                 | `tsc --noEmit`                                                                                                      |
+| `npm run format`                    | Formata o código com Prettier                                                                                       |
+| `npm run format:check`              | Verifica formatação sem alterar arquivos                                                                            |
+| `npm run test`                      | Suíte de testes unitários/integração (Vitest)                                                                       |
+| `npm run test:e2e`                  | Suíte E2E (Playwright) contra um build de produção                                                                  |
+| `npm run test:e2e:update-snapshots` | Regenera os snapshots visuais do Playwright                                                                         |
+| `npm run test:lighthouse`           | Auditoria Lighthouse (Performance/A11y/SEO) contra `/`                                                              |
+| `npm run test:lighthouse:flow`      | Auditoria Lighthouse nas 4 rotas públicas via User Flow (ver [`GOLIVE.md`](./GOLIVE.md))                            |
+| `npm run generate:tokens`           | Gera `app/tokens.generated.css` a partir de `content/tokens.json`                                                   |
+| `npm run validate:questions`        | Valida `content/questions.json` contra o blueprint de senioridade (`docs/metodologia.md`)                           |
+| `npm run item-stats`                | Agrega os logs de telemetria de itens em taxa de acerto/distribuição por alternativa (ver `docs/metodologia.md` §7) |
 
 ## Variáveis de ambiente
 
@@ -56,9 +57,16 @@ Ver [`.env.example`](./.env.example) para a lista completa e documentada. Nenhum
 `content/questions.json` é o banco canônico (v2, desde o Épico 10): 5
 dimensões de competência × 5 senioridades, com seleção determinística de 15
 itens por nível (3 por dimensão) em `lib/quiz-selection.ts`, conforme o
-blueprint de `AVALIACAO.md` §3–§4. Toda alteração de item passa por
-`npm run validate:questions` (também bloqueante em CI). Bancos substituídos
-vão para `data/archive/` (nunca apagados) — ver `data/archive/README.md`.
+blueprint descrito em [`docs/metodologia.md`](./docs/metodologia.md). Toda
+alteração de item passa por `npm run validate:questions` (também bloqueante
+em CI). Bancos substituídos vão para `data/archive/` (nunca apagados) — ver
+`data/archive/README.md`.
+
+O motor de diagnóstico (`lib/diagnostico/`) transforma as respostas em
+score por dimensão, classificação, prioridades de carreira e pontos
+fortes/atenção — modelo completo em `docs/metodologia.md`. Cada submissão
+também alimenta a telemetria de itens (taxa de acerto e distribuição por
+alternativa, por item e por nível) via `npm run item-stats`.
 
 ## Setup do MailerLite
 

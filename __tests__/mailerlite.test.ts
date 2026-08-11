@@ -36,7 +36,7 @@ describe('syncLeadToMailerLite', () => {
       seniority: 'pleno',
       scoreGeral: 66.67,
       classification: 'medio',
-      profileTag: 'usuario_intermediario_dados',
+      topPriorityCategory: 'dados-programacao',
     });
 
     expect(createOrUpdateMock).toHaveBeenCalledTimes(1);
@@ -49,7 +49,7 @@ describe('syncLeadToMailerLite', () => {
       seniority: 'pleno',
       score_geral: 66.67,
       classificacao: 'medio',
-      perfil_tecnico: 'usuario_intermediario_dados',
+      perfil_tecnico: 'dados-programacao',
     });
   });
 

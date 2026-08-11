@@ -81,6 +81,12 @@ async function submitLead(page: Page, email: string) {
  * sênior/alto).
  */
 async function expectAllReportSectionsInOrder(page: Page) {
+  // RadarSection e PriorityCareerSkills são carregados via next/dynamic
+  // (code-splitting do Épico 13, achado de performance no Lighthouse) —
+  // aguarda o chunk assíncrono montar antes de capturar os headings.
+  await expect(page.getByText('Radar de competências')).toBeVisible();
+  await expect(page.getByText(/Onde investir primeiro/)).toBeVisible();
+
   const headings = await page
     .locator('h1, h2, [data-slot="card-title"], [data-slot="accordion-trigger"]')
     .allTextContents();
