@@ -5,7 +5,11 @@ aspectRatio: '1:1'
 minResolution: '800x800'
 variants: []
 weightBudgetKb: 60
-history: []
+history:
+  - date: 2026-08-11
+    version: 1
+    file: assets/generated/raw/dimensao-matematica-quant/2026-08-11-v1.png
+    decision: pending
 ---
 
 ## Prompt

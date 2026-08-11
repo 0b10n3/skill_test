@@ -5,7 +5,11 @@ aspectRatio: '1:1'
 minResolution: '600x600'
 variants: []
 weightBudgetKb: 40
-history: []
+history:
+  - date: 2026-08-11
+    version: 1
+    file: assets/generated/raw/estado-vazio/2026-08-11-v1.png
+    decision: pending
 ---
 
 ## Prompt

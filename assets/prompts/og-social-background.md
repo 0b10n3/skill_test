@@ -5,7 +5,11 @@ aspectRatio: '1.91:1'
 minResolution: '1200x630'
 variants: []
 weightBudgetKb: 80
-history: []
+history:
+  - date: 2026-08-11
+    version: 1
+    file: assets/generated/raw/og-social-background/2026-08-11-v1.png
+    decision: pending
 ---
 
 ## Prompt

@@ -5,7 +5,15 @@ aspectRatio: '1:1'
 minResolution: '1080x1080'
 variants: [light, dark]
 weightBudgetKb: 70
-history: []
+history:
+  - date: 2026-08-11
+    version: 1
+    file: assets/generated/raw/radar-card-textura/2026-08-11-v1-light.png
+    decision: pending
+  - date: 2026-08-11
+    version: 1
+    file: assets/generated/raw/radar-card-textura/2026-08-11-v1-dark.png
+    decision: pending
 ---
 
 ## Prompt
