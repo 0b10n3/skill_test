@@ -1,4 +1,359 @@
 {
   "$description": "Manifesto de assets publicados (Épico 16) — liga cada arquivo em public/img/ ao prompt de origem e à versão raw aprovada. Nunca editar publishedFiles à mão: gerado por scripts/process-asset.mjs. Vazio até o primeiro asset ser gerado e aprovado (ver .agents/skills/gerar-asset-marca/SKILL.md).",
-  "assets": []
+  "assets": [
+    {
+      "slug": "hero-landing",
+      "variant": "light",
+      "promptFile": "assets/prompts/hero-landing.md",
+      "rawFile": "assets/generated/raw/hero-landing/2026-08-11-v1-light.png",
+      "duotone": {
+        "dark": "#1B6A45",
+        "light": "#F7F7F5"
+      },
+      "weightBudgetKb": 120,
+      "publishedFiles": [
+        {
+          "path": "public/img/hero-landing/light-640.avif",
+          "width": 640,
+          "format": "avif",
+          "sizeBytes": 7029
+        },
+        {
+          "path": "public/img/hero-landing/light-640.webp",
+          "width": 640,
+          "format": "webp",
+          "sizeBytes": 7558
+        },
+        {
+          "path": "public/img/hero-landing/light-1024.avif",
+          "width": 1024,
+          "format": "avif",
+          "sizeBytes": 11459
+        },
+        {
+          "path": "public/img/hero-landing/light-1024.webp",
+          "width": 1024,
+          "format": "webp",
+          "sizeBytes": 12980
+        },
+        {
+          "path": "public/img/hero-landing/light-1920.avif",
+          "width": 1920,
+          "format": "avif",
+          "sizeBytes": 20493
+        },
+        {
+          "path": "public/img/hero-landing/light-1920.webp",
+          "width": 1920,
+          "format": "webp",
+          "sizeBytes": 22708
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "hero-landing",
+      "variant": "dark",
+      "promptFile": "assets/prompts/hero-landing.md",
+      "rawFile": "assets/generated/raw/hero-landing/2026-08-11-v1-dark.png",
+      "duotone": {
+        "dark": "#00120A",
+        "light": "#2D9E67"
+      },
+      "weightBudgetKb": 120,
+      "publishedFiles": [
+        {
+          "path": "public/img/hero-landing/dark-640.avif",
+          "width": 640,
+          "format": "avif",
+          "sizeBytes": 11831
+        },
+        {
+          "path": "public/img/hero-landing/dark-640.webp",
+          "width": 640,
+          "format": "webp",
+          "sizeBytes": 10452
+        },
+        {
+          "path": "public/img/hero-landing/dark-1024.avif",
+          "width": 1024,
+          "format": "avif",
+          "sizeBytes": 22953
+        },
+        {
+          "path": "public/img/hero-landing/dark-1024.webp",
+          "width": 1024,
+          "format": "webp",
+          "sizeBytes": 23134
+        },
+        {
+          "path": "public/img/hero-landing/dark-1920.avif",
+          "width": 1920,
+          "format": "avif",
+          "sizeBytes": 41323
+        },
+        {
+          "path": "public/img/hero-landing/dark-1920.webp",
+          "width": 1920,
+          "format": "webp",
+          "sizeBytes": 45640
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "dimensao-ia-aplicada",
+      "variant": null,
+      "promptFile": "assets/prompts/dimensao-ia-aplicada.md",
+      "rawFile": "assets/generated/raw/dimensao-ia-aplicada/2026-08-11-v1.png",
+      "duotone": {
+        "dark": "#1B6A45",
+        "light": "#F7F7F5"
+      },
+      "weightBudgetKb": 60,
+      "publishedFiles": [
+        {
+          "path": "public/img/dimensao-ia-aplicada/400.avif",
+          "width": 400,
+          "format": "avif",
+          "sizeBytes": 3519
+        },
+        {
+          "path": "public/img/dimensao-ia-aplicada/400.webp",
+          "width": 400,
+          "format": "webp",
+          "sizeBytes": 3658
+        },
+        {
+          "path": "public/img/dimensao-ia-aplicada/800.avif",
+          "width": 800,
+          "format": "avif",
+          "sizeBytes": 7175
+        },
+        {
+          "path": "public/img/dimensao-ia-aplicada/800.webp",
+          "width": 800,
+          "format": "webp",
+          "sizeBytes": 8716
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "dimensao-mercados-produtos",
+      "variant": null,
+      "promptFile": "assets/prompts/dimensao-mercados-produtos.md",
+      "rawFile": "assets/generated/raw/dimensao-mercados-produtos/2026-08-11-v1.png",
+      "duotone": {
+        "dark": "#1B6A45",
+        "light": "#F7F7F5"
+      },
+      "weightBudgetKb": 60,
+      "publishedFiles": [
+        {
+          "path": "public/img/dimensao-mercados-produtos/400.avif",
+          "width": 400,
+          "format": "avif",
+          "sizeBytes": 10051
+        },
+        {
+          "path": "public/img/dimensao-mercados-produtos/400.webp",
+          "width": 400,
+          "format": "webp",
+          "sizeBytes": 10870
+        },
+        {
+          "path": "public/img/dimensao-mercados-produtos/800.avif",
+          "width": 800,
+          "format": "avif",
+          "sizeBytes": 20366
+        },
+        {
+          "path": "public/img/dimensao-mercados-produtos/800.webp",
+          "width": 800,
+          "format": "webp",
+          "sizeBytes": 21174
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "dimensao-risco-regulacao",
+      "variant": null,
+      "promptFile": "assets/prompts/dimensao-risco-regulacao.md",
+      "rawFile": "assets/generated/raw/dimensao-risco-regulacao/2026-08-11-v1.png",
+      "duotone": {
+        "dark": "#1B6A45",
+        "light": "#F7F7F5"
+      },
+      "weightBudgetKb": 60,
+      "publishedFiles": [
+        {
+          "path": "public/img/dimensao-risco-regulacao/400.avif",
+          "width": 400,
+          "format": "avif",
+          "sizeBytes": 7751
+        },
+        {
+          "path": "public/img/dimensao-risco-regulacao/400.webp",
+          "width": 400,
+          "format": "webp",
+          "sizeBytes": 9904
+        },
+        {
+          "path": "public/img/dimensao-risco-regulacao/800.avif",
+          "width": 800,
+          "format": "avif",
+          "sizeBytes": 16323
+        },
+        {
+          "path": "public/img/dimensao-risco-regulacao/800.webp",
+          "width": 800,
+          "format": "webp",
+          "sizeBytes": 21440
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "estado-vazio",
+      "variant": null,
+      "promptFile": "assets/prompts/estado-vazio.md",
+      "rawFile": "assets/generated/raw/estado-vazio/2026-08-11-v1.png",
+      "duotone": {
+        "dark": "#1B6A45",
+        "light": "#F7F7F5"
+      },
+      "weightBudgetKb": 40,
+      "publishedFiles": [
+        {
+          "path": "public/img/estado-vazio/300.avif",
+          "width": 300,
+          "format": "avif",
+          "sizeBytes": 862
+        },
+        {
+          "path": "public/img/estado-vazio/300.webp",
+          "width": 300,
+          "format": "webp",
+          "sizeBytes": 664
+        },
+        {
+          "path": "public/img/estado-vazio/600.avif",
+          "width": 600,
+          "format": "avif",
+          "sizeBytes": 1404
+        },
+        {
+          "path": "public/img/estado-vazio/600.webp",
+          "width": 600,
+          "format": "webp",
+          "sizeBytes": 1724
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "og-social-background",
+      "variant": null,
+      "promptFile": "assets/prompts/og-social-background.md",
+      "rawFile": "assets/generated/raw/og-social-background/2026-08-11-v1.png",
+      "duotone": {
+        "dark": "#1B6A45",
+        "light": "#2D9E67"
+      },
+      "weightBudgetKb": 80,
+      "publishedFiles": [
+        {
+          "path": "public/img/og-social-background/1200.avif",
+          "width": 1200,
+          "format": "avif",
+          "sizeBytes": 894
+        },
+        {
+          "path": "public/img/og-social-background/1200.webp",
+          "width": 1200,
+          "format": "webp",
+          "sizeBytes": 1804
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "radar-card-textura",
+      "variant": "light",
+      "promptFile": "assets/prompts/radar-card-textura.md",
+      "rawFile": "assets/generated/raw/radar-card-textura/2026-08-11-v1-light.png",
+      "duotone": {
+        "dark": "#E6F4EE",
+        "light": "#F7F7F5"
+      },
+      "weightBudgetKb": 70,
+      "publishedFiles": [
+        {
+          "path": "public/img/radar-card-textura/light-540.avif",
+          "width": 540,
+          "format": "avif",
+          "sizeBytes": 357
+        },
+        {
+          "path": "public/img/radar-card-textura/light-540.webp",
+          "width": 540,
+          "format": "webp",
+          "sizeBytes": 718
+        },
+        {
+          "path": "public/img/radar-card-textura/light-1080.avif",
+          "width": 1080,
+          "format": "avif",
+          "sizeBytes": 486
+        },
+        {
+          "path": "public/img/radar-card-textura/light-1080.webp",
+          "width": 1080,
+          "format": "webp",
+          "sizeBytes": 2508
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "radar-card-textura",
+      "variant": "dark",
+      "promptFile": "assets/prompts/radar-card-textura.md",
+      "rawFile": "assets/generated/raw/radar-card-textura/2026-08-11-v1-dark.png",
+      "duotone": {
+        "dark": "#00120A",
+        "light": "#1B6A45"
+      },
+      "weightBudgetKb": 70,
+      "publishedFiles": [
+        {
+          "path": "public/img/radar-card-textura/dark-540.avif",
+          "width": 540,
+          "format": "avif",
+          "sizeBytes": 570
+        },
+        {
+          "path": "public/img/radar-card-textura/dark-540.webp",
+          "width": 540,
+          "format": "webp",
+          "sizeBytes": 726
+        },
+        {
+          "path": "public/img/radar-card-textura/dark-1080.avif",
+          "width": 1080,
+          "format": "avif",
+          "sizeBytes": 1498
+        },
+        {
+          "path": "public/img/radar-card-textura/dark-1080.webp",
+          "width": 1080,
+          "format": "webp",
+          "sizeBytes": 2750
+        }
+      ],
+      "usedIn": []
+    }
+  ]
 }
