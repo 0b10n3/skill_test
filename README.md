@@ -71,11 +71,13 @@ A captura de lead (rota `/lead`) sincroniza cada submissão com uma conta Mailer
    - `seniority` (texto) — a senioridade declarada em q00
    - `score_geral` (número) — percentual geral do quiz
    - `classificacao` (texto) — `baixo` / `medio` / `alto`
-   - `perfil_tecnico` (texto) — `profileTag` da pergunta de autoavaliação
+   - `perfil_tecnico` (texto) — desde o banco v2 (Épico 10) o quiz não tem mais pergunta de autoavaliação, então este campo chega sempre vazio; a segmentação por prioridade de carreira do diagnóstico v2 é redefinida no Épico 13.
 
 Sem o grupo/campos criados, o `POST /subscribers` ainda funciona (grupo/campos ausentes são apenas ignorados pela API), mas o subscriber não fica no lugar certo — **confirme que o grupo e os 4 campos existem antes de considerar a integração validada**.
 
 A chamada à MailerLite é sempre **não-bloqueante**: se falhar (rede, credencial inválida, etc.), o erro é logado no servidor e o resultado do quiz é exibido normalmente ao usuário.
+
+O botão "Receber este relatório por e-mail" do relatório (`/resultado`, Épico 12) chama `POST /api/resend-report`, que apenas **re-sincroniza os campos do subscriber** na MailerLite (idempotente) — o envio do e-mail em si depende de uma automação configurada no painel da MailerLite disparada por essa atualização de campo. Sem uma automação configurada, o botão confirma sucesso mas nenhum e-mail sai.
 
 ## Deploy
 

@@ -6,70 +6,75 @@ import { buildAnswers, postSubmit } from './test-helpers';
 
 const VALID_LEAD = { name: 'Maria Teste', email: 'maria@example.com', optIn: true as const };
 
-describe('POST /api/submit — cenários de scoring', () => {
-  it('9 acertos em 15 → scoreGeral 60% e classificação "medio"', async () => {
+describe('POST /api/submit — cenários de diagnóstico', () => {
+  it('9 acertos em 15 → scoreGlobal 0.6 e classificação "medio"', async () => {
     const answers = buildAnswers('pleno', 9);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     expect(response.status).toBe(200);
 
     const body = await response.json();
-    expect(body.scoreGeral).toBe(60);
-    expect(body.classification).toBe('medio');
-    expect(body.scorePorCategoria).toHaveLength(5);
+    expect(body.diagnostico.scoreGlobal).toBe(0.6);
+    expect(body.diagnostico.acertos).toBe(9);
+    expect(body.diagnostico.classificacao).toBe('medio');
+    expect(body.diagnostico.dimensoes).toHaveLength(5);
   });
 
-  it('0 acertos em 15 → scoreGeral 0% e classificação "baixo"', async () => {
+  it('0 acertos em 15 → scoreGlobal 0 e classificação "baixo"', async () => {
     const answers = buildAnswers('aspirante', 0);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     expect(response.status).toBe(200);
 
     const body = await response.json();
-    expect(body.scoreGeral).toBe(0);
-    expect(body.classification).toBe('baixo');
+    expect(body.diagnostico.scoreGlobal).toBe(0);
+    expect(body.diagnostico.classificacao).toBe('baixo');
   });
 
-  it('15 acertos em 15 → scoreGeral 100% e classificação "alto"', async () => {
+  it('15 acertos em 15 → scoreGlobal 1 e classificação "alto"', async () => {
     const answers = buildAnswers('senior', 15);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     expect(response.status).toBe(200);
 
     const body = await response.json();
-    expect(body.scoreGeral).toBe(100);
-    expect(body.classification).toBe('alto');
+    expect(body.diagnostico.scoreGlobal).toBe(1);
+    expect(body.diagnostico.classificacao).toBe('alto');
   });
 
-  it('ignora um score/classificação forjado no payload — recalcula do zero pelo question.id', async () => {
+  it('ignora diagnóstico forjado no payload — recalcula do zero pelo question.id', async () => {
     const answers = buildAnswers('junior', 2);
     const response = await postSubmit({
       answers,
       lead: VALID_LEAD,
-      scoreGeral: 100,
-      classification: 'alto',
+      diagnostico: { scoreGlobal: 1, classificacao: 'alto' },
     });
     const body = await response.json();
 
-    expect(body.scoreGeral).not.toBe(100);
-    expect(body.classification).toBe('baixo');
+    expect(body.diagnostico.scoreGlobal).not.toBe(1);
+    expect(body.diagnostico.classificacao).toBe('baixo');
   });
 
-  it('retorna narrativa personalizada além do score', async () => {
+  it('retorna o gabarito comentado com as 15 perguntas de conhecimento', async () => {
     const answers = buildAnswers('pleno', 9);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
     const body = await response.json();
 
-    expect(body.narrative).toBeDefined();
-    expect(typeof body.narrative.headline).toBe('string');
-    expect(body.narrative.headline.length).toBeGreaterThan(0);
+    expect(body.gabarito).toHaveLength(15);
+    expect(
+      body.gabarito.every((item: { explanation: string }) => item.explanation.length > 0),
+    ).toBe(true);
   });
 });
 
-describe('POST /api/submit — segurança: gabarito nunca vaza na resposta', () => {
-  it('a resposta HTTP não contém correctOptionId em nenhum lugar', async () => {
+describe('POST /api/submit — gabarito comentado', () => {
+  it('o correctOptionId do gabarito é revelado de propósito (pós-submissão) e bate com o gabarito real', async () => {
     const answers = buildAnswers('pleno', 9);
     const response = await postSubmit({ answers, lead: VALID_LEAD });
-    const rawText = JSON.stringify(await response.json());
+    const body = await response.json();
 
-    expect(rawText).not.toContain('correctOptionId');
+    for (const item of body.gabarito) {
+      const question = questionsBank.find((q) => q.id === item.questionId)!;
+      expect(item.correctOptionId).toBe(question.correctOptionId);
+      expect(item.correct).toBe(item.selectedOptionId === question.correctOptionId);
+    }
   });
 });
 

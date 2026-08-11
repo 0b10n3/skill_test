@@ -3,8 +3,8 @@ import { buildAnswers, postSubmit } from './test-helpers';
 
 const VALID_LEAD = { name: 'Maria Teste', email: 'maria@example.com', optIn: true as const };
 
-describe('POST /api/submit — diagnóstico v2 persistido em paralelo (Épico 11)', () => {
-  it('computa e loga o diagnóstico completo (5 dimensões + vetor item-a-item) sem alterar a resposta HTTP nem vazar PII', async () => {
+describe('POST /api/submit — diagnóstico v2 (Épico 11) persistido e devolvido ao client (Épico 12)', () => {
+  it('computa e loga o diagnóstico completo (5 dimensões + vetor item-a-item), sem PII no log, e devolve o diagnóstico na resposta HTTP', async () => {
     const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
     const answers = buildAnswers('pleno', 9);
@@ -12,8 +12,8 @@ describe('POST /api/submit — diagnóstico v2 persistido em paralelo (Épico 11
     expect(response.status).toBe(200);
 
     const body = await response.json();
-    // A resposta HTTP não muda neste épico — o novo relatório é o Épico 12.
-    expect(body).not.toHaveProperty('diagnostico');
+    expect(body.diagnostico).toBeDefined();
+    expect(body.diagnostico.dimensoes).toHaveLength(5);
 
     const diagnosticoCall = logSpy.mock.calls.find(([label]) => label === '[diagnostico]');
     expect(diagnosticoCall).toBeDefined();

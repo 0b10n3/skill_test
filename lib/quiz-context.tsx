@@ -7,7 +7,9 @@ interface QuizAnswersContextValue {
   answers: AnswerMap;
   setAnswer: (questionId: string, optionId: string) => void;
   result: SubmitResult | null;
-  setResult: (result: SubmitResult) => void;
+  /** E-mail informado em /lead — guardado só para o reenvio do relatório (S7), nunca exibido. */
+  leadEmail: string | null;
+  setResult: (result: SubmitResult, leadEmail: string) => void;
   reset: () => void;
 }
 
@@ -23,23 +25,26 @@ const QuizAnswersContext = createContext<QuizAnswersContextValue | null>(null);
 export function QuizAnswersProvider({ children }: { children: React.ReactNode }) {
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [result, setResultState] = useState<SubmitResult | null>(null);
+  const [leadEmail, setLeadEmail] = useState<string | null>(null);
 
   const setAnswer = useCallback((questionId: string, optionId: string) => {
     setAnswers((previous) => ({ ...previous, [questionId]: optionId }));
   }, []);
 
-  const setResult = useCallback((newResult: SubmitResult) => {
+  const setResult = useCallback((newResult: SubmitResult, newLeadEmail: string) => {
     setResultState(newResult);
+    setLeadEmail(newLeadEmail);
   }, []);
 
   const reset = useCallback(() => {
     setAnswers({});
     setResultState(null);
+    setLeadEmail(null);
   }, []);
 
   const value = useMemo(
-    () => ({ answers, setAnswer, result, setResult, reset }),
-    [answers, setAnswer, result, setResult, reset],
+    () => ({ answers, setAnswer, result, leadEmail, setResult, reset }),
+    [answers, setAnswer, result, leadEmail, setResult, reset],
   );
 
   return <QuizAnswersContext.Provider value={value}>{children}</QuizAnswersContext.Provider>;

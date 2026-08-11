@@ -1,3 +1,5 @@
+import type { Diagnostico } from '@/lib/diagnostico';
+
 export type QuestionType = 'seniority' | 'knowledge';
 
 export type SeniorityLevel = 'aspirante' | 'estagiario' | 'junior' | 'pleno' | 'senior';
@@ -59,25 +61,28 @@ export type AnswerMap = Record<string, string>;
 
 export type Classification = 'baixo' | 'medio' | 'alto';
 
-export interface CategoryScore {
+/**
+ * Item do gabarito comentado (S6 do relatório) — só existe pós-submissão:
+ * revelar o gabarito e a explicação aqui é o produto (revisão de prova),
+ * não um vazamento (ClientQuestion, usado antes da submissão, nunca leva
+ * correctOptionId).
+ */
+export interface QuestionReviewItem {
+  questionId: string;
   category: KnowledgeCategory;
-  correct: number;
-  total: number;
-  percentage: number;
+  question: string;
+  options: Option[];
+  selectedOptionId: string | undefined;
+  correctOptionId: string;
+  explanation: string;
+  correct: boolean;
 }
 
-export interface ScoreResult {
-  scoreGeral: number;
-  scorePorCategoria: CategoryScore[];
-  classification: Classification;
-}
-
-export interface ResultNarrative {
-  headline: string;
-  body: string;
-}
-
-/** Shape retornado por POST /api/submit — o que /resultado (Épico 8) consome. */
-export interface SubmitResult extends ScoreResult {
-  narrative: ResultNarrative;
+/** Shape retornado por POST /api/submit — o que /resultado (Épico 12) consome. */
+export interface SubmitResult {
+  seniority: SeniorityLevel;
+  participantName: string;
+  submittedAt: string;
+  diagnostico: Diagnostico;
+  gabarito: QuestionReviewItem[];
 }

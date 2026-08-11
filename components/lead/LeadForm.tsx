@@ -55,7 +55,7 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
       }
 
       const result: SubmitResult = await response.json();
-      setResult(result);
+      setResult(result, parsed.data.email);
       router.push('/resultado');
     } catch {
       setSubmitError('Erro de conexão. Verifique sua internet e tente novamente.');

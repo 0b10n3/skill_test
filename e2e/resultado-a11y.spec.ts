@@ -17,7 +17,7 @@ interface BankQuestion {
 const bank = questionsBank as BankQuestion[];
 const seniorityOptionText = bank.find((q) => q.type === 'seniority')!.options[0].text;
 
-test('/resultado — sem violações de contraste (axe-core)', async ({ page }) => {
+async function completeQuizToResultado(page: import('@playwright/test').Page) {
   await page.goto('/quiz');
   await page.waitForSelector('[data-slot="card-title"]', { timeout: 10_000 });
   await page.locator('label').filter({ hasText: seniorityOptionText }).getByRole('radio').click();
@@ -37,10 +37,28 @@ test('/resultado — sem violações de contraste (axe-core)', async ({ page }) 
     page.waitForResponse((response) => response.url().includes('/api/submit')),
     page.getByRole('button', { name: 'Ver meu resultado' }).click(),
   ]);
-  await page.waitForURL('**/resultado', { timeout: 10_000 });
+  await page.waitForURL('**/resultado', { timeout: 20_000 });
+}
+
+test('/resultado — sem violações de contraste (axe-core)', async ({ page }) => {
+  await completeQuizToResultado(page);
 
   const results = await new AxeBuilder({ page }).include('main').withTags(['wcag2aa']).analyze();
   const contrastViolations = results.violations.filter((v) => v.id === 'color-contrast');
 
   expect(contrastViolations, JSON.stringify(contrastViolations, null, 2)).toHaveLength(0);
+});
+
+test('/resultado — zero violações críticas de axe-core (wcag2aa), inclusive com o gabarito aberto', async ({
+  page,
+}) => {
+  await completeQuizToResultado(page);
+  await page.getByRole('button', { name: 'Revisar minhas respostas' }).click();
+
+  const results = await new AxeBuilder({ page }).include('main').withTags(['wcag2aa']).analyze();
+  const criticalViolations = results.violations.filter(
+    (v) => v.impact === 'critical' || v.impact === 'serious',
+  );
+
+  expect(criticalViolations, JSON.stringify(criticalViolations, null, 2)).toHaveLength(0);
 });

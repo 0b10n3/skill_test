@@ -69,6 +69,8 @@
 
 html {
   color-scheme: dark;
+  /* O app nunca tem scroll horizontal por design (single-viewport por seção). */
+  overflow-x: hidden;
 }
 
 @layer base {
@@ -77,5 +79,30 @@ html {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/*
+ * Relatório de resultados (Épico 12, REPORT.md §3): a impressão deve caber
+ * em ~2 páginas A4, com o radar renderizado e o gabarito expandido — CTAs
+ * são suprimidos via a classe utilitária print:hidden (ver
+ * app/resultado/page.tsx). O gabarito é aberto de fato via estado no evento
+ * beforeprint (components/result/AnswerReview.tsx) — o atributo HTML
+ * `hidden` do painel fechado tem uma regra `!important` na folha de estilo
+ * do próprio navegador que nenhum CSS de autor consegue sobrepor, então
+ * "forçar visível" por CSS não é uma opção aqui.
+ */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  body {
+    font-size: 11px;
+  }
+
+  [data-slot='accordion-trigger-icon'] {
+    display: none !important;
   }
 }

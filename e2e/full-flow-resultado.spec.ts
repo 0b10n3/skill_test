@@ -74,8 +74,48 @@ async function submitLead(page: Page, email: string) {
   await page.waitForURL('**/resultado', { timeout: 10_000 });
 }
 
+/**
+ * Confere que as 8 seções do relatório (S1–S8, REPORT.md §2) aparecem na
+ * ordem especificada, sem seção vazia — critério de aceite do Épico 12,
+ * verificado para as 3 personas abaixo (aspirante/baixo, pleno/médio,
+ * sênior/alto).
+ */
+async function expectAllReportSectionsInOrder(page: Page) {
+  const headings = await page
+    .locator('h1, h2, [data-slot="card-title"], [data-slot="accordion-trigger"]')
+    .allTextContents();
+
+  const sectionOrder = [
+    /Diagnóstico de Competências/, // S1
+    /Radar de competências/, // S2
+    /Desempenho por dimensão/, // S3
+    /O que te destaca/, // S4
+    /Onde investir primeiro/, // S5
+    /Revisar minhas respostas/, // S6
+  ];
+
+  let searchFrom = 0;
+  for (const pattern of sectionOrder) {
+    const index = headings.findIndex((text, i) => i >= searchFrom && pattern.test(text));
+    expect(
+      index,
+      `seção esperada (${pattern}) não encontrada em ordem: ${headings.join(' | ')}`,
+    ).toBeGreaterThanOrEqual(searchFrom);
+    searchFrom = index;
+  }
+
+  // S7 (CTA) e S8 (rodapé de método) não são headings, checados à parte.
+  await expect(page.getByText('Como funciona a metodologia')).toBeVisible();
+
+  // Nenhum texto quebrado/placeholder (chave de matriz editorial faltando, valor undefined etc.)
+  const bodyText = await page.locator('main').innerText();
+  expect(bodyText).not.toMatch(/undefined|\[object Object\]|NaN%/);
+}
+
 test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () => {
-  test('9 acertos em 15 exibe 60% e classificação Médio', async ({ page }) => {
+  test('9 acertos em 15 exibe classificação Médio, com todas as seções do relatório', async ({
+    page,
+  }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'Iniciar avaliação' }).click();
     await expect(page).toHaveURL(/\/quiz$/);
@@ -83,27 +123,57 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
     await answerQuizDeterministically(page, 'pleno', 9);
     await submitLead(page, `e2e-medio-${Date.now()}@example.com`);
 
-    await expect(page.getByTestId('score-geral')).toHaveText('60%');
+    await expect(page.getByTestId('score-geral')).toHaveText('60% de acerto geral');
     await expect(page.getByTestId('score-classificacao')).toHaveText('Médio');
+    await expectAllReportSectionsInOrder(page);
   });
 
-  test('0 acertos em 15 exibe 0% e classificação Baixo', async ({ page }) => {
+  test('0 acertos em 15 exibe classificação Baixo, com todas as seções do relatório', async ({
+    page,
+  }) => {
     await answerQuizDeterministically(page, 'aspirante', 0);
     await submitLead(page, `e2e-baixo-${Date.now()}@example.com`);
 
-    await expect(page.getByTestId('score-geral')).toHaveText('0%');
+    await expect(page.getByTestId('score-geral')).toHaveText('0% de acerto geral');
     await expect(page.getByTestId('score-classificacao')).toHaveText('Baixo');
+    await expectAllReportSectionsInOrder(page);
   });
 
-  test('15 acertos em 15 exibe 100% e classificação Alto, com oferta de mentoria', async ({
+  test('15 acertos em 15 exibe classificação Alto, com oferta de mentoria e todas as seções do relatório', async ({
     page,
   }) => {
     await answerQuizDeterministically(page, 'senior', 15);
     await submitLead(page, `e2e-alto-${Date.now()}@example.com`);
 
-    await expect(page.getByTestId('score-geral')).toHaveText('100%');
+    await expect(page.getByTestId('score-geral')).toHaveText('100% de acerto geral');
     await expect(page.getByTestId('score-classificacao')).toHaveText('Alto');
     await expect(page.getByText('Aplicar para mentoria')).toBeVisible();
+    await expectAllReportSectionsInOrder(page);
+  });
+
+  test('o gabarito começa fechado e abre ao clicar, revelando a explicação de cada questão', async ({
+    page,
+  }) => {
+    await answerQuizDeterministically(page, 'pleno', 9);
+    await submitLead(page, `e2e-gabarito-${Date.now()}@example.com`);
+
+    const trigger = page.getByRole('button', { name: 'Revisar minhas respostas' });
+    const panel = page.locator('[data-slot="accordion-content"]');
+
+    await expect(panel).toBeHidden();
+    await trigger.click();
+    await expect(panel).toBeVisible();
+    await expect(panel.getByText(/./).first()).toBeVisible();
+  });
+
+  test('impressão suprime o CTA e expande o gabarito', async ({ page }) => {
+    await answerQuizDeterministically(page, 'pleno', 9);
+    await submitLead(page, `e2e-print-${Date.now()}@example.com`);
+
+    await page.emulateMedia({ media: 'print' });
+
+    await expect(page.getByRole('button', { name: 'Ver curso' })).toBeHidden();
+    await expect(page.locator('[data-slot="accordion-content"]')).toBeVisible();
   });
 });
 
