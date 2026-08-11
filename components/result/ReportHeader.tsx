@@ -2,10 +2,13 @@ import { Badge } from '@/components/ui/badge';
 import { CLASSIFICATION_CONTEXT, CLASSIFICATION_LABEL, SENIORITY_LABEL } from '@/content/relatorio';
 import type { Classification, SeniorityLevel } from '@/lib/types';
 
-const CLASSIFICATION_BADGE_VARIANT: Record<Classification, 'outline' | 'secondary' | 'default'> = {
+const CLASSIFICATION_BADGE_VARIANT: Record<
+  Classification,
+  'outline' | 'secondary' | 'achievement'
+> = {
   baixo: 'outline',
   medio: 'secondary',
-  alto: 'default',
+  alto: 'achievement',
 };
 
 function formatDate(iso: string): string {

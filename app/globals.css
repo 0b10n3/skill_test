@@ -33,9 +33,15 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-error-text: var(--error-text);
+  --color-achievement-foreground: var(--achievement-foreground);
+  --color-link-foreground: var(--link-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --shadow-syntaxis-sm: var(--shadow-syntaxis-sm);
+  --shadow-syntaxis: var(--shadow-syntaxis);
+  --shadow-syntaxis-lg: var(--shadow-syntaxis-lg);
 
   --font-display: var(--font-dm-serif-display);
   --font-heading: var(--font-dm-serif-display);

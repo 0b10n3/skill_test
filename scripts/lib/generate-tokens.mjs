@@ -54,7 +54,7 @@ export function generateCss(tokens) {
   }
   for (const [name, def] of Object.entries(tokens.color.semantic)) {
     if (name.startsWith('$')) continue;
-    lines.push(`  --color-semantic-${name}: ${resolveValue(tokens, def.$value)};`);
+    lines.push(`  --color-semantic-${kebabCase(name)}: ${resolveValue(tokens, def.$value)};`);
   }
   for (const [name, def] of Object.entries(tokens.radius)) {
     if (name.startsWith('$')) continue;

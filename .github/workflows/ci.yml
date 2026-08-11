@@ -38,6 +38,9 @@ jobs:
       - name: Audit token contrast
         run: npm run audit:contrast
 
+      - name: Lint one-pattern-per-file
+        run: npm run lint:patterns
+
       - name: Test
         run: npm run test
 
