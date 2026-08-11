@@ -112,13 +112,19 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
               onCheckedChange={setOptIn}
               aria-invalid={Boolean(fieldErrors.optIn)}
             />
-            Aceito receber comunicações da Syntaxis por e-mail
+            Quero receber por e-mail novidades de cursos e conteúdo técnico da Syntaxis
           </label>
           {fieldErrors.optIn && <p className="text-xs text-error-text">{fieldErrors.optIn}</p>}
 
           {submitError && <p className="text-sm text-error-text">{submitError}</p>}
 
-          <Button type="submit" size="lg" disabled={isSubmitting} className="self-end">
+          <Button
+            type="submit"
+            variant="secondary"
+            size="lg"
+            disabled={isSubmitting}
+            className="self-end"
+          >
             {isSubmitting ? 'Enviando…' : 'Ver meu resultado'}
           </Button>
         </form>
