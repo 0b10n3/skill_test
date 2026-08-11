@@ -26,7 +26,9 @@ export function StrengthsAndFocus({ diagnostico, seniority }: StrengthsAndFocusP
           {diagnostico.fortes.map((category) => (
             <div key={category} className="flex flex-col gap-1">
               <p className="text-sm font-medium text-foreground">{CATEGORY_LABEL[category]}</p>
-              <p className="text-sm text-muted-foreground">{POR_QUE_IMPORTA[category][seniority]}</p>
+              <p className="text-sm text-muted-foreground">
+                {POR_QUE_IMPORTA[category][seniority]}
+              </p>
             </div>
           ))}
         </CardContent>
@@ -42,7 +44,9 @@ export function StrengthsAndFocus({ diagnostico, seniority }: StrengthsAndFocusP
           {diagnostico.atencao.map((category) => (
             <div key={category} className="flex flex-col gap-1">
               <p className="text-sm font-medium text-foreground">{CATEGORY_LABEL[category]}</p>
-              <p className="text-sm text-muted-foreground">{POR_QUE_IMPORTA[category][seniority]}</p>
+              <p className="text-sm text-muted-foreground">
+                {POR_QUE_IMPORTA[category][seniority]}
+              </p>
             </div>
           ))}
 

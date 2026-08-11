@@ -26,57 +26,55 @@ export default async function OpengraphImage() {
   ]);
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        gap: 24,
+        padding: 96,
+        backgroundColor: tokens.color.neutral.ink.$value,
+        backgroundImage: `radial-gradient(circle at 15% 15%, ${tokens.color.forest[900].$value} 0%, transparent 45%)`,
+      }}
+    >
       <div
         style={{
-          width: '100%',
-          height: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-          gap: 24,
-          padding: 96,
-          backgroundColor: tokens.color.neutral.ink.$value,
-          backgroundImage: `radial-gradient(circle at 15% 15%, ${tokens.color.forest[900].$value} 0%, transparent 45%)`,
+          fontFamily: 'DM Sans',
+          fontSize: 28,
+          letterSpacing: 4,
+          textTransform: 'uppercase',
+          color: tokens.color.grove[500].$value,
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            fontFamily: 'DM Sans',
-            fontSize: 28,
-            letterSpacing: 4,
-            textTransform: 'uppercase',
-            color: tokens.color.grove[500].$value,
-          }}
-        >
-          Syntaxis Skill Check
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            fontFamily: 'DM Serif Display',
-            fontSize: 64,
-            lineHeight: 1.15,
-            color: tokens.color.neutral.chalk.$value,
-            maxWidth: 900,
-          }}
-        >
-          Descubra seu nível técnico em finanças em alguns minutos
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            fontFamily: 'DM Sans',
-            fontSize: 30,
-            color: tokens.color.neutral.slate.$value,
-          }}
-        >
-          10–15 min · 15 perguntas · múltipla escolha
-        </div>
+        Syntaxis Skill Check
       </div>
-    ),
+      <div
+        style={{
+          display: 'flex',
+          fontFamily: 'DM Serif Display',
+          fontSize: 64,
+          lineHeight: 1.15,
+          color: tokens.color.neutral.chalk.$value,
+          maxWidth: 900,
+        }}
+      >
+        Descubra seu nível técnico em finanças em alguns minutos
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          fontFamily: 'DM Sans',
+          fontSize: 30,
+          color: tokens.color.neutral.slate.$value,
+        }}
+      >
+        10–15 min · 15 perguntas · múltipla escolha
+      </div>
+    </div>,
     {
       ...size,
       fonts: [

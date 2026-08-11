@@ -34,7 +34,8 @@ const PAIRS = [
  * intencional e correto).
  */
 const KNOWN_SUBSTITUTES = {
-  accent: 'Para texto (não superfície), usar amber-700/900 em vez de accent — ver DESIGN.md nota de contraste.',
+  accent:
+    'Para texto (não superfície), usar amber-700/900 em vez de accent — ver DESIGN.md nota de contraste.',
 };
 
 function auditTheme(themeName) {

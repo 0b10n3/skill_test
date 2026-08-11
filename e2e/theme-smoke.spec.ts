@@ -12,10 +12,15 @@ for (const colorScheme of ['light', 'dark'] as const) {
 
     test(`/ carrega com --primary correto para o tema (${colorScheme})`, async ({ page }) => {
       await page.goto('/');
-      await expect(page.getByRole('heading', { name: /descubra seu nível técnico/i })).toBeVisible();
+      await expect(
+        page.getByRole('heading', { name: /descubra seu nível técnico/i }),
+      ).toBeVisible();
 
       const primary = await page.evaluate(() =>
-        getComputedStyle(document.documentElement).getPropertyValue('--primary').trim().toLowerCase(),
+        getComputedStyle(document.documentElement)
+          .getPropertyValue('--primary')
+          .trim()
+          .toLowerCase(),
       );
       const expected = colorScheme === 'dark' ? '#1e7a4f' : '#1b6a45';
       expect(primary).toBe(expected);

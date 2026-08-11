@@ -106,7 +106,10 @@ export function AnswerReview({ gabarito }: AnswerReviewProps) {
                               className="mt-0.5 size-4 shrink-0 text-semantic-success"
                             />
                           ) : (
-                            <XCircle aria-hidden className="mt-0.5 size-4 shrink-0 text-semantic-warning" />
+                            <XCircle
+                              aria-hidden
+                              className="mt-0.5 size-4 shrink-0 text-semantic-warning"
+                            />
                           )}
                           <div className="flex flex-col gap-1">
                             <p className="text-sm font-medium text-foreground">{item.question}</p>
