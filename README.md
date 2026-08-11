@@ -47,6 +47,7 @@ Copie `.env.example` para `.env.local` e preencha as variáveis necessárias (ve
 | `npm run generate:tokens`           | Gera `app/tokens.generated.css` (gitignored) a partir de `design/tokens.json`                                       |
 | `npm run lint:colors`               | Falha se algum `.ts`/`.tsx` em `app/`, `components/`, `lib/`, `content/` tiver cor hex/rgb/hsl fora dos tokens      |
 | `npm run audit:contrast`            | Gera `design/contrast-report.md` checando contraste WCAG AA de todos os pares semânticos claro/escuro               |
+| `npm run lint:patterns`             | Falha se algum arquivo importar mais de um padrão geométrico (`components/patterns`) — "um padrão por peça"         |
 | `npm run validate:questions`        | Valida `content/questions.json` contra o blueprint de senioridade (`docs/metodologia.md`)                           |
 | `npm run item-stats`                | Agrega os logs de telemetria de itens em taxa de acerto/distribuição por alternativa (ver `docs/metodologia.md` §7) |
 
@@ -98,9 +99,38 @@ ver comentário em `components/ui/button.tsx`).
 tipográfico e favicon geométrico) até que um asset de marca real seja
 fornecido. O antigo catálogo `/dev/design-system` (construído em cima do
 sistema de tokens anterior, "O Sinal no Escuro") foi removido — o
-substituto (`/dev/ui`) é entregue no Épico 15. Tokens/catálogos
-substituídos vão para `design/archive/` (nunca apagados) — ver
-`design/archive/README.md`.
+substituto é `/dev/ui` (Épico 15). Tokens/catálogos substituídos vão para
+`design/archive/` (nunca apagados) — ver `design/archive/README.md`.
+
+## Padrões geométricos e catálogo de componentes (Épico 15)
+
+`components/patterns/` implementa as três famílias de padrão geométrico da
+marca (DESIGN.md §5) como componentes SVG/CSS paramétricos, consumindo só
+`pattern.*` de `design/tokens.json` — nunca um valor copiado:
+
+- `<PatternNodeBranch context="onText"|"decorative" ... />` — nós e galhos
+  (padrão primário). A opacidade é sempre computada em JS a partir de
+  `pattern.nodeBranch.*`: em `onText` é travada em `opacityOnText`
+  (ignora qualquer prop passada); em `decorative` é clampada entre
+  `opacityDecorativeMin`/`Max`.
+- `<PatternDataGrid slot="margin-left"|"margin-right"|"header" />` — grade
+  de dados. A API só oferece esses três slots fixos — não existe prop de
+  posicionamento livre, então não dá para usar atrás de texto denso por
+  engano.
+- `<PatternGrowthLine steps={n} />` — linha de conquista, em degraus retos.
+  Não aceita prop de opacidade: é sempre protagonista, nunca decoração de
+  fundo.
+
+`npm run lint:patterns` (parte do `prebuild`) falha se algum arquivo
+importar mais de um desses três componentes — "um padrão por peça"
+(DESIGN.md §5.4) vira restrição de composição, não convenção de disciplina.
+
+O catálogo vivo fica em `/dev/ui` — todos os componentes restylizados e os
+três padrões, nos dois temas, com a matriz de uso dos padrões (DESIGN.md
+§5.3) documentada na própria página. Não é uma rota de produto (não
+indexada, não linkada) e é a base do teste visual de referência
+(`e2e/dev-ui-catalog.spec.ts`: screenshots em 375px/1440px × claro/escuro,
+mais axe-core com zero violações críticas).
 
 ## Setup do MailerLite
 

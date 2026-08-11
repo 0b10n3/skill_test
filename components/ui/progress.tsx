@@ -23,8 +23,10 @@ function Progress({ className, children, value, ...props }: ProgressPrimitive.Ro
 function ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {
   return (
     <ProgressPrimitive.Track
+      // Trilha sempre Mist — REDESIGN.md §5 ("Progress: barra Grove, trilha
+      // Mist"), independente do tema (não é --muted, que varia por tema).
       className={cn(
-        'relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-muted',
+        'relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-semantic-progress-track dark:bg-semantic-progress-track/20',
         className,
       )}
       data-slot="progress-track"
@@ -36,8 +38,10 @@ function ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {
 function ProgressIndicator({ className, ...props }: ProgressPrimitive.Indicator.Props) {
   return (
     <ProgressPrimitive.Indicator
+      // Barra sempre Grove — a cor de "ação" da marca, independente do tema
+      // (não é --primary, que é Forest no claro).
       data-slot="progress-indicator"
-      className={cn('h-full bg-primary transition-all', className)}
+      className={cn('h-full bg-semantic-progress-bar transition-all', className)}
       {...props}
     />
   );
