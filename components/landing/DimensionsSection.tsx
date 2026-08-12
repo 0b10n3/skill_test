@@ -23,7 +23,7 @@ function TileShell({
 }) {
   return (
     <div
-      className={`flex flex-col gap-3 rounded-xl border border-border bg-card p-5 shadow-syntaxis-sm sm:p-6 ${className ?? ''}`}
+      className={`flex flex-col gap-3 rounded-none border border-border bg-card p-5 sm:p-6 ${className ?? ''}`}
     >
       <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
         {CATEGORY_LABEL[category]}
@@ -88,7 +88,7 @@ export function DimensionsSection() {
           <p className="text-sm text-foreground">{dadosQuestion.question}</p>
           <ul className="flex flex-col gap-1.5 font-data text-xs text-muted-foreground">
             {dadosQuestion.options.map((option) => (
-              <li key={option.id} className="rounded-md bg-muted px-2 py-1 text-foreground">
+              <li key={option.id} className="rounded-sm bg-muted px-2 py-1 text-foreground">
                 {option.text}
               </li>
             ))}
@@ -96,7 +96,10 @@ export function DimensionsSection() {
         </TileShell>
 
         <TileShell category="ia-aplicada" className="sm:col-span-2">
-          <p className="font-display text-sm text-pretty text-foreground italic">
+          {/* v2.0.0: sem itálico (Space Grotesk não tem variante itálica) —
+              a citação agora se marca por uma hairline lateral (assinatura
+              §4.4.3), não por estilo de fonte. */}
+          <p className="border-l-2 border-border pl-3 font-display text-sm text-pretty text-foreground">
             &ldquo;{iaExplanation}&rdquo;
           </p>
           <p className="text-xs text-muted-foreground">

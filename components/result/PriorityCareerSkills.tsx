@@ -39,7 +39,7 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
       // theme-aware (bg-card), então continuam legíveis dentro da banda em
       // qualquer tema. Neutralizado na impressão (print:*) — o relatório
       // sempre imprime em fundo claro (ver app/resultado/page.tsx).
-      className="flex w-full max-w-4xl flex-col gap-3 rounded-xl bg-neutral-deep-forest px-6 py-8 print:bg-transparent print:px-0 print:py-0 sm:px-10 sm:py-10"
+      className="flex w-full max-w-4xl flex-col gap-3 rounded-none bg-neutral-deep-forest px-6 py-8 print:bg-transparent print:px-0 print:py-0 sm:px-10 sm:py-10"
     >
       <div className="flex flex-col gap-2">
         <Eyebrow onDark className="print:text-grove-700">
@@ -64,7 +64,7 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
               <CardTitle className="flex items-center gap-2 font-display text-base text-foreground">
                 <span
                   aria-hidden
-                  className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-data text-achievement-foreground dark:bg-accent/20"
+                  className="flex size-6 shrink-0 items-center justify-center rounded-sm bg-accent/10 text-data text-achievement-foreground dark:bg-accent/20"
                 >
                   {index + 1}
                 </span>
@@ -102,7 +102,7 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
                   tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
                   width={64}
                 />
-                <Bar dataKey="prioridade" radius={4}>
+                <Bar dataKey="prioridade" radius={0}>
                   {chartData.map((entry) => (
                     <Cell
                       key={entry.dimensao}

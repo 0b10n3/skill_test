@@ -51,7 +51,7 @@ export function QuestionCard({ question, onAnswer }: QuestionCardProps) {
           {question.options.map((option) => (
             <label
               key={option.id}
-              className="flex cursor-pointer items-center gap-3 rounded-lg border border-border px-3 py-1.5 text-xs text-foreground transition-colors has-[[data-checked]]:border-primary has-[[data-checked]]:bg-primary/10 sm:text-sm"
+              className="flex cursor-pointer items-center gap-3 rounded-sm border border-border px-3 py-1.5 text-xs text-foreground transition-colors has-[[data-checked]]:border-primary has-[[data-checked]]:bg-primary/10 sm:text-sm"
             >
               <RadioGroupItem value={option.id} />
               {option.text}

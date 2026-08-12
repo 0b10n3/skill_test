@@ -26,7 +26,7 @@ function ProgressTrack({ className, ...props }: ProgressPrimitive.Track.Props) {
       // Trilha sempre Mist ("Progress: barra Grove, trilha Mist", Épico
       // 15), independente do tema (não é --muted, que varia por tema).
       className={cn(
-        'relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-semantic-progress-track dark:bg-semantic-progress-track/20',
+        'relative flex h-1 w-full items-center overflow-x-hidden rounded-none bg-semantic-progress-track dark:bg-semantic-progress-track/20',
         className,
       )}
       data-slot="progress-track"

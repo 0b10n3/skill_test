@@ -55,7 +55,7 @@ function Section({
 function Swatch({ name, className }: { name: string; className: string }) {
   return (
     <div className="flex flex-col items-center gap-1.5">
-      <div className={`size-12 rounded-lg border border-border ${className}`} />
+      <div className={`size-12 rounded-sm border border-border ${className}`} />
       <span className="font-mono text-xs text-muted-foreground">{name}</span>
     </div>
   );
@@ -122,7 +122,8 @@ export default function UiCatalogPage() {
           <Swatch name="forest-500" className="bg-forest-500" />
           <Swatch name="grove-500" className="bg-grove-500" />
           <Swatch name="grove-700" className="bg-grove-700" />
-          <Swatch name="amber-500" className="bg-amber-500" />
+          <Swatch name="lime-500" className="bg-lime-500" />
+          <Swatch name="lime-700" className="bg-lime-700" />
           <Swatch name="neutral-mist" className="bg-neutral-mist" />
         </div>
       </Section>
@@ -134,13 +135,13 @@ export default function UiCatalogPage() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <div className="flex flex-col gap-2">
             <p className="text-sm font-medium text-foreground">Nó-e-galho — decorativo (campo)</p>
-            <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-lg border border-border bg-card">
+            <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-sm border border-border bg-card">
               <PatternNodeBranch context="decorative" anchor="field" density="default" />
             </div>
           </div>
           <div className="flex flex-col gap-2">
             <p className="text-sm font-medium text-foreground">Nó-e-galho — atrás de texto</p>
-            <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-lg border border-border bg-card">
+            <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-sm border border-border bg-card">
               <PatternNodeBranch
                 context="onText"
                 anchor="corner"
@@ -153,13 +154,19 @@ export default function UiCatalogPage() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-medium text-foreground">Linha de conquista</p>
-            <div className="flex h-40 items-center justify-center rounded-lg border border-border bg-card p-4">
+            <p className="text-sm font-medium text-foreground">
+              Linha de conquista — habitat preferencial (sobre escuro, lime-500)
+            </p>
+            {/* bg-neutral-deep-forest (não bg-card): o padrão usa
+                pattern.growthLine.color (lime-500) por padrão, calibrado
+                para contraste sobre fundo escuro (DESIGN.md v2.0 §5.2) —
+                mostrar sobre um card claro esconderia a cor real de uso. */}
+            <div className="flex h-40 items-center justify-center rounded-sm border border-border bg-neutral-deep-forest p-4">
               <PatternGrowthLine steps={4} className="h-full w-full" />
             </div>
           </div>
         </div>
-        <div className="relative flex h-24 items-center overflow-hidden rounded-lg border border-border bg-card px-6">
+        <div className="relative flex h-24 items-center overflow-hidden rounded-sm border border-border bg-card px-6">
           <PatternDataGrid slot="margin-left" />
           <PatternDataGrid slot="margin-right" />
           <p className="z-10 mx-auto text-sm text-muted-foreground">
@@ -216,7 +223,7 @@ export default function UiCatalogPage() {
 
       <Section
         title="Badge"
-        description="Amber (achievement) é exclusivo da classificação ALTO — nunca decoração neutra."
+        description="Lime (achievement) é exclusivo da classificação ALTO — nunca decoração neutra."
       >
         <div className="flex flex-wrap items-center gap-3">
           <Badge variant="outline">Baixo</Badge>
@@ -228,7 +235,7 @@ export default function UiCatalogPage() {
 
       <Section
         title="Card"
-        description="Superfície card + shadow.syntaxis (nunca box-shadow hardcoded)."
+        description="Hairline (borda 1px), canto reto — sem sombra por padrão no sistema v2.0 (DESIGN.md §4.6)."
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Card>
@@ -236,7 +243,7 @@ export default function UiCatalogPage() {
               <CardTitle>Card padrão</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">shadow-syntaxis, radius-xl.</p>
+              <p className="text-sm text-muted-foreground">hairline, canto reto (radius-none).</p>
             </CardContent>
           </Card>
           <Card size="sm">
@@ -244,11 +251,22 @@ export default function UiCatalogPage() {
               <CardTitle>Card sm</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
-                shadow-syntaxis-sm, espaçamento reduzido.
-              </p>
+              <p className="text-sm text-muted-foreground">hairline, espaçamento reduzido.</p>
             </CardContent>
           </Card>
+        </div>
+      </Section>
+
+      <Section
+        title="Hairlines estruturais"
+        description="Assinatura nova na v2.0 (DESIGN.md §4.4.3) — linhas de 1px delimitando colunas/seções, o grid visível que os cantos retos pedem."
+      >
+        <div className="grid grid-cols-1 divide-y divide-border border border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          {['Coluna A', 'Coluna B', 'Coluna C'].map((label) => (
+            <div key={label} className="p-4 text-sm text-foreground">
+              {label}
+            </div>
+          ))}
         </div>
       </Section>
 
@@ -283,11 +301,11 @@ export default function UiCatalogPage() {
         description="Estados: default, selecionada, correta/incorreta (gabarito)."
       >
         <RadioGroup defaultValue="b" className="max-w-sm gap-1.5">
-          <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-border px-3 py-1.5 text-sm text-foreground transition-colors has-[[data-checked]]:border-primary has-[[data-checked]]:bg-primary/10">
+          <label className="flex cursor-pointer items-center gap-3 rounded-sm border border-border px-3 py-1.5 text-sm text-foreground transition-colors has-[[data-checked]]:border-primary has-[[data-checked]]:bg-primary/10">
             <RadioGroupItem value="a" />
             Alternativa não selecionada
           </label>
-          <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-border px-3 py-1.5 text-sm text-foreground transition-colors has-[[data-checked]]:border-primary has-[[data-checked]]:bg-primary/10">
+          <label className="flex cursor-pointer items-center gap-3 rounded-sm border border-border px-3 py-1.5 text-sm text-foreground transition-colors has-[[data-checked]]:border-primary has-[[data-checked]]:bg-primary/10">
             <RadioGroupItem value="b" />
             Alternativa selecionada
           </label>
