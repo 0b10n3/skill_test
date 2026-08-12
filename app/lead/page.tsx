@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LeadForm } from '@/components/lead/LeadForm';
 import { SENIORITY_LABEL } from '@/components/lead/seniority-label';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { useQuizAnswers } from '@/lib/quiz-context';
 import type { SeniorityLevel } from '@/lib/types';
 
@@ -25,7 +26,8 @@ export default function LeadPage() {
   }
 
   return (
-    <main className="flex h-dvh flex-col items-center justify-center gap-6 px-6 py-4">
+    <main className="flex h-dvh flex-col items-center justify-center gap-3 px-6 py-4">
+      <Eyebrow className="text-center">Último passo</Eyebrow>
       <LeadForm seniorityLabel={SENIORITY_LABEL[seniority]} />
     </main>
   );

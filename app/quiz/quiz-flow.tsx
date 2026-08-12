@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { fetchRestOfSession } from './actions';
 import { ProgressBar } from '@/components/quiz/ProgressBar';
 import { QuestionCard } from '@/components/quiz/QuestionCard';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { useQuizAnswers } from '@/lib/quiz-context';
 import type { ClientQuestion, SeniorityLevel } from '@/lib/types';
 
@@ -59,6 +60,7 @@ export function QuizFlow({ seniorityQuestion }: QuizFlowProps) {
 
   return (
     <main className="flex h-dvh flex-col items-center justify-center gap-3 px-6 py-3">
+      <Eyebrow className="text-center">Avaliação Syntaxis</Eyebrow>
       {!isSeniorityStep && <ProgressBar currentQuestionNumber={currentIndex} />}
       <QuestionCard key={currentQuestion.id} question={currentQuestion} onAnswer={handleAnswer} />
     </main>

@@ -2,6 +2,7 @@
 
 import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { PatternGrowthLine } from '@/components/patterns';
 import {
   CATEGORY_LABEL,
@@ -31,10 +32,23 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
   return (
     <section
       aria-labelledby="priority-skills-heading"
-      className="flex w-full max-w-4xl flex-col gap-3"
+      // Banda Deep Forest (DESIGN.md v1.1 §4.4.4) para a S5 — a seção mais
+      // "conquista" do relatório, com a linha de conquista como
+      // protagonista. Cores fixas Chalk/Grove-300, independentes do tema
+      // ativo; os Cards aninhados mantêm sua própria superfície
+      // theme-aware (bg-card), então continuam legíveis dentro da banda em
+      // qualquer tema. Neutralizado na impressão (print:*) — o relatório
+      // sempre imprime em fundo claro (ver app/resultado/page.tsx).
+      className="flex w-full max-w-4xl flex-col gap-3 rounded-xl bg-neutral-deep-forest px-6 py-8 print:bg-transparent print:px-0 print:py-0 sm:px-10 sm:py-10"
     >
       <div className="flex flex-col gap-2">
-        <h2 id="priority-skills-heading" className="font-display text-lg text-foreground">
+        <Eyebrow onDark className="print:text-grove-700">
+          Prioridades
+        </Eyebrow>
+        <h2
+          id="priority-skills-heading"
+          className="font-display text-lg text-neutral-chalk print:text-foreground"
+        >
           Onde investir primeiro para chegar a {NEXT_LEVEL_LABEL[seniority]}
         </h2>
         {/* Linha de conquista como protagonista (DESIGN.md §5.2/§5.4) —

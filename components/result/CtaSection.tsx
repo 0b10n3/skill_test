@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { OfferBlock } from '@/components/result/OfferBlock';
 import { ShareRadarButton } from '@/components/result/ShareRadarButton';
 import { CATEGORY_LABEL, CTA_HEADLINE } from '@/content/relatorio';
@@ -56,6 +57,7 @@ export function CtaSection({
       <h2 id="cta-heading" className="sr-only">
         Próximos passos
       </h2>
+      <Eyebrow>Próximo passo</Eyebrow>
 
       <Card>
         <CardHeader>

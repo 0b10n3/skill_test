@@ -10,6 +10,7 @@ import { DimensionScoreCards } from '@/components/result/DimensionScoreCards';
 import { MethodFooter } from '@/components/result/MethodFooter';
 import { ReportHeader } from '@/components/result/ReportHeader';
 import { StrengthsAndFocus } from '@/components/result/StrengthsAndFocus';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { useQuizAnswers } from '@/lib/quiz-context';
 
 // Recharts é o maior contribuinte de JS da página — code-split dos dois
@@ -96,7 +97,10 @@ export default function ResultadoPage() {
         />
       </div>
 
-      <MethodFooter />
+      <div className="flex w-full max-w-md flex-col gap-2">
+        <Eyebrow>Metodologia</Eyebrow>
+        <MethodFooter />
+      </div>
     </main>
   );
 }
