@@ -101,3 +101,6 @@ jobs:
 
       - name: Lighthouse — Performance/Acessibilidade/SEO ≥ 90 (/)
         run: npm run test:lighthouse
+
+      - name: Lighthouse — 4 rotas × claro/escuro ≥ 90 (Épico 19)
+        run: npm run test:lighthouse:flow

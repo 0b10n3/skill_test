@@ -40,5 +40,11 @@ export default defineConfig({
         url: 'http://localhost:3000',
         reuseExistingServer: !process.env.CI,
         timeout: 180_000,
+        // Só para o servidor que o Playwright sobe localmente — nunca
+        // aplicado a um deployment real (ver lib/rate-limit.ts). O volume
+        // legítimo de submissões da suíte completa (~20/rodada, Épico 19)
+        // excede o limite de produção (10/60s/IP) quando tudo roda do
+        // mesmo IP local.
+        env: { RATE_LIMIT_MAX_REQUESTS: '1000' },
       },
 });

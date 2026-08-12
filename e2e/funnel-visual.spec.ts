@@ -2,9 +2,12 @@ import { expect, test } from '@playwright/test';
 
 /**
  * Teste visual de referência do funil redesenhado (Épico 17): screenshots
- * de Landing/Quiz/Lead × claro/escuro × 375/1440px — baseline sucessor do
- * catálogo do Épico 15 (e2e/dev-ui-catalog.spec.ts), agora cobrindo as
- * páginas reais do produto, não só a biblioteca de componentes.
+ * de Landing/Quiz/Lead × claro/escuro × 375/768/1440px — baseline sucessor
+ * do catálogo do Épico 15 (e2e/dev-ui-catalog.spec.ts), agora cobrindo as
+ * páginas reais do produto, não só a biblioteca de componentes. 768px
+ * (tablet) adicionado no Épico 19 — e2e/cross-device.spec.ts já cobre esse
+ * breakpoint para overflow horizontal, mas não para regressão visual
+ * pixel a pixel.
  */
 async function reachLeadPage(page: import('@playwright/test').Page) {
   await page.goto('/quiz');
@@ -18,6 +21,7 @@ async function reachLeadPage(page: import('@playwright/test').Page) {
 
 const VIEWPORTS = [
   { name: '375', width: 375, height: 1400 },
+  { name: '768', width: 768, height: 1400 },
   { name: '1440', width: 1440, height: 1200 },
 ];
 

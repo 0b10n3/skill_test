@@ -4,7 +4,7 @@ test.describe('/ — landing page', () => {
   // Épico 17: a landing ganhou seções de conteúdo (dimensões, método) que
   // tornam a PÁGINA inteira naturalmente maior que um viewport — normal
   // para uma landing com conteúdo, e diferente da regra de "single-
-  // viewport por seção" (REDESIGN.md §2 invariante #8), que aqui vale
+  // viewport por seção" (regra de layout do app desde o Épico 4), que aqui vale
   // para a tela de entrada (hero: título + promessa + CTA, a etapa que o
   // visitante precisa completar sem rolar), não para o scroll de conteúdo
   // abaixo dela.

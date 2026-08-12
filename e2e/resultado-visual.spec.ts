@@ -129,6 +129,36 @@ for (const colorScheme of ['light', 'dark'] as const) {
 }
 
 /**
+ * Tablet (768px, Épico 19): checagem visual única (não o cross-product
+ * completo de tema × persona acima) — cross-device.spec.ts já cobre esse
+ * breakpoint para overflow horizontal nas 4 rotas; aqui o objetivo é só
+ * confirmar que os cards de dimensão/prioridade não quebram o layout de
+ * single-viewport nessa largura intermediária. Persona "alto" (não
+ * "baixo"): com 0/15 TODAS as dimensões viram "atencao" e a lista "Vale
+ * revisitar" (mascarada, mas não com altura fixa) varia de altura em
+ * pixels conforme o texto aleatório das perguntas sorteadas, quebrando o
+ * match de dimensão do screenshot mesmo mascarado — achado real ao
+ * baselinar este teste. "Alto" (15/15) não tem "Vale revisitar" (nada de
+ * errado a revisar), então não tem esse vetor de variância de altura.
+ */
+test('resultado — tablet 768px — light', async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 1400 });
+  await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' });
+  await answerQuizDeterministically(page, 'senior', 15);
+  await submitLead(page, `resultado-visual-tablet-${Date.now()}@example.com`);
+  await page.evaluate(() => document.fonts.ready);
+
+  await expect(page.getByText('Radar de competências')).toBeVisible();
+  await expect(page.getByText(/Onde investir primeiro/)).toBeVisible();
+
+  await expect(page).toHaveScreenshot('resultado-tablet-768-light.png', {
+    fullPage: true,
+    maxDiffPixelRatio: 0.02,
+    mask: await randomContentMasks(page),
+  });
+});
+
+/**
  * S8 (Épico 18): impressão sempre em fundo claro (mesmo partindo do tema
  * escuro) — a troca de tema real via next-themes (app/resultado/page.tsx)
  * é o mecanismo, não um recálculo de cor duplicado em CSS.

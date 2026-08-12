@@ -27,7 +27,7 @@
     "test:e2e:remote": "PLAYWRIGHT_BASE_URL=$URL playwright test",
     "lighthouse": "node scripts/lighthouse-check.mjs http://localhost:3000/",
     "test:lighthouse": "start-server-and-test start http://localhost:3000 lighthouse",
-    "lighthouse:flow": "node scripts/lighthouse-flow-check.mjs http://localhost:3000",
+    "lighthouse:flow": "node scripts/lighthouse-flow-check.mjs http://localhost:3000 light && node scripts/lighthouse-flow-check.mjs http://localhost:3000 dark",
     "test:lighthouse:flow": "start-server-and-test start http://localhost:3000 lighthouse:flow"
   },
   "dependencies": {

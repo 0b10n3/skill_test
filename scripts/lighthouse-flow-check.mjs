@@ -19,6 +19,13 @@ import puppeteer from 'puppeteer-core';
 import content from '../content/questions.json' with { type: 'json' };
 
 const BASE_URL = process.argv[2] ?? 'http://localhost:3000';
+// Épico 19: tema claro/escuro é um argumento explícito, não uma segunda
+// rodada implícita — o app resolve o tema via `prefers-color-scheme`
+// quando não há preferência salva (next-themes, defaultTheme="system"),
+// então forçamos a media feature ANTES de navegar, sem tocar em
+// localStorage/cookies (equivalente ao que o usuário real vê no primeiro
+// acesso, por tema do SO).
+const COLOR_SCHEME = process.argv[3] === 'dark' ? 'dark' : 'light';
 const THRESHOLD = 90;
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
 
@@ -53,6 +60,7 @@ async function runFlow() {
   const browser = await puppeteer.connect({ browserURL: `http://localhost:${chrome.port}` });
   const page = await browser.newPage();
   await page.setViewport({ width: 390, height: 844 });
+  await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: COLOR_SCHEME }]);
 
   const flow = await startFlow(page, { name: 'Syntaxis Skill Check — fluxo completo' });
 
@@ -119,7 +127,7 @@ const CATEGORIES_BY_GATHER_MODE = {
 function printAndCheck(flowResult) {
   let anyFailed = false;
 
-  console.log(`\nLighthouse User Flow — ${BASE_URL}\n`);
+  console.log(`\nLighthouse User Flow — ${BASE_URL} — tema ${COLOR_SCHEME}\n`);
 
   for (const step of flowResult.steps) {
     console.log(`## ${step.name} (${step.lhr.gatherMode})`);
