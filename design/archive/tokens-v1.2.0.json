@@ -1,0 +1,605 @@
+{
+  "meta": {
+    "name": "Syntaxis Design Tokens",
+    "version": "1.2.0",
+    "format": "DTCG (Design Tokens Community Group) — $value / $type",
+    "sources": ["syntaxis_brand_book_v1.md", "DESIGN.md v1.1"],
+    "changelog": {
+      "1.2.0": "Versão ADITIVA — mesclada manualmente a partir de _insumos/tokens.json (v1.2.0 do founder) sobre a v1.1.0 real deste repositório, em vez de substituição direta: o arquivo do founder não incluía os tokens de contraste AA adicionados incrementalmente nos Épicos 14/15/18 (errorText, achievementForeground, linkForeground, attentionText, progressBar, progressTrack) e revertia theme.light.secondary/theme.dark.primary de Grove-700 para Grove-500 — a mesma falha de contraste (3.16:1, abaixo do AA) já corrigida no Épico 14. Nenhum valor pré-existente foi alterado; ver scripts/check-tokens-additive.mjs e design/archive/tokens-v1.1.0.json (snapshot congelado usado na verificação). Adiciona apenas: escala tipográfica de produto digital (displayXxl, eyebrow, statNumber), radius.xl e radius.pill, spacing.3xl, grupos component.* (button, card, band, highlight, eyebrow), motion.* (durações e easing) e layout.* (container, ritmo de seção). Fundamenta as assinaturas visuais e anti-padrões do DESIGN.md v1.1 §4.3–§4.6.",
+      "1.1.0": "Adiciona camada semântica light/dark (globals.css §5.2), tokens de padrão geométrico (DESIGN.md §5) e escala de espaçamento em grid de 8px. Paleta primária inalterada em relação à 1.0.0.",
+      "1.0.0": "Versão inicial — cores primárias, tipografia, radius e sombras do Brand Book v1."
+    },
+    "note": "Nenhuma cor da paleta primária (Forest/Grove/Amber) foi alterada nesta versão, nem em nenhuma versão anterior. Onde o globals.css original definia um valor HSL sem nome de marca associado (ex.: superfícies escuras de card/muted/border no modo dark), este arquivo preserva o hex calculado com precisão a partir do HSL original em vez de aproximar para um token nomeado existente — ver $description de cada token em color.semantic.dark."
+  },
+
+  "color": {
+    "forest": {
+      "$description": "Forest — âncora institucional. Títulos, UI principal, estrutura.",
+      "100": { "$value": "#D4EDE0", "$type": "color" },
+      "300": { "$value": "#6DB890", "$type": "color" },
+      "500": {
+        "$value": "#1B6A45",
+        "$type": "color",
+        "$description": "Forest-500 — cor de marca primária."
+      },
+      "700": { "$value": "#125233", "$type": "color" },
+      "900": { "$value": "#0A3320", "$type": "color" }
+    },
+    "grove": {
+      "$description": "Grove — ação. CTAs, links ativos, progresso.",
+      "100": { "$value": "#C8EBDA", "$type": "color" },
+      "300": { "$value": "#78C9A4", "$type": "color" },
+      "500": {
+        "$value": "#2D9E67",
+        "$type": "color",
+        "$description": "Grove-500 — cor de marca secundária."
+      },
+      "700": { "$value": "#1E7A4F", "$type": "color" },
+      "900": { "$value": "#0F4E32", "$type": "color" }
+    },
+    "amber": {
+      "$description": "Amber — aspiração. Conquistas, metas atingidas, badges.",
+      "100": { "$value": "#FAE9CC", "$type": "color" },
+      "300": { "$value": "#E8AA68", "$type": "color" },
+      "500": {
+        "$value": "#C9832A",
+        "$type": "color",
+        "$description": "Amber-500 — cor de marca terciária."
+      },
+      "700": { "$value": "#9E6320", "$type": "color" },
+      "900": { "$value": "#6B4115", "$type": "color" }
+    },
+    "neutral": {
+      "chalk": {
+        "$value": "#F7F7F5",
+        "$type": "color",
+        "$description": "Fundo principal Light Mode."
+      },
+      "ink": {
+        "$value": "#141414",
+        "$type": "color",
+        "$description": "Fundo principal Dark Mode; texto sobre fundos claros."
+      },
+      "slate": {
+        "$value": "#4A5568",
+        "$type": "color",
+        "$description": "Texto secundário, metadados."
+      },
+      "mint": {
+        "$value": "#E6F4EE",
+        "$type": "color",
+        "$description": "Fundos suaves, cards informativos."
+      },
+      "cream": {
+        "$value": "#F5EDD6",
+        "$type": "color",
+        "$description": "Fundos de conquista/objetivo."
+      },
+      "mist": {
+        "$value": "#E2E8F0",
+        "$type": "color",
+        "$description": "Bordas, linhas divisórias."
+      },
+      "deepForest": {
+        "$value": "#0F3D27",
+        "$type": "color",
+        "$description": "Superfície escura intencional (blocos, seções de destaque no Dark Mode). Distinto do fundo dark-mode em color.semantic.dark.background — ver nota."
+      },
+      "white": {
+        "$value": "#FFFFFF",
+        "$type": "color",
+        "$description": "Usado apenas em superfícies elevadas (card/popover) no Light Mode — nunca como fundo de página."
+      }
+    },
+    "semantic": {
+      "$description": "Cores funcionais de feedback de interface.",
+      "success": { "$value": "#22C55E", "$type": "color" },
+      "error": { "$value": "#EF4444", "$type": "color" },
+      "errorText": {
+        "$value": "#B91C1C",
+        "$type": "color",
+        "$description": "Variante escurecida de error para uso como TEXTO sobre o fundo de página no Light Mode — error/#EF4444 direto sobre chalk só atinge 3.51:1, abaixo do AA de texto normal (achado real do Épico 14, mensagens de validação em LeadForm)."
+      },
+      "warning": { "$value": "#F59E0B", "$type": "color" },
+      "info": { "$value": "#3B82F6", "$type": "color" },
+      "progressBar": {
+        "$value": "{color.grove.500}",
+        "$type": "color",
+        "$description": "Barra de progresso — sempre Grove, independente do tema (REDESIGN.md §5), diferente de --primary, que é Forest no Light Mode."
+      },
+      "progressTrack": {
+        "$value": "{color.neutral.mist}",
+        "$type": "color",
+        "$description": "Trilha de progresso — sempre Mist, independente do tema (REDESIGN.md §5)."
+      }
+    },
+    "theme": {
+      "light": {
+        "$description": "Mapeamento semântico Light Mode — alias direto para primitivos nomeados (globals.css §5.2 do Brand Book v1).",
+        "background": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "foreground": { "$value": "{color.neutral.ink}", "$type": "color" },
+        "card": { "$value": "{color.neutral.white}", "$type": "color" },
+        "cardForeground": { "$value": "{color.neutral.ink}", "$type": "color" },
+        "popover": { "$value": "{color.neutral.white}", "$type": "color" },
+        "popoverForeground": { "$value": "{color.neutral.ink}", "$type": "color" },
+        "primary": { "$value": "{color.forest.500}", "$type": "color" },
+        "primaryForeground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "secondary": {
+          "$value": "{color.grove.700}",
+          "$type": "color",
+          "$description": "Grove-700, não Grove-500: texto normal (14px) sobre secondary só atinge AA (4.95:1) em Grove-700 — Grove-500/chalk fica em 3.16:1 (achado real do Épico 14, axe-core em /resultado)."
+        },
+        "secondaryForeground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "accent": { "$value": "{color.amber.500}", "$type": "color" },
+        "accentForeground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "muted": { "$value": "{color.neutral.mint}", "$type": "color" },
+        "mutedForeground": { "$value": "{color.neutral.slate}", "$type": "color" },
+        "destructive": { "$value": "{color.semantic.error}", "$type": "color" },
+        "destructiveForeground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "errorText": {
+          "$value": "{color.semantic.errorText}",
+          "$type": "color",
+          "$description": "Para texto de erro sobre o fundo de página (não superfície de botão/badge) — usar em vez de destructive, ver color.semantic.errorText."
+        },
+        "achievementForeground": {
+          "$value": "{color.amber.900}",
+          "$type": "color",
+          "$description": "Texto sobre o selo de conquista (Badge classificação ALTO, DESIGN.md §5.4: Amber exclusivo de conquista real). accent/accentForeground (Amber-500/Chalk) só atinge 2.89:1 em texto — Amber-900 sobre o fundo accent/10 atinge >7:1."
+        },
+        "linkForeground": {
+          "$value": "{color.forest.500}",
+          "$type": "color",
+          "$description": "Cor de marca usada diretamente como texto sobre o fundo da página (variant link de Button/Badge, wordmark do Logo) — mesmo valor de primary no Light Mode (Forest-500 já atinge AA como texto)."
+        },
+        "attentionText": {
+          "$value": "{color.amber.700}",
+          "$type": "color",
+          "$description": "Texto de alerta construtivo (Épico 18, S3: etiqueta 'ponto de atenção' de dimensão) — Amber-700, não achievementForeground (Amber-900): é um tom de atenção mais leve, não o selo de conquista de classificação ALTO. Nunca usar destructive aqui — um resultado baixo é mapa de desenvolvimento, não erro."
+        },
+        "border": { "$value": "{color.neutral.mist}", "$type": "color" },
+        "input": { "$value": "{color.neutral.mist}", "$type": "color" },
+        "ring": { "$value": "{color.forest.500}", "$type": "color" }
+      },
+      "dark": {
+        "$description": "Mapeamento semântico Dark Mode. Tokens com nome de marca no comentário original usam alias ao primitivo; tokens sem nome de marca (card/muted/border/destructive) preservam o hex calculado com precisão a partir do HSL original do globals.css, pois não correspondem a nenhum primitivo já nomeado.",
+        "background": {
+          "$value": "#00120A",
+          "$type": "color",
+          "$description": "Variante 'Deep Forest ajustado' específica para fundo de página no Dark Mode — não é alias de neutral.deepForest (#0F3D27), que é usado como superfície de bloco/destaque, não como fundo de página."
+        },
+        "foreground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "card": {
+          "$value": "#0A1F15",
+          "$type": "color",
+          "$description": "Superfície elevada no dark — calculado de hsl(152,50%,8%), sem primitivo nomeado equivalente."
+        },
+        "cardForeground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "popover": { "$value": "#0A1F15", "$type": "color" },
+        "popoverForeground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "primary": {
+          "$value": "{color.grove.700}",
+          "$type": "color",
+          "$description": "Grove substitui Forest no dark — mais legível sobre fundo escuro. Grove-700, não Grove-500: texto normal (14px) sobre primary só atinge AA (4.95:1) em Grove-700 — Grove-500/chalk fica em 3.16:1 (mesmo achado do Épico 14 que motivou secondary/light usar Grove-700)."
+        },
+        "primaryForeground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "secondary": {
+          "$value": "{color.neutral.mint}",
+          "$type": "color",
+          "$description": "Inversão intencional: Mint como texto claro sobre fundos escuros."
+        },
+        "secondaryForeground": { "$value": "{color.forest.500}", "$type": "color" },
+        "accent": {
+          "$value": "{color.amber.500}",
+          "$type": "color",
+          "$description": "Amber mantido idêntico ao Light Mode."
+        },
+        "accentForeground": { "$value": "{color.neutral.ink}", "$type": "color" },
+        "muted": {
+          "$value": "#15281F",
+          "$type": "color",
+          "$description": "Calculado de hsl(152,30%,12%), sem primitivo nomeado equivalente."
+        },
+        "mutedForeground": {
+          "$value": "#94A3B8",
+          "$type": "color",
+          "$description": "Calculado de hsl(215,20%,65%), sem primitivo nomeado equivalente."
+        },
+        "destructive": {
+          "$value": "#D54444",
+          "$type": "color",
+          "$description": "Variante escurecida de semantic.error para o Dark Mode."
+        },
+        "destructiveForeground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+        "errorText": {
+          "$value": "#F87171",
+          "$type": "color",
+          "$description": "Para texto de erro no Dark Mode — precisa funcionar tanto sobre o fundo de página quanto sobre o fundo tingido do badge/botão destructive (bg-destructive/20). semantic.error (#EF4444) atinge só 4.37:1 contra o tingido — abaixo do AA; #F87171 atinge 5.94:1 no pior caso e 6.2–6.9:1 nos demais (achado real do Épico 15, axe-core no catálogo /dev/ui)."
+        },
+        "achievementForeground": {
+          "$value": "{color.amber.100}",
+          "$type": "color",
+          "$description": "Texto sobre o selo de conquista no Dark Mode — Amber-100 (claro) sobre o fundo accent/20 (escuro) atinge >12:1."
+        },
+        "linkForeground": {
+          "$value": "{color.grove.500}",
+          "$type": "color",
+          "$description": "Cor de marca usada diretamente como texto no Dark Mode — Grove-700 (usado em --primary para preenchimento de botão) só atinge 3.62:1 como texto direto sobre o fundo; Grove-500 (o valor original antes do achado de contraste do Épico 14) atinge 5.68:1 como texto (achado real do Épico 15, axe-core no catálogo /dev/ui)."
+        },
+        "attentionText": {
+          "$value": "{color.amber.300}",
+          "$type": "color",
+          "$description": "Texto de alerta construtivo no Dark Mode — Amber-700 (usado no Light Mode) só atinge 3.49-3.9:1 sobre fundos escuros, abaixo do AA; Amber-300 atinge 8.51:1."
+        },
+        "border": {
+          "$value": "#25372F",
+          "$type": "color",
+          "$description": "Calculado de hsl(152,20%,18%), sem primitivo nomeado equivalente."
+        },
+        "input": { "$value": "#25372F", "$type": "color" },
+        "ring": { "$value": "{color.grove.500}", "$type": "color" }
+      }
+    }
+  },
+
+  "typography": {
+    "fontFamily": {
+      "display": {
+        "$value": ["DM Serif Display", "Georgia", "serif"],
+        "$type": "fontFamily",
+        "$description": "Títulos editoriais, taglines, citações."
+      },
+      "body": {
+        "$value": ["DM Sans", "system-ui", "sans-serif"],
+        "$type": "fontFamily",
+        "$description": "Corpo de texto, UI."
+      },
+      "data": {
+        "$value": ["Space Mono", "Courier New", "monospace"],
+        "$type": "fontFamily",
+        "$description": "Métricas, código (Python/SQL), comandos, paths de arquivo."
+      }
+    },
+    "fontWeight": {
+      "light": { "$value": 300, "$type": "fontWeight" },
+      "regular": { "$value": 400, "$type": "fontWeight" },
+      "medium": { "$value": 500, "$type": "fontWeight" },
+      "bold": { "$value": 700, "$type": "fontWeight" }
+    },
+    "scale": {
+      "$description": "Tokens compostos — combinam família, tamanho, peso e altura de linha. Ver DESIGN.md v1.1 §4.2–§4.3.",
+      "displayXxl": {
+        "$type": "typography",
+        "$description": "Novo na v1.2.0 — headline de hero em produto digital (DESIGN.md v1.1 §4.3). Um por página; usa palavra-acento em itálico (§4.4.2) via marcação, não no token. Mobile: reduzir para 40px mantendo lineHeight.",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.display}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontStyle": "normal",
+          "fontSize": "64px",
+          "lineHeight": "1.05",
+          "letterSpacing": "-0.01em"
+        }
+      },
+      "displayXl": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.display}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontStyle": "italic",
+          "fontSize": "48px",
+          "lineHeight": "1.1"
+        }
+      },
+      "displayLg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.display}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontStyle": "normal",
+          "fontSize": "36px",
+          "lineHeight": "1.15"
+        }
+      },
+      "heading1": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.display}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontStyle": "normal",
+          "fontSize": "28px",
+          "lineHeight": "1.25"
+        }
+      },
+      "heading2": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.medium}",
+          "fontSize": "22px",
+          "lineHeight": "1.3"
+        }
+      },
+      "heading3": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.medium}",
+          "fontSize": "18px",
+          "lineHeight": "1.35"
+        }
+      },
+      "bodyLg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "16px",
+          "lineHeight": "1.7"
+        }
+      },
+      "body": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "14px",
+          "lineHeight": "1.65"
+        }
+      },
+      "caption": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.light}",
+          "fontSize": "12px",
+          "lineHeight": "1.5"
+        }
+      },
+      "eyebrow": {
+        "$type": "typography",
+        "$description": "Novo na v1.2.0 — rótulo de seção em Space Mono caixa alta (DESIGN.md v1.1 §4.4.1). Cor: Grove-700 sobre claro, Grove-300 sobre banda/dark.",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.data}",
+          "fontWeight": "{typography.fontWeight.bold}",
+          "fontSize": "12px",
+          "lineHeight": "1.4",
+          "letterSpacing": "0.15em",
+          "textCase": "uppercase"
+        }
+      },
+      "statNumber": {
+        "$type": "typography",
+        "$description": "Novo na v1.2.0 — número protagonista de faixa de métricas (DESIGN.md v1.1 §4.4.5). Mobile: reduzir para 32px.",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.data}",
+          "fontWeight": "{typography.fontWeight.bold}",
+          "fontSize": "44px",
+          "lineHeight": "1.0",
+          "letterSpacing": "-0.02em"
+        }
+      },
+      "dataXl": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.data}",
+          "fontWeight": "{typography.fontWeight.bold}",
+          "fontSize": "24px",
+          "lineHeight": "1.0"
+        }
+      },
+      "data": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.data}",
+          "fontWeight": "{typography.fontWeight.regular}",
+          "fontSize": "13px",
+          "lineHeight": "1.6"
+        }
+      },
+      "label": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{typography.fontFamily.body}",
+          "fontWeight": "{typography.fontWeight.medium}",
+          "fontSize": "11px",
+          "lineHeight": "1.4",
+          "letterSpacing": "0.1em",
+          "textCase": "uppercase"
+        }
+      }
+    }
+  },
+
+  "spacing": {
+    "$description": "Grid de 8px — ver Brand Book v1 §8 'Espaçamentos Simétricos'.",
+    "xs": { "$value": "8px", "$type": "dimension" },
+    "sm": { "$value": "16px", "$type": "dimension" },
+    "md": { "$value": "24px", "$type": "dimension" },
+    "lg": { "$value": "32px", "$type": "dimension" },
+    "xl": { "$value": "48px", "$type": "dimension" },
+    "2xl": { "$value": "64px", "$type": "dimension" },
+    "3xl": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Novo na v1.2.0 — respiro de seção-statement (DESIGN.md v1.1 §4.5, ritmo de seções)."
+    }
+  },
+
+  "radius": {
+    "sm": { "$value": "6px", "$type": "dimension" },
+    "md": { "$value": "8px", "$type": "dimension" },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Radius base — moderado, não arredondado demais."
+    },
+    "xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Novo na v1.2.0 — cards e tiles de evidência (DESIGN.md v1.1 §4.6)."
+    },
+    "pill": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Novo na v1.2.0 — botões-pílula e chips (DESIGN.md v1.1 §4.4.7)."
+    }
+  },
+
+  "shadow": {
+    "syntaxisSm": {
+      "$type": "shadow",
+      "$value": {
+        "color": "rgba(27, 106, 69, 0.06)",
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "8px",
+        "spread": "0px"
+      }
+    },
+    "syntaxis": {
+      "$type": "shadow",
+      "$value": {
+        "color": "rgba(27, 106, 69, 0.08)",
+        "offsetX": "0px",
+        "offsetY": "4px",
+        "blur": "16px",
+        "spread": "0px"
+      }
+    },
+    "syntaxisLg": {
+      "$type": "shadow",
+      "$value": {
+        "color": "rgba(27, 106, 69, 0.12)",
+        "offsetX": "0px",
+        "offsetY": "8px",
+        "blur": "28px",
+        "spread": "0px"
+      }
+    },
+    "amber": {
+      "$type": "shadow",
+      "$value": {
+        "color": "rgba(201, 131, 42, 0.15)",
+        "offsetX": "0px",
+        "offsetY": "4px",
+        "blur": "16px",
+        "spread": "0px"
+      }
+    }
+  },
+
+  "component": {
+    "$description": "Novo na v1.2.0 — valores canônicos dos componentes com assinatura (DESIGN.md v1.1 §4.6). Apenas dimensões e composição; toda cor referencia a camada semântica ou primitivos existentes.",
+    "button": {
+      "radius": { "$value": "{radius.pill}", "$type": "dimension" },
+      "heightMd": { "$value": "44px", "$type": "dimension" },
+      "heightLg": {
+        "$value": "52px",
+        "$type": "dimension",
+        "$description": "CTA de hero e de banda."
+      },
+      "paddingX": { "$value": "{spacing.md}", "$type": "dimension" },
+      "outlineWidth": {
+        "$value": "1.5px",
+        "$type": "dimension",
+        "$description": "Borda do botão secundário (outline Forest)."
+      }
+    },
+    "card": {
+      "radius": { "$value": "{radius.xl}", "$type": "dimension" },
+      "borderWidth": { "$value": "1px", "$type": "dimension" },
+      "borderColorLight": { "$value": "{color.neutral.mist}", "$type": "color" },
+      "padding": { "$value": "{spacing.md}", "$type": "dimension" },
+      "paddingLg": {
+        "$value": "{spacing.lg}",
+        "$type": "dimension",
+        "$description": "Tiles de evidência maiores no grid bento."
+      }
+    },
+    "band": {
+      "$description": "Banda Deep Forest full-bleed (DESIGN.md v1.1 §4.4.4).",
+      "background": { "$value": "{color.neutral.deepForest}", "$type": "color" },
+      "foreground": { "$value": "{color.neutral.chalk}", "$type": "color" },
+      "eyebrowColor": { "$value": "{color.grove.300}", "$type": "color" },
+      "paddingY": { "$value": "{spacing.3xl}", "$type": "dimension" }
+    },
+    "highlight": {
+      "$description": "Marcador de ênfase sob UMA palavra do headline (DESIGN.md v1.1 §4.4.3). Grove por padrão; Amber somente quando o destaque é conquista.",
+      "thickness": { "$value": "7px", "$type": "dimension" },
+      "offset": { "$value": "4px", "$type": "dimension" },
+      "color": { "$value": "{color.grove.500}", "$type": "color" },
+      "colorAchievement": { "$value": "{color.amber.500}", "$type": "color" }
+    },
+    "eyebrow": {
+      "colorLight": { "$value": "{color.grove.700}", "$type": "color" },
+      "colorOnDark": { "$value": "{color.grove.300}", "$type": "color" },
+      "gapBelow": { "$value": "{spacing.sm}", "$type": "dimension" }
+    }
+  },
+
+  "motion": {
+    "$description": "Novo na v1.2.0 — movimento sóbrio e único; sempre desativável por prefers-reduced-motion.",
+    "duration": {
+      "fast": { "$value": "150ms", "$type": "duration" },
+      "base": { "$value": "200ms", "$type": "duration" },
+      "slow": {
+        "$value": "400ms",
+        "$type": "duration",
+        "$description": "Entradas únicas (ex.: radar do relatório)."
+      }
+    },
+    "easing": {
+      "standard": { "$value": "cubic-bezier(0.2, 0, 0, 1)", "$type": "cubicBezier" }
+    }
+  },
+
+  "layout": {
+    "$description": "Novo na v1.2.0 — ritmo de página (DESIGN.md v1.1 §4.5: espaçamento uniforme entre seções é anti-padrão).",
+    "containerMax": { "$value": "1120px", "$type": "dimension" },
+    "sectionY": {
+      "$value": "{spacing.3xl}",
+      "$type": "dimension",
+      "$description": "Respiro vertical padrão de seção em desktop."
+    },
+    "sectionYMobile": { "$value": "{spacing.2xl}", "$type": "dimension" },
+    "sectionYStatement": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Respiro antes/depois de banda Deep Forest e faixa de números."
+    }
+  },
+
+  "pattern": {
+    "$description": "Sistema de padrões geométricos — DESIGN.md §5. Três famílias: nó-e-galho (primária), grade de dados, linha de conquista.",
+    "nodeBranch": {
+      "$description": "Padrão primário — nós conectados por galhos, referência a árvore sintática / AST / árvore de decisão.",
+      "nodeRadius": { "$value": "2.5px", "$type": "dimension" },
+      "strokeWidth": { "$value": "0.75px", "$type": "dimension" },
+      "color": { "$value": "{color.grove.500}", "$type": "color" },
+      "opacityOnText": {
+        "$value": 0.12,
+        "$type": "number",
+        "$description": "Máximo quando o padrão está atrás de texto corrido."
+      },
+      "opacityDecorativeMin": { "$value": 0.25, "$type": "number" },
+      "opacityDecorativeMax": { "$value": 0.4, "$type": "number" }
+    },
+    "dataGrid": {
+      "$description": "Grade de pontos evocando planilha/dataframe — fundos técnicos (SQL, Python, Databricks).",
+      "spacing": { "$value": "14px", "$type": "dimension" },
+      "dotRadius": { "$value": "1px", "$type": "dimension" },
+      "color": { "$value": "{color.neutral.mist}", "$type": "color" },
+      "opacityMin": { "$value": 0.15, "$type": "number" },
+      "opacityMax": { "$value": 0.2, "$type": "number" }
+    },
+    "growthLine": {
+      "$description": "Linha em degraus ascendentes — certificados, badges, indicadores de progresso. Nunca curva orgânica; nunca candlestick.",
+      "strokeWidth": { "$value": "2px", "$type": "dimension" },
+      "color": { "$value": "{color.amber.500}", "$type": "color" },
+      "opacity": {
+        "$value": 1.0,
+        "$type": "number",
+        "$description": "Elemento protagonista — nunca decorativo de fundo."
+      }
+    }
+  }
+}
