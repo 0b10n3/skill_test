@@ -45,6 +45,7 @@ Copie `.env.example` para `.env.local` e preencha as variáveis necessárias (ve
 | `npm run test:lighthouse`           | Auditoria Lighthouse (Performance/A11y/SEO) contra `/`                                                              |
 | `npm run test:lighthouse:flow`      | Auditoria Lighthouse nas 4 rotas públicas via User Flow (ver [`GOLIVE.md`](./GOLIVE.md))                            |
 | `npm run generate:tokens`           | Gera `app/tokens.generated.css` (gitignored) a partir de `design/tokens.json`                                       |
+| `npm run check:tokens-additive`     | Falha se `design/tokens.json` alterar/remover algum token da v1.1.0 (snapshot em `design/archive/`) — só aditivo    |
 | `npm run lint:colors`               | Falha se algum `.ts`/`.tsx` em `app/`, `components/`, `lib/`, `content/` tiver cor hex/rgb/hsl fora dos tokens      |
 | `npm run audit:contrast`            | Gera `design/contrast-report.md` checando contraste WCAG AA de todos os pares semânticos claro/escuro               |
 | `npm run lint:patterns`             | Falha se algum arquivo importar mais de um padrão geométrico (`components/patterns`) — "um padrão por peça"         |
@@ -175,6 +176,67 @@ aprovação é registrada, o publicado é sempre derivado por script.
   segmento dark↔light do duotone registrado no manifest, não uma lista
   solta de cores — ver comentário no topo de `scripts/verify-asset-palette.mjs`
   para o porquê).
+
+## Refinamento anti-genérico (Épico 20)
+
+`DESIGN.md` v1.1 (§4.3–§4.6) e `design/tokens.json` v1.2.0 codificam as
+assinaturas visuais e a lista de anti-padrões "feito por IA" que este épico
+aplicou às 4 rotas públicas: hero com `displayXxl` + palavra-acento serif
+itálica + marcador Grove (`components/ui/marker-highlight.tsx`), eyebrows
+mono em toda seção (`components/ui/eyebrow.tsx`), a seção "o que o
+diagnóstico avalia" da landing virou grid bento assimétrico de tiles de
+evidência real do produto (`components/landing/DimensionsSection.tsx` +
+`lib/landing-evidence.ts` — nunca expõe `correctOptionId`, coberto por
+teste), faixa de números (`StatsStripSection.tsx`) e banda Deep Forest
+(`CredibilityBand.tsx` na landing; a S5 de `/resultado`,
+`PriorityCareerSkills.tsx`). Botões e cards migraram para os tokens de
+componente da v1.2.0 (`component.button`/`component.card`).
+
+A v1.2.0 de `design/tokens.json` é estritamente aditiva sobre a v1.1.0 —
+`npm run check:tokens-additive` (parte do `prebuild`) compara contra o
+snapshot congelado `design/archive/tokens-v1.1.0.json` e falha se qualquer
+valor pré-existente mudar ou for removido.
+
+**Achado real:** `tailwind-merge` (via `cn()`, `lib/utils.ts`) descarta por
+padrão qualquer classe `text-<palavra>` sem sufixo numérico quando
+combinada com uma cor de texto no mesmo `cn()` — tratava `text-eyebrow`,
+`text-data-xl` etc. como candidatas a cor e as removia silenciosamente.
+`lib/utils.ts` registra as classes de `typography.scale` (derivadas de
+`design/tokens.json`) num grupo próprio do `tailwind-merge` — coberto por
+`__tests__/cn-typography-scale.test.ts`, que varre todo token da escala.
+
+## SEO e Analytics (Épico 21)
+
+Camada única de tracking: `lib/analytics/track.ts` exporta `track(evento,
+params)` — nenhum componente chama `gtag`/`fbq` diretamente. Sanitiza PII
+por chave e por formato de valor antes de despachar para GA4 e Meta Pixel
+(taxonomia completa em `lib/analytics/track.ts`, testada em
+`__tests__/analytics-track.test.ts`).
+
+GA4/Meta Pixel só carregam depois de aceite explícito no banner de
+consentimento LGPD (`components/analytics/ConsentBanner.tsx` +
+`lib/analytics/consent.ts`) — nada é montado antes disso, então nenhuma
+requisição sai (coberto por `e2e/consent.spec.ts`, que intercepta rede). O
+banner não aparece em `/quiz`/`/lead` (viewport único, sem scroll — um
+banner fixo no rodapé colidiria com o CTA da tarefa); o consentimento é
+resolvido na landing na maioria dos casos, ou reaparece em `/resultado`.
+IDs via `NEXT_PUBLIC_GA_MEASUREMENT_ID`/`NEXT_PUBLIC_META_PIXEL_ID` (ver
+`.env.example`) — nunca hardcoded, em branco fora de produção.
+
+`/quiz`, `/lead` e `/resultado` têm `metadata.robots: noindex` (conteúdo
+transacional/pessoal); `app/robots.ts` e `app/sitemap.ts` (gerados pelo
+framework) refletem a mesma regra — só `/` é indexável e listada no
+sitemap. JSON-LD `Organization`+`WebSite` na home (`app/page.tsx`).
+`lib/site-url.ts` centraliza a resolução do domínio ativo (Vercel
+production URL → Vercel URL → localhost), fonte única para
+`metadataBase`, sitemap, robots e JSON-LD.
+
+`scripts/lighthouse-flow-check.mjs` exige SEO ≥ 95 na home, mas não cobra
+SEO nas 3 rotas `noindex` — o próprio audit `is-crawlable` do Lighthouse
+reprova qualquer página `noindex` por definição, então cobrar SEO ali
+contradiria a própria regra de indexação (score continua impresso, só não
+é gate). Performance/acessibilidade/boas práticas seguem ≥ 90 em todas as
+rotas.
 
 ## Setup do MailerLite
 

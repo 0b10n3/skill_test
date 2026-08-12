@@ -3,9 +3,17 @@
 // cor no app deve ser um literal hex/rgb/hsl fora dos arquivos que definem
 // os tokens — toda cor resolve para um token de design/tokens.json.
 //
+// Épico 20 (DESIGN.md v1.1 §4.5) estende a proibição aos cinzas default de
+// framework: mesmo sem literal hex, uma classe Tailwind como `text-gray-500`
+// ou `border-slate-300` renderiza a escala default do Tailwind — que não é
+// Slate (`#4A5568`, o único cinza de texto permitido pela marca) nem nenhum
+// primitivo de design/tokens.json. Essas classes são banidas mesmo que a
+// escala não apareça como hex no código-fonte.
+//
 // Varre app/, components/, lib/, content/ (código-fonte real) por literais
-// de cor em arquivos .ts/.tsx. Não varre .css (os arquivos gerados e o
-// globals.css são exatamente onde essas cores DEVEM aparecer).
+// de cor e por classes de cinza de framework em arquivos .ts/.tsx. Não varre
+// .css (os arquivos gerados e o globals.css são exatamente onde essas cores
+// DEVEM aparecer).
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -16,6 +24,13 @@ const rootDir = path.resolve(__dirname, '..');
 
 const SCAN_DIRS = ['app', 'components', 'lib', 'content'];
 const COLOR_PATTERN = /#[0-9a-fA-F]{3,8}\b|\brgba?\([^)]*\)|\bhsla?\([^)]*\)/g;
+// Classes utilitárias Tailwind sobre a escala de cinza default do framework
+// (gray/slate/zinc/neutral/stone) — DESIGN.md v1.1 §4.5. `slate` aqui é o
+// nome da escala default do Tailwind, não o token de marca `Slate`
+// (`--color-slate`/`text-slate` resolvem para `{color.neutral.slate}` e não
+// batem neste padrão, que exige um sufixo numérico `-50`..`-950`).
+const FRAMEWORK_GRAY_PATTERN =
+  /\b(?:text|bg|border|ring|fill|stroke|divide|from|via|to|outline|decoration|accent|caret)-(?:gray|slate|zinc|neutral|stone)-(?:50|100|200|300|400|500|600|700|800|900|950)\b/g;
 
 /**
  * Exceções conhecidas e justificadas — cada uma precisa de um motivo, não
@@ -46,8 +61,10 @@ function findHardcodedColors(filePath) {
     // Ignora a própria definição de EXCEPTIONS/comentários de justificativa.
     if (line.trim().startsWith('//') || line.trim().startsWith('*')) return;
 
-    const matches = line.match(COLOR_PATTERN);
-    if (matches) {
+    const colorMatches = line.match(COLOR_PATTERN) ?? [];
+    const grayMatches = line.match(FRAMEWORK_GRAY_PATTERN) ?? [];
+    const matches = [...colorMatches, ...grayMatches];
+    if (matches.length > 0) {
       findings.push({ line: index + 1, text: line.trim(), matches });
     }
   });

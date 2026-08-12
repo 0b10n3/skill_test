@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
+import { track } from '@/lib/analytics/track';
 import { useQuizAnswers } from '@/lib/quiz-context';
 import { leadSchema } from '@/lib/validations';
 import type { SubmitResult } from '@/lib/types';
@@ -56,6 +57,7 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
 
       const result: SubmitResult = await response.json();
       setResult(result, parsed.data.email);
+      track('lead_submitted', { nivel: result.seniority });
       router.push('/resultado');
     } catch {
       setSubmitError('Erro de conexão. Verifique sua internet e tente novamente.');
@@ -66,7 +68,13 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle className="font-display text-xl text-foreground">Quase lá</CardTitle>
+        {/* h1 real, não a CardTitle padrão (<div>) — /lead é a única "página"
+            desse passo do funil (Épico 21, higiene técnica: 1 h1 por rota).
+            data-slot="card-title" preservado: é o seletor de teste usado
+            em vários specs E2E para "a página do card carregou". */}
+        <h1 data-slot="card-title" className="font-display text-xl text-foreground">
+          Quase lá
+        </h1>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>

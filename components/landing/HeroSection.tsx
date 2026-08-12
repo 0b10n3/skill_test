@@ -1,14 +1,20 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Eyebrow } from '@/components/ui/eyebrow';
+import { MarkerHighlight } from '@/components/ui/marker-highlight';
 import { ThemedGeneratedImage } from '@/components/generated-image';
 import { PatternNodeBranch } from '@/components/patterns';
 import { HERO_PROMISE } from '@/content/landing';
 
 /**
- * Hero da landing (Épico 17): asset gerado do Épico 16 (variante por
- * tema) como painel visual, mais um <PatternNodeBranch/> decorativo no
- * canto oposto ao asset — não se sobrepõem, então não competem entre si
- * nem violam "um padrão por peça" (o asset gerado não é um dos três
+ * Hero da landing (Épico 17, redesign Épico 20 — DESIGN.md v1.1 §4.3/§4.4):
+ * asset gerado do Épico 16 (variante por tema) como elemento de evidência ao
+ * lado do headline — nunca o layout "centrado + dois botões" proibido pelo
+ * §4.5. Eyebrow (assinatura 1), palavra-acento serif itálica em "finanças"
+ * (assinatura 2) e marcador Grove sob "nível" (assinatura 3) — as três
+ * obrigatórias no hero, nunca na mesma palavra. Mais um <PatternNodeBranch/>
+ * decorativo no canto oposto ao asset — não se sobrepõem, então não competem
+ * entre si nem violam "um padrão por peça" (o asset gerado não é um dos três
  * padrões geométricos programáticos, só a decoração SVG é).
  */
 export function HeroSection() {
@@ -23,11 +29,10 @@ export function HeroSection() {
       />
 
       <div className="flex max-w-xl flex-col gap-5 lg:flex-1">
-        <p className="font-mono text-xs tracking-widest text-link-foreground uppercase">
-          Syntaxis Skill Check
-        </p>
-        <h1 className="font-display text-3xl text-balance text-foreground sm:text-4xl">
-          Descubra seu nível técnico em finanças em alguns minutos
+        <Eyebrow>Syntaxis Skill Check</Eyebrow>
+        <h1 className="font-display text-[40px] leading-[1.05] text-balance text-foreground sm:text-[64px]">
+          Descubra seu <MarkerHighlight>nível</MarkerHighlight> técnico em{' '}
+          <em className="font-display italic">finanças</em> em alguns minutos
         </h1>
         <p className="text-base text-pretty text-foreground">{HERO_PROMISE}</p>
         <p className="text-sm text-pretty text-muted-foreground">

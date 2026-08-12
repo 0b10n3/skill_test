@@ -6,14 +6,34 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 import { METODOLOGIA_LIMITACOES, METODOLOGIA_RESUMO } from '@/content/relatorio';
 
-export function MethodFooter() {
+interface MethodFooterProps {
+  /** Sobre banda Deep Forest (component.band) — cores fixas Chalk/Grove-300, independentes do tema ativo. */
+  onDark?: boolean;
+}
+
+export function MethodFooter({ onDark }: MethodFooterProps) {
   return (
-    <footer className="flex w-full max-w-md flex-col gap-2 border-t border-border pt-4 text-xs text-muted-foreground">
+    <footer
+      className={cn(
+        'flex w-full max-w-md flex-col gap-2 border-t pt-4 text-xs',
+        onDark
+          ? 'border-neutral-chalk/20 text-neutral-chalk/70'
+          : 'border-border text-muted-foreground',
+      )}
+    >
       <p>{METODOLOGIA_LIMITACOES}</p>
       <Dialog>
-        <DialogTrigger className="self-start text-muted-foreground underline underline-offset-2 hover:text-foreground">
+        <DialogTrigger
+          className={cn(
+            'self-start underline underline-offset-2',
+            onDark
+              ? 'text-neutral-chalk/70 hover:text-neutral-chalk'
+              : 'text-muted-foreground hover:text-foreground',
+          )}
+        >
           Como funciona a metodologia
         </DialogTrigger>
         <DialogContent>

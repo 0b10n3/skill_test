@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { OfferBlock } from '@/components/result/OfferBlock';
 import { ShareRadarButton } from '@/components/result/ShareRadarButton';
 import { CATEGORY_LABEL, CTA_HEADLINE } from '@/content/relatorio';
@@ -56,13 +57,14 @@ export function CtaSection({
       <h2 id="cta-heading" className="sr-only">
         Próximos passos
       </h2>
+      <Eyebrow>Próximo passo</Eyebrow>
 
       <Card>
         <CardHeader>
           <CardTitle className="font-display text-base text-foreground">{headline}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
-          <OfferBlock classification={diagnostico.classificacao} />
+          <OfferBlock classification={diagnostico.classificacao} seniority={seniority} />
 
           <div className="flex flex-wrap items-center gap-2">
             <Button

@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/badge';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { Logo } from '@/components/logo';
 import { CLASSIFICATION_CONTEXT, CLASSIFICATION_LABEL, SENIORITY_LABEL } from '@/content/relatorio';
 import { cn } from '@/lib/utils';
@@ -41,6 +42,7 @@ export function ReportHeader({
   return (
     <header className="flex w-full max-w-md flex-col items-center gap-3 text-center">
       <Logo />
+      <Eyebrow>Resultado</Eyebrow>
       <h1 className="font-display text-2xl text-foreground">Diagnóstico de Competências</h1>
 
       <dl className="flex flex-col gap-0.5 text-sm text-muted-foreground">
@@ -74,8 +76,9 @@ export function ReportHeader({
         <p className="text-sm text-muted-foreground">
           {CLASSIFICATION_CONTEXT[classificacao](seniorityLabel)}
         </p>
-        <p data-testid="score-geral" className="font-mono text-xs text-muted-foreground">
-          {Math.round(scoreGlobal * 100)}% de acerto geral
+        <p data-testid="score-geral" className="text-xs text-muted-foreground">
+          <span className="text-data-xl text-foreground">{Math.round(scoreGlobal * 100)}%</span>
+          {' de acerto geral'}
         </p>
       </div>
     </header>

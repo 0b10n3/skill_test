@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import type { ClientQuestion } from '@/lib/types';
 
@@ -27,13 +27,19 @@ export function QuestionCard({ question, onAnswer }: QuestionCardProps) {
       className="flex w-full max-w-lg flex-col gap-3 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 motion-safe:duration-200"
     >
       <CardHeader>
-        <CardTitle
+        {/* h1 real (não a CardTitle padrão, que é um <div>) — /quiz é uma
+            única rota SPA, e a pergunta atual é o conteúdo canônico da
+            "página" em cada passo (Épico 21, higiene técnica: 1 h1 por
+            rota). O foco já pousava aqui a cada troca de pergunta; agora a
+            hierarquia de heading reflete isso também para leitor de tela. */}
+        <h1
           ref={headingRef}
           tabIndex={-1}
+          data-slot="card-title"
           className="font-display text-base leading-snug text-balance text-foreground outline-none sm:text-xl"
         >
           {question.question}
-        </CardTitle>
+        </h1>
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
         <RadioGroup

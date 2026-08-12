@@ -2,19 +2,26 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { offers } from '@/content/offers';
-import type { Classification } from '@/lib/types';
+import { track } from '@/lib/analytics/track';
+import type { Classification, SeniorityLevel } from '@/lib/types';
 
 interface OfferBlockProps {
   classification: Classification;
+  seniority: SeniorityLevel;
 }
 
 function isPlaceholderLink(href: string): boolean {
   return href.startsWith('[');
 }
 
-export function OfferBlock({ classification }: OfferBlockProps) {
+export function OfferBlock({ classification, seniority }: OfferBlockProps) {
   const offer = offers[classification];
   const hasRealLink = !isPlaceholderLink(offer.ctaHref);
+
+  function handleCtaClick() {
+    // cta_offer_click (epico-21): nível × classificação, params: nível, classificação — nunca PII.
+    track('cta_offer_click', { nivel: seniority, classificacao: classification });
+  }
 
   return (
     <Card className="w-full max-w-md">
@@ -24,7 +31,7 @@ export function OfferBlock({ classification }: OfferBlockProps) {
       </CardHeader>
       <CardContent>
         {hasRealLink ? (
-          <Button size="lg" render={<Link href={offer.ctaHref} />}>
+          <Button size="lg" onClick={handleCtaClick} render={<Link href={offer.ctaHref} />}>
             {offer.ctaLabel}
           </Button>
         ) : (

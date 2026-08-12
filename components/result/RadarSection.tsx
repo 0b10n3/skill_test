@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import {
   CATEGORY_LABEL,
   CATEGORY_LABEL_SHORT,
@@ -50,6 +51,7 @@ export function RadarSection({ dimensoes, dimensaoDominante }: RadarSectionProps
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
+        <Eyebrow>Radar</Eyebrow>
         <CardTitle className="font-display text-lg text-foreground">
           Radar de competências
         </CardTitle>

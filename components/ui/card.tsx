@@ -12,7 +12,11 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        'group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground shadow-syntaxis [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:shadow-syntaxis-sm data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl',
+        // component.card (DESIGN.md v1.1 §4.6): radius.xl (16px, já herdado
+        // de rounded-xl agora que o token existe), borda 1px Mist
+        // (border-border), shadow.syntaxisSm — nunca a sombra default do
+        // framework nem card sem borda flutuando sobre o fundo Chalk.
+        'group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl border border-border bg-card py-(--card-spacing) text-sm text-card-foreground shadow-syntaxis-sm [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl',
         className,
       )}
       {...props}

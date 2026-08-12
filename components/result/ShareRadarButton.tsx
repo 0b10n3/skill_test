@@ -11,6 +11,7 @@ import {
   type NodeBranchLayout,
 } from '@/components/patterns/lib/node-branch-layout';
 import { CATEGORY_LABEL_SHORT, CLASSIFICATION_LABEL } from '@/content/relatorio';
+import { track } from '@/lib/analytics/track';
 import type { DimensaoDiagnostico } from '@/lib/diagnostico';
 import type { Classification } from '@/lib/types';
 
@@ -229,6 +230,9 @@ export function ShareRadarButton({ dimensoes, classificacao }: ShareRadarButtonP
       link.click();
       URL.revokeObjectURL(url);
       setStatus('pronto');
+      // radar_shared (epico-21): dispara só quando o download de fato
+      // conclui (não no clique do botão) — é o sinal real de uso.
+      track('radar_shared', { classificacao });
       setTimeout(() => setStatus('idle'), 2000);
     }, 'image/png');
   }

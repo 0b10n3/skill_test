@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { Progress } from '@/components/ui/progress';
 import { GeneratedImage } from '@/components/generated-image';
 import { DIMENSAO_ASSET_SLUG } from '@/content/landing';
@@ -51,9 +52,12 @@ interface DimensionScoreCardsProps {
 export function DimensionScoreCards({ dimensoes }: DimensionScoreCardsProps) {
   return (
     <section aria-labelledby="score-cards-heading" className="flex w-full max-w-4xl flex-col gap-3">
-      <h2 id="score-cards-heading" className="font-display text-lg text-foreground">
-        Desempenho por dimensão
-      </h2>
+      <div className="flex flex-col gap-1">
+        <Eyebrow>Por dimensão</Eyebrow>
+        <h2 id="score-cards-heading" className="font-display text-lg text-foreground">
+          Desempenho por dimensão
+        </h2>
+      </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {dimensoes.map((dimensao) => {
           const Icon = CATEGORY_ICON[dimensao.category];

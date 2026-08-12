@@ -41,5 +41,14 @@ export const DIMENSAO_ASSET_SLUG: Partial<Record<KnowledgeCategory, string>> = {
   'risco-regulacao': 'dimensao-risco-regulacao',
 };
 
-/** Números da seção de método/credibilidade — Space Mono na peça. */
-export const METODO_STATS = '15 questões · 5 dimensões · por senioridade';
+/**
+ * Faixa de números da landing (DESIGN.md v1.1 §4.4.5) — cada item vira um
+ * bloco `statNumber` (Space Mono) individual, não uma única linha de texto.
+ * Os 5 níveis são os `SeniorityLevel` reais do produto (aspirante,
+ * estagiário, júnior, pleno, sênior — lib/types.ts).
+ */
+export const METODO_STATS_ITEMS: { value: string; label: string }[] = [
+  { value: '15', label: 'questões' },
+  { value: '5', label: 'dimensões' },
+  { value: '5', label: 'níveis' },
+];

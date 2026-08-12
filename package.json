@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "generate:tokens": "node scripts/generate-tokens-css.mjs",
+    "check:tokens-additive": "node scripts/check-tokens-additive.mjs",
     "validate:questions": "node scripts/validate-questions.mjs",
     "item-stats": "node scripts/item-stats.mjs",
     "lint:colors": "node scripts/lint-hardcoded-colors.mjs",
@@ -13,7 +14,7 @@
     "assets:verify-manifest": "node scripts/verify-manifest.mjs",
     "assets:verify-palette": "node scripts/verify-asset-palette.mjs",
     "predev": "npm run generate:tokens",
-    "prebuild": "npm run generate:tokens && npm run validate:questions && npm run lint:colors && npm run audit:contrast && npm run lint:patterns && npm run assets:verify-manifest && npm run assets:verify-palette",
+    "prebuild": "npm run generate:tokens && npm run check:tokens-additive && npm run validate:questions && npm run lint:colors && npm run audit:contrast && npm run lint:patterns && npm run assets:verify-manifest && npm run assets:verify-palette",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
@@ -33,6 +34,8 @@
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@mailerlite/mailerlite-nodejs": "^1.7.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.30.0",

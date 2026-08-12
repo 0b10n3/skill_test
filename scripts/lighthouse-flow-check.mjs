@@ -27,7 +27,23 @@ const BASE_URL = process.argv[2] ?? 'http://localhost:3000';
 // acesso, por tema do SO).
 const COLOR_SCHEME = process.argv[3] === 'dark' ? 'dark' : 'light';
 const THRESHOLD = 90;
+// Épico 21: SEO da home é o critério mais estrito da spec ("SEO ≥ 95 na
+// home"). As demais categorias na home seguem o THRESHOLD geral (90).
+const HOME_SEO_THRESHOLD = 95;
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
+
+// Épico 21 manda `/quiz`, `/lead` e `/resultado` terem `robots: noindex` —
+// e o próprio audit "is-crawlable" do Lighthouse SEO reprova qualquer
+// página noindex por definição (é exatamente o que ele existe para
+// checar). Cobrar SEO ≥ 90 nessas 3 rotas contradiria a própria regra de
+// indexação que o épico pede; a spec de fato só exige SEO na home
+// ("Lighthouse na home ... SEO ≥ 95"). O score ainda é IMPRESSO para as
+// 3 rotas (visibilidade), só não conta como falha de gate.
+const NOINDEX_STEP_NAMES = new Set([
+  '/quiz',
+  '/lead (a11y/best-practices/seo)',
+  '/resultado (a11y/best-practices/seo)',
+]);
 
 const seniorityQuestion = content.find((q) => q.type === 'seniority');
 
@@ -141,8 +157,19 @@ function printAndCheck(flowResult) {
         continue;
       }
       const score = Math.round(category.score * 100);
-      const status = score >= THRESHOLD ? 'OK ' : 'FAIL';
-      if (score < THRESHOLD) anyFailed = true;
+      const isSeoOnNoindexRoute = key === 'seo' && NOINDEX_STEP_NAMES.has(step.name);
+      const threshold =
+        key === 'seo' && step.name === '/ (landing)' ? HOME_SEO_THRESHOLD : THRESHOLD;
+      const passed = score >= threshold;
+
+      if (isSeoOnNoindexRoute) {
+        // Informativo, não é gate — ver NOINDEX_STEP_NAMES acima.
+        console.log(`  [--] ${category.title}: ${score} (noindex — não é gate)`);
+        continue;
+      }
+
+      const status = passed ? 'OK ' : 'FAIL';
+      if (!passed) anyFailed = true;
       console.log(`  [${status}] ${category.title}: ${score}`);
     }
     console.log('');

@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Card } from '@/components/ui/card';
+import { Eyebrow } from '@/components/ui/eyebrow';
 import { CATEGORY_LABEL } from '@/content/relatorio';
 import { splitCodeTerms } from '@/lib/highlight-code-terms';
 import type { KnowledgeCategory, QuestionReviewItem } from '@/lib/types';
@@ -95,6 +96,7 @@ export function AnswerReview({ gabarito }: AnswerReviewProps) {
       <h2 id="answer-review-heading" className="sr-only">
         Gabarito comentado
       </h2>
+      <Eyebrow className="mb-1">Gabarito</Eyebrow>
       <Accordion value={openValues} onValueChange={setOpenValues}>
         <AccordionItem value={GABARITO_VALUE}>
           <AccordionTrigger className="font-display text-base text-foreground">
