@@ -47,8 +47,8 @@ export function HeroSection() {
       {/* Escondido no menor breakpoint: com título + promessa + CTA, o hero
           já ultrapassa um viewport de 667px de altura se a imagem também
           empilhar embaixo do texto — a tela de entrada do funil precisa
-          caber sem rolagem (regra "single-viewport por seção",
-          REDESIGN.md §2 invariante #8); a partir de sm ela cabe. */}
+          caber sem rolagem (regra "single-viewport por seção", app desde
+          o Épico 4); a partir de sm ela cabe. */}
       <div className="relative hidden aspect-video w-full overflow-hidden rounded-xl sm:block lg:max-w-md">
         <ThemedGeneratedImage
           slug="hero-landing"

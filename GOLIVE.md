@@ -6,21 +6,27 @@ validação final, de ponta a ponta, de que nada regrediu.
 
 ## Status geral
 
-| Épico                             | Status                                               |
-| --------------------------------- | ---------------------------------------------------- |
-| 1 — Fundação                      | ✅ Validado                                          |
-| 2 — Design System                 | ✅ Validado                                          |
-| 3 — Motor de Seleção              | ✅ Validado                                          |
-| 4 — Landing Page                  | ✅ Validado                                          |
-| 5 — Fluxo do Quiz                 | ✅ Validado                                          |
-| 6 — API de Scoring                | ✅ Validado                                          |
-| 7 — MailerLite                    | ✅ Validado (subscriber real confirmado em produção) |
-| 8 — Página de Resultado           | ✅ Validado                                          |
-| 9 — QA e Go-Live                  | ✅ Validado                                          |
-| 10 — Banco de questões v2         | ✅ Validado                                          |
-| 11 — Motor de diagnóstico         | ✅ Validado                                          |
-| 12 — Relatório de resultados v2   | ✅ Validado                                          |
-| 13 — QA de regressão e go-live v2 | Ver [Go-Live da v2](#go-live-da-v2-épico-13) abaixo  |
+| Épico                             | Status                                                          |
+| --------------------------------- | --------------------------------------------------------------- |
+| 1 — Fundação                      | ✅ Validado                                                     |
+| 2 — Design System                 | ✅ Validado                                                     |
+| 3 — Motor de Seleção              | ✅ Validado                                                     |
+| 4 — Landing Page                  | ✅ Validado                                                     |
+| 5 — Fluxo do Quiz                 | ✅ Validado                                                     |
+| 6 — API de Scoring                | ✅ Validado                                                     |
+| 7 — MailerLite                    | ✅ Validado (subscriber real confirmado em produção)            |
+| 8 — Página de Resultado           | ✅ Validado                                                     |
+| 9 — QA e Go-Live                  | ✅ Validado                                                     |
+| 10 — Banco de questões v2         | ✅ Validado                                                     |
+| 11 — Motor de diagnóstico         | ✅ Validado                                                     |
+| 12 — Relatório de resultados v2   | ✅ Validado                                                     |
+| 13 — QA de regressão e go-live v2 | ✅ Validado                                                     |
+| 14 — Fundação tokens Syntaxis     | ✅ Validado                                                     |
+| 15 — Padrões geométricos          | ✅ Validado                                                     |
+| 16 — Pipeline assets generativos  | ✅ Validado                                                     |
+| 17 — Redesign páginas do fluxo    | ✅ Validado                                                     |
+| 18 — Redesign do relatório        | ✅ Validado                                                     |
+| 19 — QA visual e go-live redesign | Ver [Go-Live do Redesign](#go-live-do-redesign-épico-19) abaixo |
 
 ## 1. Suíte de testes completa (todos os épicos, sem regressão)
 
@@ -278,3 +284,145 @@ dimensão (ex.: `dados-programacao`) — mesmo padrão de verificação do Épic
 — as duas pendências acima exigem uma pessoa com acesso a dispositivo móvel
 real e à conta MailerLite, e devem ser confirmadas antes de considerar o
 go-live da v2 encerrado.**
+
+## Go-Live do Redesign (Épico 19)
+
+Re-execução do checklist acima sobre a migração de identidade completa
+(tokens/temas/padrões/assets/páginas do funil/relatório — Épicos 14–18),
+agora nos **dois temas**, conforme
+`specs/epicos/epico-19-qa-visual-golive.md`.
+
+### 1. Suíte de testes completa (todos os épicos, sem regressão)
+
+**162 testes Vitest** (26 arquivos) + **77 testes Playwright** (11
+arquivos), todos verdes. Além de tudo do go-live v2, cobre: tokens/tema
+claro-escuro e contraste AA (Épico 14), padrões geométricos e catálogo
+`/dev/ui` (Épico 15), manifest/orçamento/paleta de assets gerativos (Épico
+16), páginas do funil redesenhadas nos dois temas × 375/768/1440px (Épico
+17, `e2e/funnel-visual.spec.ts` — 768px somado neste épico), e o relatório
+redesenhado nos dois temas (Épico 18, `e2e/resultado-visual.spec.ts` — 768px
+e axe-core em tema escuro somados neste épico).
+
+**Achado real deste épico**: o volume de submissões `/api/submit` da suíte
+completa (~20 por rodada, depois de somar cobertura de tema escuro em
+`resultado-a11y`/`a11y-all-routes`) passou a colidir com o rate limiter de
+produção (`lib/rate-limit.ts`, 10 requisições/60s por IP) — toda a suíte
+roda do mesmo IP local, então o volume legítimo de teste era barrado como
+se fosse abuso. Corrigido tornando o limite configurável via
+`RATE_LIMIT_MAX_REQUESTS`, setado **somente** pelo `webServer.command` do
+`playwright.config.ts` (nunca aplicado a um deployment real — o alvo de
+`PLAYWRIGHT_BASE_URL`/`test:e2e:remote` continua com o limite de produção
+inalterado).
+
+### 2. Lighthouse — as 4 rotas públicas × 2 temas
+
+`scripts/lighthouse-flow-check.mjs` ganhou um segundo argumento de tema
+(`light`/`dark`, força `prefers-color-scheme` antes de navegar — o mesmo
+sinal que o app usa via `next-themes` com `defaultTheme="system"`). CI
+(`lighthouse` job) roda `npm run test:lighthouse:flow`, que agora executa
+as duas rodadas.
+
+| Rota                                                 | Performance (claro) | Performance (escuro) | Acessibilidade | Boas práticas | SEO  |
+| ---------------------------------------------------- | ------------------- | -------------------- | -------------- | ------------- | ---- |
+| `/` (navegação completa)                             | 98                  | 95                   | 100            | 100           | 100  |
+| `/quiz` (navegação completa)                         | 100                 | 100                  | 100            | 100           | 100  |
+| transição → `/lead`                                  | 100                 | 100                  | n/a¹           | 100           | n/a¹ |
+| `/lead` (snapshot)                                   | n/a¹                | n/a¹                 | 100            | 100           | 100  |
+| transição → `/resultado` (inclui `POST /api/submit`) | 100                 | 100                  | n/a¹           | 100           | n/a¹ |
+| `/resultado` (snapshot)                              | n/a¹                | n/a¹                 | 100            | 100           | 100  |
+
+¹ Mesma limitação de cobertura por modo de coleta do Lighthouse já
+documentada nos go-lives anteriores.
+
+**Orçamento de assets sob throttling 4G** (landing, mobile, `throttlingMethod:
+'simulate'`): Performance 95, LCP 2.9s (score do audit 0.91 — banda "boa"),
+peso total da página 336 KiB. Os 9 assets publicados passam
+`assets:verify-manifest`/`assets:verify-palette` (parte do `prebuild` e do
+CI) — todo arquivo em `public/img/` dentro do `weightBudgetKb` declarado em
+`assets/manifest.json`, nenhum órfão.
+
+### 3. Acessibilidade (axe-core + teclado + leitor de tela) — 2 temas
+
+- **axe-core (WCAG2AA), claro e escuro**: 0 violações nas 4 rotas públicas
+  (`e2e/a11y-all-routes.spec.ts` para `/` e `/lead`; suítes próprias para
+  `/quiz` e `/resultado`), incluindo `/resultado` com o gabarito aberto —
+  cobertura de tema escuro somada neste épico (antes, só claro).
+- **Contraste**: `npm run audit:contrast` verde nos dois temas; nenhuma
+  falha nova introduzida pelo redesign além das já documentadas com
+  substituto em `scripts/audit-contrast.mjs` (`KNOWN_SUBSTITUTES`).
+- **Teclado**: fluxo completo (`/` → `/quiz` → `/lead` → `/resultado`,
+  incluindo gabarito) 100% operável sem mouse nos dois temas (o
+  comportamento de foco não depende de tema, verificado uma vez).
+- **Leitor de tela em `/quiz` e `/resultado`**: ⬜ **pendente** — precisa de
+  uma pessoa (VoiceOver/TalkBack), mesma limitação já documentada nos
+  go-lives anteriores.
+
+### 4. Cross-device (375 / 768 / 1440px) — 2 temas
+
+Zero scroll horizontal nas 4 rotas públicas (`e2e/cross-device.spec.ts`,
+inalterado desde o Épico 9). Somado neste épico: regressão visual pixel a
+pixel em 768px (tablet) para Landing/Quiz/Lead
+(`e2e/funnel-visual.spec.ts`) e para `/resultado`
+(`e2e/resultado-visual.spec.ts`) — antes só 375/1440px cobriam screenshot,
+768px só tinha a checagem funcional de overflow.
+
+### 5. Auditoria de marca (REDESIGN.md §2 / DESIGN.md §7)
+
+- `npm run lint:colors` — zero cores hardcoded fora dos tokens.
+- `npm run lint:patterns` — zero peças combinando mais de um padrão
+  geométrico fora da exceção documentada do certificado (ver
+  `docs/design-system.md` §3).
+- Amber restrito a conquista real: varredura manual de todo uso de
+  `amber`/`Amber`/`achievement` no código — a única exceção fora do selo
+  "Alto" é o badge `attention` (Épico 18, texto/borda Amber-700/300 para
+  "ponto de atenção" de dimensão), decisão de marca documentada e
+  deliberada (nunca `destructive`: resultado baixo é mapa de
+  desenvolvimento, não erro), não um vazamento acidental.
+- Space Mono em todo número que é métrica: confirmado em score-geral,
+  progresso do quiz, N/total dos cards de dimensão, prioridades e termos de
+  código do gabarito (`font-data`/`font-mono`, ambos resolvem para
+  `--font-space-mono`).
+- Checklist editorial `DESIGN.md` §7 sobre todo o conteúdo do produto
+  (`content/*.ts` + strings literais em `components/result/*.tsx`,
+  `app/**/*.tsx`): nenhuma promessa de promoção/salário, nenhum emoji em
+  material técnico, nenhum nome comercial em inglês, nenhuma frase
+  condescendente — a única violação encontrada em todo o processo do
+  redesign (`"Impacto na sua promoção"`) já foi corrigida no Épico 18 (PR
+  #24); esta varredura final não encontrou nenhuma nova.
+
+### 6. Variáveis de ambiente em produção (Vercel)
+
+Inalterado desde o go-live v2 — nenhuma variável nova introduzida pelo
+redesign (tokens/padrões/assets são todos build-time ou estáticos em
+`public/`, sem chave de API nova).
+
+## Pendências que exigem uma pessoa — Redesign
+
+- ⬜ **Leitor de tela real** em `/quiz` e `/resultado`, nos dois temas — a
+  mesma pendência dos go-lives anteriores, agora dobrada por tema.
+- ⬜ **Fluxo completo em mobile real**, nos dois temas — confirmar que
+  nenhuma tela quebra o single-viewport e que o tema persiste entre rotas
+  em um dispositivo físico, não só emulação de viewport/`prefers-color-scheme`.
+
+## Critério de Go-Live do Redesign — status
+
+- [x] Todos os gates dos Épicos 1–18 seguem válidos (sem regressão) — 162
+      Vitest + 77 Playwright verdes.
+- [x] Lighthouse ≥ 90 nas 4 categorias, nas 4 rotas, nos 2 temas.
+- [x] Zero violações críticas de acessibilidade (axe-core) nas 4 rotas × 2
+      temas.
+- [x] Auditoria de marca verde (lint + checklist §7) com evidências acima.
+- [x] `docs/design-system.md` criado; `REDESIGN.md` e
+      `specs/epicos/epico-14..19.md` removidos da raiz neste commit (mesmo
+      padrão do go-live v2 com `AVALIACAO.md`/`REPORT.md`/`QUESTIONS.json`
+      — `DESIGN.md` e `design/tokens.json` **não** são removidos: são SSOT
+      vivos, não spec temporária).
+- [ ] Fluxo completo validado manualmente em mobile real, nos 2 temas —
+      **pendente de execução humana**.
+- [ ] Leitor de tela real em `/quiz` e `/resultado` — **pendente de
+      execução humana**.
+
+**Redesign pronto para tráfego real quanto ao que é verificável por CI/E2E
+— as duas pendências acima exigem uma pessoa com acesso a dispositivo móvel
+real e a um leitor de tela real, e devem ser confirmadas antes de
+considerar o go-live do redesign encerrado.**

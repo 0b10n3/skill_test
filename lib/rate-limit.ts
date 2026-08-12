@@ -1,5 +1,15 @@
 const WINDOW_MS = 60_000;
-const MAX_REQUESTS_PER_WINDOW = 10;
+// RATE_LIMIT_MAX_REQUESTS (Épico 19): só é setada pelo `webServer.command`
+// do playwright.config.ts, para o servidor local que o próprio Playwright
+// sobe — nunca por um deployment real (Vercel/produção, alvo do
+// PLAYWRIGHT_BASE_URL em test:e2e:remote). Motivo: toda a suíte e2e
+// roda de um único IP (localhost), então o volume normal e legítimo de
+// submissões de teste (~20 por rodada completa, todas de rotas
+// diferentes) passou a colidir com o limite de produção — achado real ao
+// rodar a suíte completa após somar cobertura de tema escuro (Épico 19).
+const MAX_REQUESTS_PER_WINDOW = process.env.RATE_LIMIT_MAX_REQUESTS
+  ? Number(process.env.RATE_LIMIT_MAX_REQUESTS)
+  : 10;
 
 /**
  * Rate limiting básico em memória (por IP, janela deslizante). Suficiente

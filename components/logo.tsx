@@ -5,7 +5,8 @@ import { cn } from '@/lib/utils';
  * sessão (DESIGN.md §8, "Lacunas Abertas" #1: "nenhum arquivo de imagem foi
  * recebido"). Renderiza um wordmark tipográfico até o SVG/PNG oficial
  * chegar; troque a implementação quando o asset existir (ver
- * REDESIGN.md §3.1 para a convenção de nomes esperada em public/brand/).
+ * docs/design-system.md §5 para a convenção de nomes esperada em
+ * public/brand/).
  *
  * A "variante por tema" exigida pelo Épico 14 já funciona aqui via
  * `text-link-foreground`: resolve para Forest-500 no light e Grove-500 no

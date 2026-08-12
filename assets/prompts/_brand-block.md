@@ -1,6 +1,6 @@
 # Bloco-padrão de marca (obrigatório em todo prompt)
 
-Fonte canônica: `DESIGN.md` §§4–5, `REDESIGN.md` §3.3–4. Este arquivo é a
+Fonte canônica: `DESIGN.md` §§4–5, `docs/design-system.md` §4. Este arquivo é a
 ÚNICA fonte do texto injetado em todo prompt gerado — nenhum arquivo de
 prompt individual copia este bloco; a skill de geração
 (`.agents/skills/gerar-asset-marca/`) concatena este arquivo ao corpo de

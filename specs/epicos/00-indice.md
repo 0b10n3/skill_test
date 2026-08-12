@@ -23,16 +23,16 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 12. ~~`epico-12-relatorio-resultados.md`~~ — Relatório de resultados v2 (radar, diagnóstico e CTA) (arquivo removido da raiz no Épico 13; histórico no git)
 13. ~~`epico-13-qa-regressao-golive-v2.md`~~ — QA de regressão, telemetria de itens e go-live da v2 (arquivo removido da raiz no Épico 13; histórico no git)
 
-### Fase 3 — Redesign de identidade (marca Syntaxis)
+### Fase 3 — Redesign de identidade (marca Syntaxis) — ✅ concluída
 
-**Fontes de verdade:** `DESIGN.md` (SSOT de marca, permanece no repo) e `REDESIGN.md` + `tokens.json` v1.1.0 (SSOT de tokens, permanece no repo).
+**Fonte de verdade viva:** [`docs/design-system.md`](../../docs/design-system.md) (incorporado do `REDESIGN.md` original, removido da raiz no Épico 19 após o go-live — ver `GOLIVE.md`). `DESIGN.md` e `design/tokens.json` continuam no repo como SSOT vivos de marca/tokens.
 
-14. `epico-14-fundacao-tokens-syntaxis.md` — Fundação: tokens Syntaxis, tipografia, temas light/dark e logos
-15. `epico-15-padroes-componentes.md` — Padrões geométricos e restyle da biblioteca de componentes
-16. `epico-16-assets-generativos-agy.md` — Pipeline de assets generativos (Nano Banana Pro via agy)
-17. `epico-17-redesign-paginas-fluxo.md` — Redesign das páginas do fluxo: landing, quiz e lead
-18. `epico-18-redesign-relatorio.md` — Redesign do relatório de resultados (`/resultado`)
-19. `epico-19-qa-visual-golive.md` — QA visual, acessibilidade, performance e go-live do redesign (remove `REDESIGN.md` e os épicos 14–19 da raiz após incorporar o conteúdo permanente a `docs/design-system.md`; `DESIGN.md` e `tokens.json` continuam no repo como SSOT vivos)
+14. ~~`epico-14-fundacao-tokens-syntaxis.md`~~ — Fundação: tokens Syntaxis, tipografia, temas light/dark e logos (arquivo removido da raiz no Épico 19; histórico no git)
+15. ~~`epico-15-padroes-componentes.md`~~ — Padrões geométricos e restyle da biblioteca de componentes (arquivo removido da raiz no Épico 19; histórico no git)
+16. ~~`epico-16-assets-generativos-agy.md`~~ — Pipeline de assets generativos (Nano Banana Pro via agy) (arquivo removido da raiz no Épico 19; histórico no git)
+17. ~~`epico-17-redesign-paginas-fluxo.md`~~ — Redesign das páginas do fluxo: landing, quiz e lead (arquivo removido da raiz no Épico 19; histórico no git)
+18. ~~`epico-18-redesign-relatorio.md`~~ — Redesign do relatório de resultados (`/resultado`) (arquivo removido da raiz no Épico 19; histórico no git)
+19. ~~`epico-19-qa-visual-golive.md`~~ — QA visual, acessibilidade, performance e go-live do redesign (arquivo removido da raiz no Épico 19; histórico no git)
 
 Épicos 15 e 16 podem ser executados em paralelo (ambos dependem só do Épico 14). Todos os demais da Fase 2 e Fase 3 são sequenciais pelos mesmos motivos da Fase 1.
 

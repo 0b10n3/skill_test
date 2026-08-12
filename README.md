@@ -145,7 +145,8 @@ mais axe-core com zero violações críticas).
 > estão em `assets/manifest.json`/`public/img/`, consumidos pelos Épicos
 > 17-18.
 
-Geração de imagem tratada como build reprodutível (REDESIGN.md §4): o
+Geração de imagem tratada como build reprodutível (`docs/design-system.md`
+§4): o
 prompt versionado é código-fonte, a saída bruta é artefato imutável, a
 aprovação é registrada, o publicado é sempre derivado por script.
 

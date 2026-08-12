@@ -40,25 +40,32 @@ async function completeQuizToResultado(page: import('@playwright/test').Page) {
   await page.waitForURL('**/resultado', { timeout: 20_000 });
 }
 
-test('/resultado — sem violações de contraste (axe-core)', async ({ page }) => {
-  await completeQuizToResultado(page);
+// Claro e escuro (Épico 19): os pares de contraste do relatório diferem
+// entre temas (design/tokens.json → color.theme.light|dark) — uma
+// varredura num único tema não prova nada sobre o outro.
+for (const colorScheme of ['light', 'dark'] as const) {
+  test(`/resultado — sem violações de contraste (axe-core) — ${colorScheme}`, async ({ page }) => {
+    await page.emulateMedia({ colorScheme });
+    await completeQuizToResultado(page);
 
-  const results = await new AxeBuilder({ page }).include('main').withTags(['wcag2aa']).analyze();
-  const contrastViolations = results.violations.filter((v) => v.id === 'color-contrast');
+    const results = await new AxeBuilder({ page }).include('main').withTags(['wcag2aa']).analyze();
+    const contrastViolations = results.violations.filter((v) => v.id === 'color-contrast');
 
-  expect(contrastViolations, JSON.stringify(contrastViolations, null, 2)).toHaveLength(0);
-});
+    expect(contrastViolations, JSON.stringify(contrastViolations, null, 2)).toHaveLength(0);
+  });
 
-test('/resultado — zero violações críticas de axe-core (wcag2aa), inclusive com o gabarito aberto', async ({
-  page,
-}) => {
-  await completeQuizToResultado(page);
-  await page.getByRole('button', { name: 'Revisar minhas respostas' }).click();
+  test(`/resultado — zero violações críticas de axe-core (wcag2aa), inclusive com o gabarito aberto — ${colorScheme}`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ colorScheme });
+    await completeQuizToResultado(page);
+    await page.getByRole('button', { name: 'Revisar minhas respostas' }).click();
 
-  const results = await new AxeBuilder({ page }).include('main').withTags(['wcag2aa']).analyze();
-  const criticalViolations = results.violations.filter(
-    (v) => v.impact === 'critical' || v.impact === 'serious',
-  );
+    const results = await new AxeBuilder({ page }).include('main').withTags(['wcag2aa']).analyze();
+    const criticalViolations = results.violations.filter(
+      (v) => v.impact === 'critical' || v.impact === 'serious',
+    );
 
-  expect(criticalViolations, JSON.stringify(criticalViolations, null, 2)).toHaveLength(0);
-});
+    expect(criticalViolations, JSON.stringify(criticalViolations, null, 2)).toHaveLength(0);
+  });
+}
