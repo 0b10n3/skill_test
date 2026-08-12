@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Política de Privacidade — Syntaxis Skill Check',
   description: 'Como o Syntaxis Skill Check trata dados pessoais, cookies e consentimento.',
+  alternates: { canonical: '/privacidade' },
 };
 
 /**

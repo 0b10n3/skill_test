@@ -6,27 +6,29 @@ validação final, de ponta a ponta, de que nada regrediu.
 
 ## Status geral
 
-| Épico                             | Status                                                          |
-| --------------------------------- | --------------------------------------------------------------- |
-| 1 — Fundação                      | ✅ Validado                                                     |
-| 2 — Design System                 | ✅ Validado                                                     |
-| 3 — Motor de Seleção              | ✅ Validado                                                     |
-| 4 — Landing Page                  | ✅ Validado                                                     |
-| 5 — Fluxo do Quiz                 | ✅ Validado                                                     |
-| 6 — API de Scoring                | ✅ Validado                                                     |
-| 7 — MailerLite                    | ✅ Validado (subscriber real confirmado em produção)            |
-| 8 — Página de Resultado           | ✅ Validado                                                     |
-| 9 — QA e Go-Live                  | ✅ Validado                                                     |
-| 10 — Banco de questões v2         | ✅ Validado                                                     |
-| 11 — Motor de diagnóstico         | ✅ Validado                                                     |
-| 12 — Relatório de resultados v2   | ✅ Validado                                                     |
-| 13 — QA de regressão e go-live v2 | ✅ Validado                                                     |
-| 14 — Fundação tokens Syntaxis     | ✅ Validado                                                     |
-| 15 — Padrões geométricos          | ✅ Validado                                                     |
-| 16 — Pipeline assets generativos  | ✅ Validado                                                     |
-| 17 — Redesign páginas do fluxo    | ✅ Validado                                                     |
-| 18 — Redesign do relatório        | ✅ Validado                                                     |
-| 19 — QA visual e go-live redesign | Ver [Go-Live do Redesign](#go-live-do-redesign-épico-19) abaixo |
+| Épico                             | Status                                                                                                                |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| 1 — Fundação                      | ✅ Validado                                                                                                           |
+| 2 — Design System                 | ✅ Validado                                                                                                           |
+| 3 — Motor de Seleção              | ✅ Validado                                                                                                           |
+| 4 — Landing Page                  | ✅ Validado                                                                                                           |
+| 5 — Fluxo do Quiz                 | ✅ Validado                                                                                                           |
+| 6 — API de Scoring                | ✅ Validado                                                                                                           |
+| 7 — MailerLite                    | ✅ Validado (subscriber real confirmado em produção)                                                                  |
+| 8 — Página de Resultado           | ✅ Validado                                                                                                           |
+| 9 — QA e Go-Live                  | ✅ Validado                                                                                                           |
+| 10 — Banco de questões v2         | ✅ Validado                                                                                                           |
+| 11 — Motor de diagnóstico         | ✅ Validado                                                                                                           |
+| 12 — Relatório de resultados v2   | ✅ Validado                                                                                                           |
+| 13 — QA de regressão e go-live v2 | ✅ Validado                                                                                                           |
+| 14 — Fundação tokens Syntaxis     | ✅ Validado                                                                                                           |
+| 15 — Padrões geométricos          | ✅ Validado                                                                                                           |
+| 16 — Pipeline assets generativos  | ✅ Validado                                                                                                           |
+| 17 — Redesign páginas do fluxo    | ✅ Validado                                                                                                           |
+| 18 — Redesign do relatório        | ✅ Validado                                                                                                           |
+| 19 — QA visual e go-live redesign | Ver [Go-Live do Redesign](#go-live-do-redesign-épico-19) abaixo                                                       |
+| 20 — Refinamento anti-genérico    | Ver [Go-Live do Refinamento + SEO/Analytics](#go-live-do-refinamento-anti-genérico--seoanalytics-épicos-20-21) abaixo |
+| 21 — SEO, analytics e pixel       | Ver [Go-Live do Refinamento + SEO/Analytics](#go-live-do-refinamento-anti-genérico--seoanalytics-épicos-20-21) abaixo |
 
 ## 1. Suíte de testes completa (todos os épicos, sem regressão)
 
@@ -426,3 +428,203 @@ redesign (tokens/padrões/assets são todos build-time ou estáticos em
 — as duas pendências acima exigem uma pessoa com acesso a dispositivo móvel
 real e a um leitor de tela real, e devem ser confirmadas antes de
 considerar o go-live do redesign encerrado.**
+
+## Go-Live do Refinamento Anti-Genérico + SEO/Analytics (Épicos 20-21)
+
+Re-execução do checklist sobre o refinamento visual (hero, bento de
+evidência, banda Deep Forest, faixa de números, eyebrows, componentes com
+assinatura — Épico 20) e a ativação de SEO técnico + GA4/Meta Pixel com
+consentimento LGPD (Épico 21), conforme `_insumos/epico-20-refinamento-
+anti-generico.md` e `_insumos/epico-21-seo-analytics-pixel.md` (removidos
+neste commit — ver regra permanente no topo do prompt original do ciclo).
+
+### 1. SSOTs e pipeline de tokens
+
+`DESIGN.md` substituído pela v1.1 (§4.3–§4.6) e `design/tokens.json` pela
+v1.2.0 — **mesclados manualmente**, não sobrescritos: o `tokens.json`
+fornecido pelo founder não incluía os tokens de contraste AA dos Épicos
+14/15/18 (`errorText`, `achievementForeground`, `linkForeground`,
+`attentionText`, `progressBar`, `progressTrack`) e revertia
+`theme.light.secondary`/`theme.dark.primary` de Grove-700 para Grove-500 —
+a mesma falha de contraste (3.16:1) já corrigida no Épico 14. A v1.2.0
+final no repo preserva todos os tokens da v1.1.0 real (não a v1.1.0
+assumida pelo arquivo do founder) e só acrescenta os campos novos.
+`npm run check:tokens-additive` (novo, parte do `prebuild`) prova isso
+automaticamente contra `design/archive/tokens-v1.1.0.json`. Paleta
+primária (Forest/Grove/Amber) confirmada intocada por diff de hexes.
+
+### 2. Suíte de testes completa (todos os épicos, sem regressão)
+
+**189 testes Vitest** (35 arquivos) + **81 testes Playwright** (12
+arquivos, incluindo `e2e/consent.spec.ts`, novo), todos verdes. Além de
+tudo dos go-lives anteriores, cobre: aditividade de tokens
+(`check-tokens-additive.test.ts`), camada de tracking e sanitização de PII
+(`analytics-track.test.ts`), consentimento (`analytics-consent.test.ts`),
+a regressão real do `tailwind-merge` descrita abaixo
+(`cn-typography-scale.test.ts`), evidência da landing sem vazamento de
+gabarito (`landing-evidence.test.ts`), e o fluxo de consentimento
+completo por interceptação de rede (`e2e/consent.spec.ts`).
+
+**Achados reais corrigidos durante este épico** (nenhum estava presente
+antes das mudanças deste ciclo):
+
+- `tailwind-merge` descartava silenciosamente qualquer classe de
+  `typography.scale` (`text-eyebrow`, `text-data-xl` etc.) combinada com
+  uma cor de texto no mesmo `cn()` — o componente `Eyebrow` renderizava
+  sem nenhuma propriedade do token, só a cor sobrevivia. Corrigido em
+  `lib/utils.ts`, registrando essas classes num grupo próprio do
+  `tailwind-merge` (derivado de `design/tokens.json`, não uma lista
+  solta) — coberto por teste que varre toda a escala.
+- O `ConsentBanner` novo, fixo no rodapé, colidia visualmente com o botão
+  "Próxima" no viewport único de `/quiz` (`h-dvh`, sem scroll por
+  design) — bloqueava cliques e derrubava a suíte E2E inteira em
+  cascata. Corrigido escondendo o banner em `/quiz`/`/lead`.
+- Trocar a `CardTitle` (um `<div>`) por um `<h1>` de verdade em
+  `QuestionCard`/`LeadForm` (higiene técnica do Épico 21 — nenhuma das
+  duas rotas tinha `h1`) quebrou o seletor `[data-slot="card-title"]`
+  usado por vários specs E2E — preservado no `<h1>`.
+
+### 3. Lighthouse — as 4 rotas públicas × 2 temas
+
+`scripts/lighthouse-flow-check.mjs` ganhou dois ajustes para o Épico 21:
+SEO da home agora exige ≥ 95 (não só ≥ 90), e SEO deixou de ser gate nas 3
+rotas `noindex` (`/quiz`, `/lead`, `/resultado`) — cobrar SEO ali
+contradiria a própria regra de indexação que o épico pede, já que o audit
+`is-crawlable` do Lighthouse reprova qualquer página `noindex` por
+definição. O score continua impresso nas 3 rotas (visibilidade), só não
+falha o build.
+
+| Rota                                                 | Performance (claro) | Performance (escuro) | Acessibilidade | Boas práticas | SEO                        |
+| ---------------------------------------------------- | ------------------- | -------------------- | -------------- | ------------- | -------------------------- |
+| `/` (navegação completa)                             | 95                  | 95                   | 100            | 100           | 100 (≥ 95 exigido)         |
+| `/quiz` (navegação completa)                         | 100                 | 100                  | 100            | 100           | 63 (noindex — não é gate)  |
+| transição → `/lead`                                  | 100                 | 100                  | n/a¹           | 100           | n/a¹                       |
+| `/lead` (snapshot)                                   | n/a¹                | n/a¹                 | 100            | 100           | 100 (noindex — não é gate) |
+| transição → `/resultado` (inclui `POST /api/submit`) | 100                 | 100                  | n/a¹           | 100           | n/a¹                       |
+| `/resultado` (snapshot)                              | n/a¹                | n/a¹                 | 100            | 100           | 100 (noindex — não é gate) |
+
+¹ Mesma limitação de cobertura por modo de coleta do Lighthouse já
+documentada nos go-lives anteriores.
+
+### 4. Acessibilidade, cross-device e auditoria de marca
+
+- **axe-core (WCAG2AA)**: 0 violações nas 4 rotas × 2 temas, incluindo
+  `/resultado` com o gabarito aberto e a nova banda Deep Forest da S5
+  (`PriorityCareerSkills`) — texto sobre a banda usa cores fixas
+  Chalk/Grove-300 (nunca as variáveis de tema, que resolveriam para o
+  texto do modo claro sobre um fundo sempre escuro).
+- **Cross-device (375/768/1440px)**: zero scroll horizontal nas 4 rotas,
+  nos 2 temas — inclui a correção do banner de consentimento acima.
+- `npm run lint:colors` — estendido neste épico para banir também classes
+  Tailwind de cinza default de framework (`text-gray-500` etc.), não só
+  literais hex (DESIGN.md v1.1 §4.5) — zero ocorrências.
+- `npm run lint:patterns` — zero peças combinando mais de um padrão.
+- Varredura manual dos anti-padrões §4.5 nas 4 rotas: zero grid de cards
+  idênticos remanescente (a seção de dimensões da landing virou bento de
+  evidência real do produto), zero sombra/gradiente/glassmorphism
+  default, zero emoji como ícone de feature, radius só do token scale.
+- Checklist de assinaturas §4.4: hero da landing usa as 3 obrigatórias
+  (eyebrow, palavra-acento itálica em "finanças", marcador Grove sob
+  "nível"); as 4 rotas usam ≥ 3 assinaturas cada (eyebrow em toda seção +
+  pelo menos mais duas: bento/faixa de números/banda na landing, cards
+  com assinatura + eyebrow em quiz/lead/resultado).
+
+### 5. Analytics e consentimento LGPD
+
+- **Consentimento**: `e2e/consent.spec.ts` prova por interceptação de
+  rede que nenhuma requisição sai para `googletagmanager.com` ou
+  `facebook.net` antes do aceite; que aceitar carrega os dois scripts e a
+  escolha persiste entre reloads; que recusar mantém zero requisições e
+  também persiste; e que nenhum payload de evento do funil real
+  (varredura ao vivo do fluxo `/` → `/quiz`) carrega formato de PII.
+- **Taxonomia**: `quiz_start`, `question_answered`, `quiz_complete`,
+  `lead_submitted` (`generate_lead`/`Lead` — evento padrão nas duas
+  plataformas), `report_viewed`, `cta_offer_click`, `radar_shared` — todos
+  disparados só via `track()` (`lib/analytics/track.ts`), nunca `gtag`/
+  `fbq` direto nos componentes.
+- **IDs reais fornecidos pelo founder** (GA4 `G-H0NTV61JS6`, Meta Pixel
+  `852035937455815`) — entram só como variável de ambiente na Vercel
+  (`NEXT_PUBLIC_GA_MEASUREMENT_ID`/`NEXT_PUBLIC_META_PIXEL_ID`), nunca no
+  git. Testados localmente com IDs falsos (`playwright.config.ts`
+  `webServer.env` — nunca aplicado a um deployment real).
+
+### 6. SEO técnico
+
+- `/` indexável, canonical explícito, JSON-LD `Organization`+`WebSite`.
+- `/quiz`, `/lead`, `/resultado`: `metadata.robots: noindex` (confirmado
+  por inspeção do HTML renderizado) + `app/robots.ts` (disallow
+  explícito, defesa em profundidade) — nenhuma das três aparece em
+  `app/sitemap.ts`.
+- `lang="pt-BR"` (já existia), 1 `h1` por rota (`/quiz` e `/lead` não
+  tinham nenhum — achado real, corrigido preservando o seletor de teste
+  `data-slot="card-title"` no `<h1>` novo).
+- Página `/privacidade` nova, linkada no banner de consentimento —
+  conteúdo restrito ao que é verificável neste repositório (o que a
+  aplicação de fato coleta e por quê); identificação legal da Syntaxis e
+  canal formal de contato/DPO ficam pendência do founder (abaixo).
+
+### 7. Variáveis de ambiente em produção (Vercel) — o que muda
+
+Duas variáveis novas, `NEXT_PUBLIC_*` (client-side por design, não são
+segredo — ver `.env.example`): `NEXT_PUBLIC_GA_MEASUREMENT_ID`,
+`NEXT_PUBLIC_META_PIXEL_ID`. Nenhuma outra variável introduzida.
+
+## Pendências que exigem uma pessoa — Épicos 20-21
+
+- ⬜ **Domínio final do app** — o fluxo GA4 fornecido pelo founder aponta
+  para `syntaxis.com.br`, mas o app está em `skill-test-mocha.vercel.app`.
+  Definir o domínio final (ex.: `skillcheck.syntaxis.com.br`), configurá-lo
+  na Vercel, e confirmar que o stream GA4/Pixel passam a medir o domínio
+  real — medir só o domínio de preview/Vercel invalida os dados de
+  produção. `lib/site-url.ts` já resolve automaticamente para o domínio
+  ativo assim que a variável de ambiente da Vercel apontar para ele.
+- ⬜ **Configurar `NEXT_PUBLIC_GA_MEASUREMENT_ID`/`NEXT_PUBLIC_META_PIXEL_ID`
+  reais na Vercel** (Production) com os IDs fornecidos pelo founder — ver
+  `.env.example`. Sem isso, os scripts nunca montam mesmo com
+  consentimento aceito (mesmo comportamento intencional do ambiente de
+  teste, que usa IDs falsos).
+- ⬜ **Validação nas plataformas, pós-deploy no domínio final**: GA4
+  Realtime/DebugView e Meta Test Events mostrando o funil completo; o
+  aviso "a coleta de dados não está ativa" do GA4 precisa desaparecer
+  (só resolve depois de tráfego real no domínio certo, tipicamente 24-48h).
+- ⬜ **Google Search Console**: verificar a propriedade do domínio final,
+  submeter `sitemap.xml`, confirmar que só `/` aparece indexável em
+  `site:` e na Inspeção de URL.
+- ⬜ **Rich Results Test** (JSON-LD `Organization`+`WebSite`) contra o
+  domínio final — não validável contra `localhost`/preview.
+- ⬜ **Canal de contato formal (DPO/LGPD)** para `/privacidade` — o texto
+  atual marca isso como "a definir pelo founder" em vez de inventar um
+  contato.
+- ⬜ **Leitor de tela real** e **mobile real**, nos 2 temas — mesma
+  pendência recorrente dos go-lives anteriores, agora incluindo o bento
+  de evidência da landing e a banda Deep Forest de `/resultado`.
+
+## Critério de Go-Live — Épicos 20-21 — status
+
+- [x] Todos os gates dos Épicos 1–19 seguem válidos (sem regressão) — 189
+      Vitest + 81 Playwright verdes.
+- [x] Lighthouse ≥ 90 (performance/a11y/boas práticas) nas 4 rotas × 2
+      temas; SEO ≥ 95 na home nos 2 temas; SEO informativo (não-gate) nas
+      3 rotas noindex, por design.
+- [x] Zero violações críticas de acessibilidade (axe-core) nas 4 rotas × 2
+      temas.
+- [x] Checklist de assinaturas §4.4 e varredura de anti-padrões §4.5 verde
+      nas 4 rotas, com evidências acima.
+- [x] Aditividade de `design/tokens.json` v1.2.0 provada automaticamente
+      (`npm run check:tokens-additive`).
+- [x] Consentimento LGPD funcional, com prova E2E de que nada carrega sem
+      aceite, e zero PII em qualquer payload de evento (revisão + teste).
+- [x] Regras de indexação (só `/` indexável), sitemap, robots e JSON-LD
+      implementados e verificados localmente.
+- [ ] Domínio final configurado e stream GA4/Pixel medindo produção —
+      **pendente do founder**.
+- [ ] Validação em produção (GA4 DebugView, Meta Test Events, Search
+      Console, Rich Results Test) — **pendente, depende do domínio final**.
+- [ ] Fluxo completo em mobile real e leitor de tela real, nos 2 temas —
+      **pendente de execução humana**.
+
+**O refinamento visual e a instrumentação de SEO/analytics estão prontos
+para tráfego real quanto ao que é verificável por CI/E2E. As pendências
+acima — todas explicitamente fora do alcance de um agente sem acesso a
+DNS/Vercel/contas de analytics reais ou a um dispositivo físico — exigem
+uma pessoa antes de considerar este ciclo encerrado.**
