@@ -42,7 +42,7 @@ export function generateCss(tokens) {
   lines.push('');
 
   lines.push('@theme {');
-  for (const scaleName of ['forest', 'grove', 'amber']) {
+  for (const scaleName of ['forest', 'grove', 'lime']) {
     for (const [step, def] of Object.entries(tokens.color[scaleName])) {
       if (step.startsWith('$')) continue;
       lines.push(`  --color-${scaleName}-${step}: ${resolveValue(tokens, def.$value)};`);

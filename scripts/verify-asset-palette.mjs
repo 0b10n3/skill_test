@@ -27,7 +27,7 @@ const rootDir = path.resolve(__dirname, '..');
 
 function brandPaletteHexes() {
   const hexes = [];
-  for (const scale of ['forest', 'grove', 'amber']) {
+  for (const scale of ['forest', 'grove', 'lime']) {
     for (const [key, def] of Object.entries(tokens.color[scale])) {
       if (key.startsWith('$')) continue;
       hexes.push(def.$value);
