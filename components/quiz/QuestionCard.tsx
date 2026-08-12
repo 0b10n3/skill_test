@@ -35,6 +35,7 @@ export function QuestionCard({ question, onAnswer }: QuestionCardProps) {
         <h1
           ref={headingRef}
           tabIndex={-1}
+          data-slot="card-title"
           className="font-display text-base leading-snug text-balance text-foreground outline-none sm:text-xl"
         >
           {question.question}

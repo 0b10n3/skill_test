@@ -45,6 +45,17 @@ export default defineConfig({
         // legítimo de submissões da suíte completa (~20/rodada, Épico 19)
         // excede o limite de produção (10/60s/IP) quando tudo roda do
         // mesmo IP local.
-        env: { RATE_LIMIT_MAX_REQUESTS: '1000' },
+        //
+        // IDs de GA4/Meta falsos (nunca os reais — ver .env.example): sem
+        // eles, AnalyticsProvider nunca monta os scripts e o teste de
+        // consentimento (e2e/consent.spec.ts) não provaria nada sobre o
+        // "depois do aceite" — só sobre "antes". NEXT_PUBLIC_* precisa
+        // existir no momento do `next build`, não só do `next start`, daí
+        // estar aqui e não em .env.local.
+        env: {
+          RATE_LIMIT_MAX_REQUESTS: '1000',
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: 'G-TESTFAKE01',
+          NEXT_PUBLIC_META_PIXEL_ID: '0000000000000001',
+        },
       },
 });

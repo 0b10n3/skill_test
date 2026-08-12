@@ -69,8 +69,12 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
     <Card className="w-full max-w-md">
       <CardHeader>
         {/* h1 real, não a CardTitle padrão (<div>) — /lead é a única "página"
-            desse passo do funil (Épico 21, higiene técnica: 1 h1 por rota). */}
-        <h1 className="font-display text-xl text-foreground">Quase lá</h1>
+            desse passo do funil (Épico 21, higiene técnica: 1 h1 por rota).
+            data-slot="card-title" preservado: é o seletor de teste usado
+            em vários specs E2E para "a página do card carregou". */}
+        <h1 data-slot="card-title" className="font-display text-xl text-foreground">
+          Quase lá
+        </h1>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>

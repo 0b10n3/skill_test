@@ -2,8 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { getConsent, setConsent } from '@/lib/analytics/consent';
+
+// /quiz e /lead são telas de tarefa única em viewport fixo (h-dvh, sem
+// scroll — regra do app desde o Épico 4/5), com o CTA principal
+// frequentemente perto do rodapé. Um banner fixo no rodapé colidiria
+// visualmente com esse botão (achado real: "Próxima" ficava inacessível
+// em 375px) — "foco absoluto na tarefa" (epico-20) também vale para
+// consentimento. O consentimento é resolvido na landing (`/`) antes do
+// visitante entrar no quiz, na esmagadora maioria dos casos; se ele pular
+// direto para o quiz, o banner volta a aparecer em `/resultado`.
+const ROUTES_WITHOUT_BANNER = ['/quiz', '/lead'];
 
 /**
  * Banner de consentimento LGPD (Épico 21): aparece só enquanto o
@@ -13,13 +24,14 @@ import { getConsent, setConsent } from '@/lib/analytics/consent';
  * preferências" ainda não tem uma página própria, ver GOLIVE.md).
  */
 export function ConsentBanner() {
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     setVisible(getConsent() === 'unset');
   }, []);
 
-  if (!visible) return null;
+  if (!visible || ROUTES_WITHOUT_BANNER.includes(pathname)) return null;
 
   function handleChoice(value: 'granted' | 'denied') {
     setConsent(value);
