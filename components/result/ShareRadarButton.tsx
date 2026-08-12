@@ -202,11 +202,11 @@ async function drawShareCard(
   ctx.fillStyle = textHigh;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'alphabetic';
-  ctx.font = 'italic bold 26px "DM Serif Display", Georgia, serif';
+  ctx.font = 'bold 26px "Space Grotesk", Arial, sans-serif';
   ctx.fillText('Syntaxis', 32, 52);
 
   ctx.fillStyle = grove;
-  ctx.font = 'bold 20px "DM Sans", sans-serif';
+  ctx.font = 'bold 20px "Hanken Grotesk", sans-serif';
   ctx.fillText(`Classificação: ${CLASSIFICATION_LABEL[classificacao]}`, 32, CANVAS_SIZE - 32);
 }
 
