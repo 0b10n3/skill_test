@@ -599,6 +599,37 @@ segredo — ver `.env.example`): `NEXT_PUBLIC_GA_MEASUREMENT_ID`,
   pendência recorrente dos go-lives anteriores, agora incluindo o bento
   de evidência da landing e a banda Deep Forest de `/resultado`.
 
+### Passo a passo: configurar GA4/Meta Pixel na Vercel
+
+1. **Vercel → Project → Settings → Environment Variables**: adicionar
+   `NEXT_PUBLIC_GA_MEASUREMENT_ID` (`G-H0NTV61JS6`) e
+   `NEXT_PUBLIC_META_PIXEL_ID` (`852035937455815`) em **Production**
+   (deixar em branco em Preview, de propósito — ver `.env.example`).
+   Como são `NEXT_PUBLIC_*`, ficam embutidas no bundle **no momento do
+   build** — salvar as variáveis e então gerar um novo deploy (redeploy
+   do commit atual, ou qualquer novo merge) para elas valerem.
+2. **Vercel → Project → Settings → Domains**: apontar o domínio final
+   (o stream do GA4 já está configurado para `syntaxis.com.br`, mas o
+   app está em `skill-test-mocha.vercel.app`) — medir só o domínio de
+   preview/`.vercel.app` invalida os dados de produção.
+3. Confirmar em uma aba anônima que nada carrega antes do aceite: nenhuma
+   requisição para `googletagmanager.com`/`connect.facebook.net` até
+   clicar "Aceitar" no banner (`components/analytics/ConsentBanner.tsx`).
+4. **GA4** → Admin → DebugView/Realtime e **Meta** → Events Manager →
+   Test Events: navegar o funil completo e confirmar `quiz_start`,
+   `question_answered`, `quiz_complete`, `lead_submitted`,
+   `report_viewed` (o aviso "coleta de dados não está ativa" do GA4 some
+   só depois de tráfego real no domínio certo, tipicamente 24-48h).
+5. **Search Console**: verificar a propriedade do domínio final, submeter
+   `sitemap.xml` (`/sitemap.xml`, gerado pelo framework), confirmar que
+   só `/` aparece indexável.
+
+Vercel Web Analytics e Speed Insights (`@vercel/analytics`/
+`@vercel/speed-insights`) não precisam de nenhuma variável — ativam
+automaticamente assim que o código está em produção na Vercel; conferir
+as abas **Analytics**/**Speed Insights** do projeto alguns minutos após
+o deploy.
+
 ## Critério de Go-Live — Épicos 20-21 — status
 
 - [x] Todos os gates dos Épicos 1–19 seguem válidos (sem regressão) — 189
