@@ -10,10 +10,19 @@
 // primitivo de design/tokens.json. Essas classes são banidas mesmo que a
 // escala não apareça como hex no código-fonte.
 //
+// Épico 22 (DESIGN.md v2.0 §4.5) estende a mesma lógica à família Amber
+// (aposentada — vira Lime) e ao Cream (aposentado — vira lime-100): mesmo
+// sem literal hex, uma classe como `bg-amber-500` ainda renderiza — não o
+// nosso token de marca aposentado, mas a escala AMBER DEFAULT do próprio
+// Tailwind (que coexiste com nomes de escala custom, mesmo mecanismo que já
+// vale para `lime`/`forest`/`grove` hoje), o que é sempre um erro: ou é um
+// resquício não migrado, ou é uma cor equivocada que não tem relação
+// nenhuma com o token real.
+//
 // Varre app/, components/, lib/, content/ (código-fonte real) por literais
-// de cor e por classes de cinza de framework em arquivos .ts/.tsx. Não varre
-// .css (os arquivos gerados e o globals.css são exatamente onde essas cores
-// DEVEM aparecer).
+// de cor e por classes de cinza/amber/cream de framework em arquivos
+// .ts/.tsx. Não varre .css (os arquivos gerados e o globals.css são
+// exatamente onde essas cores DEVEM aparecer).
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -31,6 +40,12 @@ const COLOR_PATTERN = /#[0-9a-fA-F]{3,8}\b|\brgba?\([^)]*\)|\bhsla?\([^)]*\)/g;
 // batem neste padrão, que exige um sufixo numérico `-50`..`-950`).
 const FRAMEWORK_GRAY_PATTERN =
   /\b(?:text|bg|border|ring|fill|stroke|divide|from|via|to|outline|decoration|accent|caret)-(?:gray|slate|zinc|neutral|stone)-(?:50|100|200|300|400|500|600|700|800|900|950)\b/g;
+// Amber/cream aposentados (DESIGN.md v2.0 §4.1/§4.5) — qualquer classe
+// Tailwind sobre essas escalas é proibida, mesmo sem hex literal (mesma
+// lógica do FRAMEWORK_GRAY_PATTERN acima). `cream` não é uma escala default
+// do Tailwind, então basta banir o nome sozinho, sem sufixo numérico.
+const RETIRED_BRAND_COLOR_PATTERN =
+  /\b(?:text|bg|border|ring|fill|stroke|divide|from|via|to|outline|decoration|accent|caret)-(?:amber-(?:50|100|200|300|400|500|600|700|800|900|950)|cream)\b/g;
 
 /**
  * Exceções conhecidas e justificadas — cada uma precisa de um motivo, não
@@ -63,7 +78,8 @@ function findHardcodedColors(filePath) {
 
     const colorMatches = line.match(COLOR_PATTERN) ?? [];
     const grayMatches = line.match(FRAMEWORK_GRAY_PATTERN) ?? [];
-    const matches = [...colorMatches, ...grayMatches];
+    const retiredMatches = line.match(RETIRED_BRAND_COLOR_PATTERN) ?? [];
+    const matches = [...colorMatches, ...grayMatches, ...retiredMatches];
     if (matches.length > 0) {
       findings.push({ line: index + 1, text: line.trim(), matches });
     }

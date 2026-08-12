@@ -7,15 +7,17 @@ import { PatternNodeBranch } from '@/components/patterns';
 import { HERO_PROMISE } from '@/content/landing';
 
 /**
- * Hero da landing (Épico 17, redesign Épico 20 — DESIGN.md v1.1 §4.3/§4.4):
- * asset gerado do Épico 16 (variante por tema) como elemento de evidência ao
- * lado do headline — nunca o layout "centrado + dois botões" proibido pelo
- * §4.5. Eyebrow (assinatura 1), palavra-acento serif itálica em "finanças"
- * (assinatura 2) e marcador Grove sob "nível" (assinatura 3) — as três
- * obrigatórias no hero, nunca na mesma palavra. Mais um <PatternNodeBranch/>
- * decorativo no canto oposto ao asset — não se sobrepõem, então não competem
- * entre si nem violam "um padrão por peça" (o asset gerado não é um dos três
- * padrões geométricos programáticos, só a decoração SVG é).
+ * Hero da landing (Épico 17, redesign Épico 20, tipografia/cor Épico 22 —
+ * DESIGN.md v2.0 §4.3/§4.4): asset gerado do Épico 16 (variante por tema)
+ * como elemento de evidência ao lado do headline — nunca o layout
+ * "centrado + dois botões" proibido pelo §4.5. Eyebrow (assinatura 1),
+ * palavra-destaque lime sob "nível" (assinatura 2 — substitui a palavra-
+ * acento serif itálica da v1.1, aposentada com o DM Serif Display) e
+ * hairline estrutural entre as colunas (assinatura 3, nova na v2.0) — as
+ * três obrigatórias no hero. Mais um <PatternNodeBranch/> decorativo no
+ * canto oposto ao asset — não se sobrepõem, então não competem entre si nem
+ * violam "um padrão por peça" (o asset gerado não é um dos três padrões
+ * geométricos programáticos, só a decoração SVG é).
  */
 export function HeroSection() {
   return (
@@ -28,11 +30,11 @@ export function HeroSection() {
         className="pointer-events-none absolute top-0 right-0 -z-10 h-64 w-64 -scale-x-100"
       />
 
-      <div className="flex max-w-xl flex-col gap-5 lg:flex-1">
+      <div className="flex max-w-xl flex-col gap-5 lg:flex-1 lg:border-r lg:border-border lg:pr-12">
         <Eyebrow>Syntaxis Skill Check</Eyebrow>
         <h1 className="font-display text-[40px] leading-[1.05] text-balance text-foreground sm:text-[64px]">
-          Descubra seu <MarkerHighlight>nível</MarkerHighlight> técnico em{' '}
-          <em className="font-display italic">finanças</em> em alguns minutos
+          Descubra seu <MarkerHighlight>nível</MarkerHighlight> técnico em finanças em alguns
+          minutos
         </h1>
         <p className="text-base text-pretty text-foreground">{HERO_PROMISE}</p>
         <p className="text-sm text-pretty text-muted-foreground">
@@ -40,7 +42,7 @@ export function HeroSection() {
           mercado — calibrada para o seu momento de carreira.
         </p>
         <div className="flex flex-wrap items-center gap-4">
-          <Button variant="secondary" size="lg" render={<Link href="/quiz" />}>
+          <Button variant="default" size="lg" render={<Link href="/quiz" />}>
             Iniciar avaliação
           </Button>
           <p className="font-mono text-sm text-muted-foreground">
@@ -54,7 +56,7 @@ export function HeroSection() {
           empilhar embaixo do texto — a tela de entrada do funil precisa
           caber sem rolagem (regra "single-viewport por seção", app desde
           o Épico 4); a partir de sm ela cabe. */}
-      <div className="relative hidden aspect-video w-full overflow-hidden rounded-xl sm:block lg:max-w-md">
+      <div className="relative hidden aspect-video w-full overflow-hidden sm:block lg:max-w-md">
         <ThemedGeneratedImage
           slug="hero-landing"
           widths={[640, 1024, 1920]}

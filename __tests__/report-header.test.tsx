@@ -16,13 +16,14 @@ function renderHeader(classificacao: Classification) {
 }
 
 /**
- * S1 (Épico 18), critério de aceite: MÉDIO/BAIXO nunca usam Amber nem
- * destructive para qualificar o resultado da pessoa; ALTO usa Amber com
- * shadow.amber — única aparição de Amber "de conquista" fora da S5.
+ * S1 (Épico 18, cor de conquista atualizada para Lime no Épico 22),
+ * critério de aceite: MÉDIO/BAIXO nunca usam achievement (Lime) nem
+ * destructive para qualificar o resultado da pessoa; ALTO usa Lime com
+ * shadow.lime — única aparição de Lime "de conquista" fora da S5.
  */
-describe('ReportHeader — regra de Amber/destructive por classificação (S1)', () => {
+describe('ReportHeader — regra de Lime/destructive por classificação (S1)', () => {
   it.each(['baixo', 'medio'] as const)(
-    'classificação "%s" não usa achievement (Amber) nem destructive',
+    'classificação "%s" não usa achievement (Lime) nem destructive',
     (classificacao) => {
       renderHeader(classificacao);
       const badge = screen.getByTestId('score-classificacao');
@@ -31,18 +32,18 @@ describe('ReportHeader — regra de Amber/destructive por classificação (S1)',
     },
   );
 
-  it('classificação "alto" usa a variante achievement (Amber) com shadow-amber', () => {
+  it('classificação "alto" usa a variante achievement (Lime) com shadow-lime', () => {
     renderHeader('alto');
     const badge = screen.getByTestId('score-classificacao');
     expect(badge.dataset.variant).toBe('achievement');
-    expect(badge.className).toContain('shadow-amber');
+    expect(badge.className).toContain('shadow-lime');
   });
 
-  it('classificações não-alto nunca têm a classe shadow-amber', () => {
+  it('classificações não-alto nunca têm a classe shadow-lime', () => {
     for (const classificacao of ['baixo', 'medio'] as const) {
       const { unmount } = renderHeader(classificacao);
       const badge = screen.getByTestId('score-classificacao');
-      expect(badge.className).not.toContain('shadow-amber');
+      expect(badge.className).not.toContain('shadow-lime');
       unmount();
     }
   });

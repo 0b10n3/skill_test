@@ -18,8 +18,8 @@ describe('contrastRatio', () => {
     expect(contrastRatio('#1B6A45', '#F7F7F5')).toBeGreaterThanOrEqual(AA_NORMAL_TEXT);
   });
 
-  it('Amber-500 sobre Chalk falha até o limiar de texto grande/UI (3:1) — achado conhecido', () => {
-    const ratio = contrastRatio('#C9832A', '#F7F7F5');
+  it('Lime-500 sobre Chalk falha até o limiar de texto grande/UI (3:1) — achado conhecido (DESIGN.md v2.0: lime-500 nunca é texto pequeno sobre claro)', () => {
+    const ratio = contrastRatio('#CDF163', '#F7F7F5');
     expect(ratio).toBeLessThan(AA_LARGE_TEXT_OR_UI);
   });
 });

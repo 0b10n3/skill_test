@@ -66,10 +66,10 @@ export function ReportHeader({
         <Badge
           data-testid="score-classificacao"
           variant={CLASSIFICATION_BADGE_VARIANT[classificacao]}
-          // shadow.amber é exclusivo do selo ALTO (DESIGN.md §5.4: Amber é
+          // shadow.lime é exclusivo do selo ALTO (DESIGN.md §5.4: Lime é
           // conquista real) — única aparição de sombra colorida fora do
           // Card padrão (shadow.syntaxis).
-          className={cn('text-sm', classificacao === 'alto' && 'shadow-amber')}
+          className={cn('text-sm', classificacao === 'alto' && 'shadow-lime')}
         >
           {CLASSIFICATION_LABEL[classificacao]}
         </Badge>

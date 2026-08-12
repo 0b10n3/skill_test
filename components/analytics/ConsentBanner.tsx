@@ -44,7 +44,7 @@ export function ConsentBanner() {
       aria-label="Consentimento de cookies e analytics"
       className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4"
     >
-      <div className="flex w-full max-w-2xl flex-col gap-3 rounded-xl border border-border bg-card p-4 text-sm shadow-syntaxis sm:flex-row sm:items-center sm:justify-between sm:p-5">
+      <div className="flex w-full max-w-2xl flex-col gap-3 rounded-sm border border-border bg-card p-4 text-sm shadow-syntaxis sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <p className="text-foreground">
           Usamos analytics para entender como o diagnóstico é usado. Nenhum dado pessoal é
           compartilhado antes do seu aceite — veja nossa{' '}
@@ -57,7 +57,7 @@ export function ConsentBanner() {
           <Button variant="outline" size="sm" onClick={() => handleChoice('denied')}>
             Recusar
           </Button>
-          <Button variant="secondary" size="sm" onClick={() => handleChoice('granted')}>
+          <Button variant="default" size="sm" onClick={() => handleChoice('granted')}>
             Aceitar
           </Button>
         </div>

@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Identidade Syntaxis (Forest/Grove/Amber), temas light/dark de primeira
+ * Identidade Syntaxis (Forest/Grove/Lime), temas light/dark de primeira
  * classe — ver design/tokens.json (SSOT) e DESIGN.md. A camada semântica
  * (--background, --primary, --border etc.) é gerada por completo em
  * app/tokens.generated.css (`npm run generate:tokens`), a partir de
@@ -43,11 +43,11 @@
   --shadow-syntaxis-sm: var(--shadow-syntaxis-sm);
   --shadow-syntaxis: var(--shadow-syntaxis);
   --shadow-syntaxis-lg: var(--shadow-syntaxis-lg);
-  --shadow-amber: var(--shadow-amber);
+  --shadow-lime: var(--shadow-lime);
 
-  --font-display: var(--font-dm-serif-display);
-  --font-heading: var(--font-dm-serif-display);
-  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-space-grotesk);
+  --font-heading: var(--font-space-grotesk);
+  --font-sans: var(--font-hanken-grotesk);
   --font-mono: var(--font-space-mono);
   --font-data: var(--font-space-mono);
 }
@@ -97,7 +97,7 @@ html {
     display: none !important;
   }
 
-  /* Tinta economizável (Épico 18, S8): shadow.syntaxis/shadow.amber são
+  /* Tinta economizável (Épico 18, S8): shadow.syntaxis/shadow.lime são
      decoração de tela — não impressa, papel não tem elevação. O tema
      claro é forçado via next-themes em app/resultado/page.tsx, não aqui,
      para não duplicar hexes já definidos em design/tokens.json. */
