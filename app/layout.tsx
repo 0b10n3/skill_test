@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import { SpeedInsights as VercelSpeedInsights } from '@vercel/speed-insights/next';
-import { DM_Sans, DM_Serif_Display, Space_Mono } from 'next/font/google';
+import { Hanken_Grotesk, Space_Grotesk, Space_Mono } from 'next/font/google';
 import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider';
 import { ConsentBanner } from '@/components/analytics/ConsentBanner';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -10,17 +10,16 @@ import { QuizAnswersProvider } from '@/lib/quiz-context';
 import { getSiteUrl } from '@/lib/site-url';
 import './globals.css';
 
-const dmSerifDisplay = DM_Serif_Display({
-  variable: '--font-dm-serif-display',
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
   subsets: ['latin'],
-  weight: ['400'],
-  style: ['normal', 'italic'],
+  weight: ['500', '700'],
   display: 'swap',
-  fallback: ['Georgia', 'serif'],
+  fallback: ['Arial', 'sans-serif'],
 });
 
-const dmSans = DM_Sans({
-  variable: '--font-dm-sans',
+const hankenGrotesk = Hanken_Grotesk({
+  variable: '--font-hanken-grotesk',
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   display: 'swap',
@@ -50,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${dmSerifDisplay.variable} ${dmSans.variable} ${spaceMono.variable}`}
+      className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} ${spaceMono.variable}`}
       suppressHydrationWarning
     >
       <body className="font-sans antialiased">

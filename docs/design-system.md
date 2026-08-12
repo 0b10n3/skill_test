@@ -96,10 +96,10 @@ serem geradas.
 **Lacuna aberta, não resolvida por este épico** (`DESIGN.md` §8, item 1):
 nenhum arquivo de imagem de marca (SVG ou PNG do símbolo real) foi
 recebido do founder em nenhum momento deste projeto. `components/logo.tsx`
-renderiza um wordmark tipográfico (`Syntaxis` em DM Serif Display itálico,
-cor `--link-foreground` — Forest no claro, Grove no escuro) como
-placeholder funcional; `app/icon.svg` é um favicon geométrico placeholder
-pela mesma razão.
+renderiza um wordmark tipográfico (`Syntaxis` em Space Grotesk bold — sem
+itálico, DESIGN.md v2.0 §4.2 —, cor `--link-foreground` — Forest no claro,
+Grove no escuro) como placeholder funcional; `app/icon.svg` é um favicon
+geométrico placeholder pela mesma razão.
 
 Mapa de uso já implementado e pronto para receber o asset real quando
 chegar (convenção de `REDESIGN.md` §3.1, preservada aqui):

@@ -1,5 +1,3 @@
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { diffTokens, flattenTokens } from '../scripts/lib/check-tokens-additive.mjs';
 
@@ -55,16 +53,12 @@ describe('diffTokens', () => {
     expect(result.removed).toEqual(['color.semantic.errorText']);
   });
 
-  it('design/tokens.json v1.2.0 real é puramente aditivo sobre o snapshot congelado da v1.1.0', () => {
-    const rootDir = path.resolve(__dirname, '..');
-    const oldTokens = JSON.parse(
-      readFileSync(path.join(rootDir, 'design/archive/tokens-v1.1.0.json'), 'utf-8'),
-    );
-    const newTokens = JSON.parse(readFileSync(path.join(rootDir, 'design/tokens.json'), 'utf-8'));
-    const result = diffTokens(oldTokens, newTokens);
-    expect(result.changed).toEqual([]);
-    expect(result.removed).toEqual([]);
-    expect(result.ok).toBe(true);
-    expect(result.added.length).toBeGreaterThan(0);
-  });
+  // A verificação real de design/tokens.json não é mais "puramente aditivo"
+  // desde o Épico 22: a v2.0.0 é um bump MAIOR declarado (Amber→Lime,
+  // cantos retos, tipografia). `diffTokens` continua sendo a lógica de
+  // comparação usada — mas quem decide "esse diff é esperado?" agora é
+  // scripts/check-tokens-breaking.mjs (allowlist contra o changelog), não
+  // mais "zero diff". Ver esse script (rodado via `npm run
+  // check:tokens-breaking`, parte do prebuild) para a verificação real
+  // contra o design/tokens.json do repositório.
 });

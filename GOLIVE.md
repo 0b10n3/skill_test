@@ -6,29 +6,30 @@ validação final, de ponta a ponta, de que nada regrediu.
 
 ## Status geral
 
-| Épico                             | Status                                                                                                                |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| 1 — Fundação                      | ✅ Validado                                                                                                           |
-| 2 — Design System                 | ✅ Validado                                                                                                           |
-| 3 — Motor de Seleção              | ✅ Validado                                                                                                           |
-| 4 — Landing Page                  | ✅ Validado                                                                                                           |
-| 5 — Fluxo do Quiz                 | ✅ Validado                                                                                                           |
-| 6 — API de Scoring                | ✅ Validado                                                                                                           |
-| 7 — MailerLite                    | ✅ Validado (subscriber real confirmado em produção)                                                                  |
-| 8 — Página de Resultado           | ✅ Validado                                                                                                           |
-| 9 — QA e Go-Live                  | ✅ Validado                                                                                                           |
-| 10 — Banco de questões v2         | ✅ Validado                                                                                                           |
-| 11 — Motor de diagnóstico         | ✅ Validado                                                                                                           |
-| 12 — Relatório de resultados v2   | ✅ Validado                                                                                                           |
-| 13 — QA de regressão e go-live v2 | ✅ Validado                                                                                                           |
-| 14 — Fundação tokens Syntaxis     | ✅ Validado                                                                                                           |
-| 15 — Padrões geométricos          | ✅ Validado                                                                                                           |
-| 16 — Pipeline assets generativos  | ✅ Validado                                                                                                           |
-| 17 — Redesign páginas do fluxo    | ✅ Validado                                                                                                           |
-| 18 — Redesign do relatório        | ✅ Validado                                                                                                           |
-| 19 — QA visual e go-live redesign | Ver [Go-Live do Redesign](#go-live-do-redesign-épico-19) abaixo                                                       |
-| 20 — Refinamento anti-genérico    | Ver [Go-Live do Refinamento + SEO/Analytics](#go-live-do-refinamento-anti-genérico--seoanalytics-épicos-20-21) abaixo |
-| 21 — SEO, analytics e pixel       | Ver [Go-Live do Refinamento + SEO/Analytics](#go-live-do-refinamento-anti-genérico--seoanalytics-épicos-20-21) abaixo |
+| Épico                                             | Status                                                                                                                |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| 1 — Fundação                                      | ✅ Validado                                                                                                           |
+| 2 — Design System                                 | ✅ Validado                                                                                                           |
+| 3 — Motor de Seleção                              | ✅ Validado                                                                                                           |
+| 4 — Landing Page                                  | ✅ Validado                                                                                                           |
+| 5 — Fluxo do Quiz                                 | ✅ Validado                                                                                                           |
+| 6 — API de Scoring                                | ✅ Validado                                                                                                           |
+| 7 — MailerLite                                    | ✅ Validado (subscriber real confirmado em produção)                                                                  |
+| 8 — Página de Resultado                           | ✅ Validado                                                                                                           |
+| 9 — QA e Go-Live                                  | ✅ Validado                                                                                                           |
+| 10 — Banco de questões v2                         | ✅ Validado                                                                                                           |
+| 11 — Motor de diagnóstico                         | ✅ Validado                                                                                                           |
+| 12 — Relatório de resultados v2                   | ✅ Validado                                                                                                           |
+| 13 — QA de regressão e go-live v2                 | ✅ Validado                                                                                                           |
+| 14 — Fundação tokens Syntaxis                     | ✅ Validado                                                                                                           |
+| 15 — Padrões geométricos                          | ✅ Validado                                                                                                           |
+| 16 — Pipeline assets generativos                  | ✅ Validado                                                                                                           |
+| 17 — Redesign páginas do fluxo                    | ✅ Validado                                                                                                           |
+| 18 — Redesign do relatório                        | ✅ Validado                                                                                                           |
+| 19 — QA visual e go-live redesign                 | Ver [Go-Live do Redesign](#go-live-do-redesign-épico-19) abaixo                                                       |
+| 20 — Refinamento anti-genérico                    | Ver [Go-Live do Refinamento + SEO/Analytics](#go-live-do-refinamento-anti-genérico--seoanalytics-épicos-20-21) abaixo |
+| 21 — SEO, analytics e pixel                       | Ver [Go-Live do Refinamento + SEO/Analytics](#go-live-do-refinamento-anti-genérico--seoanalytics-épicos-20-21) abaixo |
+| 22 — Design v2.0 (Lime, cantos retos, tipografia) | Ver [Go-Live do Design v2.0](#go-live-do-design-v20-épico-22) abaixo                                                  |
 
 ## 1. Suíte de testes completa (todos os épicos, sem regressão)
 
@@ -659,3 +660,131 @@ para tráfego real quanto ao que é verificável por CI/E2E. As pendências
 acima — todas explicitamente fora do alcance de um agente sem acesso a
 DNS/Vercel/contas de analytics reais ou a um dispositivo físico — exigem
 uma pessoa antes de considerar este ciclo encerrado.**
+
+## Go-Live do Design v2.0 (Épico 22)
+
+Segunda rodada de refinamento visual por decisão do founder: três mudanças
+estruturais — Amber sai, entra **Lime** como cor de ação/conquista (Forest
+e Grove intocados); **cantos retos** em todo o sistema (radius 0–2px,
+hairlines no lugar de sombra); tipografia migra para **Space Grotesk**
+(display) + **Hanken Grotesk** (corpo), Space Mono mantida — conforme
+`_insumos/epico-22-design-v2-lime-cantos-retos.md` (removido neste ciclo,
+mesma regra permanente dos ciclos anteriores).
+
+### 1. SSOTs e relatório de breaking changes
+
+`DESIGN.md` substituído pela v2.0 e `design/tokens.json` pela v2.0.0 —
+mesclado manualmente, não sobrescrito: o arquivo do founder, como o de
+v1.2.0 antes dele, não incluía os tokens de contraste AA dos Épicos
+14/15/18/20 (`errorText`, `progressBar`/`progressTrack`,
+`linkForeground`, `achievementForeground`, `attentionText`) — preservados
+byte a byte onde não têm relação com Amber/Lime; os dois últimos migrados
+para a escala lime na mesma posição relativa que ocupavam na escala amber.
+
+**Achado real do processo de merge**: o `tokens.json` v2.0.0 bruto do
+founder também revertia `color.theme.light.secondary` e
+`color.theme.dark.primary` de Grove-700 para Grove-500 — a mesma
+regressão de contraste do Épico 14, não declarada no changelog e sem
+nenhuma relação com as três mudanças estruturais do épico. Pego por
+`scripts/check-tokens-breaking.mjs` (novo — substitui
+`check-tokens-additive.mjs`: a v2.0.0 é um bump MAIOR declarado, "zero
+diff" deixa de ser a regra, vira "só o que está na allowlist derivada do
+changelog"), com uma guarda extra que falha o build se qualquer token de
+Forest/Grove/neutro/semântico-de-feedback aparecer no diff — exatamente o
+critério de aceite do épico.
+
+### 2. Varredura completa
+
+- **Amber → Lime**: CTA primário (`bg-lime-500 text-neutral-ink`, fixo
+  nos dois temas — Grove sai dos botões preenchidos), selo de conquista
+  (`shadow-lime`), marcador de headline (`MarkerHighlight`, sem mais
+  variante `achievement` separada — lime já É conquista), eyebrow sobre
+  banda/dark (`lime-300`, era `grove-300`), linha de conquista
+  (`stroke-linejoin: miter`, acompanhando os cantos retos).
+- **Cantos retos**: todo `rounded-lg/xl/md/pill/4xl` do sistema migrado
+  para `rounded-none`/`rounded-sm` (2px máximo) — cards, botões, inputs,
+  badges, accordion, dialog, progress bar. Sombra sai do Card como
+  padrão (hairline faz o trabalho). Duas exceções documentadas em código:
+  avatares/logo (nenhum no app hoje) e o círculo do `RadioGroup`
+  (achatá-lo o tornaria indistinguível de um checkbox no quiz de
+  alternativa única).
+- **Hairlines estruturais** (assinatura nova, §4.4.3): divisor vertical
+  no hero entre texto e imagem de evidência; seção dedicada no catálogo
+  `/dev/ui`.
+- **Tipografia**: `next/font` troca DM Serif Display/DM Sans por Space
+  Grotesk/Hanken Grotesk; todo itálico de display removido do app
+  (Space Grotesk não tem itálico) — incluindo o Canvas 2D do card
+  compartilhável (`ShareRadarButton`) e o `opengraph-image.tsx`, que
+  buscam as fontes via Google Fonts API em build time.
+
+### 3. Lint estendido em CI
+
+`scripts/lint-hardcoded-colors.mjs` passa a banir também classes
+Tailwind sobre as escalas Amber/Cream (mesmo mecanismo que já bane
+cinzas de framework). `scripts/lint-radius.mjs` (novo): bane todo
+`rounded-*` fora de `none`/`sm`, com as duas exceções acima explicitamente
+documentadas em código — já pegou uma ocorrência real
+(`DialogFooter` com `rounded-b-xl` esquecido) antes de chegar a um commit.
+
+### 4. Auditoria de contraste do lime
+
+`scripts/audit-contrast.mjs` ganha a seção "Regras duras do Lime": pares
+fixos (`lime-500`/`lime-300` × Ink, Chalk × `lime-700`, Deep Forest ×
+`lime-300`, e o par que prova que `lime-500` nunca deve passar como texto
+pequeno sobre claro) auditados a cada execução — verde, com margem
+folgada em todos os pares reais (4.41:1–15.75:1); o único par abaixo de
+4.5:1 é o uso gráfico (traço da linha de conquista sobre claro), que só
+precisa do limiar de UI (3:1) e passa.
+
+### 5. Assets generativos
+
+Inventário dos 9 assets publicados contra seus pares `duotone`: nenhum
+usa Amber ou Cream — todos usam Forest/Grove/Chalk/Mint/Deep Forest.
+Decisão registrada no próprio `assets/manifest.json`: nenhum recolor ou
+regeração necessário neste ciclo. `assets/prompts/_brand-block.md`
+(bloco-padrão injetado em todo prompt do pipeline) atualizado para os
+hexes lime e a instrução "cantos retos" em qualquer asset gerado daqui
+para frente.
+
+### 6. Suíte de testes e Lighthouse
+
+**189 testes Vitest** + **81 testes Playwright** (incluindo axe-core
+WCAG2AA nas 4 rotas × 2 temas, zero violações críticas/sérias), todos
+verdes numa rodada limpa sem `--update-snapshots`, depois de regravar o
+baseline visual do funil e do relatório (esperado: cor/radius/tipografia
+mudaram em toda a superfície do produto). `npm run build` limpo. Lighthouse
+(`test:lighthouse:flow`): Performance 98–100, Accessibility 100, Best
+Practices 95–96, SEO 100 na home (≥ 95 exigido) — nas 4 rotas × 2 temas,
+a troca de fontes não degradou LCP.
+
+## Pendências que exigem uma pessoa — Épico 22
+
+- ⬜ **Revisão visual manual do founder** — mobile real + desktop, dois
+  temas, lado a lado com as referências que motivaram o ciclo. Este é o
+  **gate final do próprio épico**, definido como humano por natureza
+  (`epico-22`, "Gate — critério de conclusão"): nenhuma verificação
+  automatizada substitui a aprovação de que o resultado bate com a
+  referência visual aprovada.
+- ⬜ **Leitor de tela real** e **mobile real** nos 2 temas — mesma
+  pendência recorrente dos go-lives anteriores.
+
+## Critério de Go-Live — Épico 22 — status
+
+- [x] SSOTs v2.0/v2.0.0 no repo; relatório de breaking changes
+      coincidente com o changelog (`npm run check:tokens-breaking`).
+- [x] Zero Amber/Cream/fontes antigas; zero radius fora do sistema
+      (`npm run lint:colors`, `npm run lint:radius`).
+- [x] Auditoria de contraste do lime verde, relatório versionado
+      (`design/contrast-report.md`).
+- [x] Zero regressões: 189/189 Vitest, 81/81 Playwright (axe-core
+      incluído), Lighthouse ≥ 90 em todas as categorias aplicáveis.
+- [ ] **Revisão visual manual do founder** — **pendente de execução
+      humana**, gate final do épico.
+- [ ] Leitor de tela real e mobile real, nos 2 temas — **pendente de
+      execução humana**.
+
+**O Design v2.0 está pronto para tráfego real quanto ao que é verificável
+por CI/E2E — cor, radius e tipografia migrados de ponta a ponta, com
+prova automatizada de que nenhuma mudança fora do declarado no changelog
+passou despercebida. A aprovação visual do founder contra as referências
+originais é o gate final e exige uma pessoa.**

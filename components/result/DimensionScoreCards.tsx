@@ -18,7 +18,7 @@ import type { KnowledgeCategory } from '@/lib/types';
 
 // Ícone de fallback para as 2 dimensões sem ilustração aprovada do Épico
 // 16 ainda (dimensao-matematica-quant, dimensao-dados-programacao — achado
-// de Amber fora de contexto, PR #20) — troca automática por
+// de cor de conquista fora de contexto, PR #20) — troca automática por
 // DIMENSAO_ASSET_SLUG assim que forem regeneradas e publicadas.
 const CATEGORY_ICON: Record<KnowledgeCategory, LucideIcon> = {
   'mercados-produtos': Landmark,
@@ -35,7 +35,7 @@ const ETIQUETA_LABEL: Record<DimensionEtiqueta, string> = {
 };
 
 // forte → secondary (família Grove/ação, DESIGN.md §4.1); neutro → outline
-// (neutro, sem cor de marca); atencao → attention (Amber-700/300 como
+// (neutro, sem cor de marca); atencao → attention (Lime-700/300 como
 // texto de alerta construtivo — nunca destructive: um resultado baixo é
 // mapa de desenvolvimento, não erro de sistema, ver DESIGN.md §18 "boas
 // práticas aplicadas").

@@ -19,7 +19,7 @@ export default function PrivacidadePage() {
   return (
     <main className="mx-auto flex w-full max-w-2xl flex-col gap-6 px-6 py-14 sm:px-10">
       <div className="flex flex-col gap-2">
-        <p className="text-eyebrow text-grove-700 dark:text-grove-300">Política de privacidade</p>
+        <p className="text-eyebrow text-grove-700 dark:text-lime-300">Política de privacidade</p>
         <h1 className="font-display text-3xl text-foreground">
           Como tratamos os seus dados no Syntaxis Skill Check
         </h1>

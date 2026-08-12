@@ -34,9 +34,9 @@ async function loadGoogleFont(family: string, weight: number): Promise<ArrayBuff
 }
 
 export default async function OpengraphImage() {
-  const [dmSerifDisplayRegular, dmSansRegular] = await Promise.all([
-    loadGoogleFont('DM Serif Display', 400),
-    loadGoogleFont('DM Sans', 400),
+  const [spaceGroteskBold, hankenGroteskRegular] = await Promise.all([
+    loadGoogleFont('Space Grotesk', 700),
+    loadGoogleFont('Hanken Grotesk', 400),
   ]);
   const backgroundDataUri = loadOgBackground();
 
@@ -59,7 +59,7 @@ export default async function OpengraphImage() {
       <div
         style={{
           display: 'flex',
-          fontFamily: 'DM Sans',
+          fontFamily: 'Hanken Grotesk',
           fontSize: 28,
           letterSpacing: 4,
           textTransform: 'uppercase',
@@ -71,7 +71,8 @@ export default async function OpengraphImage() {
       <div
         style={{
           display: 'flex',
-          fontFamily: 'DM Serif Display',
+          fontFamily: 'Space Grotesk',
+          fontWeight: 700,
           fontSize: 64,
           lineHeight: 1.15,
           color: tokens.color.neutral.chalk.$value,
@@ -83,7 +84,7 @@ export default async function OpengraphImage() {
       <div
         style={{
           display: 'flex',
-          fontFamily: 'DM Sans',
+          fontFamily: 'Hanken Grotesk',
           fontSize: 30,
           color: tokens.color.neutral.mint.$value,
         }}
@@ -94,8 +95,8 @@ export default async function OpengraphImage() {
     {
       ...size,
       fonts: [
-        { name: 'DM Serif Display', data: dmSerifDisplayRegular, weight: 400, style: 'italic' },
-        { name: 'DM Sans', data: dmSansRegular, weight: 400, style: 'normal' },
+        { name: 'Space Grotesk', data: spaceGroteskBold, weight: 700, style: 'normal' },
+        { name: 'Hanken Grotesk', data: hankenGroteskRegular, weight: 400, style: 'normal' },
       ],
     },
   );

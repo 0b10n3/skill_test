@@ -29,8 +29,8 @@ export function PatternGrowthLine({ steps = 4, className }: PatternGrowthLinePro
         fill="none"
         stroke="var(--pattern-growth-line-color)"
         strokeWidth="var(--pattern-growth-line-stroke-width)"
-        strokeLinejoin="round"
-        strokeLinecap="round"
+        strokeLinejoin="miter"
+        strokeLinecap="square"
         style={{ opacity: 'var(--pattern-growth-line-opacity)' }}
       />
     </svg>

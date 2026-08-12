@@ -15,6 +15,14 @@ function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
   );
 }
 
+// Exceção documentada ao sistema de cantos retos (DESIGN.md v2.0 §4.5),
+// além de avatares/logo: o círculo é a forma semântica universal de "seleção
+// única" (rádio) vs. o quadrado de "seleção múltipla" (checkbox,
+// components/ui/checkbox.tsx já usa rounded-sm) — achatar o rádio para reto
+// o tornaria visualmente indistinguível de um checkbox no quiz
+// (components/quiz/QuestionCard.tsx: sempre uma alternativa só), trocando
+// precisão de marca por ambiguidade real de UX. scripts/lint-radius.mjs
+// isenta este componente explicitamente, com a mesma justificativa.
 function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
   return (
     <RadioPrimitive.Root

@@ -128,7 +128,7 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
 
           <Button
             type="submit"
-            variant="secondary"
+            variant="default"
             size="lg"
             disabled={isSubmitting}
             className="self-end"

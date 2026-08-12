@@ -89,7 +89,7 @@ export function MiniRadarTile({ highlight }: { highlight: KnowledgeCategory }) {
             cx={x}
             cy={y}
             r={isHighlight ? 5 : 3}
-            fill={isHighlight ? 'var(--color-amber-500)' : 'var(--color-grove-500)'}
+            fill={isHighlight ? 'var(--color-lime-700)' : 'var(--color-grove-500)'}
           />
         );
       })}

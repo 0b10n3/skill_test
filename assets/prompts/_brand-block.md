@@ -11,18 +11,19 @@ Nano Banana Pro. Mudou a paleta ou a direção estética? Edita só aqui.
 
 - Forest `#1B6A45` — âncora institucional, estrutura, UI principal.
 - Grove `#2D9E67` — ação, cor secundária, crescimento.
-- Amber `#C9832A` — exclusivo de conquista real, nunca decoração neutra.
+- Lime `#CDF163` — exclusivo de conquista/energia real, nunca decoração neutra (v2.0.0: substitui Amber).
 - Chalk `#F7F7F5` — fundo claro.
-- Ink `#141414` — fundo escuro / texto sobre claro.
+- Ink `#141414` — fundo escuro / texto sobre claro / texto sobre superfície Lime.
 - Mint `#E6F4EE` — fundos suaves, cards informativos.
-- Cream `#F5EDD6` — fundos de conquista/objetivo.
 - Mist `#E2E8F0` — bordas, linhas divisórias, grade de dados.
 
 ## Direção estética
 
 Estrutura, árvore sintática / AST, grafos e ramificações — nó-e-galho é o
 conceito unificador da marca (ver `DESIGN.md` §5.1). Geométrico, editorial,
-sóbrio. Rigor sem enfeite; tensão real, não clichê de fintech.
+sóbrio. Rigor sem enfeite; tensão real, não clichê de fintech. Cantos retos —
+nenhum elemento arredondado (exceto o símbolo circular do logo, quando
+presente): sem cantos suavizados, sem blobs, sem formas orgânicas.
 
 ## Proibições (negative constraints — sempre incluir)
 
@@ -32,3 +33,4 @@ sóbrio. Rigor sem enfeite; tensão real, não clichê de fintech.
 - Glassmorphism, gradientes fora da paleta acima.
 - Pessoas fotorrealistas.
 - Qualquer texto renderizado dentro da imagem (título, legenda, watermark).
+- Cantos arredondados, formas orgânicas ou elementos "friendly" — o sistema v2.0 é reto.

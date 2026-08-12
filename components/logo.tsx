@@ -14,11 +14,13 @@ import { cn } from '@/lib/utils';
  * --primary, que no Dark Mode é Grove-700, escurecido para preenchimento
  * de botão, e só atinge 3.62:1 como texto direto; achado do Épico 15),
  * puramente por CSS — sem JS, sem risco de flash/mismatch de hidratação.
+ * v2.0.0: sem itálico — Space Grotesk não tem variante itálica; peso bold
+ * assume o papel que o itálico tinha de diferenciar o wordmark do corpo.
  */
 export function Logo({ className }: { className?: string }) {
   return (
     <span
-      className={cn('font-display text-xl text-link-foreground italic', className)}
+      className={cn('font-display text-xl font-bold text-link-foreground', className)}
       role="img"
       aria-label="Syntaxis"
     >

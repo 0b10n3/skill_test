@@ -68,7 +68,7 @@ export function CtaSection({
 
           <div className="flex flex-wrap items-center gap-2">
             <Button
-              variant="secondary"
+              variant="outline"
               onClick={handleResend}
               disabled={!leadEmail || resendStatus === 'enviando'}
             >

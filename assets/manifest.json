@@ -1,5 +1,6 @@
 {
   "$description": "Manifesto de assets publicados (Épico 16) — liga cada arquivo em public/img/ ao prompt de origem e à versão raw aprovada. Nunca editar publishedFiles à mão: gerado por scripts/process-asset.mjs. Vazio até o primeiro asset ser gerado e aprovado (ver .agents/skills/gerar-asset-marca/SKILL.md).",
+  "$brandAuditEpico22": "Varredura Amber→Lime (DESIGN.md v2.0 §8 lacuna #5): os 9 assets publicados abaixo foram inspecionados um a um contra seus pares `duotone` (dark/light) — nenhum usa Amber (#C9832A e escala) ou Cream (#F5EDD6); todos usam Forest/Grove/Chalk/Mint/Deep Forest. Confirmado também por scripts/verify-asset-palette.mjs, que agora testa a tolerância de paleta contra a escala lime (não mais amber). Decisão: nenhum recolor ou regeração necessário neste ciclo — o lote inicial já nasceu fora da paleta aposentada.",
   "assets": [
     {
       "slug": "hero-landing",

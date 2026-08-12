@@ -11,8 +11,8 @@ function makeFixtureTokens() {
       grove: {
         500: { $value: '#2D9E67', $type: 'color' },
       },
-      amber: {
-        500: { $value: '#C9832A', $type: 'color' },
+      lime: {
+        500: { $value: '#CDF163', $type: 'color' },
       },
       neutral: {
         chalk: { $value: '#F7F7F5', $type: 'color' },

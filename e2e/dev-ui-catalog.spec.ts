@@ -37,7 +37,7 @@ test.describe('/dev/ui — acessibilidade (axe-core)', () => {
 });
 
 test.describe('/dev/ui — badge de conquista', () => {
-  test('Amber (achievement) só aparece na classificação Alto', async ({ page }) => {
+  test('Lime (achievement) só aparece na classificação Alto', async ({ page }) => {
     await page.goto('/dev/ui');
 
     const alto = page.getByText('Alto', { exact: true });
