@@ -1,12 +1,13 @@
 # Syntaxis — DESIGN.md
 
 **Manual de Marca** · Fonte única da verdade para identidade visual, voz e aplicação de marca
+**v1.1** · Adiciona §4.3–§4.6 (hierarquia digital, assinaturas visuais, anti-padrões de "design de IA", componentes com assinatura) e atualiza §8. Paleta, voz e sistema de padrões **inalterados** em relação à v1.0.
 
 ---
 
 > Este documento consolida e substitui a camada de marca de `syntaxis_brand_book_v1.md` para o novo momento da Syntaxis: de newsletter de educação financeira para **plataforma de treinamento técnico para profissionais do mercado de capitais brasileiro**. A paleta de cores é mantida integralmente — nenhuma alteração cromática foi feita. O que muda é para quem falamos, o que prometemos, e como isso se traduz em voz e em elementos visuais de apoio.
 >
-> Este arquivo é a peça que faltava identificada pelo `MARKETING_REVIEW.md` §12: _"Nenhum guia de voz de marca existe... Ação recomendada: criar um `VOICE.md`."_ A Seção 3 deste documento cumpre esse papel, integrada ao restante da identidade.
+> **O que a v1.1 acrescenta:** a v1.0 definia paleta, tipografia e padrões, mas não definia _composição_ — e foi na composição que a primeira implementação do produto ficou genérica ("cara de site feito por IA"). As novas seções §4.3–§4.6 transformam as referências visuais aprovadas pelo founder em regras de composição verificáveis, para que nenhuma página da Syntaxis possa ser confundida com um template.
 
 ---
 
@@ -197,11 +198,66 @@ O pivô para uma plataforma técnica torna o papel do Space Mono mais central do
 - Blocos de código: Space Mono, fundo `Deep Forest` ou `Ink`, texto `Chalk`, syntax highlighting usando `Grove` (funções/keywords) e `Amber` (strings/valores) quando aplicável.
 - Nomes de arquivo e comandos inline: Space Mono em `texttt`/`code style`, nunca em itálico.
 
+### 4.3. Hierarquia tipográfica em produto digital _(novo na v1.1)_
+
+O que separa a página da Syntaxis de um template é a **amplitude** da hierarquia. A v1.0 tinha os tamanhos certos para documento; em web, a escala precisa de mais contraste entre os extremos:
+
+| Papel               | Token (`tokens.json`)                                       | Regra de composição                                                                                                                                                                              |
+| ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Headline de hero    | `displayXxl` (64px desktop / 40px mobile, DM Serif Display) | Uma por página. Sempre com **palavra-acento** (§4.4.2). Nunca centralizada com dois botões embaixo em coluna simétrica — alinhar à esquerda ou compor em grid com elemento de evidência ao lado. |
+| Eyebrow de seção    | `eyebrow` (Space Mono, caixa alta, tracking largo)          | Toda seção abre com eyebrow curto ("O QUE AVALIAMOS", "METODOLOGIA", "RESULTADO") — é o marcador de ritmo herdado das referências aprovadas.                                                     |
+| Título de seção     | `displayLg` / `heading1` (serif)                            | Serif em títulos de seção; DM Sans fica para `heading2` abaixo e UI.                                                                                                                             |
+| Número protagonista | `statNumber` / `dataXl` (Space Mono bold)                   | Todo número que carrega argumento (15 questões, 5 dimensões, 2/3, 87%) é exibido grande, em mono — nunca no mesmo tamanho do parágrafo.                                                          |
+| Corpo               | `bodyLg` / `body` (DM Sans)                                 | Cor de texto secundário é **Slate `#4A5568`** — nunca o cinza default de framework.                                                                                                              |
+
+**Regra dura:** se uma página usa apenas os tamanhos default do framework (text-base/lg/xl/2xl em progressão uniforme), ela está errada por definição — a escala da Syntaxis é a do `tokens.json`, com salto deliberado entre display e corpo.
+
+### 4.4. Assinaturas visuais de produto _(novo na v1.1)_
+
+Sete dispositivos de composição, derivados das referências aprovadas pelo founder, que tornam uma página reconhecível como Syntaxis. **Toda página pública usa no mínimo três; o hero usa obrigatoriamente 1, 2 e 3.**
+
+1. **Eyebrow mono.** Rótulo curto em Space Mono caixa alta acima de todo título de seção (§4.3). É a impressão digital "técnica" da marca em cada dobra.
+2. **Palavra-acento serif itálica.** No headline, uma única palavra-chave em DM Serif Display _itálico_ (o token `displayXxl`/`displayXl` já prevê itálico) — ex.: "Descubra seu nível técnico em _finanças_". Uma palavra, nunca a frase inteira.
+3. **Marcador de ênfase.** Alternativa ou complemento à palavra-acento: sublinhado espesso (6–8px, arredondado) em Grove — ou Amber quando o destaque é conquista — sob **uma** palavra do headline. Nunca os dois dispositivos na mesma palavra, nunca mais de um marcador por headline.
+4. **Banda Deep Forest.** Pelo menos uma seção full-bleed em `Deep Forest #0F3D27` com texto Chalk por página longa — quebra o ritmo do fundo Chalk e cria o momento "statement" (nas referências: a seção de integrações da Clause, a faixa de números da Ascone). É onde o padrão nó-e-galho pode ir a 30–40% de opacidade.
+5. **Faixa de números.** Bloco de 2–4 métricas grandes em `statNumber` (Space Mono) com legenda em `caption` — "15 questões · 5 dimensões · 5 níveis". Números são o argumento da Syntaxis; a faixa os trata como protagonistas.
+6. **Tile de evidência (bento).** Cards em grid **assimétrico** (larguras/alturas mistas), onde cada tile mostra **conteúdo real do produto** — um mini-radar renderizado, uma questão real do banco, um trecho de `explanation`, um número do diagnóstico — em vez de ícone + título + parágrafo. A prova substitui a ilustração de conceito. Superfície: branco ou Mint sobre Chalk, borda 1px Mist, `shadow.syntaxisSm`, radius `xl`.
+7. **Botão-pílula.** CTAs em radius `pill`, Grove com texto Chalk (primário) ou outline Forest (secundário); altura e padding do `tokens.json` `component.button`. Nunca o retângulo default de framework.
+
+### 4.5. Anti-padrões — a lista do "feito por IA" _(novo na v1.1)_
+
+Proibições verificáveis em revisão de PR. A presença de qualquer item abaixo reprova a peça:
+
+- **Grid de três cards idênticos** ícone-título-parágrafo, centrados, com ícone de biblioteca sem tratamento. (Substituir por tiles de evidência — §4.4.6.)
+- **Hero centralizado genérico**: título centrado + subtítulo + dois botões lado a lado, sem elemento de evidência, sem palavra-acento, sem eyebrow.
+- **Cinzas de framework** (`#6B7280`, `#9CA3AF` etc.) em texto — o secundário da Syntaxis é Slate `#4A5568`; divisórias são Mist.
+- **Gradientes, glassmorphism, blobs desfocados** — a marca é sólida e geométrica.
+- **Emoji como ícone de feature** (regra §3.4 estendida à UI).
+- **Sombra default de framework** — apenas `shadow.syntaxis*` do `tokens.json`.
+- **Progressão uniforme de tamanhos de fonte** sem salto display/corpo (§4.3).
+- **Espaçamento uniforme entre todas as seções** — o ritmo vem da alternância Chalk ↔ banda Deep Forest e de respiros maiores antes de seções-statement (`layout.section*` no `tokens.json`).
+- **Ilustração genérica de "finanças"** (moedas, cifrões, gráficos candlestick, robôs/cérebros de IA) — já proibida no pipeline generativo, agora também em qualquer asset manual.
+- **Radius default e inconsistente** — só os valores de `radius.*` do `tokens.json`.
+
+### 4.6. Componentes com assinatura _(novo na v1.1)_
+
+Especificação de referência (valores canônicos no `tokens.json` v1.2.0, grupo `component.*`):
+
+| Componente                   | Assinatura Syntaxis                                                                                                                                                                                        |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Botão primário**           | Pílula (`radius.pill`), Grove-500, texto Chalk, DM Sans medium; hover Grove-700; foco com `ring` visível. Secundário: outline 1.5px Forest sobre transparente.                                             |
+| **Card / tile**              | Radius `xl` (16px), borda 1px Mist, `shadow.syntaxisSm`, padding `md`–`lg`; superfície branca ou Mint sobre Chalk (nunca card branco sobre branco). No dark: superfície `card` dos tokens, borda `border`. |
+| **Tile de evidência**        | Card acima + conteúdo real do produto (§4.4.6); título em `heading3`, métrica em `dataXl`.                                                                                                                 |
+| **Banda**                    | Full-bleed Deep Forest, texto Chalk, padding vertical `layout.sectionY`; eyebrow em Grove-300; CTA dentro da banda pode usar Chalk como fundo do botão.                                                    |
+| **Accordion (FAQ/gabarito)** | Linhas divisórias Mist, sem caixa; título em `heading3`, indicador +/− em Space Mono; aberto revela corpo em `bodyLg`.                                                                                     |
+| **Eyebrow**                  | Space Mono 12px, caixa alta, tracking 0.15em, cor Grove-700 (light) / Grove-300 (dark ou sobre banda).                                                                                                     |
+| **Faixa de números**         | Fundo Mint ou Cream (Cream apenas quando o número é conquista), números `statNumber`, legendas `caption` em Slate.                                                                                         |
+
 ---
 
 ## 5. Sistema de Padrões Geométricos
 
-> Nenhuma imagem de logo foi recebida nesta sessão — apenas os quatro arquivos `.md`. O sistema abaixo foi desenhado para funcionar independente do arquivo final do logo, ancorado no próprio conceito da marca. Envie o arquivo do símbolo quando disponível para calibrar precisão milimétrica (espessura de traço, raio de nó) ao desenho real.
+> Calibração pendente do §8 resolvida parcialmente: o símbolo do logo foi recebido (PNG em múltiplos tamanhos, duas variantes de verde). Espessuras e raios abaixo permanecem válidos; a recalibração milimétrica final acontece quando o SVG master estiver disponível.
 
 ### 5.1. O conceito unificador: nó-e-galho
 
@@ -229,6 +285,7 @@ _Uso:_ certificados, badges de conclusão de módulo, indicadores de progresso �
 | ----------------------------------------------- | -------------------------------------------------------- | ---------------------------------------- |
 | Capa de módulo / slide de título                | Nó-e-galho, canto inferior                               | 25–35%                                   |
 | Slide divisor de seção                          | Nó-e-galho, campo completo atrás do painel de cor sólida | 30–40%                                   |
+| **Banda Deep Forest em página web (§4.4.4)**    | Nó-e-galho, campo ou canto                               | 30–40%                                   |
 | Fundo de slide de conteúdo técnico (SQL/Python) | Grade de dados, apenas nas margens                       | 15–20%                                   |
 | Certificado de conclusão                        | Linha de conquista + nó-e-galho como moldura             | 100% (elementos são o design, não fundo) |
 | Post de rede social — anúncio de módulo         | Nó-e-galho como moldura de canto                         | 40–60%                                   |
@@ -286,7 +343,7 @@ Os templates LaTeX já entregues (`syntaxis-notas-v1.tex`, `syntaxis-beamer-v1.t
 
 ## 7. Checklist Rápido
 
-Antes de publicar qualquer peça — copy, slide, case, e-mail:
+Antes de publicar qualquer peça — copy, slide, case, e-mail, **página web**:
 
 - [ ] A promessa de resultado é a da Seção 1.3 — nunca uma genérica ("aprenda finanças")?
 - [ ] O segmento de `AUDIENCES.md` está identificado e o eixo (FEAR/GREED) está puro?
@@ -296,6 +353,9 @@ Antes de publicar qualquer peça — copy, slide, case, e-mail:
 - [ ] Nomes comerciais estão em português?
 - [ ] Se houver padrão geométrico, é um só, na opacidade certa para o contexto (Seção 5.4)?
 - [ ] A paleta usada é exatamente Forest/Grove/Amber + neutros — nenhuma cor nova foi introduzida?
+- [ ] _(v1.1)_ A página usa ao menos três assinaturas visuais da §4.4 — e o hero usa eyebrow, palavra-acento e marcador?
+- [ ] _(v1.1)_ Nenhum item da lista de anti-padrões da §4.5 está presente?
+- [ ] _(v1.1)_ Todo número-argumento está em Space Mono, em tamanho de protagonista (§4.3)?
 
 ---
 
@@ -303,11 +363,11 @@ Antes de publicar qualquer peça — copy, slide, case, e-mail:
 
 Itens sinalizados por este documento que ainda dependem de decisão ou material do founder:
 
-1. **Logo/símbolo real** — nenhum arquivo de imagem foi recebido nesta sessão. O sistema de padrões da Seção 5 foi desenhado para ser aplicável independente do símbolo final, mas espessura de traço, raio de nó e ângulos de ramificação devem ser recalibrados assim que o arquivo do logo estiver disponível.
+1. **SVG master do logo** — _(atualizado na v1.1)_ o símbolo foi recebido em PNG (8/48/64/96px, variantes Forest e Grove). Falta o vetor original para usos acima de 96px e impressão; até lá, vetorizar com fidelidade ou limitar o uso aos tamanhos fornecidos.
 2. **Nomes comerciais das trilhas** — `MARKETING_REVIEW.md` §13 aponta esta decisão como aberta; a Seção 3.4 deste documento já cristaliza a regra (português), falta aplicá-la aos nomes específicos.
 3. **Certificado de conclusão** — mencionado na Seção 6 como aplicação natural dos padrões geométricos, mas o formato final (PDF, badge digital, ambos) ainda não foi definido em nenhum documento do projeto.
 4. **Aplicação do padrão nó-e-galho nos templates LaTeX existentes** — a Seção 5.5 aponta o caminho técnico; a implementação em si (adicionar o `tikzpicture` de fundo aos slides de seção) pode ser feita a qualquer momento, mediante solicitação.
 
 ---
 
-_Syntaxis DESIGN.md v1.0 · Consolida `syntaxis_brand_book_v1.md`, `AUDIENCES.md`, `METHODOLOGY.md` e os gaps identificados em `MARKETING_REVIEW.md` §12 numa única fonte de verdade de marca._
+_Syntaxis DESIGN.md v1.1 · Consolida `syntaxis_brand_book_v1.md`, `AUDIENCES.md`, `METHODOLOGY.md` e os gaps identificados em `MARKETING_REVIEW.md` §12 numa única fonte de verdade de marca. A v1.1 adiciona as regras de composição digital (§4.3–§4.6) derivadas das referências visuais aprovadas, sem alterar paleta, voz ou padrões._
