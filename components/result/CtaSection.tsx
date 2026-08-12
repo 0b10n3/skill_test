@@ -64,7 +64,7 @@ export function CtaSection({
           <CardTitle className="font-display text-base text-foreground">{headline}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
-          <OfferBlock classification={diagnostico.classificacao} />
+          <OfferBlock classification={diagnostico.classificacao} seniority={seniority} />
 
           <div className="flex flex-wrap items-center gap-2">
             <Button

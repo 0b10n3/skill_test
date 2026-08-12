@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import { DM_Sans, DM_Serif_Display, Space_Mono } from 'next/font/google';
+import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider';
+import { ConsentBanner } from '@/components/analytics/ConsentBanner';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { QuizAnswersProvider } from '@/lib/quiz-context';
+import { getSiteUrl } from '@/lib/site-url';
 import './globals.css';
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -30,14 +33,8 @@ const spaceMono = Space_Mono({
   fallback: ['Courier New', 'monospace'],
 });
 
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000';
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(getSiteUrl()),
   title: 'Syntaxis Skill Check',
   description:
     'Descubra seu nível técnico em finanças em alguns minutos — avaliação adaptativa por senioridade.',
@@ -60,6 +57,8 @@ export default function RootLayout({
             <ThemeToggle />
           </div>
           <QuizAnswersProvider>{children}</QuizAnswersProvider>
+          <AnalyticsProvider />
+          <ConsentBanner />
         </ThemeProvider>
       </body>
     </html>
