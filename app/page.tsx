@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
+import { CredibilityBand } from '@/components/landing/CredibilityBand';
 import { DimensionsSection } from '@/components/landing/DimensionsSection';
 import { HeroSection } from '@/components/landing/HeroSection';
-import { MethodSection } from '@/components/landing/MethodSection';
+import { StatsStripSection } from '@/components/landing/StatsStripSection';
 
 export function generateMetadata(): Metadata {
   const title = 'Syntaxis Skill Check — Descubra seu nível técnico em finanças';
@@ -29,7 +30,8 @@ export default function Home() {
     <main className="flex flex-col">
       <HeroSection />
       <DimensionsSection />
-      <MethodSection />
+      <StatsStripSection />
+      <CredibilityBand />
     </main>
   );
 }

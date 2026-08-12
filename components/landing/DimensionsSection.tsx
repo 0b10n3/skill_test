@@ -1,63 +1,117 @@
-import { GeneratedImage } from '@/components/generated-image';
-import { PatternDataGrid } from '@/components/patterns';
+import { Eyebrow } from '@/components/ui/eyebrow';
+import { MiniRadarTile } from '@/components/landing/evidence/MiniRadarTile';
 import { CATEGORY_LABEL } from '@/content/relatorio';
-import { DIMENSAO_ASSET_SLUG, DIMENSAO_LANDING_DESCRICAO } from '@/content/landing';
-import type { KnowledgeCategory } from '@/lib/types';
+import {
+  countBankItemsByCategory,
+  getEvidenceExplanation,
+  getEvidenceQuestion,
+} from '@/lib/landing-evidence';
 
-const DIMENSIONS: KnowledgeCategory[] = [
-  'mercados-produtos',
-  'matematica-quant',
-  'dados-programacao',
-  'ia-aplicada',
-  'risco-regulacao',
-];
+const quantQuestion = getEvidenceQuestion('q16');
+const dadosQuestion = getEvidenceQuestion('q25');
+const iaExplanation = getEvidenceExplanation('q34');
+const riscoBankCount = countBankItemsByCategory('risco-regulacao');
+
+function TileShell({
+  category,
+  className,
+  children,
+}: {
+  category: keyof typeof CATEGORY_LABEL;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`flex flex-col gap-3 rounded-xl border border-border bg-card p-5 shadow-syntaxis-sm sm:p-6 ${className ?? ''}`}
+    >
+      <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
+        {CATEGORY_LABEL[category]}
+      </p>
+      {children}
+    </div>
+  );
+}
 
 /**
- * Seção "o que o diagnóstico avalia" (Épico 17). Grade de dados só nas
- * margens (slot fixo do componente — DESIGN.md §5.2, nunca atrás do
- * conteúdo). Duas das 5 dimensões ainda não têm asset aprovado
- * (content/landing.ts DIMENSAO_ASSET_SLUG) — a seção funciona igual, só
- * sem imagem nesses dois cards, até serem regeneradas.
+ * Seção "o que o diagnóstico avalia" (Épico 17, redesign Épico 20 —
+ * DESIGN.md v1.1 §4.4.6): grid bento assimétrico onde cada dimensão mostra
+ * prova real do produto — mini-radar renderizado, uma questão real do banco
+ * (com alternativas, sem gabarito), um trecho real de `explanation`, e um
+ * número real do blueprint do banco — nunca ícone+título+parágrafo
+ * uniforme (anti-padrão §4.5). O grid de 4 colunas com um tile em
+ * col-span-2/row-span-2 e os demais col-span-2/row-span-1 produz o
+ * escalonamento assimétrico só com a ordem natural do CSS grid
+ * (auto-flow), sem posicionamento manual por breakpoint.
  */
 export function DimensionsSection() {
   return (
     <section className="relative flex w-full flex-col gap-6 px-6 py-14 sm:px-10">
-      <PatternDataGrid slot="margin-left" />
-      <PatternDataGrid slot="margin-right" />
-
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-2 text-center">
-        <h2 className="font-display text-2xl text-foreground">O que o diagnóstico avalia</h2>
-        <p className="mx-auto max-w-md text-sm text-muted-foreground">
-          15 questões, 3 por dimensão, calibradas para a expectativa do seu nível declarado.
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-2">
+        <Eyebrow>O que avaliamos</Eyebrow>
+        <h2 className="font-display text-3xl text-foreground sm:text-4xl">
+          O que o diagnóstico avalia
+        </h2>
+        <p className="max-w-md text-sm text-muted-foreground">
+          15 questões, 3 por dimensão, calibradas para a expectativa do seu nível declarado — a
+          prova é o próprio conteúdo do banco, não uma promessa em prosa.
         </p>
       </div>
 
-      <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {DIMENSIONS.map((category) => {
-          const slug = DIMENSAO_ASSET_SLUG[category];
-          return (
-            <div
-              key={category}
-              className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-syntaxis-sm"
-            >
-              <div className="aspect-square w-full overflow-hidden rounded-lg bg-muted">
-                {slug && (
-                  <GeneratedImage
-                    slug={slug}
-                    widths={[400, 800]}
-                    sizes="(min-width: 1024px) 18vw, (min-width: 640px) 45vw, 90vw"
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                )}
-              </div>
-              <h3 className="font-display text-sm text-foreground">{CATEGORY_LABEL[category]}</h3>
-              <p className="text-xs text-muted-foreground">
-                {DIMENSAO_LANDING_DESCRICAO[category]}
-              </p>
-            </div>
-          );
-        })}
+      <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-4 sm:[grid-auto-rows:minmax(200px,auto)]">
+        <TileShell
+          category="mercados-produtos"
+          className="items-center sm:col-span-2 sm:row-span-2"
+        >
+          <div className="flex flex-1 flex-col items-center justify-center gap-2">
+            <MiniRadarTile highlight="mercados-produtos" />
+          </div>
+          <p className="text-center text-xs text-muted-foreground">
+            O radar de competências que você recebe no relatório final — formato ilustrativo, o seu
+            vem das suas respostas.
+          </p>
+        </TileShell>
+
+        <TileShell category="matematica-quant" className="sm:col-span-2">
+          <p className="font-display text-sm text-foreground">{quantQuestion.question}</p>
+          <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground">
+            {quantQuestion.options.map((option) => (
+              <li key={option.id} className="flex gap-2">
+                <span className="font-data text-grove-700 dark:text-grove-300">{option.id})</span>
+                <span>{option.text}</span>
+              </li>
+            ))}
+          </ul>
+        </TileShell>
+
+        <TileShell category="dados-programacao" className="sm:col-span-2">
+          <p className="text-sm text-foreground">{dadosQuestion.question}</p>
+          <ul className="flex flex-col gap-1.5 font-data text-xs text-muted-foreground">
+            {dadosQuestion.options.map((option) => (
+              <li key={option.id} className="rounded-md bg-muted px-2 py-1 text-foreground">
+                {option.text}
+              </li>
+            ))}
+          </ul>
+        </TileShell>
+
+        <TileShell category="ia-aplicada" className="sm:col-span-2">
+          <p className="font-display text-sm text-pretty text-foreground italic">
+            &ldquo;{iaExplanation}&rdquo;
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Trecho real do gabarito comentado que acompanha o seu resultado.
+          </p>
+        </TileShell>
+
+        <TileShell category="risco-regulacao" className="items-center justify-center sm:col-span-2">
+          <div className="flex flex-1 flex-col items-center justify-center gap-1">
+            <span className="text-stat-number text-foreground">{riscoBankCount}</span>
+            <p className="text-center text-xs text-muted-foreground">
+              questões no banco de risco &amp; regulação — 3 caem no seu diagnóstico
+            </p>
+          </div>
+        </TileShell>
       </div>
     </section>
   );
