@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
+import { SpeedInsights as VercelSpeedInsights } from '@vercel/speed-insights/next';
 import { DM_Sans, DM_Serif_Display, Space_Mono } from 'next/font/google';
 import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider';
 import { ConsentBanner } from '@/components/analytics/ConsentBanner';
@@ -60,6 +62,18 @@ export default function RootLayout({
           <AnalyticsProvider />
           <ConsentBanner />
         </ThemeProvider>
+        {/*
+          Vercel Web Analytics + Speed Insights: produto nativo da
+          plataforma (não um SDK de terceiros como GA4/Meta) — sem
+          cookies, sem PII, sem tracking entre sites (documentação da
+          Vercel). Por isso ficam FORA do gate de consentimento LGPD do
+          AnalyticsProvider acima, que existe especificamente para GA4 e
+          Meta Pixel. Cada componente já faz nada em ambiente local/dev
+          por padrão; em produção na Vercel, ativa automaticamente sem
+          nenhuma variável de ambiente própria.
+        */}
+        <VercelAnalytics />
+        <VercelSpeedInsights />
       </body>
     </html>
   );
