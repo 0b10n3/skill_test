@@ -113,6 +113,14 @@ O que este `DESIGN.md` acrescenta é a **moldura comum** que sobrevive acima dos
 
 _(Inalterada da v1.0/v1.1 — reproduzida integralmente por ser SSOT.)_
 
+> **Distinção de escopo (acrescentada em 31/08/2026):** esta seção é a voz de **marca e
+> produto** — como a Syntaxis fala em copy, curso e material comercial. Não é a mesma coisa
+> que a voz **autoral** de quem escreve o Substack, documentada em
+> `pipelines/hemingway/estilo/estilo-autoral.md` (a prosa ensaística/pessoal de um autor
+> específico). Os dois convivem porque descrevem coisas diferentes — nenhum substitui o
+> outro. Ao escrever copy/produto, use esta seção; ao escrever um post de Substack, use
+> `estilo-autoral.md`.
+
 ### 3.1. Arquétipo: O Professor Híbrido
 
 A Syntaxis fala como a pessoa que o mecanismo único do produto descreve: alguém com carreira acadêmica sólida **e** experiência real de mercado, que já viu a ambiguidade institucional brasileira de perto e não tem paciência para conteúdo genérico traduzido — mas também não tem nenhuma necessidade de provar isso sendo solene. É competência confortável consigo mesma.
@@ -372,7 +380,10 @@ Antes de publicar qualquer peça — copy, slide, case, e-mail, página web:
 
 ## 8. Lacunas Abertas
 
-1. **SVG master do logo** — símbolo recebido em PNG (8/48/64/96px, variantes Forest e Grove); falta o vetor para usos acima de 96px e impressão. Avaliar também uma variante Lime do símbolo para uso sobre fundos escuros.
+1. ~~**SVG master do logo**~~ — **Resolvido em 31/08/2026.** `brand/LOGO/symbol-master.svg`
+   (Forest) e `brand/LOGO/symbol-master-lime.svg` (variante Lime para fundo escuro) —
+   geometria extraída de `favicon.svg` e verificada por render comparativo, não redesenhada.
+   Ambos usáveis em qualquer tamanho e para impressão.
 2. **Nomes comerciais das trilhas** — decisão aberta; a regra (§3.4: português) já está cristalizada.
 3. **Certificado de conclusão** — formato final (PDF, badge digital, ambos) indefinido; na v2.0 usa linha de conquista Lime.
 4. **Migração Amber→Lime e da tipografia nos templates LaTeX** (`syntaxis-notas-v1.tex`, `syntaxis-beamer-v1.tex`) e demais materiais de curso — fora do escopo do app; agendar como revisão própria.
