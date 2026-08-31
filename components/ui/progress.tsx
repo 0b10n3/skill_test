@@ -41,7 +41,7 @@ function ProgressIndicator({ className, ...props }: ProgressPrimitive.Indicator.
       // Barra sempre Grove — a cor de "ação" da marca, independente do tema
       // (não é --primary, que é Forest no claro).
       data-slot="progress-indicator"
-      className={cn('h-full bg-semantic-progress-bar transition-all', className)}
+      className={cn('h-full bg-semantic-progress-bar transition-[width]', className)}
       {...props}
     />
   );
