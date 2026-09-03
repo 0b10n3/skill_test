@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Sincronia com a SSOT de marca (revisão de 02/09/2026, item 11 parcial).
 //
-// `brand/DESIGN.md` e `brand/tokens/skill_test.tokens.json` são a fonte da
+// `brand/DESIGN.md` e `brand/tokens/syntaxis.tokens.json` são a fonte da
 // verdade de todo o ecossistema Syntaxis; este repositório mantém uma CÓPIA de
 // cada um (`DESIGN.md`, `design/tokens.json`) porque o build da Vercel não
 // enxerga `brand/` — ele só recebe o conteúdo deste repo.
@@ -26,7 +26,7 @@ const brandDir = path.resolve(rootDir, '../../brand');
 // [cópia local, original em brand/]
 const PAIRS = [
   ['DESIGN.md', 'DESIGN.md'],
-  ['design/tokens.json', 'tokens/skill_test.tokens.json'],
+  ['design/tokens.json', 'tokens/syntaxis.tokens.json'],
 ];
 
 if (!existsSync(brandDir)) {
