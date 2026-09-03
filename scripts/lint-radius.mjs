@@ -16,7 +16,7 @@ import { execSync } from 'node:child_process';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
-const SCAN_DIRS = ['app', 'components'];
+const SCAN_DIRS = ['app', 'components', 'public'];
 
 // Arquivos com exceção documentada ao sistema de cantos retos — cada um
 // precisa do motivo aqui, não só no código.
@@ -37,6 +37,10 @@ const ROUNDED_FULL_PATTERN = /\brounded(?:-[tlbr][trbl]?)?-full\b/g;
 // Valor arbitrário: rounded-[Npx] com N > 2, ou qualquer unidade não-px
 // (rem/em/%) — sempre suspeito num sistema de 0/2px.
 const ARBITRARY_RADIUS_PATTERN = /\brounded(?:-[tlbr][trbl]?)?-\[([^\]]+)\]/g;
+// Atributo SVG rx/ry (revisão de 02/09/2026, item 8): o linter só olhava classe
+// Tailwind em .tsx, então um <rect rx="8"> no favicon passava verde. Mesma
+// régua de 0/2px; a exceção de avatar/símbolo continua vindo de EXCEPTIONS.
+const SVG_RADIUS_PATTERN = /\b(?:rx|ry)="([^"]+)"/g;
 
 function listSourceFiles() {
   const output = execSync(`git ls-files -- ${SCAN_DIRS.map((d) => `'${d}'`).join(' ')}`, {
@@ -47,7 +51,7 @@ function listSourceFiles() {
     .split('\n')
     .map((line) => line.trim())
     .filter(Boolean)
-    .filter((file) => /\.tsx?$/.test(file));
+    .filter((file) => /\.(?:tsx?|svg)$/.test(file));
 }
 
 function isArbitraryValueTooLarge(rawValue) {
@@ -57,7 +61,11 @@ function isArbitraryValueTooLarge(rawValue) {
 }
 
 function findViolations(filePath) {
-  const content = readFileSync(path.join(rootDir, filePath), 'utf-8');
+  const raw = readFileSync(path.join(rootDir, filePath), 'utf-8');
+  // Comentário de SVG vira espaço (preservando quebras de linha, para que o
+  // número da linha reportado continue certo) — senão a nota que explica a
+  // regra dentro do próprio arquivo se auto-reprova.
+  const content = raw.replace(/<!--[\s\S]*?-->/g, (m) => m.replace(/[^\n]/g, ' '));
   const lines = content.split('\n');
   const exception = EXCEPTIONS.find((e) => e.path === filePath);
   const findings = [];
@@ -70,8 +78,13 @@ function findViolations(filePath) {
       .filter((m) => isArbitraryValueTooLarge(m[1]))
       .map((m) => m[0]);
     const full = exception ? [] : (line.match(ROUNDED_FULL_PATTERN) ?? []);
+    const svg = exception
+      ? []
+      : [...line.matchAll(SVG_RADIUS_PATTERN)]
+          .filter((m) => isArbitraryValueTooLarge(`${m[1]}px`))
+          .map((m) => m[0]);
 
-    const matches = [...named, ...arbitraryMatches, ...full];
+    const matches = [...named, ...arbitraryMatches, ...full, ...svg];
     if (matches.length > 0) {
       findings.push({ line: index + 1, text: line.trim(), matches });
     }
