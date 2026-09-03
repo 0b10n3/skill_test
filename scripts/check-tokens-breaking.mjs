@@ -11,7 +11,7 @@
 // tokens.json v2.0.0 bruto do founder revertendo secondary/primary de
 // Grove-700 para Grove-500 (regressão de contraste não declarada, sem
 // nenhuma relação com Amber/Lime/radius/fontes) antes de chegar ao repo.
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { diffTokens } from './lib/check-tokens-additive.mjs';
@@ -125,6 +125,35 @@ if (hasError) {
   console.error(
     '\ndesign/tokens.json v2.0.0 diverge do changelog declarado (meta.changelog["2.0.0"]) — corrija a allowlist deste script (se a mudança for legítima e precisa ser documentada) ou reverta o token (se for uma regressão não intencional).',
   );
+  process.exitCode = 1;
+}
+
+// Segundo gate, acrescentado em 03/09/2026 com a v2.2.0: a promessa de uma
+// versão MENOR. A allowlist acima cobre o salto MAIOR v1.2.0 → v2.0.0 e aceita
+// token novo sem perguntar — o que deixaria uma MENOR remover ou alterar valor
+// sem ninguém ver. Aqui não há allowlist: numa MENOR, nenhum $value muda e
+// nenhum token é removido. Remoção só numa MAIOR, depois de uma MENOR com
+// $deprecated (é a política que a v2.1.0 adotou e que a v2.0.0 violou ao
+// remover 12 tokens de uma vez).
+const MINOR_BASE = path.join(rootDir, 'design/archive/tokens-v2.1.0.json');
+if (existsSync(MINOR_BASE)) {
+  const minor = diffTokens(loadJson(MINOR_BASE), loadJson(NEW_PATH));
+  if (minor.changed.length > 0 || minor.removed.length > 0) {
+    hasError = true;
+    console.error('\n✗ a v2.2.0 declara-se MENOR, mas o diff contra a v2.1.0 não é aditivo:');
+    for (const c of minor.changed) console.error(`  alterado  ${c.path}: ${c.old} → ${c.new}`);
+    for (const r of minor.removed) console.error(`  removido  ${r}`);
+    console.error(
+      '  Numa MENOR, deprecie com $deprecated e remova só numa MAIOR. Se a mudança é mesmo breaking, o bump é MAIOR.',
+    );
+  } else {
+    console.log(
+      `✓ check-tokens-breaking: v2.1.0 → atual é aditivo — ${minor.added.length} token(s) novo(s), nenhum alterado, nenhum removido.`,
+    );
+  }
+}
+
+if (hasError) {
   process.exitCode = 1;
 } else {
   console.log('✓ check-tokens-breaking: diff v1.2.0 → v2.0.0 coincide exatamente com o changelog.');

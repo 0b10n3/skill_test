@@ -68,21 +68,13 @@ function drawNodeBranchCorner(
 
   ctx.strokeStyle = color;
   ctx.lineWidth = 1.5 / FRAME_SCALE;
-  for (const edge of layout.edges) {
-    const from = layout.nodes[edge.from];
-    const to = layout.nodes[edge.to];
-    ctx.beginPath();
-    ctx.moveTo(from.x, from.y);
-    ctx.lineTo(to.x, to.y);
-    ctx.stroke();
-  }
-
-  ctx.fillStyle = color;
-  const nodeRadius = 2.5 / FRAME_SCALE;
-  for (const node of layout.nodes) {
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
-    ctx.fill();
+  ctx.lineCap = 'square';
+  ctx.lineJoin = 'miter';
+  // Os mesmos comandos SVG que o componente renderiza — inclusive o quarto de
+  // arco terminal, que Path2D entende. Nenhum círculo: desde a v3.0 o nó é a
+  // dobra (DESIGN.md v3.0 §6.2).
+  for (const d of layout.paths) {
+    ctx.stroke(new Path2D(d));
   }
   ctx.restore();
 }

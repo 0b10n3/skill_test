@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
 import tokens from '@/design/tokens.json';
-import { PatternDataGrid } from '@/components/patterns/PatternDataGrid';
+import { PatternReticula } from '@/components/patterns/PatternReticula';
 import { PatternGrowthLine } from '@/components/patterns/PatternGrowthLine';
 import { PatternNodeBranch } from '@/components/patterns/PatternNodeBranch';
 
@@ -33,26 +33,36 @@ describe('PatternNodeBranch', () => {
     expect(container.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
   });
 
-  it('cada nó e galho referencia os tokens pattern.nodeBranch via var(), nunca um valor copiado', () => {
+  it('cada galho referencia os tokens pattern.nodeBranch via var(), nunca um valor copiado', () => {
     const { container } = render(<PatternNodeBranch context="decorative" />);
-    const circle = container.querySelector('circle');
-    const line = container.querySelector('line');
-    expect(circle?.getAttribute('r')).toBe('var(--pattern-node-branch-node-radius)');
-    expect(circle?.getAttribute('fill')).toBe('var(--pattern-node-branch-color)');
-    expect(line?.getAttribute('stroke-width')).toBe('var(--pattern-node-branch-stroke-width)');
+    const path = container.querySelector('path');
+    expect(path?.getAttribute('stroke')).toBe('var(--pattern-node-branch-color)');
+    expect(path?.getAttribute('stroke-width')).toBe('var(--pattern-node-branch-stroke-width)');
+  });
+
+  it('não desenha nenhum círculo — o nó é a dobra, e o símbolo não contém círculo (DESIGN.md v3.0 §6.2)', () => {
+    const { container } = render(<PatternNodeBranch context="decorative" density="dense" />);
+    expect(container.querySelectorAll('circle')).toHaveLength(0);
   });
 });
 
-describe('PatternDataGrid', () => {
+describe('PatternReticula', () => {
   it('a API só aceita os três slots documentados — nenhuma prop de posicionamento livre', () => {
-    const { container } = render(<PatternDataGrid slot="header" />);
+    const { container } = render(<PatternReticula slot="header" />);
     expect(container.querySelector('[data-pattern-slot="header"]')).toBeInTheDocument();
   });
 
-  it('referencia os tokens pattern.dataGrid via var()', () => {
-    const { container } = render(<PatternDataGrid slot="margin-left" />);
-    const el = container.querySelector('[data-pattern="data-grid"]') as HTMLElement;
-    expect(el.style.backgroundSize).toContain('var(--pattern-data-grid-spacing)');
+  it('referencia os tokens pattern.reticula.fine via var()', () => {
+    const { container } = render(<PatternReticula slot="margin-left" />);
+    const el = container.querySelector('[data-pattern="reticula"]') as HTMLElement;
+    expect(el.style.backgroundSize).toContain('var(--pattern-reticula-fine-spacing)');
+  });
+
+  it('só existe na escala fina — a grossa é matéria de ilustração e não entra em UI', () => {
+    const { container } = render(<PatternReticula slot="header" />);
+    expect(
+      container.querySelector('[data-pattern-scale]')?.getAttribute('data-pattern-scale'),
+    ).toBe('fine');
   });
 });
 

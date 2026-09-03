@@ -4,6 +4,7 @@
 **v3.0** · 03/09/2026 — documento reescrito do zero.
 
 ---
+
 ---
 
 ## Sumário
@@ -21,7 +22,6 @@
 10. [Checklist rápido](#10-checklist-rápido)
 11. [Lacunas abertas](#11-lacunas-abertas)
 
-
 ## 0. O que esta versão é
 
 ### Escopo da reescrita
@@ -31,22 +31,22 @@ Nenhum invariante de marca mudou: Forest, Grove e Lime, o trio tipográfico, a v
 promessa da §1.3 e o conceito unificador nó-e-galho seguem exatamente os mesmos. O que mudou é
 o documento — e três coisas dentro dele que a evidência derrubou.
 
-| # | O que mudou | Por quê |
-| --- | --- | --- |
-| 1 | O sistema de padrões foi **reconstruído sobre a geometria medida do símbolo** | o pattern primário e o símbolo não compartilhavam ângulo, módulo nem terminação: a família era o nome, não o desenho (§6.1) |
-| 2 | A marca passa a ter **duas camadas declaradas** — sistema e ilustração — com fronteira escrita como regra checável | a proibição de sombra e de curva vivia como regra única e vinha sendo revogada por fora, sem registro (§5) |
-| 3 | A camada de ilustração é **collage / paper cut com profundidade por degrau de tom**, promovida do pipeline editorial ao SSOT da marca | dois vocabulários de ilustração coexistiam sob a mesma marca (§7) |
+| #   | O que mudou                                                                                                                           | Por quê                                                                                                                     |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| 1   | O sistema de padrões foi **reconstruído sobre a geometria medida do símbolo**                                                         | o pattern primário e o símbolo não compartilhavam ângulo, módulo nem terminação: a família era o nome, não o desenho (§6.1) |
+| 2   | A marca passa a ter **duas camadas declaradas** — sistema e ilustração — com fronteira escrita como regra checável                    | a proibição de sombra e de curva vivia como regra única e vinha sendo revogada por fora, sem registro (§5)                  |
+| 3   | A camada de ilustração é **collage / paper cut com profundidade por degrau de tom**, promovida do pipeline editorial ao SSOT da marca | dois vocabulários de ilustração coexistiam sob a mesma marca (§7)                                                           |
 
 O sistema de padrões passou de três famílias para **duas**. Reduzir foi o resultado.
 
 ### Histórico de versões
 
-| Versão | Mudança |
-| --- | --- |
-| v1.0 | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber |
-| v1.1 | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA" |
-| v2.0 | **Amber → Lime** (Forest/Grove intocados) · **cantos retos** · **tipografia grotesca moderna** |
-| v2.1 | Revisão de coerência cross-superfície; escopo em §4.5; `APLICACAO.md` passa a governar superfícies de terceiros |
+| Versão   | Mudança                                                                                                                                                                                                                                                                                                                                                                       |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.0     | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber                                                                                                                                                                                                                                                                           |
+| v1.1     | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA"                                                                                                                                                                                                                                                                                            |
+| v2.0     | **Amber → Lime** (Forest/Grove intocados) · **cantos retos** · **tipografia grotesca moderna**                                                                                                                                                                                                                                                                                |
+| v2.1     | Revisão de coerência cross-superfície; escopo em §4.5; `APLICACAO.md` passa a governar superfícies de terceiros                                                                                                                                                                                                                                                               |
 | **v3.0** | **Documento reescrito do zero.** Patterns reconstruídos sobre a geometria medida do símbolo; contrato de camadas explícito; camada de ilustração unificada em collage / paper cut; alvo de acessibilidade declarado (§8). A v2.1 inteira está em `_arquivo/revisao-2026-2026-09-03/DESIGN-v2.1.md`; o rastro da decisão, em `revisao-2026/00-linha-zero.md` … `04-cleanup.md` |
 
 **Por que reescrever em vez de emendar.** A v2.1 acumulava regra sem escopo declarado. Uma
@@ -56,13 +56,13 @@ v3.0 declara escopo em toda regra que tem mais de um contexto de aplicação.
 
 ### O pivô de produto (mantido da v1.0)
 
-| Antes (Substack de investimentos) | Agora (plataforma de treinamento) |
-| --- | --- |
-| Público: investidores pessoa física | Público: estagiários e analistas do mercado de capitais brasileiro |
-| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA |
-| Formato: newsletter editorial | Formato: aulas expositivas + cases reais + skills de IA entregáveis |
-| Metodologia implícita | Metodologia explícita e rigorosa (`education/METHODOLOGY.md`) |
-| Voz: analítica e humana | Voz: **técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada** |
+| Antes (Substack de investimentos)                | Agora (plataforma de treinamento)                                                |
+| ------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Público: investidores pessoa física              | Público: estagiários e analistas do mercado de capitais brasileiro               |
+| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA       |
+| Formato: newsletter editorial                    | Formato: aulas expositivas + cases reais + skills de IA entregáveis              |
+| Metodologia implícita                            | Metodologia explícita e rigorosa (`education/METHODOLOGY.md`)                    |
+| Voz: analítica e humana                          | Voz: **técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada** |
 
 ---
 
@@ -78,12 +78,12 @@ trabalho.
 
 ### 1.2. Estrutura Estratégica
 
-| Pilar | Definição |
-| --- | --- |
-| **Propósito** | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real. |
-| **Visão** | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo. |
-| **Missão** | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as _skills_ de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
-| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing. |
+| Pilar               | Definição                                                                                                                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Propósito**       | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real.    |
+| **Visão**           | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo.                                                      |
+| **Missão**          | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as _skills_ de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
+| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing.                                                |
 
 ### 1.3. Promessa de Resultado
 
@@ -97,6 +97,7 @@ Esta é a promessa-guia definida em `MARKETING_REVIEW.md` §4 e deve substituir 
 > invariante, e por isso a citação `MARKETING_REVIEW.md` foi preservada como está. Esse arquivo
 > não existe com esse nome: o documento é [`strategy/MARKETING.md`](../strategy/MARKETING.md).
 > A promessa e a regra de verificabilidade são o invariante; o caminho não é.
+
 ### 1.4. Valores Fundamentais
 
 **Rigor sem enfeite.** Todo conteúdo segue o estado da arte acadêmico — bibliografia real,
@@ -205,17 +206,17 @@ A regra de ouro: **o rigor nunca é sacrificado pela leveza, e a leveza nunca é
 
 ### 4.1. Paleta
 
-| Nome | Hex | Papel |
-| --- | --- | --- |
-| **Forest** | `#1B6A45` | Âncora — títulos, UI institucional, estrutura |
-| **Grove** | `#2D9E67` | Estrutura em movimento — links, progresso, padrões, estados ativos |
-| **Lime** | `#CDF163` | **Energia, ação e conquista — o "sinal no escuro".** CTAs, marcadores de headline, números-destaque sobre fundo escuro, selos de conquista |
-| Mint | `#E6F4EE` | Fundos suaves, cards informativos |
-| Deep Forest | `#0F3D27` | Superfícies escuras intencionais, bandas |
-| Chalk | `#F7F7F5` | Fundo Light Mode |
-| Ink | `#141414` | Fundo Dark Mode; texto sobre fundos claros **e sobre Lime** |
-| Slate | `#4A5568` | Texto secundário — o único cinza de texto permitido sobre fundo claro |
-| Mist | `#E2E8F0` | Bordas, hairlines, divisórias |
+| Nome        | Hex       | Papel                                                                                                                                      |
+| ----------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Forest**  | `#1B6A45` | Âncora — títulos, UI institucional, estrutura                                                                                              |
+| **Grove**   | `#2D9E67` | Estrutura em movimento — links, progresso, padrões, estados ativos                                                                         |
+| **Lime**    | `#CDF163` | **Energia, ação e conquista — o "sinal no escuro".** CTAs, marcadores de headline, números-destaque sobre fundo escuro, selos de conquista |
+| Mint        | `#E6F4EE` | Fundos suaves, cards informativos                                                                                                          |
+| Deep Forest | `#0F3D27` | Superfícies escuras intencionais, bandas                                                                                                   |
+| Chalk       | `#F7F7F5` | Fundo Light Mode                                                                                                                           |
+| Ink         | `#141414` | Fundo Dark Mode; texto sobre fundos claros **e sobre Lime**                                                                                |
+| Slate       | `#4A5568` | Texto secundário — o único cinza de texto permitido sobre fundo claro                                                                      |
+| Mist        | `#E2E8F0` | Bordas, hairlines, divisórias                                                                                                              |
 
 **Escala Lime:** lime-100 `#F2FBD9` (fundos de conquista) · lime-300 `#DFF7A1` (realces, hover
 do botão primário, eyebrow sobre banda escura) · lime-500 `#CDF163` (superfícies e marcadores)
@@ -237,11 +238,11 @@ modo escuro tem cinza próprio: `theme.dark.mutedForeground` `#94A3B8`, escolhid
 
 ### 4.2. Tipografia
 
-| Papel | Fonte | Uso |
-| --- | --- | --- |
-| **Display** | **Space Grotesk** | Headlines, títulos de seção |
-| **Body** | **Hanken Grotesk** | Corpo, UI, formulários |
-| **Data/Code** | **Space Mono** | Métricas, código, comandos, paths, eyebrows |
+| Papel         | Fonte              | Uso                                         |
+| ------------- | ------------------ | ------------------------------------------- |
+| **Display**   | **Space Grotesk**  | Headlines, títulos de seção                 |
+| **Body**      | **Hanken Grotesk** | Corpo, UI, formulários                      |
+| **Data/Code** | **Space Mono**     | Métricas, código, comandos, paths, eyebrows |
 
 Space Grotesk e Space Mono compartilham DNA — a proporcional deriva da mono, e o par dá coesão
 display↔dados sem esforço. Hanken Grotesk é neutra o suficiente para não competir com o
@@ -254,14 +255,14 @@ corpo em Regular/Medium; nunca Light em tela.
 
 ### 4.3. Hierarquia tipográfica
 
-| Papel | Token | Regra de composição |
-| --- | --- | --- |
-| Headline de hero | `displayXxl` (64/40px, Space Grotesk Bold) | Uma por página, com palavra-destaque (§4.4.2). Nunca centralizada com dois botões simétricos |
-| Eyebrow de seção | `eyebrow` (Space Mono, caixa alta, tracking largo) | Toda seção abre com eyebrow curto |
-| Microcaption | `caption` (Space Mono, corpo mínimo) | **Abaixo** do título, carregando o dado que o título não cabe. Complementa o eyebrow, que fica acima |
-| Título de seção | `displayLg` / `heading1` | Display para títulos; Hanken para `heading2` e UI |
-| Número protagonista | `statNumber` / `dataXl` (Space Mono Bold) | Todo número que carrega argumento é grande e em mono. Sobre banda escura, pode ir em Lime |
-| Corpo | `bodyLg` / `body` (Hanken Grotesk) | Texto secundário exclusivamente em Slate sobre claro |
+| Papel               | Token                                              | Regra de composição                                                                                  |
+| ------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Headline de hero    | `displayXxl` (64/40px, Space Grotesk Bold)         | Uma por página, com palavra-destaque (§4.4.2). Nunca centralizada com dois botões simétricos         |
+| Eyebrow de seção    | `eyebrow` (Space Mono, caixa alta, tracking largo) | Toda seção abre com eyebrow curto                                                                    |
+| Microcaption        | `caption` (Space Mono, corpo mínimo)               | **Abaixo** do título, carregando o dado que o título não cabe. Complementa o eyebrow, que fica acima |
+| Título de seção     | `displayLg` / `heading1`                           | Display para títulos; Hanken para `heading2` e UI                                                    |
+| Número protagonista | `statNumber` / `dataXl` (Space Mono Bold)          | Todo número que carrega argumento é grande e em mono. Sobre banda escura, pode ir em Lime            |
+| Corpo               | `bodyLg` / `body` (Hanken Grotesk)                 | Texto secundário exclusivamente em Slate sobre claro                                                 |
 
 **Regra dura:** se uma página usa apenas os tamanhos default do framework em progressão
 uniforme, está errada por definição — a escala é a do arquivo de tokens, com salto deliberado
@@ -296,13 +297,13 @@ no mínimo três; o hero usa obrigatoriamente 1, 2 e 3.**
 A geometria da marca é declarada **por camada** desde esta versão. O contrato completo está na
 §5; aqui ficam os valores.
 
-| Propriedade | Camada de sistema | Camada de ilustração |
-| --- | --- | --- |
-| Canto | reto, radius 0; máximo 2px em chip/tag. Exceção única: avatar e o símbolo circular do logo | reto, ou corte a 45° |
-| Curva | **apenas** o quarto de arco derivado do símbolo (§6.1), e só como terminação de pattern | idem — curva orgânica livre é proibida nas duas camadas |
-| Sombra | proibida como recurso de hierarquia; o hairline faz o trabalho | **proibida**, inclusive entre camadas de papel — profundidade é degrau de tom (§7.2) |
-| Gradiente | proibido em superfície de UI | permitido **apenas** como rampa quantizada de tokens, e como remapeamento de luminância em imagem gerada (`scripts/lib/duotone.mjs`), nunca como gradiente contínuo de superfície |
-| Textura | retícula fina dentro de retângulo de canto reto, opacidade 0,15–0,20 | retícula grossa como matéria, opacidade 1 |
+| Propriedade | Camada de sistema                                                                          | Camada de ilustração                                                                                                                                                              |
+| ----------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Canto       | reto, radius 0; máximo 2px em chip/tag. Exceção única: avatar e o símbolo circular do logo | reto, ou corte a 45°                                                                                                                                                              |
+| Curva       | **apenas** o quarto de arco derivado do símbolo (§6.1), e só como terminação de pattern    | idem — curva orgânica livre é proibida nas duas camadas                                                                                                                           |
+| Sombra      | proibida como recurso de hierarquia; o hairline faz o trabalho                             | **proibida**, inclusive entre camadas de papel — profundidade é degrau de tom (§7.2)                                                                                              |
+| Gradiente   | proibido em superfície de UI                                                               | permitido **apenas** como rampa quantizada de tokens, e como remapeamento de luminância em imagem gerada (`scripts/lib/duotone.mjs`), nunca como gradiente contínuo de superfície |
+| Textura     | retícula fina dentro de retângulo de canto reto, opacidade 0,15–0,20                       | retícula grossa como matéria, opacidade 1                                                                                                                                         |
 
 Duas notas de escopo que evitam a revogação por fora:
 
@@ -318,23 +319,23 @@ Duas notas de escopo que evitam a revogação por fora:
 
 Proibições verificáveis em revisão de PR. Cada uma declara a camada em que vale.
 
-| Anti-padrão | Camada |
-| --- | --- |
-| Grid de três cards idênticos ícone-título-parágrafo | sistema |
-| Hero centralizado genérico: título centrado, subtítulo, dois botões, sem evidência | sistema |
-| Cinzas de framework (`#6B7280`, `#9CA3AF`) como texto sobre fundo claro | sistema |
-| Cantos arredondados em card, botão, input ou imagem; radius "amigável" de 8–16px | sistema |
-| Gradiente de superfície, glassmorphism, blob desfocado, glow | **as duas** |
-| Sombra como recurso de hierarquia ou de profundidade | **as duas** |
-| Emoji como ícone de feature | as duas |
-| Progressão uniforme de tamanhos de fonte, sem salto display/corpo | sistema |
-| Espaçamento uniforme entre todas as seções | sistema |
-| Botão pílula | sistema |
-| Texto renderizado dentro da imagem | **ilustração** |
-| Traço à mão, rabisco, variação caligráfica | **ilustração** |
+| Anti-padrão                                                                         | Camada         |
+| ----------------------------------------------------------------------------------- | -------------- |
+| Grid de três cards idênticos ícone-título-parágrafo                                 | sistema        |
+| Hero centralizado genérico: título centrado, subtítulo, dois botões, sem evidência  | sistema        |
+| Cinzas de framework (`#6B7280`, `#9CA3AF`) como texto sobre fundo claro             | sistema        |
+| Cantos arredondados em card, botão, input ou imagem; radius "amigável" de 8–16px    | sistema        |
+| Gradiente de superfície, glassmorphism, blob desfocado, glow                        | **as duas**    |
+| Sombra como recurso de hierarquia ou de profundidade                                | **as duas**    |
+| Emoji como ícone de feature                                                         | as duas        |
+| Progressão uniforme de tamanhos de fonte, sem salto display/corpo                   | sistema        |
+| Espaçamento uniforme entre todas as seções                                          | sistema        |
+| Botão pílula                                                                        | sistema        |
+| Texto renderizado dentro da imagem                                                  | **ilustração** |
+| Traço à mão, rabisco, variação caligráfica                                          | **ilustração** |
 | Registro caricato ou satírico; figura pública viva em registro que implique endosso | **ilustração** |
-| Curva orgânica livre como borda de recorte | ilustração |
-| Qualquer ocorrência de Amber ou Cream | as duas |
+| Curva orgânica livre como borda de recorte                                          | ilustração     |
+| Qualquer ocorrência de Amber ou Cream                                               | as duas        |
 
 **Iconografia financeira genérica** (moeda, cifrão, candlestick, cérebro de IA) é proibida em
 produto, curso e marketing. **Não vale para a ilustração editorial**, onde a rejeição de clichê
@@ -346,18 +347,18 @@ revogação invisível em 02/09/2026.
 
 Valores canônicos no arquivo de tokens, grupo `component.*`.
 
-| Componente | Assinatura |
-| --- | --- |
-| **Botão primário** | Radius 0, lime-500, texto Ink, Hanken Medium; hover lime-300; foco conforme §8 |
-| **Botão secundário** | Outline 1.5px Forest (claro) / Chalk (escuro), texto na cor da borda. Hover escurece por `color-mix`, nunca por opacidade — opacidade clarearia o botão e derrubaria o contraste |
-| **Card / tile** | Radius 0, borda 1px Mist, fundo branco ou Mint sobre Chalk, **sem sombra** |
-| **Banda** | Full-bleed Deep Forest ou Ink, texto Chalk, eyebrow Lime-300, CTA lime |
-| **Accordion** | Hairlines Mist entre itens, sem caixa; indicador +/− em Space Mono; canto reto |
-| **Eyebrow** | Space Mono 12px, caixa alta, tracking 0.15em; Grove-700 (claro) / Lime-300 (escuro) |
-| **Faixa de números** | Fundo Mint ou banda escura; números `statNumber`; conquista em lime-100 de fundo ou número em Lime sobre escuro |
-| **Input / Select** | Canto reto, borda 1px `input`, foco conforme §8; label em Hanken Medium |
-| **Chip / tag** | Radius máximo 2px; alvo conforme §8 (SC 2.5.8) |
-| **Frame de ilustração** | Retângulo radius 0 com hairline 1px. É o único lugar onde a camada de ilustração aparece (§5) |
+| Componente              | Assinatura                                                                                                                                                                       |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Botão primário**      | Radius 0, lime-500, texto Ink, Hanken Medium; hover lime-300; foco conforme §8                                                                                                   |
+| **Botão secundário**    | Outline 1.5px Forest (claro) / Chalk (escuro), texto na cor da borda. Hover escurece por `color-mix`, nunca por opacidade — opacidade clarearia o botão e derrubaria o contraste |
+| **Card / tile**         | Radius 0, borda 1px Mist, fundo branco ou Mint sobre Chalk, **sem sombra**                                                                                                       |
+| **Banda**               | Full-bleed Deep Forest ou Ink, texto Chalk, eyebrow Lime-300, CTA lime                                                                                                           |
+| **Accordion**           | Hairlines Mist entre itens, sem caixa; indicador +/− em Space Mono; canto reto                                                                                                   |
+| **Eyebrow**             | Space Mono 12px, caixa alta, tracking 0.15em; Grove-700 (claro) / Lime-300 (escuro)                                                                                              |
+| **Faixa de números**    | Fundo Mint ou banda escura; números `statNumber`; conquista em lime-100 de fundo ou número em Lime sobre escuro                                                                  |
+| **Input / Select**      | Canto reto, borda 1px `input`, foco conforme §8; label em Hanken Medium                                                                                                          |
+| **Chip / tag**          | Radius máximo 2px; alvo conforme §8 (SC 2.5.8)                                                                                                                                   |
+| **Frame de ilustração** | Retângulo radius 0 com hairline 1px. É o único lugar onde a camada de ilustração aparece (§5)                                                                                    |
 
 ---
 
@@ -368,13 +369,13 @@ Antes da v3.0 isso não estava escrito, e o resultado foi previsível: uma regra
 declarado é revogada por fora, no lugar onde ela não cabia, e a revogação fica invisível para
 quem lê só o documento de marca.
 
-| | Camada de sistema | Camada de ilustração |
-| --- | --- | --- |
-| **O que é** | UI, componentes, tipografia, patterns funcionais, tabelas, certificado | capas editoriais, aberturas de módulo, retratos de dado, ilustrações de apoio, thumbnails |
-| **Técnica** | vetorial, plana, geométrica | collage / paper cut, plana, em degraus de tom |
-| **Profundidade** | não existe: hierarquia por hairline, preenchimento e tipografia | por **degrau de luminância** entre camadas de papel |
-| **Sombra** | proibida | proibida |
-| **Onde vive** | a página inteira | **apenas dentro de um frame** retangular, radius 0, hairline 1px |
+|                  | Camada de sistema                                                      | Camada de ilustração                                                                      |
+| ---------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **O que é**      | UI, componentes, tipografia, patterns funcionais, tabelas, certificado | capas editoriais, aberturas de módulo, retratos de dado, ilustrações de apoio, thumbnails |
+| **Técnica**      | vetorial, plana, geométrica                                            | collage / paper cut, plana, em degraus de tom                                             |
+| **Profundidade** | não existe: hierarquia por hairline, preenchimento e tipografia        | por **degrau de luminância** entre camadas de papel                                       |
+| **Sombra**       | proibida                                                               | proibida                                                                                  |
+| **Onde vive**    | a página inteira                                                       | **apenas dentro de um frame** retangular, radius 0, hairline 1px                          |
 
 **As três regras de fronteira, escritas para serem checáveis:**
 
@@ -402,12 +403,12 @@ nó-e-galho é a própria palavra desenhada. **O conceito é invariante.**
 
 A expressão não era. O símbolo (`LOGO/symbol-master.svg`) foi medido em 03/09/2026:
 
-| Elemento | Medida | Em módulos |
-| --- | --- | --- |
-| Diagonal do chevron | 56,81 u a **exatamente ±45,00°** | M·√2 |
-| Segmento vertical | 41,42 u a −90,00° | 1,03 M |
-| Barra horizontal | 40,45 u a 0,00° | 1,01 M |
-| Quarto de arco | raio 38,92 u | 0,97 M |
+| Elemento            | Medida                           | Em módulos |
+| ------------------- | -------------------------------- | ---------- |
+| Diagonal do chevron | 56,81 u a **exatamente ±45,00°** | M·√2       |
+| Segmento vertical   | 41,42 u a −90,00°                | 1,03 M     |
+| Barra horizontal    | 40,45 u a 0,00°                  | 1,01 M     |
+| Quarto de arco      | raio 38,92 u                     | 0,97 M     |
 
 **O símbolo inteiro é um módulo M, três primitivas e nenhuma exceção:** diagonal a 45°,
 segmento ortogonal de comprimento M, quarto de arco de raio M — a única curva do sistema.
@@ -422,14 +423,14 @@ pattern**.
 
 **1. Nó-e-galho** _(primário)_ — malha ramificada construída só com as primitivas do símbolo:
 
-| Propriedade | Regra |
-| --- | --- |
-| Ângulos | **0°, 90°, ±45°, e nada mais** |
-| Comprimento de galho | múltiplo inteiro do módulo `m` do pattern |
-| Nó | **a dobra** — o vértice onde a diagonal encontra o ortogonal. Sem círculo |
-| Terminação | quarto de arco de raio `m` na ponta de cada galho terminal |
-| Cor | tom único: Grove sobre escuro, Forest sobre claro |
-| Aleatoriedade | escolha de direção entre as quatro permitidas, com seed determinística |
+| Propriedade          | Regra                                                                     |
+| -------------------- | ------------------------------------------------------------------------- |
+| Ângulos              | **0°, 90°, ±45°, e nada mais**                                            |
+| Comprimento de galho | múltiplo inteiro do módulo `m` do pattern                                 |
+| Nó                   | **a dobra** — o vértice onde a diagonal encontra o ortogonal. Sem círculo |
+| Terminação           | quarto de arco de raio `m` na ponta de cada galho terminal                |
+| Cor                  | tom único: Grove sobre escuro, Forest sobre claro                         |
+| Aleatoriedade        | escolha de direção entre as quatro permitidas, com seed determinística    |
 
 _Uso:_ bandas escuras, capas de módulo, moldura de certificado, fundo de slide de título.
 
@@ -449,15 +450,15 @@ substrato, marca de dado é protagonista.
 
 ### 6.3. Matriz de uso
 
-| Contexto | Pattern | Opacidade | Camada |
-| --- | --- | --- | --- |
-| Banda escura em página | nó-e-galho, campo ou canto | 0,25–0,40 | sistema |
-| Atrás de texto corrido | nó-e-galho | 0,12, travada em código | sistema |
-| Respiro em conteúdo técnico denso | retícula fina | 0,15–0,20 | sistema |
-| Painel ou tile texturizado | retícula fina, dentro de retângulo radius 0 | 0,15–0,20 | sistema |
-| Camada de papel em ilustração | retícula grossa | 1,0 | ilustração |
-| Certificado | nó-e-galho como moldura + linha de conquista | 1,0 | sistema |
-| Página de vendas, prova social | nenhum | — | — |
+| Contexto                          | Pattern                                      | Opacidade               | Camada     |
+| --------------------------------- | -------------------------------------------- | ----------------------- | ---------- |
+| Banda escura em página            | nó-e-galho, campo ou canto                   | 0,25–0,40               | sistema    |
+| Atrás de texto corrido            | nó-e-galho                                   | 0,12, travada em código | sistema    |
+| Respiro em conteúdo técnico denso | retícula fina                                | 0,15–0,20               | sistema    |
+| Painel ou tile texturizado        | retícula fina, dentro de retângulo radius 0  | 0,15–0,20               | sistema    |
+| Camada de papel em ilustração     | retícula grossa                              | 1,0                     | ilustração |
+| Certificado                       | nó-e-galho como moldura + linha de conquista | 1,0                     | sistema    |
+| Página de vendas, prova social    | nenhum                                       | —                       | —          |
 
 ### 6.4. Regras
 
@@ -485,12 +486,12 @@ em toda a camada — produto, curso e editorial. Não há dois vocabulários de 
 Profundidade é **degrau de luminância dentro de um matiz**, nunca sombra. A paleta já continha
 a escada; a v3.0 apenas a nomeia.
 
-| Papel na peça | Tokens, do fundo ao topo | Degrau de luminância |
-| --- | --- | --- |
-| Pilha escura | Ink → Deep Forest → forest.700 → forest.500 | 0,029 · 0,028 · 0,046 |
-| Pilha clara | mist → mint → Chalk | 0,075 · 0,052 |
-| Figura sobre a pilha | grove.500, grove.300 | +0,150 e +0,225 — salto, não degrau |
-| Acento | lime.500 | +0,283 |
+| Papel na peça        | Tokens, do fundo ao topo                    | Degrau de luminância                |
+| -------------------- | ------------------------------------------- | ----------------------------------- |
+| Pilha escura         | Ink → Deep Forest → forest.700 → forest.500 | 0,029 · 0,028 · 0,046               |
+| Pilha clara          | mist → mint → Chalk                         | 0,075 · 0,052                       |
+| Figura sobre a pilha | grove.500, grove.300                        | +0,150 e +0,225 — salto, não degrau |
+| Acento               | lime.500                                    | +0,283                              |
 
 Grove e Lime **não empilham**: os saltos deles são de cinco a dez vezes o tamanho de um degrau,
 e é isso que os faz destacar em vez de somar profundidade.
@@ -524,13 +525,13 @@ matiz e quatro degraus de ~0,02. O rastro está em `revisao-2026/01-referencias.
 Alvo: **WCAG 2.2 nível AA, mais o SC 2.4.13 (AAA)**. O SC 2.4.13 entra porque a geometria reta
 torna a regra dele calculável, não porque é fácil.
 
-| SC | Nível | O que o sistema precisa fazer |
-| --- | --- | --- |
-| **1.4.1** Use of Color | A | Cor nunca sozinha. Um tile promovido por preenchimento verde, um estado marcado só por Lime ou um passo destacado só por cor precisam de rótulo, número ou marcador junto |
-| **1.4.11** Non-text Contrast | AA | 3:1 contra cores adjacentes. O hairline como **divisor** não é fronteira de componente e não está sujeito; onde o hairline é a única coisa que declara um controle, ele passa a valer 3:1 dos dois lados |
-| **2.4.11** Focus Not Obscured | AA | Nenhum elemento fixo pode esconder o componente focado. **Faixa-ticker e banda full-bleed nunca são fixas** |
-| **2.4.13** Focus Appearance | AAA | A área do indicador de foco é no mínimo a de um perímetro de **2 CSS px** do componente, com 3:1 entre os estados focado e não-focado. Em componente retangular, um anel de 1px tem metade da área exigida: **o foco é 2px**, ou uma geometria de área equivalente |
-| **2.5.8** Target Size | AA | Alvo de 24×24 CSS px, ou a exceção de espaçamento. Vale para chip, tag e ícone clicável |
+| SC                            | Nível | O que o sistema precisa fazer                                                                                                                                                                                                                                      |
+| ----------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **1.4.1** Use of Color        | A     | Cor nunca sozinha. Um tile promovido por preenchimento verde, um estado marcado só por Lime ou um passo destacado só por cor precisam de rótulo, número ou marcador junto                                                                                          |
+| **1.4.11** Non-text Contrast  | AA    | 3:1 contra cores adjacentes. O hairline como **divisor** não é fronteira de componente e não está sujeito; onde o hairline é a única coisa que declara um controle, ele passa a valer 3:1 dos dois lados                                                           |
+| **2.4.11** Focus Not Obscured | AA    | Nenhum elemento fixo pode esconder o componente focado. **Faixa-ticker e banda full-bleed nunca são fixas**                                                                                                                                                        |
+| **2.4.13** Focus Appearance   | AAA   | A área do indicador de foco é no mínimo a de um perímetro de **2 CSS px** do componente, com 3:1 entre os estados focado e não-focado. Em componente retangular, um anel de 1px tem metade da área exigida: **o foco é 2px**, ou uma geometria de área equivalente |
+| **2.5.8** Target Size         | AA    | Alvo de 24×24 CSS px, ou a exceção de espaçamento. Vale para chip, tag e ícone clicável                                                                                                                                                                            |
 
 Consequência de redação: o hairline de 1px continua sendo o vocabulário de **divisão e borda**;
 o vocabulário de **foco** é 2px. São coisas diferentes e não devem ser unificadas por estética.
@@ -543,14 +544,14 @@ As superfícies onde a marca **não controla o CSS** — Substack, LinkedIn, You
 plataforma de venda — são governadas por [`APLICACAO.md`](APLICACAO.md), que declara por canal
 o que é fixo, o que pode variar e qual é o fallback nomeado.
 
-| Material | Elementos aplicáveis |
-| --- | --- |
-| Notas de estudo | Paleta e tipografia v3.0. A camada de editoração não existe ainda (§11) |
-| Slides | Paleta v3.0; frames de título e de seção são candidatos ao nó-e-galho de fundo |
-| Case (documento de decisão) | Voz da §3, sem pattern decorativo — formato de trabalho real |
-| Nota de Ensino | Tom técnico e direto, Space Mono para código e dado, sem pattern |
-| Certificado de módulo | Linha de conquista + nó-e-galho como moldura — único material onde as duas são protagonistas |
-| Capa de post, thumbnail, abertura de módulo | Camada de ilustração (§7), sempre dentro de frame |
+| Material                                    | Elementos aplicáveis                                                                         |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Notas de estudo                             | Paleta e tipografia v3.0. A camada de editoração não existe ainda (§11)                      |
+| Slides                                      | Paleta v3.0; frames de título e de seção são candidatos ao nó-e-galho de fundo               |
+| Case (documento de decisão)                 | Voz da §3, sem pattern decorativo — formato de trabalho real                                 |
+| Nota de Ensino                              | Tom técnico e direto, Space Mono para código e dado, sem pattern                             |
+| Certificado de módulo                       | Linha de conquista + nó-e-galho como moldura — único material onde as duas são protagonistas |
+| Capa de post, thumbnail, abertura de módulo | Camada de ilustração (§7), sempre dentro de frame                                            |
 
 ---
 
@@ -580,18 +581,18 @@ o que é fixo, o que pode variar e qual é o fallback nomeado.
 
 ## 11. Lacunas abertas
 
-| # | Lacuna | Estado |
-| --- | --- | --- |
-| 1 | **Nomes comerciais das trilhas** | decisão aberta; a regra (§3.4, português) já está cristalizada |
-| 2 | **Formato do certificado** — PDF, badge digital ou ambos | `APLICACAO.md` fixa o que já é decidível e isola o que depende do formato |
-| 3 | **Camada de editoração (LaTeX)** | não existe. Não é migração pendente: é camada não construída |
-| 4 | **Tipografia fora do sistema em três banners** — `font-family:Carlito` em `<text>` vivo | numa máquina sem a fonte, o navegador substitui e o wordmark sai fora do trio. Corrigir exige decidir entre trocar a família ou converter em contornos |
-| 5 | **Pílulas no banner do YouTube** | são paths com arco, invisíveis a qualquer linter. Corrigir é redesenhar forma |
-| 6 | **Token para "texto secundário sobre banda Deep Forest"** | papel semântico real sem valor nomeado; `#94A3B8` ali dá 4,77:1 |
-| 7 | **Nível intermediário de luminância entre Chalk e Deep Forest** | necessário para transição de seção por degrau; criá-lo é decisão de paleta |
-| 8 | **Proporção de tela e respiro ao redor da ilustração** | nenhuma referência disponível mostra colagem dentro de interface real |
-| 9 | **Sobrevivência da granulação à compressão** de LinkedIn e YouTube | a ser medido contra a amplitude de 0,028 da §7.3 |
-| 10 | **Controles de seleção nativos e a exceção de radius** | a §4.5 abre exceção de canto arredondado só para avatar e para o símbolo do logo, e `radio-group.tsx:31` usa `rounded-full` — pela regra como está escrita, um radio button é ilegal. Abrir a exceção para controle de seleção nativo (radio, e o ponto do switch) ou assumir o radio quadrado é decisão do founder |
+| #   | Lacuna                                                                                  | Estado                                                                                                                                                                                                                                                                                                              |
+| --- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Nomes comerciais das trilhas**                                                        | decisão aberta; a regra (§3.4, português) já está cristalizada                                                                                                                                                                                                                                                      |
+| 2   | **Formato do certificado** — PDF, badge digital ou ambos                                | `APLICACAO.md` fixa o que já é decidível e isola o que depende do formato                                                                                                                                                                                                                                           |
+| 3   | **Camada de editoração (LaTeX)**                                                        | não existe. Não é migração pendente: é camada não construída                                                                                                                                                                                                                                                        |
+| 4   | **Tipografia fora do sistema em três banners** — `font-family:Carlito` em `<text>` vivo | numa máquina sem a fonte, o navegador substitui e o wordmark sai fora do trio. Corrigir exige decidir entre trocar a família ou converter em contornos                                                                                                                                                              |
+| 5   | **Pílulas no banner do YouTube**                                                        | são paths com arco, invisíveis a qualquer linter. Corrigir é redesenhar forma                                                                                                                                                                                                                                       |
+| 6   | **Token para "texto secundário sobre banda Deep Forest"**                               | papel semântico real sem valor nomeado; `#94A3B8` ali dá 4,77:1                                                                                                                                                                                                                                                     |
+| 7   | **Nível intermediário de luminância entre Chalk e Deep Forest**                         | necessário para transição de seção por degrau; criá-lo é decisão de paleta                                                                                                                                                                                                                                          |
+| 8   | **Proporção de tela e respiro ao redor da ilustração**                                  | nenhuma referência disponível mostra colagem dentro de interface real                                                                                                                                                                                                                                               |
+| 9   | **Sobrevivência da granulação à compressão** de LinkedIn e YouTube                      | a ser medido contra a amplitude de 0,028 da §7.3                                                                                                                                                                                                                                                                    |
+| 10  | **Controles de seleção nativos e a exceção de radius**                                  | a §4.5 abre exceção de canto arredondado só para avatar e para o símbolo do logo, e `radio-group.tsx:31` usa `rounded-full` — pela regra como está escrita, um radio button é ilegal. Abrir a exceção para controle de seleção nativo (radio, e o ponto do switch) ou assumir o radio quadrado é decisão do founder |
 
 ---
 

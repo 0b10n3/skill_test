@@ -22,7 +22,7 @@ import { Progress, ProgressLabel, ProgressValue } from '@/components/ui/progress
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { PatternDataGrid, PatternGrowthLine, PatternNodeBranch } from '@/components/patterns';
+import { PatternReticula, PatternGrowthLine, PatternNodeBranch } from '@/components/patterns';
 
 /**
  * Catálogo vivo (Épico 15) — todos os componentes restylizados e os três
@@ -167,8 +167,8 @@ export default function UiCatalogPage() {
           </div>
         </div>
         <div className="relative flex h-24 items-center overflow-hidden rounded-sm border border-border bg-card px-6">
-          <PatternDataGrid slot="margin-left" />
-          <PatternDataGrid slot="margin-right" />
+          <PatternReticula slot="margin-left" />
+          <PatternReticula slot="margin-right" />
           <p className="z-10 mx-auto text-sm text-muted-foreground">
             Grade de dados — só nas margens (slot fixo), nunca atrás do conteúdo central.
           </p>

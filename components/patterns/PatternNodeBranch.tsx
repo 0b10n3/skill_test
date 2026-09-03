@@ -35,7 +35,12 @@ function resolveOpacity(
   return Math.min(OPACITY_DECORATIVE_MAX, Math.max(OPACITY_DECORATIVE_MIN, requested));
 }
 
-/** Padrão primário do sistema — nós conectados por galhos (DESIGN.md §5.1-5.2). */
+/**
+ * Padrão primário do sistema (DESIGN.md v3.0 §6.2). A malha é construída sobre
+ * a gramática medida do símbolo: só 0°, 90° e ±45°, comprimento em múltiplos do
+ * módulo, o nó é a dobra — não existe `<circle>` aqui, porque o símbolo não
+ * contém nenhum — e todo galho terminal acaba em quarto de arco.
+ */
 export function PatternNodeBranch({
   context,
   density = 'default',
@@ -55,28 +60,15 @@ export function PatternNodeBranch({
       data-pattern-context={context}
       style={{ opacity: computedOpacity }}
     >
-      {layout.edges.map((edge) => {
-        const from = layout.nodes[edge.from];
-        const to = layout.nodes[edge.to];
-        return (
-          <line
-            key={`edge-${edge.from}-${edge.to}`}
-            x1={from.x}
-            y1={from.y}
-            x2={to.x}
-            y2={to.y}
-            stroke="var(--pattern-node-branch-color)"
-            strokeWidth="var(--pattern-node-branch-stroke-width)"
-          />
-        );
-      })}
-      {layout.nodes.map((node, index) => (
-        <circle
-          key={`node-${index}`}
-          cx={node.x}
-          cy={node.y}
-          r="var(--pattern-node-branch-node-radius)"
-          fill="var(--pattern-node-branch-color)"
+      {layout.paths.map((d, index) => (
+        <path
+          key={`branch-${index}`}
+          d={d}
+          fill="none"
+          stroke="var(--pattern-node-branch-color)"
+          strokeWidth="var(--pattern-node-branch-stroke-width)"
+          strokeLinecap="square"
+          strokeLinejoin="miter"
         />
       ))}
     </svg>

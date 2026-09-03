@@ -1,24 +1,40 @@
+import tokens from '@/design/tokens.json';
+
 export type NodeBranchDensity = 'sparse' | 'default' | 'dense';
 export type NodeBranchAnchor = 'corner' | 'field';
 
-export interface NodeBranchPoint {
-  x: number;
-  y: number;
-}
-
-export interface NodeBranchEdge {
-  from: number;
-  to: number;
-}
-
 export interface NodeBranchLayout {
-  nodes: NodeBranchPoint[];
-  edges: NodeBranchEdge[];
+  /** Comandos SVG, um por galho ou terminação. Só M/L/H/V/A aparecem aqui. */
+  paths: string[];
   viewBox: string;
 }
 
 const WIDTH = 200;
 const HEIGHT = 200;
+
+/**
+ * Módulo da gramática, lido do token — não copiado. `arcRadius` é alias de
+ * `module` no tokens.json (a proporção é a do próprio símbolo: raio do arco
+ * = 0,97 M), então o raio do arco é o mesmo número.
+ */
+const MODULE = Number.parseFloat(tokens.pattern.nodeBranch.module.$value);
+
+/**
+ * As únicas direções que a gramática do símbolo permite: 0°, 90° e ±45°
+ * (DESIGN.md v3.0 §6.2). Nenhum ângulo arbitrário — era exatamente isso que a
+ * versão anterior deste arquivo produzia, com ruído pseudoaleatório de ±25°
+ * sobre raízes em −70°, −20° e −60°.
+ */
+const DIRECTIONS = [
+  [0, -1],
+  [1, -1],
+  [1, 0],
+  [1, 1],
+  [0, 1],
+  [-1, 1],
+  [-1, 0],
+  [-1, -1],
+] as const;
 
 const DEPTH_BY_DENSITY: Record<NodeBranchDensity, number> = {
   sparse: 2,
@@ -34,9 +50,12 @@ const BRANCHES_BY_DENSITY: Record<NodeBranchDensity, number> = {
 
 /**
  * PRNG determinístico (mulberry32) com seed fixa — a mesma combinação de
- * density/anchor sempre gera exatamente a mesma geometria, o que é
- * exigido para o teste de snapshot do SVG (critério de aceite do Épico 15).
- * Nunca usar Math.random/Date.now aqui.
+ * density/anchor sempre gera exatamente a mesma geometria, o que é exigido
+ * pelo teste de snapshot. Nunca usar Math.random/Date.now aqui.
+ *
+ * A diferença para a versão anterior: o sorteio escolhe **entre as quatro
+ * direções permitidas**, em vez de somar ruído a um ângulo. Aleatoriedade
+ * discreta não consegue produzir um galho fora da gramática.
  */
 function mulberry32(seed: number): () => number {
   let state = seed;
@@ -49,27 +68,52 @@ function mulberry32(seed: number): () => number {
   };
 }
 
-function round(value: number): number {
-  return Math.round(value * 100) / 100;
-}
+const round = (value: number): number => Math.round(value * 100) / 100;
+const inside = (x: number, y: number): boolean => x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT;
 
-interface RootSpec {
+type Dir = readonly [number, number];
+
+interface Root {
   x: number;
   y: number;
-  angle: number;
+  dir: Dir;
 }
 
-const FIELD_ROOTS: RootSpec[] = [
-  { x: WIDTH * 0.2, y: HEIGHT * 0.85, angle: -70 },
-  { x: WIDTH * 0.75, y: HEIGHT * 0.3, angle: -20 },
+const FIELD_ROOTS: Root[] = [
+  { x: MODULE, y: HEIGHT, dir: [0, -1] },
+  { x: WIDTH - MODULE, y: HEIGHT, dir: [0, -1] },
 ];
 
-const CORNER_ROOTS: RootSpec[] = [{ x: 12, y: HEIGHT - 12, angle: -60 }];
+const CORNER_ROOTS: Root[] = [{ x: MODULE, y: HEIGHT, dir: [0, -1] }];
+
+/** Direções que não voltam por onde vieram: no máximo 90° de virada. */
+function successors(dir: Dir): Dir[] {
+  return DIRECTIONS.filter(([dx, dy]) => dx * dir[0] + dy * dir[1] > 0);
+}
 
 /**
- * Gera nós (círculos) conectados por galhos (linhas) em estrutura
- * ramificada — referência a árvore sintática / AST / árvore de decisão
- * (DESIGN.md §5.1-5.2). Determinístico: sempre a mesma seed.
+ * Terminação: quarto de arco de raio igual ao módulo, virando 90° para o lado.
+ * É a assinatura do símbolo e a única curva que o sistema permite.
+ */
+function arc(x: number, y: number, dir: Dir): string | null {
+  // O vetor de direção precisa ser NORMALIZADO antes de virar corda: numa
+  // diagonal, |dir| é √2, e usá-lo cru produzia uma corda de 2·módulo — ou
+  // seja, um semicírculo, não um quarto de arco. A corda de um quarto de
+  // arco de raio r é sempre r√2.
+  const length = Math.hypot(dir[0], dir[1]);
+  const ux = dir[0] / length;
+  const uy = dir[1] / length;
+  const endX = x + (ux - uy) * MODULE;
+  const endY = y + (uy + ux) * MODULE;
+  if (!inside(endX, endY)) return null;
+  return `M ${round(x)} ${round(y)} A ${MODULE} ${MODULE} 0 0 1 ${round(endX)} ${round(endY)}`;
+}
+
+/**
+ * Gera a malha nó-e-galho sobre a gramática medida de
+ * `brand/LOGO/symbol-master.svg` (DESIGN.md v3.0 §6.1–6.2): todo segmento em
+ * 0°, 90° ou ±45°, todo comprimento múltiplo do módulo, o nó é a dobra (não
+ * existe círculo), e todo galho terminal acaba em quarto de arco.
  */
 export function generateNodeBranchLayout(
   density: NodeBranchDensity = 'default',
@@ -77,46 +121,41 @@ export function generateNodeBranchLayout(
 ): NodeBranchLayout {
   const random = mulberry32(42);
   const depth = DEPTH_BY_DENSITY[density];
-  const branchesPerNode = BRANCHES_BY_DENSITY[density];
+  const branches = BRANCHES_BY_DENSITY[density];
+  const paths: string[] = [];
+  const vistos = new Set<string>();
 
-  const nodes: NodeBranchPoint[] = [];
-  const edges: NodeBranchEdge[] = [];
+  function grow(x: number, y: number, dir: Dir, remaining: number): void {
+    if (remaining <= 0) {
+      const terminal = arc(x, y, dir);
+      if (terminal) paths.push(terminal);
+      return;
+    }
 
-  function addNode(x: number, y: number): number {
-    nodes.push({ x: round(x), y: round(y) });
-    return nodes.length - 1;
-  }
+    const candidates = successors(dir)
+      .map((d) => ({ d, key: random() }))
+      .sort((a, b) => a.key - b.key)
+      .slice(0, branches)
+      .map(({ d }) => d);
 
-  function branch(
-    parentIndex: number,
-    x: number,
-    y: number,
-    angle: number,
-    length: number,
-    remainingDepth: number,
-  ): void {
-    if (remainingDepth <= 0) return;
-
-    for (let i = 0; i < branchesPerNode; i += 1) {
-      const spread = (random() - 0.5) * 50;
-      const childAngle = angle + spread + (i - (branchesPerNode - 1) / 2) * 35;
-      const radians = (childAngle * Math.PI) / 180;
-      const childX = x + Math.cos(radians) * length;
-      const childY = y + Math.sin(radians) * length;
-
-      if (childX < 0 || childX > WIDTH || childY < 0 || childY > HEIGHT) continue;
-
-      const childIndex = addNode(childX, childY);
-      edges.push({ from: parentIndex, to: childIndex });
-      branch(childIndex, childX, childY, childAngle, length * 0.72, remainingDepth - 1);
+    for (const next of candidates) {
+      const endX = x + next[0] * MODULE;
+      const endY = y + next[1] * MODULE;
+      if (!inside(endX, endY)) continue;
+      // Duas raízes vizinhas alcançam os mesmos vértices, e sem isto o mesmo
+      // galho era desenhado duas vezes, às vezes em sentido contrário.
+      const chave = [x, y, endX, endY].map(round).sort().join(':');
+      if (!vistos.has(chave)) {
+        vistos.add(chave);
+        paths.push(`M ${round(x)} ${round(y)} L ${round(endX)} ${round(endY)}`);
+      }
+      grow(endX, endY, next, remaining - 1);
     }
   }
 
-  const roots = anchor === 'corner' ? CORNER_ROOTS : FIELD_ROOTS;
-  for (const root of roots) {
-    const rootIndex = addNode(root.x, root.y);
-    branch(rootIndex, root.x, root.y, root.angle, 42, depth);
+  for (const root of anchor === 'corner' ? CORNER_ROOTS : FIELD_ROOTS) {
+    grow(root.x, root.y, root.dir, depth);
   }
 
-  return { nodes, edges, viewBox: `0 0 ${WIDTH} ${HEIGHT}` };
+  return { paths, viewBox: `0 0 ${WIDTH} ${HEIGHT}` };
 }

@@ -60,15 +60,24 @@ export function generateCss(tokens) {
     if (name.startsWith('$')) continue;
     lines.push(`  --radius-${kebabCase(name)}: ${resolveValue(tokens, def.$value)};`);
   }
-  for (const [familyName, family] of Object.entries(tokens.pattern)) {
-    if (familyName.startsWith('$')) continue;
-    for (const [propName, def] of Object.entries(family)) {
-      if (propName.startsWith('$')) continue;
-      lines.push(
-        `  --pattern-${kebabCase(familyName)}-${kebabCase(propName)}: ${resolveValue(tokens, def.$value)};`,
-      );
+  // pattern.* pode ter grupo dentro de grupo desde a v2.2.0 (pattern.reticula.fine,
+  // pattern.reticula.coarse), então a emissão desce até achar $value em vez de
+  // assumir dois níveis — a versão anterior emitia `--pattern-reticula-fine: undefined`.
+  const emitPattern = (node, prefix) => {
+    for (const [name, def] of Object.entries(node)) {
+      if (name.startsWith('$')) continue;
+      const path = `${prefix}-${kebabCase(name)}`;
+      if (def.$value !== undefined) {
+        lines.push(`  ${path}: ${resolveValue(tokens, def.$value)};`);
+      } else {
+        emitPattern(def, path);
+      }
     }
-  }
+  };
+  emitPattern(tokens.pattern, '--pattern');
+  // illustration.* NÃO entra no CSS de propósito: aqueles tokens são da camada de
+  // ilustração e o $description de cada um proíbe uso em componente de UI. Gerar a
+  // variável seria abrir a porta que a regra fecha (DESIGN.md v3.0 §5).
   lines.push('}');
   lines.push('');
 
