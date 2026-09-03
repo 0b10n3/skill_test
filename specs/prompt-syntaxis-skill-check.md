@@ -2,6 +2,14 @@
 
 ## Projeto: Syntaxis Skill Check — Avaliação de Conhecimento em Finanças/Matemática Financeira
 
+> **Nota de 02/09/2026 (revisão de marca, item 5).** A seção 3 deste documento descreve o
+> sistema visual **"O Sinal no Escuro" v2.1** — dark-mode-first, Volt Green `#1FE07A`,
+> `specs/tokens.json`. Esse sistema foi sucedido por `brand/DESIGN.md` v2.0 (Forest/Grove/**Lime
+> `#CDF163`**, cantos retos, Space Grotesk + Hanken Grotesk + Space Mono) e o app implementou a
+> sucessão no Épico 22, incluindo o toggle de tema que este documento dizia não construir.
+> Nada da seção 3 é especificação vigente — é registro do briefing original. Fonte viva:
+> `brand/DESIGN.md` e `design/tokens.json`.
+
 **Este é o documento de visão geral do projeto.** Ele descreve o produto, o stack e a arquitetura em alto nível. O detalhamento de cada parte vive em documentos próprios, que devem ser lidos junto com este:
 
 - `especificacao-quiz-avaliacao.md` — metodologia completa do quiz: banco de perguntas por senioridade, lógica de seleção adaptativa, cálculo de score, classificação, schema de dados.

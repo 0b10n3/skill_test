@@ -15,7 +15,7 @@
     "assets:verify-manifest": "node scripts/verify-manifest.mjs",
     "assets:verify-palette": "node scripts/verify-asset-palette.mjs",
     "predev": "npm run generate:tokens",
-    "prebuild": "npm run generate:tokens && npm run check:tokens-breaking && npm run validate:questions && npm run lint:colors && npm run audit:contrast && npm run lint:patterns && npm run lint:radius && npm run assets:verify-manifest && npm run assets:verify-palette",
+    "prebuild": "npm run check:brand-sync && npm run generate:tokens && npm run check:tokens-breaking && npm run validate:questions && npm run lint:colors && npm run audit:contrast && npm run lint:patterns && npm run lint:radius && npm run assets:verify-manifest && npm run assets:verify-palette",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
@@ -30,7 +30,8 @@
     "lighthouse": "node scripts/lighthouse-check.mjs http://localhost:3000/",
     "test:lighthouse": "start-server-and-test start http://localhost:3000 lighthouse",
     "lighthouse:flow": "node scripts/lighthouse-flow-check.mjs http://localhost:3000 light && node scripts/lighthouse-flow-check.mjs http://localhost:3000 dark",
-    "test:lighthouse:flow": "start-server-and-test start http://localhost:3000 lighthouse:flow"
+    "test:lighthouse:flow": "start-server-and-test start http://localhost:3000 lighthouse:flow",
+    "check:brand-sync": "node scripts/check-brand-sync.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

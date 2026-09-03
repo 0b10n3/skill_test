@@ -8,7 +8,7 @@ import {
   sampleSegmentAdherence,
 } from '../scripts/lib/palette.mjs';
 
-const PALETTE = ['#1B6A45', '#2D9E67', '#C9832A', '#F7F7F5', '#141414'];
+const PALETTE = ['#1B6A45', '#2D9E67', '#CDF163', '#F7F7F5', '#141414'];
 
 describe('colorDistance', () => {
   it('é 0 para a mesma cor', () => {

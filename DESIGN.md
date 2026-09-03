@@ -1,6 +1,8 @@
 # Syntaxis — DESIGN.md
 
 **Manual de Marca** · Fonte única da verdade para identidade visual, voz e aplicação de marca
+**v2.1** · Revisão de coerência cross-superfície (02/09/2026): nenhum invariante mudou — paleta, tipografia, cantos retos, voz e promessa seguem os da v2.0. O que muda é redação de escopo em §4.5 e o fechamento de lacunas em §8. Ver §0.
+
 **v2.0** · Três mudanças estruturais por decisão do founder, a partir de novas referências aprovadas: **(1)** a família Amber sai e entra a família **Lime** como cor de energia/conquista — Forest e Grove permanecem intocados; **(2)** cantos retos em todos os componentes (radius 0–2px); **(3)** tipografia modernizada — **Space Grotesk** (display) + **Hanken Grotesk** (corpo) + **Space Mono** (dados, mantida). Voz (§3) e sistema de padrões (§5, exceto cor da linha de conquista) inalterados.
 
 ---
@@ -29,11 +31,12 @@
 
 ### Histórico de versões da camada visual
 
-| Versão   | Mudança                                                                                                                                                                                             |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1.0     | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber                                                                                                 |
-| v1.1     | Regras de composição digital (§4.3–§4.6): assinaturas visuais e anti-padrões de "design de IA"                                                                                                      |
-| **v2.0** | **Amber → Lime** (Forest/Grove intocados) · **cantos retos** · **tipografia grotesca moderna**. As assinaturas e anti-padrões da v1.1 permanecem, recalibrados para o novo vocabulário (§4.4–§4.5). |
+| Versão   | Mudança                                                                                                                                                                                                                                                                                                                                                                                        |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.0     | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber                                                                                                                                                                                                                                                                                            |
+| v1.1     | Regras de composição digital (§4.3–§4.6): assinaturas visuais e anti-padrões de "design de IA"                                                                                                                                                                                                                                                                                                 |
+| **v2.0** | **Amber → Lime** (Forest/Grove intocados) · **cantos retos** · **tipografia grotesca moderna**. As assinaturas e anti-padrões da v1.1 permanecem, recalibrados para o novo vocabulário (§4.4–§4.5).                                                                                                                                                                                            |
+| **v2.1** | **Revisão de coerência cross-superfície.** Nenhuma cor, fonte, radius ou regra de voz mudou. (1) §4.5 ganha o escopo que faltava em dois itens: o cinza do modo escuro e a ilustração editorial de post. (2) §8 atualizada — três lacunas fechadas, uma reclassificada, duas seguem abertas. (3) `APLICACAO.md` passa a governar as superfícies que a marca não controla. Ver `revisao-2026/`. |
 
 ### O pivô de produto (mantido da v1.0)
 
@@ -253,14 +256,14 @@ Proibições verificáveis em revisão de PR. A presença de qualquer item repro
 
 - **Grid de três cards idênticos** ícone-título-parágrafo, centrados, com ícone de biblioteca sem tratamento.
 - **Hero centralizado genérico**: título centrado + subtítulo + dois botões, sem evidência, sem palavra-destaque, sem eyebrow.
-- **Cinzas de framework** (`#6B7280`, `#9CA3AF` etc.) — o secundário é Slate `#4A5568`; divisórias são Mist.
+- **Cinzas de framework** (`#6B7280`, `#9CA3AF` etc.) **como cor de texto sobre fundo claro** — o secundário é Slate `#4A5568`; divisórias são Mist. _Exceção calibrada (v2.1): no modo escuro, `theme.dark.mutedForeground` é `#94A3B8` — escolhido por contraste (6.04:1 AA nos dois eixos, registrado em `design/contrast-report.md`), não por default de framework. Slate sobre Ink dá 2,45:1 — reprova em qualquer critério. A regra proíbe herdar o cinza do framework sem medir, não o valor em si._
 - **Cantos arredondados** em cards, botões, inputs, imagens — o sistema é reto (0–2px). Radius "amigável" (8–16px) agora é anti-padrão. Exceção única: avatares e o símbolo do logo.
 - **Gradientes, glassmorphism, blobs desfocados, glows** — a marca é sólida, plana e geométrica.
 - **Emoji como ícone de feature.**
 - **Sombra como recurso principal** — no sistema reto, o hairline faz o trabalho; sombras só as `shadow.syntaxis*` e com parcimônia.
 - **Progressão uniforme de tamanhos de fonte** sem salto display/corpo.
 - **Espaçamento uniforme entre todas as seções** — o ritmo vem da alternância claro ↔ banda escura.
-- **Ilustração genérica de "finanças"** (moedas, cifrões, candlestick, robôs/cérebros de IA).
+- **Ilustração genérica de "finanças"** (moedas, cifrões, candlestick, robôs/cérebros de IA) — **em produto, curso e marketing**. _Escopo (v2.1): esta é a única regra desta lista que **não** vale para a ilustração editorial do Substack. Em 02/09/2026 o founder a revogou nesse contexto — ver `pipelines/hemingway/pesquisa/epico-iconografia-financeira/` e a "Revisão de 2026-09-02" em `.claude/skills/prompts-visuais/references/estilos-ilustracao.md`. O motivo: §4.5 é uma lista de sinais de UI feita às pressas, e a ilustração editorial passa antes por um método de composição inteiro (`briefing-ilustracao.md`) que rejeita clichê por outro caminho — teste da troca, teste do substantivo, "metáfora de dicionário". A revogação é local e documentada; para toda peça de produto, curso ou marketing a proibição continua valendo integralmente._
 - **Qualquer ocorrência de Amber ou Cream em peça nova.**
 
 ### 4.6. Componentes com assinatura
@@ -346,7 +349,20 @@ _(v2.0: `stroke-linejoin`/`linecap` passam a `miter`/`square` — os degraus aco
 
 ---
 
+> **v2.1.** Prompts de ilustração para **app e homepage** estão em
+> [`ILUSTRACOES/`](ILUSTRACOES/) — 14 peças, o bloco de marca que todo prompt injeta, e a
+> disciplina do Lime peça a peça. Para ilustração editorial de post do Substack, a fonte é
+> `pipelines/hemingway/.claude/skills/prompts-visuais/`, que opera sob a exceção de escopo
+> declarada na §4.5.
+>
+> **Exportação de logo:** todo formato, combinação de cor e tamanho, com o contraste medido de
+> cada combinação e o que já existe em `LOGO/`, está em
+> [`export/EXPORT-CHECK.pdf`](export/EXPORT-CHECK.pdf). Regenerar:
+> `node brand/scripts/build-export-check.mjs`.
+
 ## 6. Aplicação em Materiais de Curso
+
+> **v2.1.** Esta seção cobre material de curso. As superfícies onde a marca **não controla o CSS** — Substack, LinkedIn, YouTube, Hotmart, e-mail — são governadas por [`APLICACAO.md`](APLICACAO.md), que declara, por canal, o que é fixo, o que pode variar e qual é o **fallback nomeado** onde a regra ideal não executa.
 
 | Material                        | Elementos de marca aplicáveis                                                                          |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -375,20 +391,81 @@ Antes de publicar qualquer peça — copy, slide, case, e-mail, página web:
 - [ ] A página usa ≥ 3 assinaturas da §4.4 — e o hero usa eyebrow, palavra-destaque e hairlines?
 - [ ] Nenhum item da lista de anti-padrões da §4.5 está presente?
 - [ ] Todo número-argumento está em Space Mono, em tamanho de protagonista?
+- [ ] Se a peça é **vetorial**, passou em `node brand/scripts/check-palette.mjs`? (v2.1 — a varredura só olhava `.tsx`; SVG passava sem conferência)
+- [ ] Se a peça é **vetorial**, o `rx`/`ry` é 0 ou 2? (v2.1 — `rx="8"` num `<rect>` é o mesmo anti-padrão que `rounded-lg`)
+- [ ] Se a peça vai para **plataforma que não é nossa**, a regra aplicada é a de [`APLICACAO.md`](APLICACAO.md) para aquele canal — e não uma regra de produto que a plataforma não deixa cumprir?
+- [ ] Se a peça é um **asset de marca**, o arquivo usado é o canônico de [`LOGO/README.md`](LOGO/README.md), não um derivado ou rascunho?
 
 ---
 
 ## 8. Lacunas Abertas
 
-1. ~~**SVG master do logo**~~ — **Resolvido em 31/08/2026.** `brand/LOGO/symbol-master.svg`
-   (Forest) e `brand/LOGO/symbol-master-lime.svg` (variante Lime para fundo escuro) —
-   geometria extraída de `favicon.svg` e verificada por render comparativo, não redesenhada.
-   Ambos usáveis em qualquer tamanho e para impressão.
-2. **Nomes comerciais das trilhas** — decisão aberta; a regra (§3.4: português) já está cristalizada.
-3. **Certificado de conclusão** — formato final (PDF, badge digital, ambos) indefinido; na v2.0 usa linha de conquista Lime.
-4. **Migração Amber→Lime e da tipografia nos templates LaTeX** (`syntaxis-notas-v1.tex`, `syntaxis-beamer-v1.tex`) e demais materiais de curso — fora do escopo do app; agendar como revisão própria.
-5. **Assets generativos existentes** — o lote aprovado no pipeline agy foi gerado sob a paleta com Amber; os que contêm Amber precisam de regeração ou recolor (ver épico de implementação).
+_Atualizada em 02/09/2026 (v2.1). Evidência de cada fechamento em `revisao-2026/01-auditoria.md`._
+
+### Fechadas
+
+1. ~~**SVG master do logo**~~ — **31/08/2026.** `brand/LOGO/symbol-master.svg` (Forest) e
+   `brand/LOGO/symbol-master-lime.svg` (Lime para fundo escuro) — geometria extraída de
+   `favicon.svg` e verificada por render comparativo, não redesenhada. **Propagada ao produto em
+   02/09/2026:** `apps/skill_test/app/icon.svg` e `components/logo.tsx` deixaram de ser
+   placeholder e passaram a usar a geometria do master.
+2. ~~**Assets generativos sob a paleta Amber**~~ — **31/08/2026.** Os 9 assets publicados foram
+   inspecionados um a um contra os pares duotone e nenhum usa Amber `#C9832A` ou Cream
+   `#F5EDD6` (`apps/skill_test/assets/manifest.json`, campo `$brandAuditEpico22`), com
+   `scripts/verify-asset-palette.mjs` testando contra a escala lime. Nenhum recolor necessário.
+3. ~~**Aplicação em superfícies que a marca não controla**~~ — **02/09/2026.** Substack,
+   LinkedIn, YouTube, Hotmart, e-mail e certificado passam a ser governados por
+   `brand/APLICACAO.md`, com as restrições reais de cada plataforma e o fallback nomeado onde a
+   regra ideal não executa.
+
+### Reclassificadas
+
+4. **Templates LaTeX** — a lacuna anterior agendava "migração Amber→Lime e da tipografia" em
+   `syntaxis-notas-v1.tex` e `syntaxis-beamer-v1.tex`. **Esses arquivos não existem neste
+   monorepo** (`find . -name '*.tex' -o -name '*.sty' -o -name '*.cls'` → zero resultados em
+   02/09/2026), e `education/` é markdown puro, sem camada de editoração. Não é uma migração
+   pendente: é uma camada que ainda não foi construída. `APLICACAO.md` registra o que ela
+   precisará respeitar quando existir.
+
+### Abertas
+
+5. **Nomes comerciais das trilhas** — decisão aberta; a regra (§3.4: português) já está
+   cristalizada.
+6. **Certificado de conclusão** — formato final (PDF, badge digital, ambos) indefinido. Na v2.0
+   usa linha de conquista Lime; `APLICACAO.md` fixa o que já é decidível (paleta, moldura
+   nó-e-galho, tipografia) e isola o que depende do formato.
+
+### Achados desta revisão ainda não endereçados
+
+7. **Tipografia fora do sistema em três banners** — `logo_banner.svg`,
+   `logo_banner_grove_ink.svg` e `logo_banner_forest_ink.svg` usam `font-family:Carlito`, fora
+   do trio da §4.2, em elementos `<text>` vivos. **Confirmado em render (02/09/2026):** numa
+   máquina sem Carlito instalada o navegador substitui a fonte, e o wordmark sai numa face que
+   não é nenhuma das três da marca. Não é risco teórico — é o comportamento padrão em qualquer
+   consumidor que não seja a máquina do autor. Corrigir exige decidir entre trocar a família ou
+   converter o texto em contornos — decisão de arte, não de varredura.
+8. ~~**`viewBox` não enquadra o conteúdo em três banners**~~ — **corrigido em 02/09/2026.**
+   `logo_banner.svg`, `logo_banner_forest_ink.svg` e `logo_banner_grove_ink.svg` declaravam o
+   `viewBox` da página do símbolo (`0 0 319.29529 315.27209`) enquanto o banner está em
+   `-596.8 448.71 1584 396` — o conteúdo ficava inteiramente fora do quadro, e num navegador ou
+   num `<img>` o arquivo renderizava em branco. Só funcionava aberto no Inkscape. Os três
+   passaram a declarar o `viewBox` e o `width`/`height` da faixa real (1584×396), verificados por
+   render. Em `logo_banner.svg`, a correção também deixa de fora um "Syntaxis" solto que estava
+   na prancheta acima da faixa, em Carlito com contorno preto — resto de tentativa descartada,
+   fora de qualquer paleta ou tipografia do sistema.
+9. **Pílulas no banner do YouTube** — "Nos siga para mais conteúdo!", o botão "SUBSCRIBE" e a
+   caixa "Conhecimento que transforma!" têm canto arredondado, contra §4.4.7 ("nunca pílula") e
+   §4.5. São paths com arco, não `<rect rx=…>`: nenhum linter os alcança. Corrigir é
+   redesenhar forma, não trocar valor.
+10. **Bloco de marca de ilustração duplicado** — `brand/ILUSTRACOES/_bloco-marca.md` é o
+    canônico desde 02/09/2026, e `apps/skill_test/assets/prompts/_brand-block.md` é o ancestral
+    direto, hoje ainda uma cópia. Apontá-lo para cá é um PR pequeno naquele repositório. Enquanto
+    os dois existirem, vale o de `brand/`.
+11. **SSOT fora de controle de versão** — `brand/`, `strategy/`, `education/` e `iscas/` não
+    pertencem a nenhum repositório git; este documento e `tokens.json` não têm histórico nem
+    reversão, e a cópia em `apps/skill_test/` pode divergir sem aviso. Levantado e adiado por
+    decisão do founder na revisão de 02/09/2026.
 
 ---
 
-_Syntaxis DESIGN.md v2.0 · Forest e Grove intocados; Amber→Lime, cantos retos e tipografia grotesca moderna (Space Grotesk + Hanken Grotesk + Space Mono) por decisão do founder a partir de novas referências. Voz e padrões geométricos preservados._
+_Syntaxis DESIGN.md v2.1 · Forest e Grove intocados; Amber→Lime, cantos retos e tipografia grotesca moderna (Space Grotesk + Hanken Grotesk + Space Mono) por decisão do founder a partir de novas referências. Voz e padrões geométricos preservados. v2.1 (02/09/2026): escopo em §4.5, §8 atualizada, `APLICACAO.md` para as superfícies fora do nosso CSS — nenhum invariante alterado._
