@@ -32,6 +32,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
 const SCAN_DIRS = ['app', 'components', 'lib', 'content'];
+// Passe de SVG (revisão de 02/09/2026, item 8): asset vetorial PRECISA carregar
+// cor literal — não dá para referenciar um token de dentro de um .svg estático.
+// A regra ali não é "sem hex", é "todo hex tem que ser um valor do tokens.json".
+const SVG_SCAN_DIRS = ['app', 'public'];
 const COLOR_PATTERN = /#[0-9a-fA-F]{3,8}\b|\brgba?\([^)]*\)|\bhsla?\([^)]*\)/g;
 // Classes utilitárias Tailwind sobre a escala de cinza default do framework
 // (gray/slate/zinc/neutral/stone) — DESIGN.md v1.1 §4.5. `slate` aqui é o
@@ -88,8 +92,74 @@ function findHardcodedColors(filePath) {
   return findings;
 }
 
+function tokenHexes() {
+  const tokens = JSON.parse(readFileSync(path.join(rootDir, 'design/tokens.json'), 'utf-8'));
+  const found = new Set();
+  (function walk(node) {
+    if (!node || typeof node !== 'object') return;
+    for (const value of Object.values(node)) {
+      if (value && typeof value === 'object') {
+        if (typeof value.$value === 'string' && /^#[0-9a-fA-F]{6}$/.test(value.$value)) {
+          found.add(value.$value.toLowerCase());
+        }
+        walk(value);
+      }
+    }
+  })(tokens);
+  return found;
+}
+
+function listSvgFiles() {
+  const output = execSync(`git ls-files -- ${SVG_SCAN_DIRS.map((d) => `'${d}'`).join(' ')}`, {
+    cwd: rootDir,
+    encoding: 'utf-8',
+  });
+  return output
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .filter((file) => /\.svg$/.test(file));
+}
+
+// Só propriedades que de fato pintam. Metadado de editor (Inkscape grava
+// pagecolor/bordercolor/deskcolor em <sodipodi:namedview>) nunca é renderizado
+// e produziria falso positivo em massa — a auditoria de 02/09/2026 encontrou
+// 10 arquivos "derivados" que eram só isso.
+const SVG_PAINT_PATTERN =
+  /\b(?:fill|stroke|stop-color|flood-color|lighting-color)\s*[:=]\s*"?(#[0-9a-fA-F]{3,8})/g;
+
+function findOffPaletteSvgColors(filePath, palette) {
+  const raw = readFileSync(path.join(rootDir, filePath), 'utf-8');
+  const content = raw
+    .replace(/<!--[\s\S]*?-->/g, (m) => m.replace(/[^\n]/g, ' '))
+    .replace(/<sodipodi:namedview[\s\S]*?(?:\/>|<\/sodipodi:namedview>)/g, (m) =>
+      m.replace(/[^\n]/g, ' '),
+    );
+  const findings = [];
+
+  content.split('\n').forEach((line, index) => {
+    const matches = [...line.matchAll(SVG_PAINT_PATTERN)]
+      .map((m) => m[1].toLowerCase())
+      .filter((hex) => hex !== '#none' && !palette.has(hex));
+    if (matches.length > 0) {
+      findings.push({ line: index + 1, text: line.trim(), matches });
+    }
+  });
+
+  return findings;
+}
+
 const files = listSourceFiles();
 let totalFindings = 0;
+
+const palette = tokenHexes();
+for (const file of listSvgFiles()) {
+  for (const finding of findOffPaletteSvgColors(file, palette)) {
+    totalFindings += 1;
+    console.error(`${file}:${finding.line}: ${finding.matches.join(', ')} (fora da paleta)`);
+    console.error(`  ${finding.text}`);
+  }
+}
 
 for (const file of files) {
   const findings = findHardcodedColors(file);

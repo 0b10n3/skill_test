@@ -1,7 +1,21 @@
 <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <!-- PLACEHOLDER (Épico 14): nenhum arquivo de logo real foi recebido — ver
-       components/logo.tsx. Marca geométrica provisória (nó-e-galho
-       simplificado) até o SVG master da marca chegar. -->
-  <rect width="32" height="32" rx="8" fill="#1B6A45" />
-  <circle cx="16" cy="16" r="5" fill="#2D9E67" />
+  <!--
+    Símbolo nó-e-galho (DESIGN.md §5.1) sobre placa Deep Forest — "o sinal no
+    escuro" em 32px. Geometria copiada verbatim de brand/LOGO/symbol-master.svg
+    (revisão de 02/09/2026, item 1): não redesenhar aqui, editar lá e recopiar.
+
+    Canto reto por regra: o placeholder anterior usava rx="8", dentro da faixa
+    8-16px que DESIGN.md §4.5 nomeia como anti-padrão. A exceção de radius do
+    sistema vale para avatar e para o símbolo em si, nunca para uma placa
+    retangular.
+  -->
+  <rect width="32" height="32" fill="#0F3D27" />
+  <g transform="translate(6,6.126) scale(1.25)" fill="#CDF163">
+    <g transform="matrix(0.05011035,0,0,0.05011035,0.39952,0.3814727)">
+      <g transform="matrix(1.5057838,0,0,1.5057838,-84.846384,407.39333)">
+        <path d="m 136.36523,-230.55273 -40.171871,40.17187 40.171871,40.16992 v -41.41992 h 40.44532 a 38.921356,38.921356 0 0 0 38.92187,-38.92187 z" />
+        <path d="m 177.78515,-111.28908 40.17188,-40.17186 -40.17188,-40.16992 v 41.41992 h -40.44532 a 38.921356,38.921356 0 0 0 -38.921877,38.92186 z" />
+      </g>
+    </g>
+  </g>
 </svg>
