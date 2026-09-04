@@ -3,48 +3,46 @@ import { render } from '@testing-library/react';
 import tokens from '@/design/tokens.json';
 import { PatternReticula } from '@/components/patterns/PatternReticula';
 import { PatternGrowthLine } from '@/components/patterns/PatternGrowthLine';
-import { PatternNodeBranch } from '@/components/patterns/PatternNodeBranch';
+import { PatternMesh } from '@/components/patterns/PatternMesh';
 
-const NODE_BRANCH = tokens.pattern.nodeBranch;
+const MESH = tokens.pattern.mesh;
 
-describe('PatternNodeBranch', () => {
+describe('PatternMesh', () => {
   it('trava a opacidade em opacityOnText quando context="onText", mesmo se o consumidor passar um valor maior', () => {
-    const { container } = render(<PatternNodeBranch context="onText" opacity={0.9} />);
+    const { container } = render(<PatternMesh context="onText" opacity={0.9} />);
     const svg = container.querySelector('svg');
-    expect(svg?.style.opacity).toBe(String(NODE_BRANCH.opacityOnText.$value));
+    expect(svg?.style.opacity).toBe(String(MESH.opacityOnText.$value));
   });
 
   it('clampa a opacidade decorativa dentro de [opacityDecorativeMin, opacityDecorativeMax]', () => {
-    const { container: tooHigh } = render(
-      <PatternNodeBranch context="decorative" opacity={0.95} />,
-    );
+    const { container: tooHigh } = render(<PatternMesh context="decorative" opacity={0.95} />);
     expect(tooHigh.querySelector('svg')?.style.opacity).toBe(
-      String(NODE_BRANCH.opacityDecorativeMax.$value),
+      String(MESH.opacityDecorativeMax.$value),
     );
 
-    const { container: tooLow } = render(<PatternNodeBranch context="decorative" opacity={0.01} />);
+    const { container: tooLow } = render(<PatternMesh context="decorative" opacity={0.01} />);
     expect(tooLow.querySelector('svg')?.style.opacity).toBe(
-      String(NODE_BRANCH.opacityDecorativeMin.$value),
+      String(MESH.opacityDecorativeMin.$value),
     );
   });
 
   it('renderiza como decorativo (aria-hidden) — nunca lido por leitor de tela', () => {
-    const { container } = render(<PatternNodeBranch context="decorative" />);
+    const { container } = render(<PatternMesh context="decorative" />);
     expect(container.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
   });
 
-  it('o path do padrão referencia os tokens pattern.nodeBranch via var(), nunca um valor copiado', () => {
-    const { container } = render(<PatternNodeBranch context="decorative" />);
+  it('o path do padrão referencia os tokens pattern.mesh via var(), nunca um valor copiado', () => {
+    const { container } = render(<PatternMesh context="decorative" />);
     const path = container.querySelector('path');
-    expect(path?.getAttribute('stroke')).toBe('var(--pattern-node-branch-color)');
-    expect(path?.getAttribute('stroke-width')).toBe('var(--pattern-node-branch-stroke-width)');
+    expect(path?.getAttribute('stroke')).toBe('var(--pattern-mesh-color)');
+    expect(path?.getAttribute('stroke-width')).toBe('var(--pattern-mesh-stroke-width)');
     expect(path?.getAttribute('fill')).toBe('none');
   });
 
-  it('nunca desenha nó como círculo — a dobra é só o encontro de dois segmentos do path (DESIGN.md §6.2)', () => {
-    const { container } = render(<PatternNodeBranch context="decorative" />);
+  it('nunca desenha círculo ou arco — só linhas retas 0°/90° (DESIGN.md §6.2)', () => {
+    const { container } = render(<PatternMesh context="decorative" />);
     expect(container.querySelector('circle')).toBeNull();
-    expect(container.querySelector('line')).toBeNull();
+    expect(container.querySelector('path')?.getAttribute('d')).not.toContain('A');
   });
 });
 

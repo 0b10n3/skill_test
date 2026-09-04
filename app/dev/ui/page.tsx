@@ -22,7 +22,7 @@ import { Progress, ProgressLabel, ProgressValue } from '@/components/ui/progress
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { PatternReticula, PatternGrowthLine, PatternNodeBranch } from '@/components/patterns';
+import { PatternReticula, PatternGrowthLine, PatternMesh } from '@/components/patterns';
 
 /**
  * Catálogo vivo (Épico 15) — todos os componentes restylizados e os três
@@ -64,12 +64,12 @@ function Swatch({ name, className }: { name: string; className: string }) {
 const PATTERN_USAGE_MATRIX = [
   {
     context: 'Capa de módulo / slide de título',
-    pattern: 'Nó-e-galho, canto inferior',
+    pattern: 'Malha, canto inferior',
     opacity: '25–35%',
   },
   {
     context: 'Slide divisor de seção',
-    pattern: 'Nó-e-galho, campo completo atrás do painel de cor sólida',
+    pattern: 'Malha, campo completo atrás do painel de cor sólida',
     opacity: '30–40%',
   },
   {
@@ -79,12 +79,12 @@ const PATTERN_USAGE_MATRIX = [
   },
   {
     context: 'Certificado de conclusão',
-    pattern: 'Linha de conquista + nó-e-galho como moldura',
+    pattern: 'Linha de conquista + malha como moldura',
     opacity: '100% (elementos são o design, não fundo)',
   },
   {
     context: 'Post de rede social — anúncio de módulo',
-    pattern: 'Nó-e-galho como moldura de canto',
+    pattern: 'Malha como moldura de canto',
     opacity: '40–60%',
   },
   {
@@ -134,15 +134,15 @@ export default function UiCatalogPage() {
       >
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-medium text-foreground">Nó-e-galho — decorativo (campo)</p>
+            <p className="text-sm font-medium text-foreground">Malha — decorativo (campo)</p>
             <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-sm border border-border bg-card">
-              <PatternNodeBranch context="decorative" anchor="field" density="default" />
+              <PatternMesh context="decorative" anchor="field" density="default" />
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-medium text-foreground">Nó-e-galho — atrás de texto</p>
+            <p className="text-sm font-medium text-foreground">Malha — atrás de texto</p>
             <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-sm border border-border bg-card">
-              <PatternNodeBranch
+              <PatternMesh
                 context="onText"
                 anchor="corner"
                 density="dense"

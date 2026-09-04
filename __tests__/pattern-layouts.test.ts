@@ -1,88 +1,71 @@
 import { describe, expect, it } from 'vitest';
 import { generateGrowthLineLayout } from '@/components/patterns/lib/growth-line-layout';
-import { generateNodeBranchLayout } from '@/components/patterns/lib/node-branch-layout';
+import { generateMeshLayout } from '@/components/patterns/lib/mesh-layout';
 
-/** Comprimento euclidiano de um segmento `M x1,y1 L x2,y2`. */
-function lineLength(x1: number, y1: number, x2: number, y2: number): number {
-  return Math.hypot(x2 - x1, y2 - y1);
+const CELL = 32;
+
+/** Extrai [x1,y1,x2,y2] de um subpath `M x1,y1 L x2,y2`. */
+function parseSegment(sub: string): [number, number, number, number] {
+  const match = sub.match(/(-?[\d.]+),(-?[\d.]+)\s+L\s+(-?[\d.]+),(-?[\d.]+)/);
+  expect(match).not.toBeNull();
+  const [, x1, y1, x2, y2] = match!.map(Number) as unknown as [never, number, number, number, number];
+  return [x1, y1, x2, y2];
 }
 
-const MODULE = 40;
-const ALLOWED_ANGLES_MOD_180 = [0, 45, 90, 135];
-
-/** Ângulo de uma reta (mod 180°, orientação — não direção) em graus, 0-179.99. */
-function lineAngleMod180(x1: number, y1: number, x2: number, y2: number): number {
-  const deg = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
-  return ((deg % 180) + 180) % 180;
-}
-
-describe('generateNodeBranchLayout', () => {
+describe('generateMeshLayout', () => {
   it('é determinístico: a mesma density/anchor produz sempre a mesma geometria', () => {
-    const a = generateNodeBranchLayout('default', 'field');
-    const b = generateNodeBranchLayout('default', 'field');
+    const a = generateMeshLayout('default', 'field');
+    const b = generateMeshLayout('default', 'field');
     expect(a).toEqual(b);
   });
 
-  it('density maior produz path mais longo (sparse < default < dense)', () => {
-    const sparse = generateNodeBranchLayout('sparse', 'field');
-    const defaultDensity = generateNodeBranchLayout('default', 'field');
-    const dense = generateNodeBranchLayout('dense', 'field');
+  it('density maior produz mais linhas (sparse < default < dense)', () => {
+    const sparse = generateMeshLayout('sparse', 'field');
+    const defaultDensity = generateMeshLayout('default', 'field');
+    const dense = generateMeshLayout('dense', 'field');
     expect(sparse.d.length).toBeLessThan(defaultDensity.d.length);
     expect(defaultDensity.d.length).toBeLessThan(dense.d.length);
   });
 
-  it('todo segmento reto tem ângulo 0°, 45°, 90° ou 135° (mod 180°) e comprimento igual ao módulo', () => {
-    const layout = generateNodeBranchLayout('dense', 'field');
-    const lineSubpaths = layout.d.split(' M ').filter((sub) => !sub.includes('A'));
-    expect(lineSubpaths.length).toBeGreaterThan(0);
-    for (const sub of lineSubpaths) {
-      const match = sub.match(/(-?[\d.]+),(-?[\d.]+)\s+L\s+(-?[\d.]+),(-?[\d.]+)/);
-      expect(match).not.toBeNull();
-      const [, x1, y1, x2, y2] = match!.map(Number) as unknown as [
-        never,
-        number,
-        number,
-        number,
-        number,
-      ];
-      const angle = lineAngleMod180(x1, y1, x2, y2);
-      const closest = ALLOWED_ANGLES_MOD_180.reduce((a, b) =>
-        Math.abs(b - angle) < Math.abs(a - angle) ? b : a,
-      );
-      expect(Math.abs(angle - closest)).toBeLessThan(0.01);
-      expect(lineLength(x1, y1, x2, y2)).toBeCloseTo(MODULE, 1);
+  it('todo segmento é puramente horizontal ou vertical — nenhuma diagonal, nenhuma curva (DESIGN.md §6.2)', () => {
+    const layout = generateMeshLayout('dense', 'field');
+    const subpaths = layout.d.split(' M ').filter(Boolean);
+    expect(subpaths.length).toBeGreaterThan(0);
+    expect(layout.d.includes('A')).toBe(false); // sem arco — mesh não disputa a exceção de curva do símbolo
+    for (const sub of subpaths) {
+      const [x1, y1, x2, y2] = parseSegment(sub);
+      const isHorizontal = y1 === y2;
+      const isVertical = x1 === x2;
+      expect(isHorizontal || isVertical).toBe(true);
     }
   });
 
-  it('toda terminação em arco tem corda = módulo·√2 (arco de exatos 90°, raio = módulo)', () => {
-    const layout = generateNodeBranchLayout('dense', 'field');
-    const arcSubpaths = layout.d.split(' M ').filter((sub) => sub.includes('A'));
-    expect(arcSubpaths.length).toBeGreaterThan(0);
-    for (const sub of arcSubpaths) {
-      const match = sub.match(
-        /(-?[\d.]+),(-?[\d.]+)\s+A\s+[\d.]+,[\d.]+\s+0\s+0\s+[01]\s+(-?[\d.]+),(-?[\d.]+)/,
-      );
-      expect(match).not.toBeNull();
-      const [, x1, y1, x2, y2] = match!.map(Number) as unknown as [
-        never,
-        number,
-        number,
-        number,
-        number,
-      ];
-      expect(lineLength(x1, y1, x2, y2)).toBeCloseTo(MODULE * Math.sqrt(2), 1);
+  it('linhas verticais consecutivas distam exatamente uma célula (pattern.mesh.cellSize = 32px)', () => {
+    const layout = generateMeshLayout('dense', 'field');
+    const subpaths = layout.d.split(' M ').filter(Boolean);
+    const verticalXs = subpaths
+      .map(parseSegment)
+      .filter(([x1, y1, x2, y2]) => x1 === x2 && y1 !== y2)
+      .map(([x1]) => x1)
+      .sort((a, b) => a - b);
+    for (let i = 1; i < verticalXs.length; i += 1) {
+      expect(verticalXs[i] - verticalXs[i - 1]).toBeCloseTo(CELL, 5);
     }
+  });
+
+  it('anchor=corner confina a malha a uma região menor que field', () => {
+    const corner = generateMeshLayout('default', 'corner');
+    const field = generateMeshLayout('default', 'field');
+    expect(corner.d.length).toBeLessThan(field.d.length);
+    expect(corner).not.toEqual(field);
   });
 
   it('snapshot de geometria — density=default, anchor=field', () => {
-    expect(generateNodeBranchLayout('default', 'field')).toMatchSnapshot();
+    expect(generateMeshLayout('default', 'field')).toMatchSnapshot();
   });
 
   it('snapshot de geometria — anchor=corner produz layout diferente de field', () => {
-    const corner = generateNodeBranchLayout('default', 'corner');
-    const field = generateNodeBranchLayout('default', 'field');
-    expect(corner).toMatchSnapshot();
-    expect(corner).not.toEqual(field);
+    expect(generateMeshLayout('default', 'corner')).toMatchSnapshot();
   });
 });
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Lint de composição de padrões (Épico 15, DESIGN.md §5.4 "um padrão por
+// Lint de composição de padrões (Épico 15, DESIGN.md §6.5 "um pattern por
 // peça"): nenhum arquivo pode importar mais de uma das três famílias de
-// padrão geométrico (components/patterns) — misturar nó-e-galho com grade
+// padrão geométrico (components/patterns) — misturar malha com grade
 // de dados, por exemplo, "lê como ruído, não como sistema".
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -12,13 +12,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
 const SCAN_DIRS = ['app', 'components'];
-// Épico 27: PatternDataGrid renomeado para PatternReticula — esta lista
-// ficou desatualizada (achado do Épico 29) e por isso nunca detectou uma
-// composição real misturando nodeBranch + reticula desde então. GradientAmbient
-// (Épico 29) não entra aqui: não é um dos dois padrões geométricos, é a
-// exceção de camada de ambiente (DESIGN.md §4.5) — pode conviver com um
-// pattern no mesmo arquivo sem violar "um padrão por peça".
-const PATTERN_NAMES = ['PatternNodeBranch', 'PatternReticula', 'PatternGrowthLine'];
+// Épico 27: PatternDataGrid renomeado para PatternReticula — esta lista já
+// ficou desatualizada uma vez (achado do Épico 29) por não ter sido
+// atualizada junto com o rename. Épico 31: PatternNodeBranch → PatternMesh
+// (REVOGACOES.md H9), lista atualizada no mesmo commit da troca desta vez.
+// GradientAmbient (Épico 29) não entra aqui: não é um dos dois padrões
+// geométricos, é a exceção de camada de ambiente (DESIGN.md §4.5) — pode
+// conviver com um pattern no mesmo arquivo sem violar "um pattern por peça".
+const PATTERN_NAMES = ['PatternMesh', 'PatternReticula', 'PatternGrowthLine'];
 
 // O próprio diretório de definição dos padrões não conta — só composições
 // (páginas/componentes que os consomem). O catálogo /dev/ui também é

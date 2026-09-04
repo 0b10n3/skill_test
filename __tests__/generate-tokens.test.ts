@@ -73,8 +73,8 @@ function makeFixtureTokens() {
       },
     },
     pattern: {
-      nodeBranch: {
-        nodeRadius: { $value: '2.5px', $type: 'dimension' },
+      mesh: {
+        cellSize: { $value: '32px', $type: 'dimension' },
         color: { $value: '{color.grove.500}', $type: 'color' },
       },
     },
@@ -105,7 +105,7 @@ describe('resolveValue', () => {
 describe('kebabCase', () => {
   it('converte camelCase para kebab-case', () => {
     expect(kebabCase('primaryForeground')).toBe('primary-foreground');
-    expect(kebabCase('nodeBranch')).toBe('node-branch');
+    expect(kebabCase('cellSize')).toBe('cell-size');
     expect(kebabCase('background')).toBe('background');
   });
 });
@@ -137,8 +137,8 @@ describe('generateCss', () => {
 
   it('gera radius e tokens de padrão com nomes em kebab-case', () => {
     expect(css).toContain('--radius-lg: 10px;');
-    expect(css).toContain('--pattern-node-branch-node-radius: 2.5px;');
-    expect(css).toContain('--pattern-node-branch-color: #2D9E67;');
+    expect(css).toContain('--pattern-mesh-cell-size: 32px;');
+    expect(css).toContain('--pattern-mesh-color: #2D9E67;');
   });
 
   it('NÃO gera --spacing-* nomeado: colide com o namespace que o Tailwind v4 usa para max-w-*/w-* (achado real do Épico 14 — grid de 8px já é representável pela escala numérica padrão do Tailwind: xs=2, sm=4, md=6, lg=8, xl=12, 2xl=16)', () => {

@@ -1,4 +1,4 @@
-export { PatternNodeBranch, type PatternNodeBranchProps } from './PatternNodeBranch';
+export { PatternMesh, type PatternMeshProps } from './PatternMesh';
 export {
   PatternReticula,
   type PatternReticulaProps,

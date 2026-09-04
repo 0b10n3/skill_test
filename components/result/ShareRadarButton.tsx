@@ -6,10 +6,7 @@ import {
   generateGrowthLineLayout,
   type GrowthLineLayout,
 } from '@/components/patterns/lib/growth-line-layout';
-import {
-  generateNodeBranchLayout,
-  type NodeBranchLayout,
-} from '@/components/patterns/lib/node-branch-layout';
+import { generateMeshLayout, type MeshLayout } from '@/components/patterns/lib/mesh-layout';
 import { CATEGORY_LABEL_SHORT, CLASSIFICATION_LABEL } from '@/content/relatorio';
 import { track } from '@/lib/analytics/track';
 import type { DimensaoDiagnostico } from '@/lib/diagnostico';
@@ -19,11 +16,11 @@ const CANVAS_SIZE = 600;
 const CENTER = CANVAS_SIZE / 2;
 const RADAR_RADIUS = 160;
 
-// DESIGN.md §6: "Certificado de módulo — linha de conquista + nó-e-galho
-// como moldura — o único material onde os padrões geométricos são
-// protagonistas, não fundo". Só esta peça combina os dois padrões: uma
-// exceção documentada, não uma violação de "um padrão por peça"
-// (DESIGN.md §5.4, que fala de composições comuns, não de certificados).
+// DESIGN.md §6: "Certificado — mesh como moldura + growthLine como marca de
+// dado — o único material onde os padrões geométricos são protagonistas,
+// não fundo". Só esta peça combina os dois: uma exceção documentada, não
+// uma violação de "um pattern por peça" (DESIGN.md §6.5 — growthLine nunca
+// é decorativo, não conta como um segundo pattern disputando a superfície).
 const FRAME_SCALE = 0.42;
 const FRAME_INSET = 24;
 
@@ -51,15 +48,14 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 }
 
 /**
- * Um canto da moldura nó-e-galho, espelhado conforme o canto do card. A
- * mesma string de path (`layout.d`) que alimenta `PatternNodeBranch.tsx`
- * em SVG vira um `Path2D` aqui — uma só geometria pura, dois consumidores
- * (DESIGN.md §6.2). Sem círculo por nó: a dobra é o encontro dos
- * segmentos do próprio path.
+ * Um canto da moldura em malha, espelhado conforme o canto do card. A
+ * mesma string de path (`layout.d`) que alimenta `PatternMesh.tsx` em SVG
+ * vira um `Path2D` aqui — uma só geometria pura, dois consumidores
+ * (DESIGN.md §6.2).
  */
-function drawNodeBranchCorner(
+function drawMeshCorner(
   ctx: CanvasRenderingContext2D,
-  layout: NodeBranchLayout,
+  layout: MeshLayout,
   corner: 'tl' | 'tr' | 'bl' | 'br',
   color: string,
 ) {
@@ -130,7 +126,7 @@ async function drawShareCard(
   const textHigh = styles.getPropertyValue('--foreground').trim();
   const textMedium = styles.getPropertyValue('--muted-foreground').trim();
   const grove = styles.getPropertyValue('--color-semantic-progress-bar').trim();
-  const nodeBranchColor = styles.getPropertyValue('--pattern-node-branch-color').trim();
+  const meshColor = styles.getPropertyValue('--pattern-mesh-color').trim();
   const growthLineColor = styles.getPropertyValue('--pattern-growth-line-color').trim();
 
   // Fundo: textura do Épico 16 (radar-card-textura), variante por tema.
@@ -138,11 +134,11 @@ async function drawShareCard(
   const background = await loadImage(backgroundSrc);
   ctx.drawImage(background, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
-  // Moldura nó-e-galho — mesma geometria determinística dos padrões do
-  // Épico 15, nos 4 cantos.
-  const cornerLayout = generateNodeBranchLayout('sparse', 'corner');
+  // Moldura em malha — mesma geometria determinística dos padrões do
+  // Épico 15/31, nos 4 cantos.
+  const cornerLayout = generateMeshLayout('sparse', 'corner');
   for (const corner of ['tl', 'tr', 'bl', 'br'] as const) {
-    drawNodeBranchCorner(ctx, cornerLayout, corner, nodeBranchColor);
+    drawMeshCorner(ctx, cornerLayout, corner, meshColor);
   }
 
   // Grade do radar (3 anéis de referência)
