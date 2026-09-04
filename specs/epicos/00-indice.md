@@ -38,7 +38,7 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 
 Épicos 20–22 (refinamento anti-genérico, SEO técnico/analytics, Design v2.0 — Lime/cantos retos/tipografia grotesca) e 23 (transições explícitas) seguiram o mesmo ciclo; `epico-23-transicao-explicita.md` é o único arquivo de épico dessa faixa que continua na pasta.
 
-### Fase 4 — Sincronização com a marca reconstruída do zero (rodada 3, `brand/`) — em andamento
+### Fase 4 — Sincronização com a marca reconstruída do zero (rodada 3, `brand/`) — ✅ concluída quanto ao verificável por CI/E2E; deploy em produção e revisão visual pendentes de gate humano
 
 **Fonte de verdade viva:** `brand/DESIGN.md` v3.0 e `brand/tokens/syntaxis.tokens.json` v2.3.0, no repositório `Syntaxis/` (raiz), reconstruídos do zero em `brand/revisao-2026/`. Mudança central: a camada de ilustração (collage/paper cut) passa a existir só em `pipelines/hemingway` — este app nunca a consumiu, então não há migração de ilustração aqui, só de patterns e tokens.
 

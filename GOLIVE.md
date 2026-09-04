@@ -788,3 +788,95 @@ por CI/E2E — cor, radius e tipografia migrados de ponta a ponta, com
 prova automatizada de que nenhuma mudança fora do declarado no changelog
 passou despercebida. A aprovação visual do founder contra as referências
 originais é o gate final e exige uma pessoa.**
+
+## Go-Live da Sincronização com a Marca v3.0 (Épicos 24–28)
+
+Terceira rodada de reconstrução de marca (`Syntaxis/brand/`, fora deste repositório) chega ao
+app: `DESIGN.md` v3.0 e `tokens.json` v2.3.0 substituem a v2.0/v2.0.0. Ao contrário das rodadas
+anteriores, não é redesign de cor/tipografia/radius — esses três já estavam corretos desde o
+Épico 22. É a reconstrução da **gramática do pattern primário sobre a geometria medida do
+símbolo**, a chegada do **símbolo oficial** (ausente desde o Épico 14) e o fechamento de uma
+lacuna de nomenclatura (`dataGrid` → `reticula`).
+
+### 1. SSOTs
+
+`DESIGN.md` e `design/tokens.json` substituídos por cópia byte a byte do SSOT
+(`brand/DESIGN.md`, `brand/tokens/syntaxis.tokens.json`) — sem mesclagem manual desta vez,
+porque não havia tokens de contraste locais divergindo do arquivo do founder (o padrão dos
+Épicos 20/22). `check-tokens-breaking.mjs` confirma: diff desde a v1.2.0 continua dentro da
+allowlist da v2.0.0 — nenhum `$value` mudou desde então, só adição (`illustration.*`,
+`pattern.reticula`, `pattern.nodeBranch.module/arcRadius`) e depreciação (`pattern.dataGrid`,
+`pattern.reticula.coarse`, `pattern.nodeBranch.nodeRadius`, os quatro `shadow.*`).
+
+### 2. Símbolo oficial (Épico 25)
+
+`components/logo.tsx` deixa de ser wordmark-só — o símbolo (`brand/LOGO/symbol-master.svg`,
+inline, `currentColor`) aparece ao lado, herdando `--link-foreground` (mesma cor que o texto já
+usava, Forest no claro/Grove no escuro). `app/favicon.ico` regenerado com o símbolo real —
+era o default do scaffold do Next.js desde o commit inicial do projeto, nunca trocado.
+
+### 3. Gramática do `pattern.nodeBranch` (Épico 26)
+
+`node-branch-layout.ts` reescrito sobre a geometria medida do símbolo: todo segmento a
+0°/90°/±45°, comprimento igual ao módulo, nó vira a dobra (sem círculo), terminação em quarto
+de arco de raio igual ao módulo. Nova forma de retorno — um único `d` de path SVG — unifica
+`PatternNodeBranch.tsx` (SVG) e `ShareRadarButton.tsx` (Canvas 2D via `Path2D`), removendo
+desenho manual de linha-por-edge e círculo-por-nó dos dois lugares.
+
+### 4. `dataGrid` → `reticula` (Épico 27)
+
+Rename sobre `pattern.reticula.fine`. Achado corrigido no caminho:
+`scripts/lib/generate-tokens.mjs` gerava `--pattern-reticula-fine: undefined` (o gerador só
+lia tokens de dois níveis; `reticula.fine` tem três) — corrigido com uma função recursiva.
+
+### 5. Suíte de testes completa e Lighthouse
+
+- **191/191 Vitest** (4 novos: geometria de ângulo/módulo/arco do `nodeBranch`, ausência de
+  `<circle>`/`<line>` de nó).
+- **81/81 Playwright**, suíte inteira — incluindo `resultado-visual.spec.ts`, que havia
+  reprovado 2/6 numa execução isolada anterior por causa aparente de baseline desatualizada;
+  reexecutado duas vezes de forma consistente (isolado e dentro da suíte completa) sem
+  reprovação — a causa mais provável foi o estado do servidor de dev naquela execução
+  específica (múltiplos restarts na mesma sessão), não uma baseline realmente desatualizada.
+  Registrado em `specs/epicos/epico-25-simbolo-oficial.md`.
+- **Lighthouse flow, dois temas**: Performance 95–100, Accessibility 100, Best Practices
+  95–96, SEO 100 nas rotas indexadas — mesmo piso do Épico 22, sem degradação.
+- `format:check` (Prettier) verde nos quatro PRs — achado real do Épico 24: `DESIGN.md` e
+  `tokens.json` copiados de `brand/` não seguiam a formatação deste app; corrigido e propagado
+  de volta ao SSOT para a cópia continuar batendo byte a byte em sincronizações futuras.
+
+### 6. Bloqueio de CI, fora do controle deste repositório
+
+Entre o merge do Épico 24 e a tentativa de merge do Épico 25, o workflow `CI` do GitHub Actions
+parou de disparar por completo (zero runs, nem sequer enfileirados) por cerca de 40 minutos,
+provavelmente cota de minutos do Actions. Resolvido sozinho, sem intervenção — registrado
+porque `enforce_admins: true` na proteção da branch `main` significa que nem merge de
+administrador contorna checks obrigatórios que nunca chegaram a rodar; a única saída correta
+era esperar.
+
+## Pendências que exigem uma pessoa — Épicos 24–28
+
+- ⬜ **Revisão visual manual do founder** — símbolo e pattern novo, nos dois temas, mesma
+  natureza de gate que os ciclos anteriores.
+- ⬜ **Deploy em produção** — preview já passou por toda a suíte; promoção a produção não foi
+  feita nesta sessão, por decisão deliberada (gate humano, mesmo padrão dos ciclos anteriores).
+- ⬜ Achados já conhecidos e não resolvidos nesta rodada (não são desta reconstrução):
+  `pipelines/hemingway` `main` ainda usa a regra antiga de sombra na colagem; branches órfãs de
+  rodadas de marca anteriores já descartadas.
+
+## Critério de Go-Live — Épicos 24–28 — status
+
+- [x] SSOTs v3.0/v2.3.0 no repo, cópia byte a byte confirmada; `check-tokens-breaking` verde.
+- [x] Símbolo oficial presente (logo + favicon); zero placeholder do Next.js.
+- [x] Gramática do `nodeBranch` verificada por teste geométrico dedicado (ângulo, módulo,
+      corda do arco), não só por snapshot.
+- [x] Zero regressões: 191/191 Vitest, 81/81 Playwright, Lighthouse no piso do Épico 22, nos
+      dois temas.
+- [x] `format:check` verde nos quatro PRs.
+- [ ] **Revisão visual manual do founder** — **pendente de execução humana**, gate final.
+- [ ] **Deploy em produção** — **pendente de decisão humana explícita**.
+
+**A sincronização com a marca v3.0 está pronta para tráfego real quanto ao que é verificável
+por CI/E2E — símbolo, pattern e tokens sincronizados de ponta a ponta, com prova automatizada
+de que nenhuma regressão passou despercebida. A aprovação visual do founder e a decisão de
+promover a produção são os gates finais e exigem uma pessoa.**
