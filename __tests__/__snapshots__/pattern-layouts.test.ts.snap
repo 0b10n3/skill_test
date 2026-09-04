@@ -7,16 +7,16 @@ exports[`generateGrowthLineLayout > snapshot de geometria — 4 degraus 1`] = `
 }
 `;
 
-exports[`generateNodeBranchLayout > snapshot de geometria — anchor=corner produz layout diferente de field 1`] = `
+exports[`generateMeshLayout > snapshot de geometria — anchor=corner produz layout diferente de field 1`] = `
 {
-  "d": "M 12,188 L 40.28,159.72 M 40.28,159.72 L 40.28,119.72 M 40.28,119.72 L 12,91.44 M 12,91.44 A 40,40 0 0 1 12,34.87 M 40.28,119.72 L 68.56,91.44 M 68.56,91.44 A 40,40 0 0 0 68.56,34.87 M 40.28,159.72 L 80.28,159.72 M 80.28,159.72 L 108.56,131.44 M 108.56,131.44 A 40,40 0 0 1 165.13,131.44 M 80.28,159.72 L 108.56,188 M 108.56,188 A 40,40 0 0 0 165.13,188",
+  "d": "M 0,40 L 0,200 M 64,40 L 64,200 M 128,40 L 128,200 M 0,40 L 160,40 M 0,104 L 160,104 M 0,168 L 160,168",
   "viewBox": "0 0 200 200",
 }
 `;
 
-exports[`generateNodeBranchLayout > snapshot de geometria — density=default, anchor=field 1`] = `
+exports[`generateMeshLayout > snapshot de geometria — density=default, anchor=field 1`] = `
 {
-  "d": "M 40,170 L 40,130 M 40,130 L 11.72,101.72 M 11.72,101.72 L 11.72,61.72 M 11.72,61.72 A 40,40 0 0 1 51.72,21.72 M 40,130 L 68.28,101.72 M 68.28,101.72 L 68.28,61.72 M 68.28,61.72 A 40,40 0 0 0 28.28,21.72 M 68.28,101.72 L 108.28,101.72 M 108.28,101.72 A 40,40 0 0 1 148.28,141.72 M 150,60 L 178.28,31.72",
+  "d": "M 0,0 L 0,200 M 64,0 L 64,200 M 128,0 L 128,200 M 192,0 L 192,200 M 0,0 L 200,0 M 0,64 L 200,64 M 0,128 L 200,128 M 0,192 L 200,192",
   "viewBox": "0 0 200 200",
 }
 `;

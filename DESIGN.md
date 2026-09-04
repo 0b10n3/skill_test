@@ -341,9 +341,14 @@ segue as mesmas regras de §7 e nunca ganha chrome de produto ao redor.
 
 ## 6. Sistema de padrões
 
-Duas famílias — `nodeBranch` e `reticula`. `growthLine` não é pattern: é marca de dado, sempre
-a 100%, nunca atrás de texto, sempre ligada a conquista verificável (`PriorityCareerSkills.tsx`
+Duas famílias — `mesh` e `reticula`. `growthLine` não é pattern: é marca de dado, sempre a
+100%, nunca atrás de texto, sempre ligada a conquista verificável (`PriorityCareerSkills.tsx`
 é o uso real em produção).
+
+**`pattern.nodeBranch` está `$deprecated` desde 04/09/2026** — substituído por `pattern.mesh`
+(pedido direto do founder; ver `REVOGACOES.md`). Não tinha consumidor decorativo real em
+produção no momento da troca (removido do app em rodada anterior); o único uso funcional —
+moldura do certificado/card compartilhável — migrou para `mesh`.
 
 ### 6.1. A geometria do símbolo — medida, não estimada
 
@@ -360,19 +365,25 @@ do `d=` nesta rodada:
 Quatro medidas dentro de 3% do mesmo módulo. **O quarto de arco é a única curva que o sistema
 inteiro contém.** Preenchimento sólido, sem traço.
 
-### 6.2. `pattern.nodeBranch` — reconstruído sobre a gramática do símbolo
+### 6.2. `pattern.mesh` — malha quadriculada, escala do próprio grid de espaçamento
 
-| Propriedade              | Regra                                                                                |
-| ------------------------ | ------------------------------------------------------------------------------------ |
-| Ângulos permitidos       | 0°, 90°, ±45° — nada mais                                                            |
-| Comprimento de galho     | múltiplo inteiro do módulo `m` (token `pattern.nodeBranch.module`)                   |
-| Nó                       | a própria dobra — o vértice onde a diagonal encontra o ortogonal. Sem círculo        |
-| Terminação               | quarto de arco de raio `m` (`pattern.nodeBranch.arcRadius`), a única curva permitida |
-| Cor                      | `{color.grove.500}`                                                                  |
-| Opacidade atrás de texto | 0,12, travada em código                                                              |
-| Opacidade decorativa     | 0,25–0,40                                                                            |
+Substitui `pattern.nodeBranch` (04/09/2026, ver acima e `REVOGACOES.md`). Referência de
+composição: `.technical-grid-bg` em `brand/revisao-2026/refs/design_stitch.md` — mesma
+proporção de célula (32px), mas o número não veio de lá por cópia: 32px já é `{spacing.lg}` no
+nosso próprio `tokens.json` (escala de 8px), então a malha é, por construção, múltiplo do grid
+de espaçamento do sistema — o Stitch só confirmou que a proporção funciona bem como textura.
 
-`nodeRadius` está `$deprecated` desde a rodada anterior — o nó deixou de ser círculo.
+| Propriedade              | Regra                                                                                                                                                                                                                            |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ângulos permitidos       | 0°, 90° — só linhas retas, nenhuma diagonal, nenhuma curva                                                                                                                                                                       |
+| Célula                   | `{spacing.lg}` = 32px (`pattern.mesh.cellSize`)                                                                                                                                                                                  |
+| Espessura de traço       | 1px (`pattern.mesh.strokeWidth`)                                                                                                                                                                                                 |
+| Cor                      | `{color.grove.500}` — testado sobre Chalk _e_ Deep Forest nesta rodada: é a única cor de pattern que lê com contraste suficiente nos dois sem precisar de token por tema (Mist, a cor da retícula, quase desaparece sobre Chalk) |
+| Opacidade atrás de texto | 0,12 — mesmo valor de `nodeBranch`, reaproveitado: peso visual equivalente confirmado por preview real                                                                                                                           |
+| Opacidade decorativa     | 0,25–0,40 — idem                                                                                                                                                                                                                 |
+
+Nenhuma curva: reforça que o quarto de arco do símbolo (§6.1) continua sendo a única curva do
+sistema inteiro — o mesh não disputa essa exceção.
 
 ### 6.3. `pattern.reticula` — um primitivo, escala como parâmetro (agora só sistema)
 
@@ -385,23 +396,23 @@ Substitui `dataGrid` (`$deprecated`, ponteiro para `reticula.fine`, valores idê
 
 ### 6.4. Matriz de uso
 
-| Contexto                                                  | Pattern                                  | Opacidade | Superfície |
-| --------------------------------------------------------- | ---------------------------------------- | --------- | ---------- |
-| Banda escura em página                                    | `nodeBranch`, campo ou canto             | 0,25–0,40 | app, site  |
-| Atrás de texto corrido                                    | `nodeBranch`                             | 0,12      | app, site  |
-| Respiro em conteúdo denso                                 | `reticula.fine`                          | 0,15–0,20 | app, site  |
-| Painel/tile texturizado dentro de retângulo de canto reto | `reticula.fine`                          | 0,15–0,20 | app, site  |
-| Certificado                                               | `nodeBranch` como moldura + `growthLine` | 1,0       | app        |
-| Prova social / página de vendas                           | nenhum                                   | —         | —          |
+| Contexto                                                  | Pattern                            | Opacidade | Superfície |
+| --------------------------------------------------------- | ---------------------------------- | --------- | ---------- |
+| Banda escura em página                                    | `mesh`, campo ou canto             | 0,25–0,40 | app, site  |
+| Atrás de texto corrido                                    | `mesh`                             | 0,12      | app, site  |
+| Respiro em conteúdo denso                                 | `reticula.fine`                    | 0,15–0,20 | app, site  |
+| Painel/tile texturizado dentro de retângulo de canto reto | `reticula.fine`                    | 0,15–0,20 | app, site  |
+| Certificado                                               | `mesh` como moldura + `growthLine` | 1,0       | app        |
+| Prova social / página de vendas                           | nenhum                             | —         | —          |
 
 ### 6.5. Regra de uso — um pattern por peça
 
 Se uma composição tem padrão geométrico de fundo, é **um só**, na opacidade certa da matriz
-acima — nunca `nodeBranch` e `reticula` sobrepostos na mesma superfície. A exceção nomeada é o
-certificado, onde `nodeBranch` (moldura) e `growthLine` (marca de dado, não pattern) convivem
-por desenho — `growthLine` nunca é decorativo, então não conta como um segundo pattern
-disputando a mesma superfície. Verificável em CI: um componente não importa mais de uma família
-de pattern de `@/components/patterns`.
+acima — nunca `mesh` e `reticula` sobrepostos na mesma superfície. A exceção nomeada é o
+certificado, onde `mesh` (moldura) e `growthLine` (marca de dado, não pattern) convivem por
+desenho — `growthLine` nunca é decorativo, então não conta como um segundo pattern disputando
+a mesma superfície. Verificável em CI: um componente não importa mais de uma família de pattern
+de `@/components/patterns`.
 
 ---
 
