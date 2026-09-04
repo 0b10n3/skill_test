@@ -4,6 +4,7 @@ import { SpeedInsights as VercelSpeedInsights } from '@vercel/speed-insights/nex
 import { Hanken_Grotesk, Space_Grotesk, Space_Mono } from 'next/font/google';
 import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider';
 import { ConsentBanner } from '@/components/analytics/ConsentBanner';
+import { SiteHeader } from '@/components/site-header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { QuizAnswersProvider } from '@/lib/quiz-context';
@@ -54,7 +55,8 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <ThemeProvider>
-          <div className="fixed top-3 right-3 z-50">
+          <SiteHeader />
+          <div className="fixed top-3 right-3 z-50 print:hidden">
             <ThemeToggle />
           </div>
           <QuizAnswersProvider>{children}</QuizAnswersProvider>

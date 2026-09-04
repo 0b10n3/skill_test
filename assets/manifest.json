@@ -469,6 +469,142 @@
         }
       ],
       "usedIn": []
+    },
+    {
+      "slug": "hero-landing-pessoas",
+      "variant": "light",
+      "promptFile": "assets/prompts/hero-landing-pessoas.md",
+      "rawFile": "assets/generated/raw/hero-landing-pessoas/2026-09-04-v1.png",
+      "duotone": {
+        "dark": "#1B6A45",
+        "light": "#F7F7F5"
+      },
+      "weightBudgetKb": 120,
+      "publishedFiles": [
+        {
+          "path": "public/img/hero-landing-pessoas/light-640.avif",
+          "width": 640,
+          "format": "avif",
+          "sizeBytes": 15253
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/light-640.webp",
+          "width": 640,
+          "format": "webp",
+          "sizeBytes": 17272
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/light-640.png",
+          "width": 640,
+          "format": "png",
+          "sizeBytes": 43435
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/light-1024.avif",
+          "width": 1024,
+          "format": "avif",
+          "sizeBytes": 29767
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/light-1024.webp",
+          "width": 1024,
+          "format": "webp",
+          "sizeBytes": 32862
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/light-1024.png",
+          "width": 1024,
+          "format": "png",
+          "sizeBytes": 102123
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/light-1920.avif",
+          "width": 1920,
+          "format": "avif",
+          "sizeBytes": 64381
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/light-1920.webp",
+          "width": 1920,
+          "format": "webp",
+          "sizeBytes": 67708
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/light-1920.png",
+          "width": 1920,
+          "format": "png",
+          "sizeBytes": 267747
+        }
+      ],
+      "usedIn": []
+    },
+    {
+      "slug": "hero-landing-pessoas",
+      "variant": "dark",
+      "promptFile": "assets/prompts/hero-landing-pessoas.md",
+      "rawFile": "assets/generated/raw/hero-landing-pessoas/2026-09-04-v1.png",
+      "duotone": {
+        "dark": "#1B6A45",
+        "light": "#141414"
+      },
+      "weightBudgetKb": 120,
+      "publishedFiles": [
+        {
+          "path": "public/img/hero-landing-pessoas/dark-640.avif",
+          "width": 640,
+          "format": "avif",
+          "sizeBytes": 8348
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/dark-640.webp",
+          "width": 640,
+          "format": "webp",
+          "sizeBytes": 8186
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/dark-640.png",
+          "width": 640,
+          "format": "png",
+          "sizeBytes": 45359
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/dark-1024.avif",
+          "width": 1024,
+          "format": "avif",
+          "sizeBytes": 15678
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/dark-1024.webp",
+          "width": 1024,
+          "format": "webp",
+          "sizeBytes": 15108
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/dark-1024.png",
+          "width": 1024,
+          "format": "png",
+          "sizeBytes": 109862
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/dark-1920.avif",
+          "width": 1920,
+          "format": "avif",
+          "sizeBytes": 33969
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/dark-1920.webp",
+          "width": 1920,
+          "format": "webp",
+          "sizeBytes": 34464
+        },
+        {
+          "path": "public/img/hero-landing-pessoas/dark-1920.png",
+          "width": 1920,
+          "format": "png",
+          "sizeBytes": 276054
+        }
+      ],
+      "usedIn": []
     }
   ]
 }

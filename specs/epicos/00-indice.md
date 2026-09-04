@@ -50,4 +50,10 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 
 Épicos 24 → 25 → 26 → 27 → 28 são sequenciais: cada um depende do estado sincronizado do anterior. Nenhum é candidato a paralelismo — a mudança de símbolo (25) e de pattern (26) tocam os mesmos arquivos de referência visual que o QA final (28) precisa comparar.
 
+### Fase 5 — Ajustes visuais pós-sincronização — em andamento
+
+**Precede este épico:** duas revogações formais em `brand/` (`brand/DESIGN.md` §4.5, `brand/REVOGACOES.md` H8) — gradiente/glow ganham exceção nomeada de camada de ambiente; `assets/prompts/_brand-block.md` relaxa "pessoas fotorrealistas" para contexto de estudo/aprendizado.
+
+29. `epico-29-hero-fundo-header.md` — Hero com fotografia de pessoas (duotone), remoção do `PatternNodeBranch` decorativo (substituído por `gradient.ambient` + `reticula.fine`), header universal nas 4 rotas do funil
+
 Cada arquivo segue o mesmo formato: Objetivo → Escopo → Critérios de aceite → Testes obrigatórios → Gate de validação → Boas práticas aplicadas.

@@ -12,7 +12,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
 const SCAN_DIRS = ['app', 'components'];
-const PATTERN_NAMES = ['PatternNodeBranch', 'PatternDataGrid', 'PatternGrowthLine'];
+// Épico 27: PatternDataGrid renomeado para PatternReticula — esta lista
+// ficou desatualizada (achado do Épico 29) e por isso nunca detectou uma
+// composição real misturando nodeBranch + reticula desde então. GradientAmbient
+// (Épico 29) não entra aqui: não é um dos dois padrões geométricos, é a
+// exceção de camada de ambiente (DESIGN.md §4.5) — pode conviver com um
+// pattern no mesmo arquivo sem violar "um padrão por peça".
+const PATTERN_NAMES = ['PatternNodeBranch', 'PatternReticula', 'PatternGrowthLine'];
 
 // O próprio diretório de definição dos padrões não conta — só composições
 // (páginas/componentes que os consomem). O catálogo /dev/ui também é
