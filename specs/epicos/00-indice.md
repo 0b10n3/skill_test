@@ -55,5 +55,6 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 **Precede este épico:** duas revogações formais em `brand/` (`brand/DESIGN.md` §4.5, `brand/REVOGACOES.md` H8) — gradiente/glow ganham exceção nomeada de camada de ambiente; `assets/prompts/_brand-block.md` relaxa "pessoas fotorrealistas" para contexto de estudo/aprendizado.
 
 29. `epico-29-hero-fundo-header.md` — Hero com fotografia de pessoas (duotone), remoção do `PatternNodeBranch` decorativo (substituído por `gradient.ambient` + `reticula.fine`), header universal nas 4 rotas do funil
+30. `epico-30-ajustes-hero-header.md` — Correção do duotone escuro do hero (par de hex invertido no Épico 29), foto em proporção vertical (4:5), superfície sólida no `SiteHeader`
 
 Cada arquivo segue o mesmo formato: Objetivo → Escopo → Critérios de aceite → Testes obrigatórios → Gate de validação → Boas práticas aplicadas.

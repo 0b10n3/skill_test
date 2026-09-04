@@ -1,8 +1,8 @@
 ---
 slug: hero-landing-pessoas
-usage: 'Landing (/) — fundo full-bleed atrás do headline e do CTA. Substitui hero-landing (Épico 29).'
-aspectRatio: '16:9'
-minResolution: '1920x1080'
+usage: 'Landing (/) — caixa lateral ao lado do headline/CTA, coluna própria (não fundo full-bleed). Substitui hero-landing (Épico 29).'
+aspectRatio: '4:5'
+minResolution: '1536x1920'
 variants: [light, dark]
 weightBudgetKb: 120
 history:
@@ -10,6 +10,15 @@ history:
     version: 1
     file: assets/generated/raw/hero-landing-pessoas/2026-09-04-v1.png
     decision: approved
+  - date: 2026-09-04
+    version: 2
+    file: assets/generated/raw/hero-landing-pessoas/2026-09-04-v2.png
+    decision: rejected # tela do laptop com título "Portfolio Optimization" legível — viola a
+    # proibição explícita de texto renderizado legível em qualquer superfície da cena
+  - date: 2026-09-04
+    version: 3
+    file: assets/generated/raw/hero-landing-pessoas/2026-09-04-v3.png
+    decision: pending
 ---
 
 ## Prompt
@@ -21,9 +30,15 @@ lado do laptop, xícara de café, uma régua ou calculadora financeira física p
 laptop mostra dados/gráficos genéricos, fora de foco o bastante para não ser lido como texto
 real (nunca uma interface reconhecível ou marca de terceiro). Luz natural de janela lateral,
 sombras reais e suaves (a peça inteira passa por correção de duotone depois — a fotografia
-bruta não precisa nem deve tentar caber nos hexes da marca). Enquadramento com bastante espaço
-negativo de um lado (metade direita ou esquerda do quadro em sombra/desfoque) para o headline e
-o CTA ficarem legíveis por cima quando compostos na página.
+bruta não precisa nem deve tentar caber nos hexes da marca).
+
+**Enquadramento (v2, corrigido — DESIGN.md/Épico 30):** vertical, proporção 4:5, não 16:9. A
+peça é usada como caixa lateral ao lado do texto (não como fundo full-bleed atrás do headline),
+então não precisa de espaço negativo lateral para overlay — o enquadramento deve preencher o
+quadro vertical com a cena (pessoa + mesa + laptop), mais próximo, sem sobra de fundo vazio nas
+laterais. Mesa vista de um ângulo que funcione alto/estreito: laptop mais para o topo do quadro,
+mãos/caderno na parte inferior, ou uma composição vertical equivalente que não pareça uma foto
+horizontal simplesmente cortada nas laterais.
 
 Registro: sério, focado, sem sorriso performático para câmera — a pessoa está genuinamente
 concentrada, não posando. Sem contato visual com a câmera.
