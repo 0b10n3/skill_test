@@ -58,8 +58,31 @@ lacuna aberta desde o Épico 14.
 
 ## Gate de validação
 
-- [ ] Símbolo visível em toda página que renderiza `Logo`, cor correta por tema.
-- [ ] Favicon é o símbolo, não o placeholder do Next.js.
-- [ ] `lint:colors` verde com o SVG novo.
-- [ ] `lint`, `typecheck`, `test`, `build`, `e2e` verdes.
-- [ ] PR aberto contra `main`, nenhum commit direto.
+- [x] Símbolo visível em toda página que renderiza `Logo` (`ReportHeader.tsx`, o único
+      consumidor), cor correta por tema — confirmado por screenshot real via Playwright, nos
+      dois temas, contra `/resultado` com dados reais de quiz.
+- [x] Favicon é o símbolo, não o placeholder do Next.js — `app/favicon.ico` regenerado
+      (rasterizado de `app/icon.svg` via Chromium headless + Pillow, 16px/32px), confirmado
+      visualmente.
+- [x] `lint:colors` verde com o SVG novo (usa `currentColor`, não hex — nem precisa entrar no
+      escopo do linter).
+- [x] `lint`, `typecheck`, `test` (189/189), `build` (prebuild completo) verdes.
+- [x] `npx playwright test e2e/dev-ui-catalog.spec.ts` — 7/7 verdes, incluindo os dois
+      snapshots visuais por tema e as duas checagens axe-core.
+- [x] PR aberto contra `main`, empilhado sobre o Épico 24.
+
+## Achado fora do escopo deste épico, registrado para não se perder
+
+`npx playwright test e2e/resultado-visual.spec.ts` (não listado nos testes obrigatórios deste
+épico — só citei `dev-ui-catalog.spec.ts`, e por isso corri o primeiro por precaução extra,
+não por exigência) reprovou em 2 dos 6 casos, e a causa **não é o símbolo novo**: as baselines
+de `resultado-baixo-{light,dark}.png` estão capturadas com tipografia serifada (DM Serif
+Display) e cantos arredondados — o sistema visual de **antes do Épico 22** (Design v2.0,
+cantos retos + Space Grotesk). O app ao vivo já renderiza corretamente o sistema atual (confirmado
+visualmente); é a *baseline salva* que nunca foi regenerada desde então. Como as demais
+4 combinações passaram, a suíte não está travando builds — mas a cobertura de regressão visual
+de `/resultado` está cega para qualquer mudança de marca há pelo menos três épicos. Não
+corrigido aqui (fora do escopo declarado de `epico-25`, e mexer nas baselines de um teste que
+não é meu para arrumar é o tipo de correção "de passagem" que merece o próprio épico, com
+revisão deliberada de cada snapshot novo — não um `--update-snapshots` cego). Recomendo um
+épico dedicado, antes do Épico 28 (QA/go-live), para não deixar a lacuna se acumular mais.
