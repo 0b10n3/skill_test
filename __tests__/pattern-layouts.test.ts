@@ -8,7 +8,13 @@ const CELL = 32;
 function parseSegment(sub: string): [number, number, number, number] {
   const match = sub.match(/(-?[\d.]+),(-?[\d.]+)\s+L\s+(-?[\d.]+),(-?[\d.]+)/);
   expect(match).not.toBeNull();
-  const [, x1, y1, x2, y2] = match!.map(Number) as unknown as [never, number, number, number, number];
+  const [, x1, y1, x2, y2] = match!.map(Number) as unknown as [
+    never,
+    number,
+    number,
+    number,
+    number,
+  ];
   return [x1, y1, x2, y2];
 }
 

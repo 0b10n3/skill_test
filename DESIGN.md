@@ -373,14 +373,14 @@ proporção de célula (32px), mas o número não veio de lá por cópia: 32px j
 nosso próprio `tokens.json` (escala de 8px), então a malha é, por construção, múltiplo do grid
 de espaçamento do sistema — o Stitch só confirmou que a proporção funciona bem como textura.
 
-| Propriedade              | Regra                                                                        |
-| ------------------------ | ----------------------------------------------------------------------------- |
-| Ângulos permitidos       | 0°, 90° — só linhas retas, nenhuma diagonal, nenhuma curva                    |
-| Célula                   | `{spacing.lg}` = 32px (`pattern.mesh.cellSize`)                              |
-| Espessura de traço       | 1px (`pattern.mesh.strokeWidth`)                                             |
-| Cor                      | `{color.grove.500}` — testado sobre Chalk *e* Deep Forest nesta rodada: é a única cor de pattern que lê com contraste suficiente nos dois sem precisar de token por tema (Mist, a cor da retícula, quase desaparece sobre Chalk) |
-| Opacidade atrás de texto | 0,12 — mesmo valor de `nodeBranch`, reaproveitado: peso visual equivalente confirmado por preview real |
-| Opacidade decorativa     | 0,25–0,40 — idem                                                              |
+| Propriedade              | Regra                                                                                                                                                                                                                            |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ângulos permitidos       | 0°, 90° — só linhas retas, nenhuma diagonal, nenhuma curva                                                                                                                                                                       |
+| Célula                   | `{spacing.lg}` = 32px (`pattern.mesh.cellSize`)                                                                                                                                                                                  |
+| Espessura de traço       | 1px (`pattern.mesh.strokeWidth`)                                                                                                                                                                                                 |
+| Cor                      | `{color.grove.500}` — testado sobre Chalk _e_ Deep Forest nesta rodada: é a única cor de pattern que lê com contraste suficiente nos dois sem precisar de token por tema (Mist, a cor da retícula, quase desaparece sobre Chalk) |
+| Opacidade atrás de texto | 0,12 — mesmo valor de `nodeBranch`, reaproveitado: peso visual equivalente confirmado por preview real                                                                                                                           |
+| Opacidade decorativa     | 0,25–0,40 — idem                                                                                                                                                                                                                 |
 
 Nenhuma curva: reforça que o quarto de arco do símbolo (§6.1) continua sendo a única curva do
 sistema inteiro — o mesh não disputa essa exceção.
@@ -396,14 +396,14 @@ Substitui `dataGrid` (`$deprecated`, ponteiro para `reticula.fine`, valores idê
 
 ### 6.4. Matriz de uso
 
-| Contexto                                                  | Pattern                                  | Opacidade | Superfície |
-| --------------------------------------------------------- | ---------------------------------------- | --------- | ---------- |
-| Banda escura em página                                    | `mesh`, campo ou canto                   | 0,25–0,40 | app, site  |
-| Atrás de texto corrido                                    | `mesh`                                   | 0,12      | app, site  |
-| Respiro em conteúdo denso                                 | `reticula.fine`                          | 0,15–0,20 | app, site  |
-| Painel/tile texturizado dentro de retângulo de canto reto | `reticula.fine`                          | 0,15–0,20 | app, site  |
-| Certificado                                               | `mesh` como moldura + `growthLine`       | 1,0       | app        |
-| Prova social / página de vendas                           | nenhum                                   | —         | —          |
+| Contexto                                                  | Pattern                            | Opacidade | Superfície |
+| --------------------------------------------------------- | ---------------------------------- | --------- | ---------- |
+| Banda escura em página                                    | `mesh`, campo ou canto             | 0,25–0,40 | app, site  |
+| Atrás de texto corrido                                    | `mesh`                             | 0,12      | app, site  |
+| Respiro em conteúdo denso                                 | `reticula.fine`                    | 0,15–0,20 | app, site  |
+| Painel/tile texturizado dentro de retângulo de canto reto | `reticula.fine`                    | 0,15–0,20 | app, site  |
+| Certificado                                               | `mesh` como moldura + `growthLine` | 1,0       | app        |
+| Prova social / página de vendas                           | nenhum                             | —         | —          |
 
 ### 6.5. Regra de uso — um pattern por peça
 
