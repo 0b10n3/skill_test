@@ -21,7 +21,7 @@ function makeItem(overrides: Partial<QuestionReviewItem>): QuestionReviewItem {
 }
 
 describe('AnswerReview (S6, Épico 18)', () => {
-  it('termos técnicos/código na explicação renderizam como <code> em Space Mono', () => {
+  it('termos técnicos/código na explicação renderizam como <code> em IBM Plex Mono', () => {
     render(<AnswerReview gabarito={[makeItem({})]} />);
 
     // O gabarito abre ao clicar no trigger do accordion.

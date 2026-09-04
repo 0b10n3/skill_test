@@ -52,6 +52,13 @@ const ALLOWED_CHANGED_PATTERNS = [
   // acompanham a troca — não são um token isolado, são o mesmo bloco
   // composto typography.scale.*)
   /^typography\.fontFamily\.(display|body)$/,
+  // (4) tokens v2.6.0 — troca de trio tipográfico completa (Space
+  // Grotesk/Hanken Grotesk/Space Mono → Montserrat/Source Sans 3/IBM Plex
+  // Mono), incluindo agora "data" — Space Mono tinha sido MANTIDA na
+  // v2.0.0, mas nenhuma das três fontes do trio original está disponível
+  // no Brand Kit de fontes do Canva (ver meta.changelog['2.6.0'],
+  // REVOGACOES.md H10).
+  /^typography\.fontFamily\.data$/,
   /^typography\.scale\.(displayXxl|displayXl|displayLg|heading1|caption)$/,
 ];
 

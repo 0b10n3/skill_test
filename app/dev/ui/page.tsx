@@ -331,7 +331,7 @@ export default function UiCatalogPage() {
 
       <Section
         title="Progress"
-        description="Barra sempre Grove, trilha sempre Mist, valor em Space Mono."
+        description="Barra sempre Grove, trilha sempre Mist, valor em IBM Plex Mono."
       >
         <div className="flex max-w-sm flex-col gap-4">
           <Progress value={30}>

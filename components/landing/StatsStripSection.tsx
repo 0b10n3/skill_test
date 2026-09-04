@@ -3,7 +3,7 @@ import { METODO_STATS_ITEMS } from '@/content/landing';
 
 /**
  * Faixa de números (DESIGN.md v1.1 §4.4.5, assinatura 5): 2-4 métricas
- * grandes em `statNumber` (Space Mono) sobre Mint — os números são o
+ * grandes em `statNumber` (IBM Plex Mono) sobre Mint — os números são o
  * argumento da Syntaxis, exibidos como protagonistas, não como legenda.
  */
 export function StatsStripSection() {

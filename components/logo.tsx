@@ -29,8 +29,9 @@ function Symbol({ className }: { className?: string }) {
  * atinge 3.62:1 como texto direto), puramente por CSS — sem JS, sem risco
  * de flash/mismatch de hidratação. Nenhum call site precisa mudar: a API
  * do componente (`<Logo className? />`) é a mesma desde o Épico 14.
- * v2.0.0: sem itálico — Space Grotesk não tem variante itálica; peso bold
- * assume o papel que o itálico tinha de diferenciar o wordmark do corpo.
+ * v2.0.0: sem itálico como ênfase (regra de marca, não limitação de fonte
+ * — ver DESIGN.md §4.2); peso bold assume o papel que o itálico tinha de
+ * diferenciar o wordmark do corpo.
  */
 export function Logo({ className }: { className?: string }) {
   return (

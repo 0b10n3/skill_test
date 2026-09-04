@@ -243,11 +243,11 @@ melhor combinar com uma referência externa (`design_stitch.md` incluído — ve
 
 ### 4.2. Tipografia
 
-| Papel                 | Família        |
-| --------------------- | -------------- |
-| Display (títulos)     | Space Grotesk  |
-| Corpo                 | Hanken Grotesk |
-| Dados / código / mono | Space Mono     |
+| Papel                 | Família       |
+| --------------------- | ------------- |
+| Display (títulos)     | Montserrat    |
+| Corpo                 | Source Sans 3 |
+| Dados / código / mono | IBM Plex Mono |
 
 Trio fechado. Sem serif, sem itálico como ênfase (a assinatura "palavra-destaque em serif
 itálico" é revogada desde a v2.0 e continua morta — ver `REVOGACOES.md`).

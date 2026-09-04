@@ -96,8 +96,8 @@ export function DimensionsSection() {
         </TileShell>
 
         <TileShell category="ia-aplicada" className="sm:col-span-2">
-          {/* v2.0.0: sem itálico (Space Grotesk não tem variante itálica) —
-              a citação agora se marca por uma hairline lateral (assinatura
+          {/* v2.0.0: sem itálico como ênfase (regra de marca, ver DESIGN.md
+              §4.2) — a citação se marca por uma hairline lateral (assinatura
               §4.4.3), não por estilo de fonte. */}
           <p className="border-l-2 border-border pl-3 font-display text-sm text-pretty text-foreground">
             &ldquo;{iaExplanation}&rdquo;

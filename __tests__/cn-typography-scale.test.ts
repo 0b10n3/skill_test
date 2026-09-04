@@ -8,7 +8,7 @@ import { cn } from '../lib/utils';
  * classe `text-<palavra>` sem sufixo de escala numérica como candidata a
  * cor de texto — então `cn('text-eyebrow', 'text-grove-700')` descartava
  * silenciosamente `text-eyebrow` (o componente Eyebrow renderizava sem
- * nenhuma propriedade do token: sem Space Mono, sem caixa alta, sem
+ * nenhuma propriedade do token: sem IBM Plex Mono, sem caixa alta, sem
  * tracking — só a cor sobrava). lib/utils.ts registra as classes de
  * typography.scale num grupo próprio para essa colisão nunca mais
  * acontecer; este teste prova isso para toda classe gerada, não só para

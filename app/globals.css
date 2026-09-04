@@ -45,11 +45,11 @@
   --shadow-syntaxis-lg: var(--shadow-syntaxis-lg);
   --shadow-lime: var(--shadow-lime);
 
-  --font-display: var(--font-space-grotesk);
-  --font-heading: var(--font-space-grotesk);
-  --font-sans: var(--font-hanken-grotesk);
-  --font-mono: var(--font-space-mono);
-  --font-data: var(--font-space-mono);
+  --font-display: var(--font-montserrat);
+  --font-heading: var(--font-montserrat);
+  --font-sans: var(--font-source-sans-3);
+  --font-mono: var(--font-ibm-plex-mono);
+  --font-data: var(--font-ibm-plex-mono);
 }
 
 html {
@@ -57,7 +57,7 @@ html {
   overflow-x: hidden;
 }
 
-/* Todo número-métrica (score, progresso, "N de 15") usa Space Mono e
+/* Todo número-métrica (score, progresso, "N de 15") usa IBM Plex Mono e
    alinhamento tabular — DESIGN.md §4.2. */
 .metric {
   font-family: var(--font-data);

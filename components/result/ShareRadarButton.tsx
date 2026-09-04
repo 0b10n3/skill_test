@@ -173,7 +173,7 @@ async function drawShareCard(
 
   // Rótulos das dimensões
   ctx.fillStyle = textMedium;
-  ctx.font = '13px "Space Mono", monospace';
+  ctx.font = '13px "IBM Plex Mono", monospace';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   dimensoes.forEach((dimensao, index) => {
@@ -189,11 +189,11 @@ async function drawShareCard(
   ctx.fillStyle = textHigh;
   ctx.textAlign = 'left';
   ctx.textBaseline = 'alphabetic';
-  ctx.font = 'bold 26px "Space Grotesk", Arial, sans-serif';
+  ctx.font = 'bold 26px "Montserrat", Arial, sans-serif';
   ctx.fillText('Syntaxis', 32, 52);
 
   ctx.fillStyle = grove;
-  ctx.font = 'bold 20px "Hanken Grotesk", sans-serif';
+  ctx.font = 'bold 20px "Source Sans 3", sans-serif';
   ctx.fillText(`Classificação: ${CLASSIFICATION_LABEL[classificacao]}`, 32, CANVAS_SIZE - 32);
 }
 

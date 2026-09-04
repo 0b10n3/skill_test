@@ -9,7 +9,7 @@ interface EyebrowProps extends React.ComponentProps<'p'> {
 
 /**
  * Eyebrow mono (DESIGN.md v2.0 §4.4.1, tokens.json typography.scale.eyebrow):
- * rótulo curto em Space Mono caixa alta acima de todo título de seção — a
+ * rótulo curto em IBM Plex Mono caixa alta acima de todo título de seção — a
  * "impressão digital técnica" da marca em cada dobra. component.eyebrow:
  * Grove-700 sobre claro / Lime-300 sobre escuro ou banda (v2.0.0: era
  * Grove-300 — sobre fundo escuro o eyebrow vira sinal lime).
