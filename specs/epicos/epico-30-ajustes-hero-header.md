@@ -109,10 +109,10 @@ resto da composição do hero (headline, CTA, eyebrow).
 - [x] `HeroSection` usa `aspect-[4/5]`.
 - [x] `SiteHeader` com superfície sólida (`bg-card`/hairline), sem sobreposição visual ao rolar.
 - [x] `lint`, `typecheck`, `test`, `build`, `e2e`, `lighthouse:flow` verdes.
-- [ ] **Revisão visual manual do founder** — gate final para a foto v3, `decision: pending` até
-      aprovação explícita (mesmo padrão de todo asset desde o Épico 16 — a aprovação do v1 não
-      cobre a peça nova).
-- [ ] PR aberto contra `main`, nenhum commit direto — aberto ao final desta implementação.
+- [x] **Revisão visual manual do founder** — foto v3 e contraste aprovados; header revisado após
+      print de feedback (caixa isolada → barra de ponta a ponta) e aprovado na revisão seguinte.
+      `decision: approved` em `hero-landing-pessoas.md`.
+- [x] PR aberto contra `main`, nenhum commit direto — #42, mergeado após aprovação.
 
 ## Achados durante a implementação
 

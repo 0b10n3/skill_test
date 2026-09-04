@@ -18,7 +18,7 @@ history:
   - date: 2026-09-04
     version: 3
     file: assets/generated/raw/hero-landing-pessoas/2026-09-04-v3.png
-    decision: pending
+    decision: approved
 ---
 
 ## Prompt
