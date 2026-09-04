@@ -32,25 +32,25 @@ Nenhum invariante mudou nesta rodada: Forest, Grove e Lime, o trio tipográfico,
 promessa da §1.3 e o conceito unificador nó-e-galho seguem exatamente os mesmos que a rodada
 anterior já havia herdado da v1.0/v1.1. O que mudou, e por quê:
 
-| # | O que mudou | Por quê |
-| --- | --- | --- |
-| 1 | O sistema de padrões continua reconstruído sobre a geometria **medida diretamente** do símbolo (não herdada como afirmação) — módulo M≈40,24u, ângulos 0°/90°/±45°, terminação em quarto de arco | remedido nesta rodada a partir do `d=` de `symbol-master.svg`: quatro medidas caem dentro de 3% do módulo, e o pattern em produção não compartilhava nenhuma delas (§6.1) |
-| 2 | A camada de ilustração — collage/paper cut, profundidade por degrau de tom, sem sombra — **passa a existir só em `pipelines/hemingway`** | decisão do founder, 03–04/09/2026: nunca em `apps/skill_test`, nunca no site. Substitui a versão anterior, que incluía ilustração de produto (estados de app, hero de site) no mesmo vocabulário |
-| 3 | O sistema de padrões continua em **duas** famílias (`nodeBranch`, `reticula`), mas `reticula` volta a ser **só sistema** — a variante grossa como matéria de ilustração compartilhada foi depreciada | com a ilustração restrita a `hemingway`, a ponte que justificava um pattern com dupla expressão perdeu o consumidor (`03-proposta.md` A6) |
-| 4 | Nenhuma peça de ilustração herdada de rodada anterior é reaproveitada — todo o kit de collage começa vazio | decisão do founder: peça nova só é gerada por necessidade real de publicação, nunca para preencher amostra |
+| #   | O que mudou                                                                                                                                                                                          | Por quê                                                                                                                                                                                          |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | O sistema de padrões continua reconstruído sobre a geometria **medida diretamente** do símbolo (não herdada como afirmação) — módulo M≈40,24u, ângulos 0°/90°/±45°, terminação em quarto de arco     | remedido nesta rodada a partir do `d=` de `symbol-master.svg`: quatro medidas caem dentro de 3% do módulo, e o pattern em produção não compartilhava nenhuma delas (§6.1)                        |
+| 2   | A camada de ilustração — collage/paper cut, profundidade por degrau de tom, sem sombra — **passa a existir só em `pipelines/hemingway`**                                                             | decisão do founder, 03–04/09/2026: nunca em `apps/skill_test`, nunca no site. Substitui a versão anterior, que incluía ilustração de produto (estados de app, hero de site) no mesmo vocabulário |
+| 3   | O sistema de padrões continua em **duas** famílias (`nodeBranch`, `reticula`), mas `reticula` volta a ser **só sistema** — a variante grossa como matéria de ilustração compartilhada foi depreciada | com a ilustração restrita a `hemingway`, a ponte que justificava um pattern com dupla expressão perdeu o consumidor (`03-proposta.md` A6)                                                        |
+| 4   | Nenhuma peça de ilustração herdada de rodada anterior é reaproveitada — todo o kit de collage começa vazio                                                                                           | decisão do founder: peça nova só é gerada por necessidade real de publicação, nunca para preencher amostra                                                                                       |
 
 O sistema de padrões segue em **duas** famílias, não três — `growthLine` continua fora dele,
 reclassificada como marca de dado desde a rodada anterior.
 
 ### Histórico de versões
 
-| Versão | Mudança |
-| --- | --- |
-| v1.0 | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber |
-| v1.1 | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA" |
-| v2.0 | Amber → Lime (Forest/Grove intocados) · cantos retos · tipografia grotesca moderna |
-| v2.1 | Revisão de coerência cross-superfície; `APLICACAO.md` passa a governar superfícies de terceiros |
-| v3.0 (rodada 2) | Documento reescrito do zero. Patterns reconstruídos sobre a geometria do símbolo; contrato de camadas explícito; ilustração unificada em collage/paper cut (então ainda incluindo produto); alvo de acessibilidade declarado. Nunca chegou a sincronizar com `apps/skill_test/main` antes de a árvore ser esvaziada para esta rodada |
+| Versão                              | Mudança                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.0                                | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber                                                                                                                                                                                                                                                                                                                                                                     |
+| v1.1                                | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA"                                                                                                                                                                                                                                                                                                                                                                                      |
+| v2.0                                | Amber → Lime (Forest/Grove intocados) · cantos retos · tipografia grotesca moderna                                                                                                                                                                                                                                                                                                                                                                                      |
+| v2.1                                | Revisão de coerência cross-superfície; `APLICACAO.md` passa a governar superfícies de terceiros                                                                                                                                                                                                                                                                                                                                                                         |
+| v3.0 (rodada 2)                     | Documento reescrito do zero. Patterns reconstruídos sobre a geometria do símbolo; contrato de camadas explícito; ilustração unificada em collage/paper cut (então ainda incluindo produto); alvo de acessibilidade declarado. Nunca chegou a sincronizar com `apps/skill_test/main` antes de a árvore ser esvaziada para esta rodada                                                                                                                                    |
 | **v3.0 (rodada 3, este documento)** | **Reescrito de novo do zero**, não emendado sobre a rodada anterior — o founder apagou a árvore de `brand/` inteira entre as duas rodadas e pediu reconstrução, confiando no histórico do git como arquivo. Mesmo número de versão maior (v3.0) porque nenhum consumidor real chegou a depender de uma v3.0 anterior publicada. Mudança de conteúdo: ilustração restrita a `hemingway` (item 2 acima); `reticula.coarse` depreciada; nenhuma peça de ilustração herdada |
 
 **Por que reescrever em vez de emendar, de novo.** O ledger desta rodada
@@ -63,13 +63,13 @@ superfície onde a fronteira pode vazar.
 
 ### O pivô de produto (mantido desde a v1.0)
 
-| Antes (Substack de investimentos) | Agora (plataforma de treinamento) |
-| --- | --- |
-| Público: investidores pessoa física | Público: estagiários e analistas do mercado de capitais brasileiro |
-| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA |
-| Formato: newsletter editorial | Formato: aulas expositivas + cases reais + skills de IA entregáveis |
-| Metodologia implícita | Metodologia explícita e rigorosa (`education/METHODOLOGY.md`) |
-| Voz: analítica e humana | Voz: técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada |
+| Antes (Substack de investimentos)                | Agora (plataforma de treinamento)                                            |
+| ------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Público: investidores pessoa física              | Público: estagiários e analistas do mercado de capitais brasileiro           |
+| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA   |
+| Formato: newsletter editorial                    | Formato: aulas expositivas + cases reais + skills de IA entregáveis          |
+| Metodologia implícita                            | Metodologia explícita e rigorosa (`education/METHODOLOGY.md`)                |
+| Voz: analítica e humana                          | Voz: técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada |
 
 ---
 
@@ -85,12 +85,12 @@ trabalho.
 
 ### 1.2. Estrutura Estratégica
 
-| Pilar | Definição |
-| --- | --- |
-| **Propósito** | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real. |
-| **Visão** | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo. |
-| **Missão** | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as skills de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
-| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing. |
+| Pilar               | Definição                                                                                                                                                                                                              |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Propósito**       | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real.  |
+| **Visão**           | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo.                                                    |
+| **Missão**          | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as skills de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
+| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing.                                              |
 
 ### 1.3. Promessa de Resultado
 
@@ -124,7 +124,7 @@ entregável. Toda peça de marca trata IA com a mesma seriedade técnica que tra
 modelagem.
 
 **Leveza que não abre mão do rigor.** Humor e leveza de tom nunca substituem precisão técnica.
-A leveza vive no *como* se diz, nunca no *o quê* se afirma — §3.3.
+A leveza vive no _como_ se diz, nunca no _o quê_ se afirma — §3.3.
 
 ---
 
@@ -170,24 +170,24 @@ nenhuma necessidade de provar isso sendo solene. É competência confortável co
 **Técnico e preciso, no estado da arte da academia — sem perder a leveza e o bom humor.** Dois
 eixos independentes, não um meio-termo:
 
-| Eixo | O que significa | O que NÃO significa |
-| --- | --- | --- |
-| **Rigor acadêmico** | Toda afirmação tem lastro — bibliografia real, dado com fonte, verbo de Bloom correto no objetivo de aprendizado | Jargão por jargão; complicar para parecer inteligente |
-| **Leveza e humor** | Analogias vívidas, autoironia ocasional sobre o próprio mercado financeiro, ritmo de frase que não cansa | Piada forçada; meme; infantilização; humor que descredibiliza o conteúdo técnico |
+| Eixo                | O que significa                                                                                                  | O que NÃO significa                                                              |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Rigor acadêmico** | Toda afirmação tem lastro — bibliografia real, dado com fonte, verbo de Bloom correto no objetivo de aprendizado | Jargão por jargão; complicar para parecer inteligente                            |
+| **Leveza e humor**  | Analogias vívidas, autoironia ocasional sobre o próprio mercado financeiro, ritmo de frase que não cansa         | Piada forçada; meme; infantilização; humor que descredibiliza o conteúdo técnico |
 
 A regra de ouro: **o rigor nunca é sacrificado pela leveza, e a leveza nunca é sacrificada pelo
 rigor.**
 
 ### 3.3. Onde o humor vive (e onde não vive)
 
-| Local | Humor permitido? |
-| --- | --- |
+| Local                                                 | Humor permitido?                                               |
+| ----------------------------------------------------- | -------------------------------------------------------------- |
 | Abertura de aula ("por que isso importa no trabalho") | Sim — lugar ideal para analogia leve antes do conteúdo técnico |
-| Transições entre blocos de conteúdo | Sim, com moderação |
-| Objeções de venda ("acho que já é tarde para mim") | Sim — reconhecer com leveza antes de responder com dado real |
-| A tensão institucional de um case | **Não** — a ambiguidade regulatória é o ponto pedagógico |
-| Dado numérico ou afirmação técnica | **Não** — precisão em números e fontes é inegociável |
-| Nota de Ensino (documento para o professor) | Tom direto e técnico; humor mínimo |
+| Transições entre blocos de conteúdo                   | Sim, com moderação                                             |
+| Objeções de venda ("acho que já é tarde para mim")    | Sim — reconhecer com leveza antes de responder com dado real   |
+| A tensão institucional de um case                     | **Não** — a ambiguidade regulatória é o ponto pedagógico       |
+| Dado numérico ou afirmação técnica                    | **Não** — precisão em números e fontes é inegociável           |
+| Nota de Ensino (documento para o professor)           | Tom direto e técnico; humor mínimo                             |
 
 ### 3.4. Regras de Vocabulário
 
@@ -210,14 +210,14 @@ rigor.**
 
 ### 3.6. Guia rápido Do / Don't
 
-| Faça | Não faça |
-| --- | --- |
-| Abrir com o problema de mercado antes da definição técnica | Abrir com "Hoje vamos aprender sobre..." |
-| Citar a fonte de todo dado numérico | Afirmar percentual sem origem rastreável |
-| Usar analogia leve para destravar um conceito difícil | Usar piada que trivializa o risco ou a tensão de um case |
-| Tratar o aluno como colega júnior competente | Tratar o aluno como leigo total ou como criança |
-| Nomear trilhas e produtos em português | Misturar inglês de vaidade em nome comercial |
-| Reconhecer a objeção do aluno com leveza antes de rebater | Ignorar a objeção e insistir só com entusiasmo |
+| Faça                                                       | Não faça                                                 |
+| ---------------------------------------------------------- | -------------------------------------------------------- |
+| Abrir com o problema de mercado antes da definição técnica | Abrir com "Hoje vamos aprender sobre..."                 |
+| Citar a fonte de todo dado numérico                        | Afirmar percentual sem origem rastreável                 |
+| Usar analogia leve para destravar um conceito difícil      | Usar piada que trivializa o risco ou a tensão de um case |
+| Tratar o aluno como colega júnior competente               | Tratar o aluno como leigo total ou como criança          |
+| Nomear trilhas e produtos em português                     | Misturar inglês de vaidade em nome comercial             |
+| Reconhecer a objeção do aluno com leveza antes de rebater  | Ignorar a objeção e insistir só com entusiasmo           |
 
 ---
 
@@ -225,17 +225,17 @@ rigor.**
 
 ### 4.1. Paleta — camada semântica, SSOT em `brand/tokens/syntaxis.tokens.json`
 
-| Papel | Token | Hex |
-| --- | --- | --- |
-| Âncora institucional | `color.forest.500` | `#1B6A45` |
-| Estrutura em movimento | `color.grove.500` | `#2D9E67` |
-| Acento único (ação/conquista) | `color.lime.500` | `#CDF163` |
-| Fundo claro | `color.neutral.chalk` | `#F7F7F5` |
+| Papel                         | Token                      | Hex       |
+| ----------------------------- | -------------------------- | --------- |
+| Âncora institucional          | `color.forest.500`         | `#1B6A45` |
+| Estrutura em movimento        | `color.grove.500`          | `#2D9E67` |
+| Acento único (ação/conquista) | `color.lime.500`           | `#CDF163` |
+| Fundo claro                   | `color.neutral.chalk`      | `#F7F7F5` |
 | Fundo escuro (banda, prancha) | `color.neutral.deepForest` | `#0F3D27` |
-| Fundo escuro máximo contraste | `color.neutral.ink` | `#141414` |
-| Secundário / traço neutro | `color.neutral.slate` | `#4A5568` |
-| Hairline / divisor | `color.neutral.mist` | `#E2E8F0` |
-| Superfície suave | `color.neutral.mint` | `#E6F4EE` |
+| Fundo escuro máximo contraste | `color.neutral.ink`        | `#141414` |
+| Secundário / traço neutro     | `color.neutral.slate`      | `#4A5568` |
+| Hairline / divisor            | `color.neutral.mist`       | `#E2E8F0` |
+| Superfície suave              | `color.neutral.mint`       | `#E6F4EE` |
 
 Forest, Grove e Lime são **invariantes travados**. Qualquer proposta de mudar um hex para
 melhor combinar com uma referência externa (`design_stitch.md` incluído — ver
@@ -243,11 +243,11 @@ melhor combinar com uma referência externa (`design_stitch.md` incluído — ve
 
 ### 4.2. Tipografia
 
-| Papel | Família |
-| --- | --- |
-| Display (títulos) | Space Grotesk |
-| Corpo | Hanken Grotesk |
-| Dados / código / mono | Space Mono |
+| Papel                 | Família        |
+| --------------------- | -------------- |
+| Display (títulos)     | Space Grotesk  |
+| Corpo                 | Hanken Grotesk |
+| Dados / código / mono | Space Mono     |
 
 Trio fechado. Sem serif, sem itálico como ênfase (a assinatura "palavra-destaque em serif
 itálico" é revogada desde a v2.0 e continua morta — ver `REVOGACOES.md`).
@@ -265,14 +265,14 @@ itálico" é revogada desde a v2.0 e continua morta — ver `REVOGACOES.md`).
 
 ### 4.4. Anti-padrões — escopados por camada desde a redação
 
-| Anti-padrão | Onde vale | Por quê |
-| --- | --- | --- |
-| Gradiente contínuo em superfície de UI | sistema | não tem par de token; sai do gate de contraste automatizado (R6/R7 do ledger) |
-| Radius acima de 2px fora das exceções nomeadas | sistema | assinatura revogada — "botão pílula" e radius alto liam como template genérico |
-| Sombra difusa, glow, glassmorphism | sistema **e** ilustração | proibido nas duas — na ilustração, profundidade é degrau de tom (§7.2), nunca sombra |
-| Palavra-destaque em serif itálico | sistema | revogada na v2.0 |
-| Curva orgânica livre | sistema **e** ilustração | a única curva do sistema é o quarto de arco do símbolo (§6.1); corte de papel é reto ou a 45° (§7.5) |
-| Texto renderizado dentro de imagem gerada | ilustração | gerador erra tipografia; a marca tem tipografia própria — o alt-text carrega a informação verbal |
+| Anti-padrão                                    | Onde vale                | Por quê                                                                                              |
+| ---------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------- |
+| Gradiente contínuo em superfície de UI         | sistema                  | não tem par de token; sai do gate de contraste automatizado (R6/R7 do ledger)                        |
+| Radius acima de 2px fora das exceções nomeadas | sistema                  | assinatura revogada — "botão pílula" e radius alto liam como template genérico                       |
+| Sombra difusa, glow, glassmorphism             | sistema **e** ilustração | proibido nas duas — na ilustração, profundidade é degrau de tom (§7.2), nunca sombra                 |
+| Palavra-destaque em serif itálico              | sistema                  | revogada na v2.0                                                                                     |
+| Curva orgânica livre                           | sistema **e** ilustração | a única curva do sistema é o quarto de arco do símbolo (§6.1); corte de papel é reto ou a 45° (§7.5) |
+| Texto renderizado dentro de imagem gerada      | ilustração               | gerador erra tipografia; a marca tem tipografia própria — o alt-text carrega a informação verbal     |
 
 ---
 
@@ -295,18 +295,18 @@ segue as mesmas regras de §7 e nunca ganha chrome de produto ao redor.
 
 **Regras binárias, verificáveis:**
 
-| Regra | Como se verifica |
-| --- | --- |
-| Ilustração nunca aparece em `apps/skill_test` ou no site | binário, por repositório/superfície — não por peça |
-| Toda ilustração é contida por um frame retangular, radius 0, hairline 1px | binário, olhando a borda |
-| Nada sangra para fora do frame | binário |
-| Sombra proibida nas duas camadas | binário: qualquer desfoque entre camadas reprova |
-| Amplitude cromática entre 3 e 7 cores ≥1% do quadro | numérico, por quantização (`illustration.maxColors`) |
-| Fundo ≥ 40% do quadro | numérico (`illustration.minBackground`) |
-| Lime ≤ 1% do quadro | numérico (`illustration.accent`, teto medido) |
-| Um matiz de pilha por peça | numérico, por matiz das cores dominantes (`illustration.maxHues`) |
-| Pattern: 0°, 90°, ±45°, comprimento múltiplo do módulo | binário, por linter |
-| Foco com área de perímetro de 2px | numérico (§8) |
+| Regra                                                                     | Como se verifica                                                  |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Ilustração nunca aparece em `apps/skill_test` ou no site                  | binário, por repositório/superfície — não por peça                |
+| Toda ilustração é contida por um frame retangular, radius 0, hairline 1px | binário, olhando a borda                                          |
+| Nada sangra para fora do frame                                            | binário                                                           |
+| Sombra proibida nas duas camadas                                          | binário: qualquer desfoque entre camadas reprova                  |
+| Amplitude cromática entre 3 e 7 cores ≥1% do quadro                       | numérico, por quantização (`illustration.maxColors`)              |
+| Fundo ≥ 40% do quadro                                                     | numérico (`illustration.minBackground`)                           |
+| Lime ≤ 1% do quadro                                                       | numérico (`illustration.accent`, teto medido)                     |
+| Um matiz de pilha por peça                                                | numérico, por matiz das cores dominantes (`illustration.maxHues`) |
+| Pattern: 0°, 90°, ±45°, comprimento múltiplo do módulo                    | binário, por linter                                               |
+| Foco com área de perímetro de 2px                                         | numérico (§8)                                                     |
 
 ---
 
@@ -321,27 +321,27 @@ a 100%, nunca atrás de texto, sempre ligada a conquista verificável (`Priority
 `brand/LOGO/symbol-master.svg`, dois `<path>` em simetria rotacional de 180°. Lido diretamente
 do `d=` nesta rodada:
 
-| Elemento | Medida | Em módulos (M≈40,24u) |
-| --- | --- | --- |
-| Diagonal do chevron | 56,81u, a exatamente ±45,00° | M·√2 |
-| Segmento vertical | 41,42u | 1,03 M |
-| Barra horizontal | 40,45u | 1,00 M |
-| Quarto de arco | raio 38,92u | 0,97 M |
+| Elemento            | Medida                       | Em módulos (M≈40,24u) |
+| ------------------- | ---------------------------- | --------------------- |
+| Diagonal do chevron | 56,81u, a exatamente ±45,00° | M·√2                  |
+| Segmento vertical   | 41,42u                       | 1,03 M                |
+| Barra horizontal    | 40,45u                       | 1,00 M                |
+| Quarto de arco      | raio 38,92u                  | 0,97 M                |
 
 Quatro medidas dentro de 3% do mesmo módulo. **O quarto de arco é a única curva que o sistema
 inteiro contém.** Preenchimento sólido, sem traço.
 
 ### 6.2. `pattern.nodeBranch` — reconstruído sobre a gramática do símbolo
 
-| Propriedade | Regra |
-| --- | --- |
-| Ângulos permitidos | 0°, 90°, ±45° — nada mais |
-| Comprimento de galho | múltiplo inteiro do módulo `m` (token `pattern.nodeBranch.module`) |
-| Nó | a própria dobra — o vértice onde a diagonal encontra o ortogonal. Sem círculo |
-| Terminação | quarto de arco de raio `m` (`pattern.nodeBranch.arcRadius`), a única curva permitida |
-| Cor | `{color.grove.500}` |
-| Opacidade atrás de texto | 0,12, travada em código |
-| Opacidade decorativa | 0,25–0,40 |
+| Propriedade              | Regra                                                                                |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| Ângulos permitidos       | 0°, 90°, ±45° — nada mais                                                            |
+| Comprimento de galho     | múltiplo inteiro do módulo `m` (token `pattern.nodeBranch.module`)                   |
+| Nó                       | a própria dobra — o vértice onde a diagonal encontra o ortogonal. Sem círculo        |
+| Terminação               | quarto de arco de raio `m` (`pattern.nodeBranch.arcRadius`), a única curva permitida |
+| Cor                      | `{color.grove.500}`                                                                  |
+| Opacidade atrás de texto | 0,12, travada em código                                                              |
+| Opacidade decorativa     | 0,25–0,40                                                                            |
 
 `nodeRadius` está `$deprecated` desde a rodada anterior — o nó deixou de ser círculo.
 
@@ -349,21 +349,21 @@ inteiro contém.** Preenchimento sólido, sem traço.
 
 Substitui `dataGrid` (`$deprecated`, ponteiro para `reticula.fine`, valores idênticos).
 
-| Escala | Uso | Estado |
-| --- | --- | --- |
-| `fine` (1px ponto / 14px espaçamento) | camada de sistema — fundo, opacidade 0,15–0,20, sempre dentro de retângulo de canto reto | ativa |
-| `coarse` (4px ponto / 48px espaçamento) | previa matéria de ilustração compartilhada | **`$deprecated` desde v2.3.0** — A6 (separação estrita) elimina o consumidor. Retícula de ilustração agora é construída peça a peça em `brand/ILUSTRACOES/_bloco-marca.md`, não recortada de um asset comum |
+| Escala                                  | Uso                                                                                      | Estado                                                                                                                                                                                                      |
+| --------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fine` (1px ponto / 14px espaçamento)   | camada de sistema — fundo, opacidade 0,15–0,20, sempre dentro de retângulo de canto reto | ativa                                                                                                                                                                                                       |
+| `coarse` (4px ponto / 48px espaçamento) | previa matéria de ilustração compartilhada                                               | **`$deprecated` desde v2.3.0** — A6 (separação estrita) elimina o consumidor. Retícula de ilustração agora é construída peça a peça em `brand/ILUSTRACOES/_bloco-marca.md`, não recortada de um asset comum |
 
 ### 6.4. Matriz de uso
 
-| Contexto | Pattern | Opacidade | Superfície |
-| --- | --- | --- | --- |
-| Banda escura em página | `nodeBranch`, campo ou canto | 0,25–0,40 | app, site |
-| Atrás de texto corrido | `nodeBranch` | 0,12 | app, site |
-| Respiro em conteúdo denso | `reticula.fine` | 0,15–0,20 | app, site |
-| Painel/tile texturizado dentro de retângulo de canto reto | `reticula.fine` | 0,15–0,20 | app, site |
-| Certificado | `nodeBranch` como moldura + `growthLine` | 1,0 | app |
-| Prova social / página de vendas | nenhum | — | — |
+| Contexto                                                  | Pattern                                  | Opacidade | Superfície |
+| --------------------------------------------------------- | ---------------------------------------- | --------- | ---------- |
+| Banda escura em página                                    | `nodeBranch`, campo ou canto             | 0,25–0,40 | app, site  |
+| Atrás de texto corrido                                    | `nodeBranch`                             | 0,12      | app, site  |
+| Respiro em conteúdo denso                                 | `reticula.fine`                          | 0,15–0,20 | app, site  |
+| Painel/tile texturizado dentro de retângulo de canto reto | `reticula.fine`                          | 0,15–0,20 | app, site  |
+| Certificado                                               | `nodeBranch` como moldura + `growthLine` | 1,0       | app        |
+| Prova social / página de vendas                           | nenhum                                   | —         | —          |
 
 ### 6.5. Regra de uso — um pattern por peça
 
@@ -388,12 +388,12 @@ pipeline generativo externo.
 Confirmado por medição (`01-referencias.md` §1.2, reproduzida nesta rodada): a paleta já
 contém a escada.
 
-| Papel na peça | Tokens | Degrau de luminância |
-| --- | --- | --- |
-| Pilha escura | Ink → Deep Forest → forest.700 → forest.500 | 0,029 · 0,028 · 0,046 |
-| Pilha clara | mist → mint → Chalk | 0,075 · 0,052 |
-| Figura, sobre a pilha | grove.500, grove.300 | +0,150 e +0,225 — salto, não degrau |
-| Acento | lime.500 | +0,283 |
+| Papel na peça         | Tokens                                      | Degrau de luminância                |
+| --------------------- | ------------------------------------------- | ----------------------------------- |
+| Pilha escura          | Ink → Deep Forest → forest.700 → forest.500 | 0,029 · 0,028 · 0,046               |
+| Pilha clara           | mist → mint → Chalk                         | 0,075 · 0,052                       |
+| Figura, sobre a pilha | grove.500, grove.300                        | +0,150 e +0,225 — salto, não degrau |
+| Acento                | lime.500                                    | +0,283                              |
 
 ### 7.2. Regras numéricas
 
@@ -436,13 +436,13 @@ publicação — nunca para preencher amostra (decisão do founder, 04/09/2026).
 **AA + SC 2.4.13**, confirmado por texto normativo do W3C/WAI reconfirmado nesta rodada
 (`02-pesquisa-e-plugins.md` P3).
 
-| Critério | Nível | O que impõe |
-| --- | --- | --- |
-| 1.4.1 Use of Color | A | Nenhum estado ou marcação só por cor — precisa de rótulo, número ou marcador junto |
-| 1.4.11 Non-text Contrast | AA | 3:1 contra cores adjacentes onde o hairline é a única fronteira de um controle |
-| 2.4.11 Focus Not Obscured | AA | Nenhum elemento fixo (faixa, banda) pode esconder o componente focado |
-| 2.4.13 Focus Appearance | AAA, adotado como alvo | Área do indicador ≥ perímetro de 2px do componente não-focado; contraste ≥3:1 entre estados |
-| 2.5.8 Target Size | AA | Alvo de toque mínimo 24×24 CSS px, com as cinco exceções nomeadas da spec |
+| Critério                  | Nível                  | O que impõe                                                                                 |
+| ------------------------- | ---------------------- | ------------------------------------------------------------------------------------------- |
+| 1.4.1 Use of Color        | A                      | Nenhum estado ou marcação só por cor — precisa de rótulo, número ou marcador junto          |
+| 1.4.11 Non-text Contrast  | AA                     | 3:1 contra cores adjacentes onde o hairline é a única fronteira de um controle              |
+| 2.4.11 Focus Not Obscured | AA                     | Nenhum elemento fixo (faixa, banda) pode esconder o componente focado                       |
+| 2.4.13 Focus Appearance   | AAA, adotado como alvo | Área do indicador ≥ perímetro de 2px do componente não-focado; contraste ≥3:1 entre estados |
+| 2.5.8 Target Size         | AA                     | Alvo de toque mínimo 24×24 CSS px, com as cinco exceções nomeadas da spec                   |
 
 Nenhum dos cinco exige canto arredondado, sombra ou gradiente. Geometria reta não custa
 acessibilidade — o custo aparece só no indicador de foco, como regra de área.
@@ -474,13 +474,13 @@ citados em rodadas anteriores nunca existiram (ver `04-cleanup.md` da rodada ant
 
 ## 11. Lacunas abertas
 
-| # | Lacuna | Por que trava |
-| --- | --- | --- |
-| 1 | Carlito em três lockups SVG legados (`logo_banner*.svg`) | decisão de arte, não tomada nesta rodada |
-| 2 | Pílulas no banner do YouTube — paths com arco, invisíveis a linter | redesenho de forma, não feito |
-| 3 | Proporção de tela e respiro ao redor da ilustração dentro de card real | parcialmente respondida por `design_stitch.md` (radius incompatível — ver `01-referencias.md` §3.3) |
-| 4 | Sobrevivência da granulação à compressão de LinkedIn/YouTube | nunca medida |
-| 5 | Merge/push das branches órfãs (`apps/skill_test@revisao/04-design-v21`, `pipelines/hemingway@marca/v3-camada-de-ilustracao`) | marcadas como descartadas nesta rodada (Fase 0) — decisão sobre o código que elas continham é da Fase 4 do prompt mestre, fora desta reconstrução de marca |
-| 6 | Sincronizar `apps/skill_test/DESIGN.md` e tokens com esta versão | é a Fase 4 do prompt mestre (refactor do Skill Check), não desta reconstrução |
-| 7 | `brand/.claude/skills/` (`brandkit`, `emil-design-eng`) | decisão do founder, Fase 6 |
-| 8 | Nível intermediário de luminância entre Chalk e Deep Forest | decisão de paleta — a escada atual já serve os dois usos (sistema e ilustração) sem token novo |
+| #   | Lacuna                                                                                                                       | Por que trava                                                                                                                                              |
+| --- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Carlito em três lockups SVG legados (`logo_banner*.svg`)                                                                     | decisão de arte, não tomada nesta rodada                                                                                                                   |
+| 2   | Pílulas no banner do YouTube — paths com arco, invisíveis a linter                                                           | redesenho de forma, não feito                                                                                                                              |
+| 3   | Proporção de tela e respiro ao redor da ilustração dentro de card real                                                       | parcialmente respondida por `design_stitch.md` (radius incompatível — ver `01-referencias.md` §3.3)                                                        |
+| 4   | Sobrevivência da granulação à compressão de LinkedIn/YouTube                                                                 | nunca medida                                                                                                                                               |
+| 5   | Merge/push das branches órfãs (`apps/skill_test@revisao/04-design-v21`, `pipelines/hemingway@marca/v3-camada-de-ilustracao`) | marcadas como descartadas nesta rodada (Fase 0) — decisão sobre o código que elas continham é da Fase 4 do prompt mestre, fora desta reconstrução de marca |
+| 6   | Sincronizar `apps/skill_test/DESIGN.md` e tokens com esta versão                                                             | é a Fase 4 do prompt mestre (refactor do Skill Check), não desta reconstrução                                                                              |
+| 7   | `brand/.claude/skills/` (`brandkit`, `emil-design-eng`)                                                                      | decisão do founder, Fase 6                                                                                                                                 |
+| 8   | Nível intermediário de luminância entre Chalk e Deep Forest                                                                  | decisão de paleta — a escada atual já serve os dois usos (sistema e ilustração) sem token novo                                                             |

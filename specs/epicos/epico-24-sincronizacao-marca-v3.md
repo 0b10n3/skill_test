@@ -85,3 +85,11 @@ cópia byte a byte, não reinterpretação.
    correspondente** — a v3.0 não rastreia lacunas específicas de app, só de marca. Reescritas
    para apontar ao Épico 25 (logo) e removida a citação de seção para o certificado (é decisão
    de produto, nunca foi conteúdo de `DESIGN.md`).
+5. **CI reprovou em `Format check` (Prettier) depois do primeiro push** — testado local só com
+   `lint`/`typecheck`/`test`/`build`; `npm run format:check` não está no `prebuild`, só no
+   workflow do GitHub (exatamente a armadilha T8 do ledger de marca: "build, testes, e2e,
+   typecheck e dez gates de marca podem passar e o CI reprovar em 40s"). `DESIGN.md` e
+   `tokens.json` tinham formatação diferente do Prettier deste app (largura de coluna de
+   tabela markdown, arrays JSON em uma linha) — conteúdo idêntico, só forma. Corrigido com
+   `npm run format`, e a mesma formatação propagada de volta para `brand/` para que "cópia
+   byte a byte" continue passando depois de qualquer sincronização futura.
