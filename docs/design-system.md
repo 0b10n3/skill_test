@@ -38,8 +38,15 @@ hover via `color-mix`, etc.) em `README.md` §"Tokens de design e tema".
 
 ## 3. Padrões geométricos
 
-Três famílias, cada uma com API deliberadamente restrita para que a regra
-de uso (DESIGN.md §5.4) seja garantida pelo compilador, não por disciplina:
+Três componentes React na pasta `@/components/patterns`, mas só dois são
+"pattern" na classificação do `DESIGN.md` v3.0 §6 — `nodeBranch` e
+`reticula` (`dataGrid` até o Épico 27, quando é renomeado). `growthLine`
+foi reclassificada nesta sincronização: não é mais pattern de fundo, é
+**marca de dado** — sempre a 100% de opacidade, nunca decorativa, sempre
+ligada a uma conquista verificável (`DESIGN.md` §6, primeiro parágrafo).
+A API de cada componente já era restrita antes desta reclassificação, e
+continua sendo, para que a regra de uso seja garantida pelo compilador,
+não por disciplina:
 
 | Componente                                                         | Família               | Trava de API                                                                                                      |
 | ------------------------------------------------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -49,7 +56,7 @@ de uso (DESIGN.md §5.4) seja garantida pelo compilador, não por disciplina:
 
 `npm run lint:patterns` (`scripts/lint-one-pattern-per-file.mjs`, parte do
 `prebuild`) falha se um arquivo importar mais de um desses três de
-`@/components/patterns` — "um padrão por peça" (DESIGN.md §5.4) é
+`@/components/patterns` — "um padrão por peça" (DESIGN.md §6.5) é
 verificável em CI, não uma convenção de PR review. A única exceção
 documentada é o certificado (`components/result/ShareRadarButton.tsx`,
 Épico 18): combina nó-e-galho + linha de conquista, mas desenha via Canvas
@@ -59,8 +66,9 @@ componentes React — por isso o lint (que só escaneia imports de
 `@/components/patterns`) não o pega, e por isso essa é a única peça do
 produto com dois padrões, prevista no `DESIGN.md` §6 (certificados).
 
-Catálogo vivo com os três padrões nos dois temas: `/dev/ui` (rota não
-indexada, base do teste visual `e2e/dev-ui-catalog.spec.ts`).
+Catálogo vivo com os três componentes (dois patterns + a marca de dado)
+nos dois temas: `/dev/ui` (rota não indexada, base do teste visual
+`e2e/dev-ui-catalog.spec.ts`).
 
 ## 4. Pipeline de assets generativos (agy)
 
@@ -72,7 +80,7 @@ OG/certificado) são geradas via Nano Banana Pro através do `agy`
    compartilhado em `assets/prompts/_brand-block.md`).
 2. Geração via a skill `.agents/skills/gerar-asset-marca/SKILL.md`, saída
    bruta versionada em `assets/generated/raw/<slug>/<data>-vN.png`.
-3. Gate de revisão humana contra o checklist de marca (`DESIGN.md` §7).
+3. Gate de revisão humana contra o checklist de marca (`DESIGN.md` §10).
 4. Publicação: `npm run assets:process -- <slug> --raw <path> --dark <hex>
 --light <hex> --widths <n,n,...>` — aplica correção de cor por duotone
    (aderência de paleta garantida por construção), gera variantes
@@ -93,13 +101,15 @@ serem geradas.
 
 ## 5. Logo / wordmark
 
-**Lacuna aberta, não resolvida por este épico** (`DESIGN.md` §8, item 1):
-nenhum arquivo de imagem de marca (SVG ou PNG do símbolo real) foi
-recebido do founder em nenhum momento deste projeto. `components/logo.tsx`
-renderiza um wordmark tipográfico (`Syntaxis` em Space Grotesk bold — sem
-itálico, DESIGN.md v2.0 §4.2 —, cor `--link-foreground` — Forest no claro,
-Grove no escuro) como placeholder funcional; `app/icon.svg` é um favicon
-geométrico placeholder pela mesma razão.
+**Lacuna aberta até o Épico 25** (`specs/epicos/epico-25-simbolo-oficial.md`):
+o símbolo oficial já existe — `brand/LOGO/symbol-master.svg`, geometria
+medida em `DESIGN.md` §6.1 — mas ainda não foi trazido para este app.
+`components/logo.tsx` renderiza um wordmark tipográfico (`Syntaxis` em
+Space Grotesk bold — sem itálico, DESIGN.md v3.0 §4.2 —, cor
+`--link-foreground` — Forest no claro, Grove no escuro) como placeholder
+funcional; `app/icon.svg` é um favicon geométrico placeholder pela mesma
+razão. Esta seção será reescrita quando o Épico 25 substituir o
+placeholder pelo símbolo real.
 
 Mapa de uso já implementado e pronto para receber o asset real quando
 chegar (convenção de `REDESIGN.md` §3.1, preservada aqui):
@@ -118,9 +128,9 @@ precisa mudar.
 
 ## 6. Certificado / compartilhamento
 
-Formato final do "certificado de conclusão" citado em `DESIGN.md` §8 item 3
-segue **em aberto para o produto de curso** (PDF, badge digital, ou ambos —
-decisão fora do escopo deste app). O que existe hoje, implementado no
+Formato final do "certificado de conclusão" segue **em aberto para o
+produto de curso** (PDF, badge digital, ou ambos — decisão fora do escopo
+deste app e de `brand/DESIGN.md`, que não rastreia decisões de produto). O que existe hoje, implementado no
 Épico 18, é o mini-certificado compartilhável do `/resultado`
 (`components/result/ShareRadarButton.tsx`): um PNG gerado em Canvas 2D no
 navegador, sem PII (ver teste de tipo em
@@ -132,5 +142,5 @@ curso completo for especificado.
 ## 7. Evidência de go-live
 
 Auditoria completa (Lighthouse 4 rotas × 2 temas, axe-core, cross-device,
-checklist editorial `DESIGN.md` §7, orçamento de peso de assets) documentada
+checklist editorial `DESIGN.md` §10, orçamento de peso de assets) documentada
 em `GOLIVE.md` §"Go-Live do Redesign (Épico 19)".

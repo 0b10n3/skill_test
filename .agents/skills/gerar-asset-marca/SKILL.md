@@ -60,7 +60,7 @@ compartilhado — nunca copiado dentro de cada prompt individual).
        decision: pending # pending | approved | rejected
    ```
 6. **Gate de revisão humana.** Uma pessoa avalia a geração contra o
-   checklist de marca (`DESIGN.md` §7 + `docs/design-system.md`): aderência à
+   checklist de marca (`DESIGN.md` §10 + `docs/design-system.md`): aderência à
    paleta, sem clichês proibidos, sem texto embutido, funciona nos dois
    temas quando aplicável, coerência com o restante do lote. Atualiza
    `decision` da entrada do histórico para `approved` ou `rejected`.
