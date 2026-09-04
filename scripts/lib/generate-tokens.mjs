@@ -60,14 +60,29 @@ export function generateCss(tokens) {
     if (name.startsWith('$')) continue;
     lines.push(`  --radius-${kebabCase(name)}: ${resolveValue(tokens, def.$value)};`);
   }
+  /**
+   * Emite uma variável por token folha, descendo por quantos grupos
+   * aninhados existirem — pattern.nodeBranch.module (2 níveis) e
+   * pattern.reticula.fine.spacing (3 níveis, Épico 27: reticula ganhou uma
+   * escala como grupo intermediário) precisam do mesmo tratamento. Um nó
+   * é folha quando tem `$value`; senão é grupo e a função desce mais um
+   * nível — sem isso, `reticula.fine` (grupo) era lido como se `$value`
+   * existisse nele e gerava `--pattern-reticula-fine: undefined`.
+   */
+  function emitPatternVars(prefix, node) {
+    for (const [propName, def] of Object.entries(node)) {
+      if (propName.startsWith('$')) continue;
+      const varName = `${prefix}-${kebabCase(propName)}`;
+      if (def && typeof def === 'object' && '$value' in def) {
+        lines.push(`  --${varName}: ${resolveValue(tokens, def.$value)};`);
+      } else if (def && typeof def === 'object') {
+        emitPatternVars(varName, def);
+      }
+    }
+  }
   for (const [familyName, family] of Object.entries(tokens.pattern)) {
     if (familyName.startsWith('$')) continue;
-    for (const [propName, def] of Object.entries(family)) {
-      if (propName.startsWith('$')) continue;
-      lines.push(
-        `  --pattern-${kebabCase(familyName)}-${kebabCase(propName)}: ${resolveValue(tokens, def.$value)};`,
-      );
-    }
+    emitPatternVars(`pattern-${kebabCase(familyName)}`, family);
   }
   lines.push('}');
   lines.push('');

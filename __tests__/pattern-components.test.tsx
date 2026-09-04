@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
 import tokens from '@/design/tokens.json';
-import { PatternDataGrid } from '@/components/patterns/PatternDataGrid';
+import { PatternReticula } from '@/components/patterns/PatternReticula';
 import { PatternGrowthLine } from '@/components/patterns/PatternGrowthLine';
 import { PatternNodeBranch } from '@/components/patterns/PatternNodeBranch';
 
@@ -48,16 +48,16 @@ describe('PatternNodeBranch', () => {
   });
 });
 
-describe('PatternDataGrid', () => {
+describe('PatternReticula', () => {
   it('a API só aceita os três slots documentados — nenhuma prop de posicionamento livre', () => {
-    const { container } = render(<PatternDataGrid slot="header" />);
+    const { container } = render(<PatternReticula slot="header" />);
     expect(container.querySelector('[data-pattern-slot="header"]')).toBeInTheDocument();
   });
 
-  it('referencia os tokens pattern.dataGrid via var()', () => {
-    const { container } = render(<PatternDataGrid slot="margin-left" />);
-    const el = container.querySelector('[data-pattern="data-grid"]') as HTMLElement;
-    expect(el.style.backgroundSize).toContain('var(--pattern-data-grid-spacing)');
+  it('referencia os tokens pattern.reticula.fine via var()', () => {
+    const { container } = render(<PatternReticula slot="margin-left" />);
+    const el = container.querySelector('[data-pattern="reticula"]') as HTMLElement;
+    expect(el.style.backgroundSize).toContain('var(--pattern-reticula-fine-spacing)');
   });
 });
 

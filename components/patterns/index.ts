@@ -1,7 +1,7 @@
 export { PatternNodeBranch, type PatternNodeBranchProps } from './PatternNodeBranch';
 export {
-  PatternDataGrid,
-  type PatternDataGridProps,
-  type PatternDataGridSlot,
-} from './PatternDataGrid';
+  PatternReticula,
+  type PatternReticulaProps,
+  type PatternReticulaSlot,
+} from './PatternReticula';
 export { PatternGrowthLine, type PatternGrowthLineProps } from './PatternGrowthLine';
