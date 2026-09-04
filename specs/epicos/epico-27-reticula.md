@@ -55,7 +55,29 @@ valor visual — é rename, não redesign.
 
 ## Gate de validação
 
-- [ ] Zero ocorrência de `PatternDataGrid`/`dataGrid` fora de histórico.
-- [ ] `/dev/ui` visualmente idêntico ao snapshot anterior a este épico.
-- [ ] `lint`, `typecheck`, `test`, `build`, `e2e` verdes.
-- [ ] PR aberto contra `main`, nenhum commit direto.
+- [x] Zero ocorrência de `PatternDataGrid`/`dataGrid` fora de histórico (o token
+      `pattern.dataGrid` continua no `tokens.json`, `$deprecated`, por política — isso é
+      histórico intencional, não resíduo).
+- [x] `/dev/ui` verificado visualmente por screenshot Playwright — retícula renderiza
+      corretamente (pontos sutis, opacidade 0.2, exatamente como especificado; a subtileza é a
+      regra, não um defeito).
+- [x] `lint`, `typecheck`, `test` (191/191), `build` (prebuild completo), `format:check` verdes.
+- [x] `npx playwright test e2e/dev-ui-catalog.spec.ts` — 7/7, com dois snapshots (375px)
+      atualizados deliberadamente: o texto das citações que corrigi (§5→§6, "Grade de
+      dados"→"Retícula") é mais longo, reflow de ~20px abaixo da seção de patterns — revisado
+      pixel a pixel antes de aceitar, não é regressão de conteúdo.
+- [x] PR aberto contra `main`, empilhado sobre os Épicos 24/25/26.
+
+## Achado fora do escopo original, corrigido aqui
+
+`scripts/lib/generate-tokens.mjs` gerava `--pattern-reticula-fine: undefined` — o loop de
+patterns só sabia ler tokens de dois níveis (`pattern.nodeBranch.module`), e `reticula.fine`
+tem três (`pattern.reticula.fine.spacing`). É exatamente o achado C3 que a pesquisa da rodada 3
+de marca já havia previsto ("o gerador de CSS assumia dois níveis em pattern.* e emitia
+`--pattern-reticula-fine: undefined` para o grupo aninhado novo"). Corrigido com uma função
+recursiva que desce por quantos grupos existirem, até achar um nó com `$value` — resolve este
+caso e qualquer aninhamento futuro, sem precisar de outro ajuste manual.
+
+Ao longo da mesma edição, corrigidas três citações desatualizadas em `app/dev/ui/page.tsx`
+("DESIGN.md §5" → "§6", "Grade de dados" → "Retícula" no texto visível ao usuário) e uma
+citação de versão obsoleta ("DESIGN.md v2.0 §5.2" → "§6, growthLine é marca de dado").

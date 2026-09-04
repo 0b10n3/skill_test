@@ -22,7 +22,7 @@ import { Progress, ProgressLabel, ProgressValue } from '@/components/ui/progress
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { PatternDataGrid, PatternGrowthLine, PatternNodeBranch } from '@/components/patterns';
+import { PatternReticula, PatternGrowthLine, PatternNodeBranch } from '@/components/patterns';
 
 /**
  * Catálogo vivo (Épico 15) — todos os componentes restylizados e os três
@@ -74,7 +74,7 @@ const PATTERN_USAGE_MATRIX = [
   },
   {
     context: 'Fundo de slide de conteúdo técnico (SQL/Python)',
-    pattern: 'Grade de dados, apenas nas margens',
+    pattern: 'Retícula, apenas nas margens',
     opacity: '15–20%',
   },
   {
@@ -130,7 +130,7 @@ export default function UiCatalogPage() {
 
       <Section
         title="Padrões geométricos"
-        description="DESIGN.md §5 — três famílias, um padrão por peça (verificado por lint em CI)."
+        description="DESIGN.md §6 — duas famílias de pattern + a marca de dado, um pattern por peça (verificado por lint em CI)."
       >
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <div className="flex flex-col gap-2">
@@ -159,7 +159,7 @@ export default function UiCatalogPage() {
             </p>
             {/* bg-neutral-deep-forest (não bg-card): o padrão usa
                 pattern.growthLine.color (lime-500) por padrão, calibrado
-                para contraste sobre fundo escuro (DESIGN.md v2.0 §5.2) —
+                para contraste sobre fundo escuro (DESIGN.md §6, growthLine é marca de dado) —
                 mostrar sobre um card claro esconderia a cor real de uso. */}
             <div className="flex h-40 items-center justify-center rounded-sm border border-border bg-neutral-deep-forest p-4">
               <PatternGrowthLine steps={4} className="h-full w-full" />
@@ -167,17 +167,17 @@ export default function UiCatalogPage() {
           </div>
         </div>
         <div className="relative flex h-24 items-center overflow-hidden rounded-sm border border-border bg-card px-6">
-          <PatternDataGrid slot="margin-left" />
-          <PatternDataGrid slot="margin-right" />
+          <PatternReticula slot="margin-left" />
+          <PatternReticula slot="margin-right" />
           <p className="z-10 mx-auto text-sm text-muted-foreground">
-            Grade de dados — só nas margens (slot fixo), nunca atrás do conteúdo central.
+            Retícula — só nas margens (slot fixo), nunca atrás do conteúdo central.
           </p>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-left text-sm">
             <caption className="mb-2 text-left text-xs text-muted-foreground">
-              Matriz de uso — DESIGN.md §5.3
+              Matriz de uso — DESIGN.md §6.4
             </caption>
             <thead>
               <tr className="border-b border-border text-muted-foreground">
