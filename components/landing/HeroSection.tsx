@@ -22,6 +22,15 @@ import { HERO_PROMISE } from '@/content/landing';
  * `hero-landing-pessoas` (fotografia real de pessoa estudando, duotone)
  * substitui `hero-landing` (composição abstrata de nó-e-galho) — pedido
  * direto do founder, `assets/prompts/hero-landing-pessoas.md`.
+ *
+ * Épico 30: `aspect-video` (16:9) trocado por `aspect-[4/5]` — a caixa
+ * lateral estava baixa e larga ao lado de uma coluna de texto bem mais
+ * alta; a foto (v3, ver histórico do prompt) já foi enquadrada em vertical
+ * para essa proporção. Duotone escuro corrigido também aqui (achado real:
+ * o par publicado no Épico 29 estava invertido — sombra virava um tom mais
+ * claro que o fundo da página, luz virava mais escura que o fundo — ver
+ * `assets/prompts/hero-landing-pessoas.md` e o par correto de
+ * `hero-landing` dark, reaproveitado).
  */
 export function HeroSection() {
   return (
@@ -54,7 +63,7 @@ export function HeroSection() {
           empilhar embaixo do texto — a tela de entrada do funil precisa
           caber sem rolagem (regra "single-viewport por seção", app desde
           o Épico 4); a partir de sm ela cabe. */}
-      <div className="relative hidden aspect-video w-full overflow-hidden sm:block lg:max-w-md">
+      <div className="relative hidden aspect-[4/5] w-full overflow-hidden sm:block lg:max-w-md">
         <ThemedGeneratedImage
           slug="hero-landing-pessoas"
           widths={[640, 1024, 1920]}
