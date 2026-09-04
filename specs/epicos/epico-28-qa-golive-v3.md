@@ -55,12 +55,23 @@ telemetria — e publicar em produção.
 
 ## Gate de validação
 
-- [ ] 100% dos testes automatizados verdes, incluindo os de analytics sem alteração.
-- [ ] Lighthouse dentro do piso do Épico 22 (Performance ≥ 90, Accessibility 100, SEO ≥ 95).
-- [ ] Deploy em preview da Vercel, revisado visualmente antes de promover a produção.
-- [ ] **Revisão visual manual do founder** — gate final, humano por natureza, mesmo padrão dos
-      épicos anteriores.
-- [ ] Eventos de GA4/Meta Pixel confirmados sem regressão no preview.
-- [ ] `GOLIVE.md` e `specs/epicos/00-indice.md` atualizados.
-- [ ] PR aberto contra `main` por épico (24, 25, 26, 27 já mergeados antes deste); promoção a
-      produção só depois da aprovação humana.
+- [x] 100% dos testes automatizados verdes: 191/191 Vitest (`analytics-consent.test.ts` e
+      `analytics-track.test.ts` incluídos, confirmado que nenhum commit desde o Épico 21 os
+      toca), 81/81 Playwright (suíte completa, não só `dev-ui-catalog`).
+- [x] Lighthouse dentro do piso do Épico 22 nos dois temas: Performance 95–100 (piso era ≥90),
+      Accessibility 100, Best Practices 95–96, SEO 100 nas rotas indexadas.
+- [x] `GOLIVE.md` e `specs/epicos/00-indice.md` atualizados.
+- [x] Épicos 24, 25, 26, 27 já mergeados em `main` antes deste; este épico roda contra o `main`
+      resultante, não contra uma branch isolada.
+- [ ] **Deploy em preview da Vercel** — acontece automaticamente a cada PR (confirmado nos
+      quatro PRs anteriores, check `Vercel` verde); não solicitei revisão visual do preview
+      deste épico especificamente, porque não há mudança de código neste épico além de
+      documentação — nada novo para revisar visualmente que os quatro anteriores não já
+      cobriram.
+- [ ] **Revisão visual manual do founder** — gate final, humano por natureza, **pendente**.
+- [ ] **Eventos de GA4/Meta Pixel confirmados sem regressão no preview** — requer acesso ao
+      GA4 DebugView / Meta Events Manager, que é do founder — **pendente**. O que É verificável
+      sem esse acesso (nenhum commit desde o Épico 21 toca `lib/analytics/`, os 13 testes de
+      analytics passam sem alteração) foi confirmado.
+- [ ] **Promoção a produção** — **pendente de decisão humana explícita**, não realizada nesta
+      sessão por decisão deliberada.

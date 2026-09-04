@@ -71,18 +71,21 @@ lacuna aberta desde o Épico 14.
       snapshots visuais por tema e as duas checagens axe-core.
 - [x] PR aberto contra `main`, empilhado sobre o Épico 24.
 
-## Achado fora do escopo deste épico, registrado para não se perder
+## Achado fora do escopo deste épico — registrado, e depois corrigido pela própria checagem
 
 `npx playwright test e2e/resultado-visual.spec.ts` (não listado nos testes obrigatórios deste
-épico — só citei `dev-ui-catalog.spec.ts`, e por isso corri o primeiro por precaução extra,
-não por exigência) reprovou em 2 dos 6 casos, e a causa **não é o símbolo novo**: as baselines
-de `resultado-baixo-{light,dark}.png` estão capturadas com tipografia serifada (DM Serif
-Display) e cantos arredondados — o sistema visual de **antes do Épico 22** (Design v2.0,
-cantos retos + Space Grotesk). O app ao vivo já renderiza corretamente o sistema atual (confirmado
-visualmente); é a *baseline salva* que nunca foi regenerada desde então. Como as demais
-4 combinações passaram, a suíte não está travando builds — mas a cobertura de regressão visual
-de `/resultado` está cega para qualquer mudança de marca há pelo menos três épicos. Não
-corrigido aqui (fora do escopo declarado de `epico-25`, e mexer nas baselines de um teste que
-não é meu para arrumar é o tipo de correção "de passagem" que merece o próprio épico, com
-revisão deliberada de cada snapshot novo — não um `--update-snapshots` cego). Recomendo um
-épico dedicado, antes do Épico 28 (QA/go-live), para não deixar a lacuna se acumular mais.
+épico) reprovou em 2 dos 6 casos numa execução isolada, com um diff que parecia mostrar
+tipografia serifada e cantos arredondados — o sistema visual de antes do Épico 22. Registrei
+isso aqui como achado real, com a leitura de que a baseline salva estava desatualizada.
+
+**Correção, feita no Épico 28:** rodando a suíte completa (`npx playwright test`, 81 testes) e
+depois `resultado-visual.spec.ts` isolado de novo, os 6 casos passaram — duas vezes seguidas,
+de forma consistente. A causa mais provável da reprovação original não era a baseline: era o
+estado do servidor de dev naquele momento específico (múltiplos restarts de `next dev` e
+regenerações de token na mesma sessão, sem uma garantia de que o Turbopack tinha servido o CSS
+mais recente para aquela captura). **Não existe, portanto, lacuna de cobertura visual em
+`/resultado`** — a recomendação de abrir um épico dedicado para regenerar baselines, feita
+originalmente aqui, fica revogada por falta de causa real. Mantenho o registro do achado
+original porque é assim que uma leitura errada devia ser corrigida — apagando silenciosamente
+teria escondido que a suíte pode ser sensível ao estado do servidor de dev em execuções
+isoladas, o que vale saber mesmo sem virar um problema de baseline.
