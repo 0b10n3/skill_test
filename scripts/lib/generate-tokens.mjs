@@ -67,22 +67,29 @@ export function generateCss(tokens) {
    * escala como grupo intermediário) precisam do mesmo tratamento. Um nó
    * é folha quando tem `$value`; senão é grupo e a função desce mais um
    * nível — sem isso, `reticula.fine` (grupo) era lido como se `$value`
-   * existisse nele e gerava `--pattern-reticula-fine: undefined`.
+   * existisse nele e gerava `--pattern-reticula-fine: undefined`. Reaproveitada
+   * para `gradient.*` no Épico 29 (mesmo formato de grupo aninhado).
    */
-  function emitPatternVars(prefix, node) {
+  function emitNestedVars(prefix, node) {
     for (const [propName, def] of Object.entries(node)) {
       if (propName.startsWith('$')) continue;
       const varName = `${prefix}-${kebabCase(propName)}`;
       if (def && typeof def === 'object' && '$value' in def) {
         lines.push(`  --${varName}: ${resolveValue(tokens, def.$value)};`);
       } else if (def && typeof def === 'object') {
-        emitPatternVars(varName, def);
+        emitNestedVars(varName, def);
       }
     }
   }
   for (const [familyName, family] of Object.entries(tokens.pattern)) {
     if (familyName.startsWith('$')) continue;
-    emitPatternVars(`pattern-${kebabCase(familyName)}`, family);
+    emitNestedVars(`pattern-${kebabCase(familyName)}`, family);
+  }
+  if (tokens.gradient) {
+    for (const [familyName, family] of Object.entries(tokens.gradient)) {
+      if (familyName.startsWith('$')) continue;
+      emitNestedVars(`gradient-${kebabCase(familyName)}`, family);
+    }
   }
   lines.push('}');
   lines.push('');

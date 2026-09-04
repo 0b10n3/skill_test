@@ -3,32 +3,30 @@ import { Button } from '@/components/ui/button';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { MarkerHighlight } from '@/components/ui/marker-highlight';
 import { ThemedGeneratedImage } from '@/components/generated-image';
-import { PatternNodeBranch } from '@/components/patterns';
+import { GradientAmbient } from '@/components/patterns';
 import { HERO_PROMISE } from '@/content/landing';
 
 /**
  * Hero da landing (Épico 17, redesign Épico 20, tipografia/cor Épico 22 —
- * DESIGN.md v2.0 §4.3/§4.4): asset gerado do Épico 16 (variante por tema)
- * como elemento de evidência ao lado do headline — nunca o layout
- * "centrado + dois botões" proibido pelo §4.5. Eyebrow (assinatura 1),
- * palavra-destaque lime sob "nível" (assinatura 2 — substitui a palavra-
- * acento serif itálica da v1.1, aposentada com o DM Serif Display) e
- * hairline estrutural entre as colunas (assinatura 3, nova na v2.0) — as
- * três obrigatórias no hero. Mais um <PatternNodeBranch/> decorativo no
- * canto oposto ao asset — não se sobrepõem, então não competem entre si nem
- * violam "um padrão por peça" (o asset gerado não é um dos três padrões
- * geométricos programáticos, só a decoração SVG é).
+ * DESIGN.md v2.0 §4.3/§4.4): asset gerado (variante por tema) como
+ * elemento de evidência ao lado do headline — nunca o layout "centrado +
+ * dois botões" proibido pelo §4.5. Eyebrow (assinatura 1), palavra-destaque
+ * lime sob "nível" (assinatura 2), hairline estrutural entre as colunas
+ * (assinatura 3) — as três obrigatórias no hero.
+ *
+ * Épico 29: o `<PatternNodeBranch/>` decorativo de canto saiu — substituído
+ * por `<GradientAmbient/>` (DESIGN.md §4.5, exceção nomeada de gradiente de
+ * ambiente). Fica no canto oposto ao asset, na camada mais baixa (-z-10);
+ * nenhum texto se apoia diretamente nele — a coluna de texto tem o fundo
+ * sólido da página por baixo, não o gradiente. O asset também trocou:
+ * `hero-landing-pessoas` (fotografia real de pessoa estudando, duotone)
+ * substitui `hero-landing` (composição abstrata de nó-e-galho) — pedido
+ * direto do founder, `assets/prompts/hero-landing-pessoas.md`.
  */
 export function HeroSection() {
   return (
     <section className="relative flex min-h-dvh flex-col justify-center gap-6 overflow-hidden px-6 py-8 sm:px-10 sm:py-10 lg:flex-row lg:items-center lg:gap-12">
-      <PatternNodeBranch
-        context="decorative"
-        anchor="corner"
-        density="sparse"
-        opacity={0.3}
-        className="pointer-events-none absolute top-0 right-0 -z-10 h-64 w-64 -scale-x-100"
-      />
+      <GradientAmbient tone="forest" corner="top-right" />
 
       <div className="flex max-w-xl flex-col gap-5 lg:flex-1 lg:border-r lg:border-border lg:pr-12">
         <Eyebrow>Syntaxis Skill Check</Eyebrow>
@@ -58,7 +56,7 @@ export function HeroSection() {
           o Épico 4); a partir de sm ela cabe. */}
       <div className="relative hidden aspect-video w-full overflow-hidden sm:block lg:max-w-md">
         <ThemedGeneratedImage
-          slug="hero-landing"
+          slug="hero-landing-pessoas"
           widths={[640, 1024, 1920]}
           sizes="(min-width: 1024px) 28rem, 100vw"
           alt=""

@@ -258,21 +258,50 @@ itálico" é revogada desde a v2.0 e continua morta — ver `REVOGACOES.md`).
   seleção nativos (radio, ponto do switch) ganham a mesma exceção estreita, nunca estendida a
   checkbox, botão, card, input ou tag (decisão do founder, rodada 2, mantida por não haver fato
   novo que a conteste).
-- **Sem sombra como recurso principal.** Hairline (1px, `mist`) é o divisor. Sombra difusa,
-  glow e glassmorphism são anti-padrão em qualquer camada — inclusive na ilustração (§7).
-- **Contraste por cor chapada, nunca por luz.** Nenhum brilho, nenhum halo.
+- **Sem sombra como recurso principal.** Hairline (1px, `mist`) é o divisor. Sombra difusa e
+  glassmorphism são anti-padrão em qualquer camada — inclusive na ilustração (§7). Gradiente e
+  glow têm uma exceção estreita e nomeada — §4.5.
+- **Contraste por cor chapada, nunca por luz — exceto na camada de ambiente da §4.5.** Nenhum
+  brilho, nenhum halo, em componente ou texto.
 - **Um acento por composição.** Lime marca ação ou conquista real — nunca cor ambiente.
 
 ### 4.4. Anti-padrões — escopados por camada desde a redação
 
-| Anti-padrão                                    | Onde vale                | Por quê                                                                                              |
-| ---------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------- |
-| Gradiente contínuo em superfície de UI         | sistema                  | não tem par de token; sai do gate de contraste automatizado (R6/R7 do ledger)                        |
-| Radius acima de 2px fora das exceções nomeadas | sistema                  | assinatura revogada — "botão pílula" e radius alto liam como template genérico                       |
-| Sombra difusa, glow, glassmorphism             | sistema **e** ilustração | proibido nas duas — na ilustração, profundidade é degrau de tom (§7.2), nunca sombra                 |
-| Palavra-destaque em serif itálico              | sistema                  | revogada na v2.0                                                                                     |
-| Curva orgânica livre                           | sistema **e** ilustração | a única curva do sistema é o quarto de arco do símbolo (§6.1); corte de papel é reto ou a 45° (§7.5) |
-| Texto renderizado dentro de imagem gerada      | ilustração               | gerador erra tipografia; a marca tem tipografia própria — o alt-text carrega a informação verbal     |
+| Anti-padrão                                               | Onde vale                | Por quê                                                                                                                                     |
+| --------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gradiente contínuo em componente ou atrás de texto direto | sistema                  | não tem par de token; sai do gate de contraste automatizado (R6/R7 do ledger). Exceção estreita para camada de ambiente de fundo — §4.5     |
+| Radius acima de 2px fora das exceções nomeadas            | sistema                  | assinatura revogada — "botão pílula" e radius alto liam como template genérico                                                              |
+| Sombra difusa, glassmorphism                              | sistema **e** ilustração | proibido nas duas — na ilustração, profundidade é degrau de tom (§7.2), nunca sombra. Glow tem a mesma exceção estreita de gradiente — §4.5 |
+| Palavra-destaque em serif itálico                         | sistema                  | revogada na v2.0                                                                                                                            |
+| Curva orgânica livre                                      | sistema **e** ilustração | a única curva do sistema é o quarto de arco do símbolo (§6.1); corte de papel é reto ou a 45° (§7.5)                                        |
+
+### 4.5. Exceção nomeada — gradiente e glow ambiente de fundo
+
+**Revogação de 04/09/2026** (`REVOGACOES.md` H8): a proibição total de gradiente/glow no
+sistema, em vigor desde a v2.0, é substituída por uma exceção estreita — mecanismo adotado de
+`design_stitch.md` ("glow ambient lights", radial-gradient de baixa opacidade atrás da
+composição), adaptado para não reabrir R6/R7 do ledger (gradiente sem par de token escapando do
+gate de contraste automatizado).
+
+Regras, todas obrigatórias para a exceção valer:
+
+1. **Só como camada de ambiente**, na base do empilhamento visual (abaixo de todo conteúdo) —
+   nunca em card, botão, input, badge, tag ou pattern. Continua proibido em qualquer componente
+   interativo ou de conteúdo, sem exceção.
+2. **Nunca atrás de texto direto.** Todo texto precisa continuar resolvendo contraste contra um
+   fundo sólido de token conhecido — se a região tem texto, ela tem uma superfície sólida entre
+   o texto e o gradiente (um card, uma banda de cor chapada), nunca o gradiente cru atrás da
+   letra. Isso é o que impede o gate de contraste de ficar cego: nenhum texto real se apoia na
+   cor do gradiente.
+3. **Radial, baixa opacidade, cor de token — nunca hex novo.** Tokens `illustration`-like:
+   grupo `gradient.ambient.*` (§ tokens), alias de cor existente (`forest.700`, `lime.500`),
+   opacidade máxima 0,25, raio generoso (blur forte — é ambiente, não forma).
+4. **Um por seção**, no máximo dois em cantos opostos (mecanismo do hero de `design_stitch.md`)
+   — nunca um campo de gradientes cobrindo tudo.
+
+Isto não reabre glassmorphism nem sombra difusa em componente: a exceção é só para a camada de
+ambiente atrás da composição, e só nos dois tokens declarados abaixo.
+| Texto renderizado dentro de imagem gerada | ilustração | gerador erra tipografia; a marca tem tipografia própria — o alt-text carrega a informação verbal |
 
 ---
 
@@ -463,7 +492,8 @@ citados em rodadas anteriores nunca existiram (ver `04-cleanup.md` da rodada ant
 - [ ] Cor: só tokens de `brand/tokens/syntaxis.tokens.json`
 - [ ] Tipografia: Space Grotesk / Hanken Grotesk / Space Mono, sem exceção
 - [ ] Radius: 0–2px, exceções nomeadas em §4.3
-- [ ] Sem sombra difusa, glow, gradiente, glassmorphism — em nenhuma camada
+- [ ] Sem sombra difusa nem glassmorphism — em nenhuma camada. Gradiente/glow só na camada de
+      ambiente de fundo (§4.5), nunca em componente, nunca atrás de texto direto
 - [ ] Se houver padrão geométrico, é um só, na opacidade certa (§6.5)
 - [ ] Ilustração de collage: só em `pipelines/hemingway`, nunca em app ou site
 - [ ] Toda ilustração dentro de frame radius 0, hairline 1px, sem sangria

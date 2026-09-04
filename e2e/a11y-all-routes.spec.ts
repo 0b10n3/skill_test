@@ -59,6 +59,14 @@ for (const colorScheme of ['light', 'dark'] as const) {
 test.describe('navegação manual por teclado (além do /quiz, já coberto no Épico 5)', () => {
   test('/ — CTA alcançável e ativável só com Tab + Enter', async ({ page }) => {
     await page.goto('/');
+    // Épico 29: SiteHeader (logo, link para "/") e ThemeToggle agora vêm
+    // antes do conteúdo da página no DOM, nessa ordem — três Tabs, não
+    // um, chegam ao CTA. Mudança correta de ordem de navegação, não
+    // regressão: os dois elementos precisam ser alcançáveis por teclado
+    // tanto quanto o CTA (confirmado manualmente, tab order estável:
+    // header → toggle → CTA).
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     const isCtaFocused = await page.evaluate(
       () => document.activeElement?.textContent?.trim() === 'Iniciar avaliação',
