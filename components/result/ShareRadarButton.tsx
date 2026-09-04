@@ -50,7 +50,13 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-/** Um canto da moldura nó-e-galho, espelhado conforme o canto do card. */
+/**
+ * Um canto da moldura nó-e-galho, espelhado conforme o canto do card. A
+ * mesma string de path (`layout.d`) que alimenta `PatternNodeBranch.tsx`
+ * em SVG vira um `Path2D` aqui — uma só geometria pura, dois consumidores
+ * (DESIGN.md §6.2). Sem círculo por nó: a dobra é o encontro dos
+ * segmentos do próprio path.
+ */
 function drawNodeBranchCorner(
   ctx: CanvasRenderingContext2D,
   layout: NodeBranchLayout,
@@ -68,22 +74,7 @@ function drawNodeBranchCorner(
 
   ctx.strokeStyle = color;
   ctx.lineWidth = 1.5 / FRAME_SCALE;
-  for (const edge of layout.edges) {
-    const from = layout.nodes[edge.from];
-    const to = layout.nodes[edge.to];
-    ctx.beginPath();
-    ctx.moveTo(from.x, from.y);
-    ctx.lineTo(to.x, to.y);
-    ctx.stroke();
-  }
-
-  ctx.fillStyle = color;
-  const nodeRadius = 2.5 / FRAME_SCALE;
-  for (const node of layout.nodes) {
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
-    ctx.fill();
-  }
+  ctx.stroke(new Path2D(layout.d));
   ctx.restore();
 }
 

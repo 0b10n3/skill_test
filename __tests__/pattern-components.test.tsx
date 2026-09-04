@@ -33,13 +33,18 @@ describe('PatternNodeBranch', () => {
     expect(container.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
   });
 
-  it('cada nó e galho referencia os tokens pattern.nodeBranch via var(), nunca um valor copiado', () => {
+  it('o path do padrão referencia os tokens pattern.nodeBranch via var(), nunca um valor copiado', () => {
     const { container } = render(<PatternNodeBranch context="decorative" />);
-    const circle = container.querySelector('circle');
-    const line = container.querySelector('line');
-    expect(circle?.getAttribute('r')).toBe('var(--pattern-node-branch-node-radius)');
-    expect(circle?.getAttribute('fill')).toBe('var(--pattern-node-branch-color)');
-    expect(line?.getAttribute('stroke-width')).toBe('var(--pattern-node-branch-stroke-width)');
+    const path = container.querySelector('path');
+    expect(path?.getAttribute('stroke')).toBe('var(--pattern-node-branch-color)');
+    expect(path?.getAttribute('stroke-width')).toBe('var(--pattern-node-branch-stroke-width)');
+    expect(path?.getAttribute('fill')).toBe('none');
+  });
+
+  it('nunca desenha nó como círculo — a dobra é só o encontro de dois segmentos do path (DESIGN.md §6.2)', () => {
+    const { container } = render(<PatternNodeBranch context="decorative" />);
+    expect(container.querySelector('circle')).toBeNull();
+    expect(container.querySelector('line')).toBeNull();
   });
 });
 
