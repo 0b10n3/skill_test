@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import { SpeedInsights as VercelSpeedInsights } from '@vercel/speed-insights/next';
-import { Hanken_Grotesk, Space_Grotesk, Space_Mono } from 'next/font/google';
+import { IBM_Plex_Mono, Montserrat, Source_Sans_3 } from 'next/font/google';
 import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider';
 import { ConsentBanner } from '@/components/analytics/ConsentBanner';
 import { SiteHeader } from '@/components/site-header';
@@ -10,24 +10,24 @@ import { QuizAnswersProvider } from '@/lib/quiz-context';
 import { getSiteUrl } from '@/lib/site-url';
 import './globals.css';
 
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
   weight: ['500', '700'],
   display: 'swap',
   fallback: ['Arial', 'sans-serif'],
 });
 
-const hankenGrotesk = Hanken_Grotesk({
-  variable: '--font-hanken-grotesk',
+const sourceSans3 = Source_Sans_3({
+  variable: '--font-source-sans-3',
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   display: 'swap',
   fallback: ['system-ui', 'sans-serif'],
 });
 
-const spaceMono = Space_Mono({
-  variable: '--font-space-mono',
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: '--font-ibm-plex-mono',
   subsets: ['latin'],
   weight: ['400', '700'],
   display: 'swap',
@@ -49,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} ${spaceMono.variable}`}
+      className={`${montserrat.variable} ${sourceSans3.variable} ${ibmPlexMono.variable}`}
       suppressHydrationWarning
     >
       <body className="font-sans antialiased">

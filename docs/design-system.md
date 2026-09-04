@@ -105,7 +105,7 @@ serem geradas.
 o símbolo oficial já existe — `brand/LOGO/symbol-master.svg`, geometria
 medida em `DESIGN.md` §6.1 — mas ainda não foi trazido para este app.
 `components/logo.tsx` renderiza um wordmark tipográfico (`Syntaxis` em
-Space Grotesk bold — sem itálico, DESIGN.md v3.0 §4.2 —, cor
+Montserrat bold — sem itálico, DESIGN.md v3.0 §4.2 —, cor
 `--link-foreground` — Forest no claro, Grove no escuro) como placeholder
 funcional; `app/icon.svg` é um favicon geométrico placeholder pela mesma
 razão. Esta seção será reescrita quando o Épico 25 substituir o

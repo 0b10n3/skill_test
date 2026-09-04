@@ -57,5 +57,6 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 29. `epico-29-hero-fundo-header.md` — Hero com fotografia de pessoas (duotone), remoção do `PatternNodeBranch` decorativo (substituído por `gradient.ambient` + `reticula.fine`), header universal nas 4 rotas do funil
 30. `epico-30-ajustes-hero-header.md` — Correção do duotone escuro do hero (par de hex invertido no Épico 29), foto em proporção vertical (4:5), superfície sólida no `SiteHeader`
 31. `epico-31-pattern-mesh.md` — `PatternNodeBranch` → `PatternMesh` (malha quadriculada), sincronizando a revogação já formalizada em `brand/DESIGN.md` §6 (REVOGACOES.md H9)
+32. `epico-32-troca-tipografia.md` — Space Grotesk/Hanken Grotesk/Space Mono → Montserrat/Source Sans 3/IBM Plex Mono, sincronizando a revogação já formalizada em `brand/DESIGN.md` §4.2 (REVOGACOES.md H10)
 
 Cada arquivo segue o mesmo formato: Objetivo → Escopo → Critérios de aceite → Testes obrigatórios → Gate de validação → Boas práticas aplicadas.

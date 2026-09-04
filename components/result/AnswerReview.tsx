@@ -16,7 +16,7 @@ import type { KnowledgeCategory, QuestionReviewItem } from '@/lib/types';
 
 const GABARITO_VALUE = 'gabarito';
 
-/** Termos técnicos/código embutidos na explicação (S6, Épico 18) em Space Mono. */
+/** Termos técnicos/código embutidos na explicação (S6, Épico 18) em IBM Plex Mono. */
 function ExplanationText({ text }: { text: string }) {
   return (
     <>

@@ -43,7 +43,7 @@ export const DIMENSAO_ASSET_SLUG: Partial<Record<KnowledgeCategory, string>> = {
 
 /**
  * Faixa de números da landing (DESIGN.md v1.1 §4.4.5) — cada item vira um
- * bloco `statNumber` (Space Mono) individual, não uma única linha de texto.
+ * bloco `statNumber` (IBM Plex Mono) individual, não uma única linha de texto.
  * Os 5 níveis são os `SeniorityLevel` reais do produto (aspirante,
  * estagiário, júnior, pleno, sênior — lib/types.ts).
  */

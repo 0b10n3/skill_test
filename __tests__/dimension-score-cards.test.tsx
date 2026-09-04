@@ -38,7 +38,7 @@ describe('DimensionScoreCards', () => {
     expect(screen.getAllByText('Ponto de atenção')).toHaveLength(2);
   });
 
-  it('S3 (Épico 18): "N/total" usa a escala tipográfica dataXl (Space Mono)', () => {
+  it('S3 (Épico 18): "N/total" usa a escala tipográfica dataXl (IBM Plex Mono)', () => {
     const dimensoes = makeDimensoes();
     const { container } = render(<DimensionScoreCards dimensoes={dimensoes} />);
 
