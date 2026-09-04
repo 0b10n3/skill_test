@@ -6,7 +6,6 @@ import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider';
 import { ConsentBanner } from '@/components/analytics/ConsentBanner';
 import { SiteHeader } from '@/components/site-header';
 import { ThemeProvider } from '@/components/theme-provider';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { QuizAnswersProvider } from '@/lib/quiz-context';
 import { getSiteUrl } from '@/lib/site-url';
 import './globals.css';
@@ -56,9 +55,6 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <ThemeProvider>
           <SiteHeader />
-          <div className="fixed top-3 right-3 z-50 print:hidden">
-            <ThemeToggle />
-          </div>
           <QuizAnswersProvider>{children}</QuizAnswersProvider>
           <AnalyticsProvider />
           <ConsentBanner />

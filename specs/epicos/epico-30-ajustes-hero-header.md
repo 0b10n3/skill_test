@@ -127,3 +127,21 @@ resto da composição do hero (headline, CTA, eyebrow).
   sobre fundo escuro. O padrão correto, já em uso por `hero-landing` dark e `radar-card-textura`
   dark (`dark:#00120A` = `color.theme.dark.background`, `light:#2D9E67` = Grove), não foi seguido
   na ocasião. Corrigido reprocessando o mesmo raw aprovado com o par certo.
+
+## Revisão pós-founder (mesmo PR, print anexado após a primeira rodada)
+
+Foto e contraste aprovados sem ressalva. O header, porém, ainda não estava certo: a caixa isolada
+em torno do logo (`bg-card` só ao redor do `<Logo/>`, ver revisão original acima) lia como um
+elemento solto, não como uma barra de navegação. Pedido: aspecto de menu bar, de ponta a ponta.
+
+- `SiteHeader`: de uma caixa `top-3 left-3` só com o logo para uma barra `fixed inset-x-0 top-0`
+  (`bg-card`, `border-b border-border`, sem sombra) cobrindo a largura inteira da viewport.
+- `ThemeToggle` migrou de um `fixed top-3 right-3` separado (em `app/layout.tsx`) para dentro da
+  própria barra, ao lado do logo — um elemento de chrome, não dois flutuando em cantos
+  diferentes. `app/layout.tsx` não renderiza mais `ThemeToggle` isoladamente.
+- Continua `fixed`, não `sticky`/em fluxo do documento — a regra de single-viewport do `/quiz`
+  (`h-dvh`, Épico 4) depende disso: um elemento fora do fluxo não soma em `scrollHeight`.
+  Reconfirmado manualmente (`document.documentElement.scrollHeight === clientHeight` em 375×667)
+  e pela suíte (`quiz-flow.spec.ts` segue verde).
+- Ordem de tab inalterada (header → toggle → CTA) — `ThemeToggle` continua depois do link do logo
+  no DOM, só migrou de arquivo.
