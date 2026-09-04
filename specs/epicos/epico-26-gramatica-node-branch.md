@@ -76,13 +76,40 @@ permitida.
 
 ## Gate de validação
 
-- [ ] Linter de ângulo/módulo verde contra o layout gerado.
-- [ ] Zero `<circle>` de nó no SVG renderizado.
-- [ ] Snapshot de `pattern-layouts.test.ts` revisado e aceito deliberadamente.
-- [ ] `lint`, `typecheck`, `test`, `build` verdes.
-- [ ] Revisão visual do padrão em `/dev/ui` e nos dois usos de produção — confirmar que não
-      lê como ornamento estranho numa malha densa (risco 5.3 nomeado na autocrítica da rodada 2
-      de marca: "o quarto de arco repetido pode ler como ornamento — nenhum render de
-      densidade em página cheia foi feito". Este épico é o primeiro render real; se o risco se
-      confirmar, registrar achado antes de prosseguir, não ignorar).
-- [ ] PR aberto contra `main`, nenhum commit direto.
+- [x] Ângulo/módulo/arco verificados por teste dedicado (`pattern-layouts.test.ts`, dois casos
+      novos: todo segmento reto tem ângulo 0/45/90/135° mod 180° e comprimento = módulo; toda
+      terminação em arco tem corda = módulo·√2) — não escrevi um script `lint-patterns.mjs`
+      separado porque o teste já cobre exatamente essa garantia, e um segundo mecanismo
+      checando a mesma coisa seria duplicação, não robustez.
+- [x] Zero `<circle>`/`<line>` de nó no SVG renderizado — teste dedicado confirma.
+- [x] Snapshot de `pattern-layouts.test.ts` revisado e aceito deliberadamente (dois casos:
+      `default/field` e `default/corner`) — geometria inspecionada linha a linha antes de
+      aceitar, não só regenerada às cegas.
+- [x] `lint`, `typecheck`, `test` (191/191, +2 novos), `build` (prebuild completo),
+      `format:check` verdes.
+- [x] `npx playwright test e2e/dev-ui-catalog.spec.ts` — 7/7 verdes, incluindo os quatro
+      snapshots visuais (a mudança de gramática não estourou a tolerância de diff do teste).
+- [x] Revisão visual real via screenshot Playwright em `/dev/ui`, elemento por elemento —
+      confirmado: o padrão lê como estrutura de galhos com terminação em curva, não como
+      ornamento estranho. **O risco 5.3 da autocrítica da rodada 2 de marca não se confirmou**
+      nesta densidade/escala — registrado aqui como o primeiro render real que responde a essa
+      dúvida.
+- [x] PR aberto contra `main`, empilhado sobre os Épicos 24/25.
+
+## Decisões de implementação não fechadas pela spec original
+
+A spec original deixava em aberto *como exatamente* direções e comprimentos seriam sorteados.
+Decisões tomadas, documentadas para quem for mexer depois:
+
+- **Comprimento constante = módulo** (não decaindo por densidade como o gerador antigo) — mais
+  simples, e "múltiplo inteiro do módulo" fica trivialmente verdadeiro sem precisar validar uma
+  progressão.
+- **Direção do galho-filho = direção do pai + turno em {−45°, 0°, +45°}** (ou só {−45°,+45°}
+  para densidade 2) — ecoa o próprio chevron do símbolo (duas diagonais a partir de um ponto),
+  em vez de turnos maiores como ±90°, que dispersariam a malha rápido demais no canvas de
+  200×200.
+- **Arco terminal com lado (`sweep`) sorteado pelo PRNG**, não fixo — evita que toda folha da
+  árvore curve para o mesmo lado, o que leria como padrão mecânico repetido em vez de orgânico.
+- **Poda ocasional (15% de chance por galho candidato)** — sem isso a malha "dense" fica densa
+  demais e compete com o texto mesmo na opacidade mínima; poda é mais simples que recalibrar
+  profundidade por densidade.
