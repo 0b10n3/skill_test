@@ -369,7 +369,7 @@ pixel em 768px (tablet) para Landing/Quiz/Lead
 (`e2e/resultado-visual.spec.ts`) — antes só 375/1440px cobriam screenshot,
 768px só tinha a checagem funcional de overflow.
 
-### 5. Auditoria de marca (REDESIGN.md §2 / DESIGN.md §7)
+### 5. Auditoria de marca (REDESIGN.md §2 / DESIGN.md §10)
 
 - `npm run lint:colors` — zero cores hardcoded fora dos tokens.
 - `npm run lint:patterns` — zero peças combinando mais de um padrão
@@ -385,7 +385,7 @@ pixel em 768px (tablet) para Landing/Quiz/Lead
   progresso do quiz, N/total dos cards de dimensão, prioridades e termos de
   código do gabarito (`font-data`/`font-mono`, ambos resolvem para
   `--font-space-mono`).
-- Checklist editorial `DESIGN.md` §7 sobre todo o conteúdo do produto
+- Checklist editorial `DESIGN.md` §10 sobre todo o conteúdo do produto
   (`content/*.ts` + strings literais em `components/result/*.tsx`,
   `app/**/*.tsx`): nenhuma promessa de promoção/salário, nenhum emoji em
   material técnico, nenhum nome comercial em inglês, nenhuma frase

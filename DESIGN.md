@@ -1,51 +1,75 @@
 # Syntaxis — DESIGN.md
 
 **Manual de Marca** · Fonte única da verdade para identidade visual, voz e aplicação de marca
-**v2.0** · Três mudanças estruturais por decisão do founder, a partir de novas referências aprovadas: **(1)** a família Amber sai e entra a família **Lime** como cor de energia/conquista — Forest e Grove permanecem intocados; **(2)** cantos retos em todos os componentes (radius 0–2px); **(3)** tipografia modernizada — **Space Grotesk** (display) + **Hanken Grotesk** (corpo) + **Space Mono** (dados, mantida). Voz (§3) e sistema de padrões (§5, exceto cor da linha de conquista) inalterados.
-
----
-
-> Este documento consolida e substitui a camada de marca de `syntaxis_brand_book_v1.md` para o novo momento da Syntaxis: **plataforma de treinamento técnico para profissionais do mercado de capitais brasileiro**.
->
-> **A leitura da v2.0:** o lime sobre verde-escuro recupera o DNA da identidade original da Syntaxis ("O Sinal no Escuro") — o sinal luminoso sobre o fundo profundo — agora dentro do sistema Forest/Grove consolidado. Os cantos retos e a grotesca técnica deslocam a marca do território "template amigável" para o território "instrumento de precisão": mais terminal financeiro, menos SaaS genérico. É a mesma tese do produto (rigor + leveza) expressa em forma.
+**v3.0** · 04/09/2026 — documento reescrito do zero, rodada 3.
 
 ---
 
 ## Sumário
 
-0. [O que mudou e por quê](#0-o-que-mudou-e-por-quê)
+0. [O que esta versão é](#0-o-que-esta-versão-é)
 1. [Fundamentos da Marca](#1-fundamentos-da-marca)
-2. [Público — a moldura de marca sobre `AUDIENCES.md`](#2-público--a-moldura-de-marca-sobre-audiencesmd)
+2. [Público](#2-público--a-moldura-de-marca-sobre-audiencesmd)
 3. [Personalidade e Voz](#3-personalidade-e-voz)
 4. [Identidade Visual](#4-identidade-visual)
-5. [Sistema de Padrões Geométricos](#5-sistema-de-padrões-geométricos)
-6. [Aplicação em Materiais de Curso](#6-aplicação-em-materiais-de-curso)
-7. [Checklist Rápido](#7-checklist-rápido)
-8. [Lacunas Abertas](#8-lacunas-abertas)
+5. [O contrato de camadas](#5-o-contrato-de-camadas)
+6. [Sistema de padrões](#6-sistema-de-padrões)
+7. [Camada de ilustração — collage / paper cut](#7-camada-de-ilustração--collage--paper-cut)
+8. [Acessibilidade — alvo declarado](#8-acessibilidade--alvo-declarado)
+9. [Aplicação em materiais de curso](#9-aplicação-em-materiais-de-curso)
+10. [Checklist rápido](#10-checklist-rápido)
+11. [Lacunas abertas](#11-lacunas-abertas)
 
 ---
 
-## 0. O que mudou e por quê
+## 0. O que esta versão é
 
-### Histórico de versões da camada visual
+### Escopo da reescrita
 
-| Versão   | Mudança                                                                                                                                                                                             |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1.0     | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber                                                                                                 |
-| v1.1     | Regras de composição digital (§4.3–§4.6): assinaturas visuais e anti-padrões de "design de IA"                                                                                                      |
-| **v2.0** | **Amber → Lime** (Forest/Grove intocados) · **cantos retos** · **tipografia grotesca moderna**. As assinaturas e anti-padrões da v1.1 permanecem, recalibrados para o novo vocabulário (§4.4–§4.5). |
+Esta é a terceira reescrita completa da marca a partir de evidência, não a primeira — e a
+segunda vez que a árvore de `brand/` é esvaziada e reconstruída do zero em vez de emendada.
+Nenhum invariante mudou nesta rodada: Forest, Grove e Lime, o trio tipográfico, a voz da §3, a
+promessa da §1.3 e o conceito unificador nó-e-galho seguem exatamente os mesmos que a rodada
+anterior já havia herdado da v1.0/v1.1. O que mudou, e por quê:
 
-### O pivô de produto (mantido da v1.0)
+| # | O que mudou | Por quê |
+| --- | --- | --- |
+| 1 | O sistema de padrões continua reconstruído sobre a geometria **medida diretamente** do símbolo (não herdada como afirmação) — módulo M≈40,24u, ângulos 0°/90°/±45°, terminação em quarto de arco | remedido nesta rodada a partir do `d=` de `symbol-master.svg`: quatro medidas caem dentro de 3% do módulo, e o pattern em produção não compartilhava nenhuma delas (§6.1) |
+| 2 | A camada de ilustração — collage/paper cut, profundidade por degrau de tom, sem sombra — **passa a existir só em `pipelines/hemingway`** | decisão do founder, 03–04/09/2026: nunca em `apps/skill_test`, nunca no site. Substitui a versão anterior, que incluía ilustração de produto (estados de app, hero de site) no mesmo vocabulário |
+| 3 | O sistema de padrões continua em **duas** famílias (`nodeBranch`, `reticula`), mas `reticula` volta a ser **só sistema** — a variante grossa como matéria de ilustração compartilhada foi depreciada | com a ilustração restrita a `hemingway`, a ponte que justificava um pattern com dupla expressão perdeu o consumidor (`03-proposta.md` A6) |
+| 4 | Nenhuma peça de ilustração herdada de rodada anterior é reaproveitada — todo o kit de collage começa vazio | decisão do founder: peça nova só é gerada por necessidade real de publicação, nunca para preencher amostra |
 
-| Antes (Substack de investimentos)                | Agora (plataforma de treinamento)                                                                                     |
-| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| Público: investidores pessoa física              | Público: estagiários e analistas do mercado de capitais brasileiro                                                    |
-| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA, para alcançar o próximo nível da carreira |
-| Formato: newsletter editorial                    | Formato: aulas expositivas + cases reais + skills de IA entregáveis                                                   |
-| Metodologia implícita                            | Metodologia explícita e rigorosa (`METHODOLOGY.md`)                                                                   |
-| Voz: analítica e humana                          | Voz: **técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada**                                      |
+O sistema de padrões segue em **duas** famílias, não três — `growthLine` continua fora dele,
+reclassificada como marca de dado desde a rodada anterior.
 
-O nome "Syntaxis" segue sustentando o sistema: árvore sintática, AST, árvore de decisão — três leituras, uma forma (§5.1).
+### Histórico de versões
+
+| Versão | Mudança |
+| --- | --- |
+| v1.0 | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber |
+| v1.1 | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA" |
+| v2.0 | Amber → Lime (Forest/Grove intocados) · cantos retos · tipografia grotesca moderna |
+| v2.1 | Revisão de coerência cross-superfície; `APLICACAO.md` passa a governar superfícies de terceiros |
+| v3.0 (rodada 2) | Documento reescrito do zero. Patterns reconstruídos sobre a geometria do símbolo; contrato de camadas explícito; ilustração unificada em collage/paper cut (então ainda incluindo produto); alvo de acessibilidade declarado. Nunca chegou a sincronizar com `apps/skill_test/main` antes de a árvore ser esvaziada para esta rodada |
+| **v3.0 (rodada 3, este documento)** | **Reescrito de novo do zero**, não emendado sobre a rodada anterior — o founder apagou a árvore de `brand/` inteira entre as duas rodadas e pediu reconstrução, confiando no histórico do git como arquivo. Mesmo número de versão maior (v3.0) porque nenhum consumidor real chegou a depender de uma v3.0 anterior publicada. Mudança de conteúdo: ilustração restrita a `hemingway` (item 2 acima); `reticula.coarse` depreciada; nenhuma peça de ilustração herdada |
+
+**Por que reescrever em vez de emendar, de novo.** O ledger desta rodada
+(`brand/_arquivo/DECISOES-HERDADAS.md`) registra 27 restrições medidas, 12 armadilhas de
+varredura e a autocrítica de 5 pontos que a rodada anterior deixou escrita sobre sua própria
+proposta — inclusive o risco, nomeado por ela mesma, de que collage destoe do posicionamento de
+rigor técnico se a fronteira entre camadas não for policiada. A decisão desta rodada de
+restringir ilustração a um único repositório é, em parte, resposta a esse risco: menos
+superfície onde a fronteira pode vazar.
+
+### O pivô de produto (mantido desde a v1.0)
+
+| Antes (Substack de investimentos) | Agora (plataforma de treinamento) |
+| --- | --- |
+| Público: investidores pessoa física | Público: estagiários e analistas do mercado de capitais brasileiro |
+| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA |
+| Formato: newsletter editorial | Formato: aulas expositivas + cases reais + skills de IA entregáveis |
+| Metodologia implícita | Metodologia explícita e rigorosa (`education/METHODOLOGY.md`) |
+| Voz: analítica e humana | Voz: técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada |
 
 ---
 
@@ -55,57 +79,71 @@ O nome "Syntaxis" segue sustentando o sistema: árvore sintática, AST, árvore 
 
 **Estrutura que vira competência.**
 
-A Syntaxis existe para transformar a estrutura de uma decisão real de mercado — com toda a sua ambiguidade institucional brasileira — em uma capacidade técnica nova e verificável no trabalho.
+A Syntaxis existe para transformar a estrutura de uma decisão real de mercado — com toda a sua
+ambiguidade institucional brasileira — em uma capacidade técnica nova e verificável no
+trabalho.
 
 ### 1.2. Estrutura Estratégica
 
-| Pilar               | Definição                                                                                                                                                                                                                |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Propósito**       | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real.    |
-| **Visão**           | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo.                                                      |
-| **Missão**          | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as _skills_ de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
-| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing.                                                |
+| Pilar | Definição |
+| --- | --- |
+| **Propósito** | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real. |
+| **Visão** | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo. |
+| **Missão** | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as skills de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
+| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing. |
 
 ### 1.3. Promessa de Resultado
 
-> _Skills e ferramentas de trabalho real — incluindo IA — para alcançar o próximo nível da carreira._
+> _Skills e ferramentas de trabalho real — incluindo IA — para alcançar o próximo nível da
+> carreira._
 
-Esta é a promessa-guia definida em `MARKETING_REVIEW.md` §4 e deve substituir qualquer formulação genérica ("aprenda finanças", "domine investimentos") em toda peça de copy, aula ou material de curso.
+Esta é a promessa-guia definida em `MARKETING_REVIEW.md` §4 e deve substituir qualquer
+formulação genérica ("aprenda finanças", "domine investimentos") em toda peça de copy, aula ou
+material de curso.
 
-**Regra de verificabilidade:** a promessa é checável na prática do próprio trabalho do aluno (ele sabe se passou a usar a skill ou não) — nunca prometemos número de salário ou promoção que a Syntaxis não controla. Linha vermelha, não sugestão de estilo.
+**Regra de verificabilidade:** a promessa é checável na prática do próprio trabalho do aluno
+(ele sabe se passou a usar a skill ou não) — nunca prometemos número de salário ou promoção que
+a Syntaxis não controla. Linha vermelha, não sugestão de estilo.
+
+> **Nota de ponteiro (mantida desde a v3.0 anterior).** O texto acima é reposto **verbatim** por
+> ser invariante, e por isso a citação `MARKETING_REVIEW.md` foi preservada como está. Esse
+> arquivo não existe com esse nome: o documento é [`strategy/MARKETING.md`](../strategy/MARKETING.md).
+> A promessa e a regra de verificabilidade são o invariante; o caminho não é.
 
 ### 1.4. Valores Fundamentais
 
-#### Rigor sem enfeite
+**Rigor sem enfeite.** Todo conteúdo segue o estado da arte acadêmico — bibliografia real,
+taxonomia de Bloom, cognitive load theory. Rigor não é forma; é a razão pela qual o aluno
+confia no professor híbrido.
 
-Todo conteúdo segue o estado da arte acadêmico — bibliografia real, taxonomia de Bloom, cognitive load theory. Rigor não é forma; é a razão pela qual o aluno confia no professor híbrido.
+**Tensão real, não exercício limpo.** Um case da Syntaxis reconstrói uma decisão sob incerteza
+institucional brasileira. Nunca um enunciado com resposta única.
 
-#### Tensão real, não exercício limpo
+**IA como ferramenta, não como enfeite.** `education/METHODOLOGY.md` trata IA como competência
+entregável. Toda peça de marca trata IA com a mesma seriedade técnica que trata renda fixa ou
+modelagem.
 
-Um case da Syntaxis reconstrói uma decisão sob incerteza institucional brasileira. Nunca um enunciado com resposta única — a competência que importa é decidir e defender, não calcular.
-
-#### IA como ferramenta, não como enfeite
-
-`METHODOLOGY.md` §2 é claro: a IA é competência entregável. Toda peça de marca — copy, curso, material — deve tratar IA com a mesma seriedade técnica que trata renda fixa ou modelagem.
-
-#### Leveza que não abre mão do rigor
-
-Humor e leveza de tom nunca substituem precisão técnica. A leveza vive no _como_ se diz, nunca no _o quê_ se afirma — ver Seção 3.3.
+**Leveza que não abre mão do rigor.** Humor e leveza de tom nunca substituem precisão técnica.
+A leveza vive no *como* se diz, nunca no *o quê* se afirma — §3.3.
 
 ---
 
 ## 2. Público — a moldura de marca sobre `AUDIENCES.md`
 
-`AUDIENCES.md` é o SSOT de segmentação para copy de vendas e continua sendo — este documento não o duplica nem o substitui. Os quatro segmentos (`#Millennials-FEAR`, `#Millennials-GREED`, `#GENZ-FEAR`, `#GENZ-GREED`) seguem governando _estrutura de argumento_ em qualquer peça comercial.
+`strategy/AUDIENCES.md` é o SSOT de segmentação para copy de vendas e continua sendo. Os quatro
+segmentos seguem governando estrutura de argumento em qualquer peça comercial.
 
-O que este `DESIGN.md` acrescenta é a **moldura comum** que sobrevive acima dos quatro eixos:
+O que este documento acrescenta é a moldura comum que sobrevive acima dos quatro eixos:
 
-- O público é sempre um **profissional adulto** (mesmo o estagiário de 19 anos) — `METHODOLOGY.md` §2 exige tratamento andragógico sem exceção.
-- O contexto é sempre o **mercado de capitais brasileiro**, com sua ambiguidade institucional específica (CVM, CMN, Anbima) — nunca conteúdo genérico traduzido.
-- A prova é sempre **verificável no trabalho real** — nunca promessa de resultado financeiro que a Syntaxis não controla.
+- O público é sempre um **profissional adulto**, mesmo o estagiário de 19 anos — tratamento
+  andragógico sem exceção.
+- O contexto é sempre o **mercado de capitais brasileiro**, com sua ambiguidade institucional
+  específica (CVM, CMN, Anbima) — nunca conteúdo genérico traduzido.
+- A prova é sempre **verificável no trabalho real**.
 - O professor é sempre **híbrido** — a autoridade vem da combinação academia + mercado.
 
-**Regra de uso:** ao escrever qualquer peça, primeiro confirme o segmento em `AUDIENCES.md`, depois aplique a voz da Seção 3. Os dois nunca são usados isoladamente.
+**Regra de uso:** confirme o segmento em `AUDIENCES.md`, depois aplique a voz da §3. Os dois
+nunca são usados isoladamente.
 
 ---
 
@@ -113,282 +151,336 @@ O que este `DESIGN.md` acrescenta é a **moldura comum** que sobrevive acima dos
 
 _(Inalterada da v1.0/v1.1 — reproduzida integralmente por ser SSOT.)_
 
-> **Distinção de escopo (acrescentada em 31/08/2026):** esta seção é a voz de **marca e
-> produto** — como a Syntaxis fala em copy, curso e material comercial. Não é a mesma coisa
-> que a voz **autoral** de quem escreve o Substack, documentada em
-> `pipelines/hemingway/estilo/estilo-autoral.md` (a prosa ensaística/pessoal de um autor
-> específico). Os dois convivem porque descrevem coisas diferentes — nenhum substitui o
-> outro. Ao escrever copy/produto, use esta seção; ao escrever um post de Substack, use
-> `estilo-autoral.md`.
+> **Distinção de escopo:** esta seção é a voz de **marca e produto** — como a Syntaxis fala em
+> copy, curso e material comercial. Não é a mesma coisa que a voz **autoral** de quem escreve o
+> Substack, documentada em `pipelines/hemingway/estilo/estilo-autoral.md` (a prosa
+> ensaística/pessoal de um autor específico). Os dois convivem porque descrevem coisas
+> diferentes — nenhum substitui o outro. Ao escrever copy/produto, use esta seção; ao escrever
+> um post de Substack, use `estilo-autoral.md`.
 
 ### 3.1. Arquétipo: O Professor Híbrido
 
-A Syntaxis fala como a pessoa que o mecanismo único do produto descreve: alguém com carreira acadêmica sólida **e** experiência real de mercado, que já viu a ambiguidade institucional brasileira de perto e não tem paciência para conteúdo genérico traduzido — mas também não tem nenhuma necessidade de provar isso sendo solene. É competência confortável consigo mesma.
+A Syntaxis fala como a pessoa que o mecanismo único do produto descreve: alguém com carreira
+acadêmica sólida **e** experiência real de mercado, que já viu a ambiguidade institucional
+brasileira de perto e não tem paciência para conteúdo genérico traduzido — mas também não tem
+nenhuma necessidade de provar isso sendo solene. É competência confortável consigo mesma.
 
 ### 3.2. Os Dois Eixos de Tom
 
-**Técnico e preciso, no estado da arte da academia — sem perder a leveza e o bom humor.** Dois eixos independentes, não um meio-termo:
+**Técnico e preciso, no estado da arte da academia — sem perder a leveza e o bom humor.** Dois
+eixos independentes, não um meio-termo:
 
-| Eixo                | O que significa                                                                                                  | O que NÃO significa                                                              |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| **Rigor acadêmico** | Toda afirmação tem lastro — bibliografia real, dado com fonte, verbo de Bloom correto no objetivo de aprendizado | Jargão por jargão; complicar para parecer inteligente                            |
-| **Leveza e humor**  | Analogias vívidas, autoironia ocasional sobre o próprio mercado financeiro, ritmo de frase que não cansa         | Piada forçada; meme; infantilização; humor que descredibiliza o conteúdo técnico |
+| Eixo | O que significa | O que NÃO significa |
+| --- | --- | --- |
+| **Rigor acadêmico** | Toda afirmação tem lastro — bibliografia real, dado com fonte, verbo de Bloom correto no objetivo de aprendizado | Jargão por jargão; complicar para parecer inteligente |
+| **Leveza e humor** | Analogias vívidas, autoironia ocasional sobre o próprio mercado financeiro, ritmo de frase que não cansa | Piada forçada; meme; infantilização; humor que descredibiliza o conteúdo técnico |
 
-A regra de ouro: **o rigor nunca é sacrificado pela leveza, e a leveza nunca é sacrificada pelo rigor.**
+A regra de ouro: **o rigor nunca é sacrificado pela leveza, e a leveza nunca é sacrificada pelo
+rigor.**
 
 ### 3.3. Onde o humor vive (e onde não vive)
 
-| Local                                                 | Humor permitido?                                               |
-| ----------------------------------------------------- | -------------------------------------------------------------- |
+| Local | Humor permitido? |
+| --- | --- |
 | Abertura de aula ("por que isso importa no trabalho") | Sim — lugar ideal para analogia leve antes do conteúdo técnico |
-| Transições entre blocos de conteúdo                   | Sim, com moderação                                             |
-| Objeções de venda ("acho que já é tarde para mim")    | Sim — reconhecer com leveza antes de responder com dado real   |
-| A tensão institucional de um case                     | **Não** — a ambiguidade regulatória é o ponto pedagógico       |
-| Dado numérico ou afirmação técnica                    | **Não** — precisão em números e fontes é inegociável           |
-| Nota de Ensino (documento para o professor)           | Tom direto e técnico; humor mínimo                             |
+| Transições entre blocos de conteúdo | Sim, com moderação |
+| Objeções de venda ("acho que já é tarde para mim") | Sim — reconhecer com leveza antes de responder com dado real |
+| A tensão institucional de um case | **Não** — a ambiguidade regulatória é o ponto pedagógico |
+| Dado numérico ou afirmação técnica | **Não** — precisão em números e fontes é inegociável |
+| Nota de Ensino (documento para o professor) | Tom direto e técnico; humor mínimo |
 
 ### 3.4. Regras de Vocabulário
 
-- **Português como padrão.** Termos técnicos em inglês quando são o termo de mercado real (_duration_, _case_, _asset_, _trainee_, _yield_) — nunca por afetação.
-- **Nomes comerciais em português.** Nomenclatura interna de projeto pode continuar em inglês, mas nunca vaza para a página de vendas ou para o aluno.
+- **Português como padrão.** Termos técnicos em inglês quando são o termo de mercado real
+  (_duration_, _case_, _asset_, _trainee_, _yield_) — nunca por afetação.
+- **Nomes comerciais em português.** Nomenclatura interna de projeto pode continuar em inglês,
+  mas nunca vaza para a página de vendas ou para o aluno.
 - **Tratamento: "você".** Direto, sem formalidade excessiva.
 - **Sem emoji em material técnico.** Emoji apenas em canais informais.
 - **Todo percentual leva fonte.** Regra universal de marca.
 
 ### 3.5. A voz também é pedagógica
 
-- **Abrir por relevância, não por definição** — nunca comece explicando "o que é" antes de "por que importa agora, no seu trabalho".
-- **Reduzir carga cognitiva extrínseca** — ruído visual e jargão desnecessário são o mesmo erro em contextos diferentes.
-- **Não infantilizar o adulto profissional** — se uma frase soaria estranha dita a um colega de trabalho, não deveria estar em nenhum material da Syntaxis.
+- **Abrir por relevância, não por definição** — nunca comece explicando "o que é" antes de "por
+  que importa agora, no seu trabalho".
+- **Reduzir carga cognitiva extrínseca** — ruído visual e jargão desnecessário são o mesmo erro
+  em contextos diferentes.
+- **Não infantilizar o adulto profissional** — se uma frase soaria estranha dita a um colega de
+  trabalho, não deveria estar em nenhum material da Syntaxis.
 
 ### 3.6. Guia rápido Do / Don't
 
-| Faça                                                       | Não faça                                                 |
-| ---------------------------------------------------------- | -------------------------------------------------------- |
-| Abrir com o problema de mercado antes da definição técnica | Abrir com "Hoje vamos aprender sobre..."                 |
-| Citar a fonte de todo dado numérico                        | Afirmar percentual sem origem rastreável                 |
-| Usar analogia leve para destravar um conceito difícil      | Usar piada que trivializa o risco ou a tensão de um case |
-| Tratar o aluno como colega júnior competente               | Tratar o aluno como leigo total ou como criança          |
-| Nomear trilhas e produtos em português                     | Misturar inglês de vaidade em nome comercial             |
-| Reconhecer a objeção do aluno com leveza antes de rebater  | Ignorar a objeção e insistir só com entusiasmo           |
+| Faça | Não faça |
+| --- | --- |
+| Abrir com o problema de mercado antes da definição técnica | Abrir com "Hoje vamos aprender sobre..." |
+| Citar a fonte de todo dado numérico | Afirmar percentual sem origem rastreável |
+| Usar analogia leve para destravar um conceito difícil | Usar piada que trivializa o risco ou a tensão de um case |
+| Tratar o aluno como colega júnior competente | Tratar o aluno como leigo total ou como criança |
+| Nomear trilhas e produtos em português | Misturar inglês de vaidade em nome comercial |
+| Reconhecer a objeção do aluno com leveza antes de rebater | Ignorar a objeção e insistir só com entusiasmo |
 
 ---
 
 ## 4. Identidade Visual
 
-### 4.1. Paleta — Forest e Grove intocados; Amber → Lime
+### 4.1. Paleta — camada semântica, SSOT em `brand/tokens/syntaxis.tokens.json`
 
-| Nome        | Hex       | Papel                                                                                                                                      |
-| ----------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Forest**  | `#1B6A45` | Âncora — títulos, UI institucional, estrutura                                                                                              |
-| **Grove**   | `#2D9E67` | Estrutura em movimento — links, progresso, padrões, estados ativos                                                                         |
-| **Lime**    | `#CDF163` | **Energia, ação e conquista — o "sinal no escuro".** CTAs, marcadores de headline, números-destaque sobre fundo escuro, selos de conquista |
-| Mint        | `#E6F4EE` | Fundos suaves, cards informativos                                                                                                          |
-| Deep Forest | `#0F3D27` | Superfícies escuras intencionais, bandas                                                                                                   |
-| Chalk       | `#F7F7F5` | Fundo Light Mode                                                                                                                           |
-| Ink         | `#141414` | Fundo Dark Mode; texto sobre fundos claros **e sobre Lime**                                                                                |
-| Slate       | `#4A5568` | Texto secundário — o único cinza de texto permitido                                                                                        |
-| Mist        | `#E2E8F0` | Bordas, hairlines, divisórias                                                                                                              |
+| Papel | Token | Hex |
+| --- | --- | --- |
+| Âncora institucional | `color.forest.500` | `#1B6A45` |
+| Estrutura em movimento | `color.grove.500` | `#2D9E67` |
+| Acento único (ação/conquista) | `color.lime.500` | `#CDF163` |
+| Fundo claro | `color.neutral.chalk` | `#F7F7F5` |
+| Fundo escuro (banda, prancha) | `color.neutral.deepForest` | `#0F3D27` |
+| Fundo escuro máximo contraste | `color.neutral.ink` | `#141414` |
+| Secundário / traço neutro | `color.neutral.slate` | `#4A5568` |
+| Hairline / divisor | `color.neutral.mist` | `#E2E8F0` |
+| Superfície suave | `color.neutral.mint` | `#E6F4EE` |
 
-**Escala Lime** (substitui a escala Amber em todos os usos):
+Forest, Grove e Lime são **invariantes travados**. Qualquer proposta de mudar um hex para
+melhor combinar com uma referência externa (`design_stitch.md` incluído — ver
+`01-referencias.md` I9) é incompatibilidade a registrar, nunca argumento de mudança.
 
-| Token    | Hex       | Uso                                                                                                                               |
-| -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| lime-100 | `#F2FBD9` | Fundos de conquista (assume o papel do antigo Cream)                                                                              |
-| lime-300 | `#DFF7A1` | Realces suaves; hover do botão primário; eyebrow sobre banda escura                                                               |
-| lime-500 | `#CDF163` | **Superfícies e marcadores** — botão primário, highlight de headline, linha de conquista sobre escuro. Texto por cima: sempre Ink |
-| lime-700 | `#5F7D1C` | **Texto lime sobre fundos claros** (AA)                                                                                           |
-| lime-900 | `#3B4E10` | Texto lime de alto contraste                                                                                                      |
+### 4.2. Tipografia
 
-**Regras duras de uso do Lime:**
+| Papel | Família |
+| --- | --- |
+| Display (títulos) | Space Grotesk |
+| Corpo | Hanken Grotesk |
+| Dados / código / mono | Space Mono |
 
-- Lime-500 **nunca** é cor de texto pequeno sobre fundo claro — sobre claro, texto lime usa 700/900; lime-500 vive como superfície, marcador e como texto/traço **sobre fundos escuros** (Deep Forest, Ink), onde ele é o "sinal".
-- Texto sobre superfície lime é **sempre Ink** — nunca Chalk, nunca Forest.
-- O papel simbólico do antigo Amber (conquista real, nunca decoração ambiente) transfere-se integralmente ao Lime: selo ALTO, linha de conquista, badge de conclusão. A diferença é que o Lime acumula também o papel de **ação** (CTAs) — Grove deixa de ser cor de botão primário e concentra-se em estrutura, links e progresso.
-- **Amber e Cream estão aposentados.** Nenhuma peça nova os usa; ocorrências existentes são migradas (Amber→Lime; Cream→lime-100).
+Trio fechado. Sem serif, sem itálico como ênfase (a assinatura "palavra-destaque em serif
+itálico" é revogada desde a v2.0 e continua morta — ver `REVOGACOES.md`).
 
-### 4.2. Tipografia — modernizada
+### 4.3. Geometria — camada de sistema
 
-| Papel         | Fonte (v2.0)               | Substitui        | Uso                                                                                                                       |
-| ------------- | -------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **Display**   | **Space Grotesk**          | DM Serif Display | Headlines, títulos de seção. Grotesca técnica derivada da Space Mono — moderna, levemente retrofuturista, com voz própria |
-| **Body**      | **Hanken Grotesk**         | DM Sans          | Corpo de texto, UI, formulários — workhorse moderna e neutra que deixa o display carregar a personalidade                 |
-| **Data/Code** | **Space Mono** _(mantida)_ | —                | Métricas, código Python/SQL, comandos, paths, eyebrows                                                                    |
+- **Cantos retos, 0–2px.** Exceção nomeada: avatar e o símbolo circular do logo. Controles de
+  seleção nativos (radio, ponto do switch) ganham a mesma exceção estreita, nunca estendida a
+  checkbox, botão, card, input ou tag (decisão do founder, rodada 2, mantida por não haver fato
+  novo que a conteste).
+- **Sem sombra como recurso principal.** Hairline (1px, `mist`) é o divisor. Sombra difusa,
+  glow e glassmorphism são anti-padrão em qualquer camada — inclusive na ilustração (§7).
+- **Contraste por cor chapada, nunca por luz.** Nenhum brilho, nenhum halo.
+- **Um acento por composição.** Lime marca ação ou conquista real — nunca cor ambiente.
 
-Por que este trio: Space Grotesk e Space Mono compartilham DNA (a proporcional deriva da mono) — o par dá coesão display↔dados sem esforço; Hanken Grotesk é neutra o suficiente para não competir com o display. Todas gratuitas no Google Fonts, variáveis, carregáveis via `next/font`. **Sem serif no sistema** e sem itálico em display (Space Grotesk não possui itálico — a ênfase de headline agora é feita por cor/marcador, §4.4.2).
+### 4.4. Anti-padrões — escopados por camada desde a redação
 
-Recomendações práticas:
-
-- Blocos de código: Space Mono, fundo Deep Forest ou Ink, texto Chalk; syntax highlighting com Grove (keywords) e **Lime (strings/valores)**.
-- Nomes de arquivo e comandos inline: Space Mono, nunca em itálico.
-- Pesos: display usa Medium/Bold (500/700) com tracking levemente negativo em tamanhos grandes; corpo usa Regular/Medium; evitar Light em telas.
-
-### 4.3. Hierarquia tipográfica em produto digital
-
-| Papel               | Token (`tokens.json`)                                         | Regra de composição                                                                                                                                                            |
-| ------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Headline de hero    | `displayXxl` (64px desktop / 40px mobile, Space Grotesk Bold) | Uma por página. Sempre com **palavra-destaque** (§4.4.2). Nunca centralizada com dois botões em coluna simétrica — alinhar à esquerda ou compor em grid com evidência ao lado. |
-| Eyebrow de seção    | `eyebrow` (Space Mono, caixa alta, tracking largo)            | Toda seção abre com eyebrow curto ("O QUE AVALIAMOS", "METODOLOGIA", "RESULTADO").                                                                                             |
-| Título de seção     | `displayLg` / `heading1` (Space Grotesk)                      | Display para títulos; Hanken para `heading2` e UI.                                                                                                                             |
-| Número protagonista | `statNumber` / `dataXl` (Space Mono Bold)                     | Todo número que carrega argumento é exibido grande, em mono. Sobre banda escura, números-destaque podem ir em **Lime** — o sinal no escuro.                                    |
-| Corpo               | `bodyLg` / `body` (Hanken Grotesk)                            | Texto secundário exclusivamente em Slate.                                                                                                                                      |
-
-**Regra dura:** se uma página usa apenas os tamanhos default do framework em progressão uniforme, está errada por definição — a escala é a do `tokens.json`, com salto deliberado entre display e corpo.
-
-### 4.4. Assinaturas visuais de produto
-
-Sete dispositivos que tornam uma página reconhecível como Syntaxis. **Toda página pública usa no mínimo três; o hero usa obrigatoriamente 1, 2 e 3.**
-
-1. **Eyebrow mono.** Rótulo curto em Space Mono caixa alta acima de todo título de seção. Cor: Grove-700 sobre claro; Lime-300 sobre banda/dark.
-2. **Palavra-destaque lime.** No headline, **uma** palavra recebe marcador lime — sublinhado espesso (7px, reto), bloco de fundo lime-500 com texto Ink, ou a própria palavra em lime quando sobre fundo escuro. Uma palavra, um dispositivo, nunca a frase inteira. (Substitui a palavra-acento serif itálica da v1.1.)
-3. **Hairlines estruturais.** Linhas finas de 1px (Mist sobre claro; `border` sobre escuro) delimitando colunas, seções e tabelas — o grid é visível, como em terminal/planilha. É a assinatura que os cantos retos pedem: precisão desenhada, não caixas flutuantes.
-4. **Banda escura.** Pelo menos uma seção full-bleed em Deep Forest (ou Ink em contexto de contraste máximo) com texto Chalk por página longa. É o habitat natural do Lime — CTAs, números e a linha de conquista brilham aqui. Nó-e-galho a 30–40% permitido.
-5. **Faixa de números.** Bloco de 2–4 métricas em `statNumber` com legenda `caption`. Sobre claro: números em Ink/Forest sobre Mint; sobre banda escura: números em **Lime**.
-6. **Tile de evidência (bento).** Grid **assimétrico** de cards com **canto reto**, borda 1px Mist, sem sombra por padrão — cada tile mostra conteúdo real do produto (mini-radar, questão real do banco, número do diagnóstico), nunca ícone+título+parágrafo.
-7. **Botão reto.** CTAs retangulares (radius 0–2px). Primário: **lime-500 com texto Ink** — em qualquer tema. Secundário: outline 1.5px Forest sobre claro / Chalk sobre escuro. Nunca pílula (revoga a assinatura 7 da v1.1), nunca o retângulo default de framework com radius intermediário.
-
-### 4.5. Anti-padrões — a lista do "feito por IA"
-
-Proibições verificáveis em revisão de PR. A presença de qualquer item reprova a peça:
-
-- **Grid de três cards idênticos** ícone-título-parágrafo, centrados, com ícone de biblioteca sem tratamento.
-- **Hero centralizado genérico**: título centrado + subtítulo + dois botões, sem evidência, sem palavra-destaque, sem eyebrow.
-- **Cinzas de framework** (`#6B7280`, `#9CA3AF` etc.) — o secundário é Slate `#4A5568`; divisórias são Mist.
-- **Cantos arredondados** em cards, botões, inputs, imagens — o sistema é reto (0–2px). Radius "amigável" (8–16px) agora é anti-padrão. Exceção única: avatares e o símbolo do logo.
-- **Gradientes, glassmorphism, blobs desfocados, glows** — a marca é sólida, plana e geométrica.
-- **Emoji como ícone de feature.**
-- **Sombra como recurso principal** — no sistema reto, o hairline faz o trabalho; sombras só as `shadow.syntaxis*` e com parcimônia.
-- **Progressão uniforme de tamanhos de fonte** sem salto display/corpo.
-- **Espaçamento uniforme entre todas as seções** — o ritmo vem da alternância claro ↔ banda escura.
-- **Ilustração genérica de "finanças"** (moedas, cifrões, candlestick, robôs/cérebros de IA).
-- **Qualquer ocorrência de Amber ou Cream em peça nova.**
-
-### 4.6. Componentes com assinatura
-
-Valores canônicos no `tokens.json` v2.0.0, grupo `component.*`:
-
-| Componente                   | Assinatura Syntaxis v2.0                                                                                                                                                              |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Botão primário**           | Retangular (radius 0), lime-500, texto Ink, Hanken Medium; hover lime-300; foco com `ring` visível. Secundário: outline 1.5px Forest (claro) / Chalk (escuro), texto na cor da borda. |
-| **Card / tile**              | Radius 0, borda 1px Mist, fundo branco ou Mint sobre Chalk; **sem sombra por padrão** (hairline faz o trabalho). No dark: superfície `card`, borda `border`.                          |
-| **Tile de evidência**        | Card acima + conteúdo real do produto; título `heading3`, métrica `dataXl`.                                                                                                           |
-| **Banda**                    | Full-bleed Deep Forest (ou Ink), texto Chalk, eyebrow Lime-300, CTA lime; padding `layout.sectionYStatement`.                                                                         |
-| **Accordion (FAQ/gabarito)** | Hairlines Mist entre itens, sem caixa; indicador +/− em Space Mono; canto reto.                                                                                                       |
-| **Eyebrow**                  | Space Mono 12px, caixa alta, tracking 0.15em; Grove-700 (claro) / Lime-300 (escuro).                                                                                                  |
-| **Faixa de números**         | Fundo Mint (claro) ou banda escura; números `statNumber`; conquista usa lime-100 de fundo ou número em Lime sobre escuro.                                                             |
-| **Input/Select**             | Canto reto, borda 1px `input`, foco com `ring`; label em Hanken Medium.                                                                                                               |
+| Anti-padrão | Onde vale | Por quê |
+| --- | --- | --- |
+| Gradiente contínuo em superfície de UI | sistema | não tem par de token; sai do gate de contraste automatizado (R6/R7 do ledger) |
+| Radius acima de 2px fora das exceções nomeadas | sistema | assinatura revogada — "botão pílula" e radius alto liam como template genérico |
+| Sombra difusa, glow, glassmorphism | sistema **e** ilustração | proibido nas duas — na ilustração, profundidade é degrau de tom (§7.2), nunca sombra |
+| Palavra-destaque em serif itálico | sistema | revogada na v2.0 |
+| Curva orgânica livre | sistema **e** ilustração | a única curva do sistema é o quarto de arco do símbolo (§6.1); corte de papel é reto ou a 45° (§7.5) |
+| Texto renderizado dentro de imagem gerada | ilustração | gerador erra tipografia; a marca tem tipografia própria — o alt-text carrega a informação verbal |
 
 ---
 
-## 5. Sistema de Padrões Geométricos
+## 5. O contrato de camadas
 
-_(Estrutura e regras inalteradas; única mudança: a cor da linha de conquista, antes Amber, agora Lime.)_
+Duas camadas, com fronteira **checável**, não intenção de estilo:
 
-### 5.1. O conceito unificador: nó-e-galho
+- **Camada de sistema** — UI de `apps/skill_test`, o site, componentes, tipografia, patterns
+  funcionais, tabelas, certificado. Plana, geométrica, reta, sem sombra. Sem exceção.
+- **Camada de ilustração** — collage / paper cut, §7. **Existe em um único lugar:
+  `pipelines/hemingway`** — capas editoriais, imagens de post e sua distribuição social
+  (LinkedIn, Instagram, thumbnail de YouTube). Não existe em `apps/skill_test`. Não existe no
+  site `syntaxis.com.br`.
 
-"Syntaxis" é, literalmente, a estrutura que conecta partes para formar sentido — em linguística, uma **árvore sintática**; em computação, uma **AST (Abstract Syntax Tree)**; em finanças, árvores de decisão de crédito e grafos de correlação. Três leituras, uma forma — o padrão nó-e-galho não é decoração genérica de fintech, é a própria palavra "Syntaxis" desenhada.
+Onde as duas se encontrariam, o sistema vence — mas na prática elas quase não se encontram
+mais: a restrição desta rodada elimina a maior parte da fronteira que rodadas anteriores
+precisavam policiar. O que sobra de fronteira real é a distribuição social do conteúdo
+editorial (um post do Substack compartilhado no LinkedIn, por exemplo), onde a ilustração
+segue as mesmas regras de §7 e nunca ganha chrome de produto ao redor.
 
-### 5.2. As três famílias de padrão
+**Regras binárias, verificáveis:**
 
-**1. Nó-e-galho** _(padrão primário)_ — nós (2–3px) conectados por linhas finas (0.5–1pt) em estrutura ramificada. Tom único — Grove sobre Ink, ou Forest sobre Chalk. _Uso:_ capas de módulo, fundo de slide de título/seção, marca d'água em certificados, bandas escuras.
-
-**2. Grade de dados** — dot-grid (~14px) evocando planilha/dataframe, tom único, baixa opacidade. _Uso:_ fundos de conteúdo técnico pesado, apenas em áreas de respiro.
-
-**3. Linha de conquista** — degraus ascendentes, **agora em Lime** (lime-500 sobre superfícies escuras — seu habitat preferencial; lime-700 quando sobre fundo claro), sempre reta e geométrica, nunca curva orgânica, nunca candlestick. _Uso:_ certificados, badges, indicadores de progresso — sempre ligada a conquista real, nunca decoração ambiente.
-
-### 5.3. Matriz de uso
-
-| Contexto                                        | Padrão recomendado                                       | Opacidade                     |
-| ----------------------------------------------- | -------------------------------------------------------- | ----------------------------- |
-| Capa de módulo / slide de título                | Nó-e-galho, canto inferior                               | 25–35%                        |
-| Slide divisor de seção                          | Nó-e-galho, campo completo atrás do painel de cor sólida | 30–40%                        |
-| Banda escura em página web (§4.4.4)             | Nó-e-galho, campo ou canto                               | 30–40%                        |
-| Fundo de slide de conteúdo técnico (SQL/Python) | Grade de dados, apenas nas margens                       | 15–20%                        |
-| Certificado de conclusão                        | Linha de conquista + nó-e-galho como moldura             | 100% (elementos são o design) |
-| Post de rede social — anúncio de módulo         | Nó-e-galho como moldura de canto                         | 40–60%                        |
-| Página de vendas — seção de prova social        | Nenhum padrão                                            | —                             |
-
-### 5.4. Regras de uso
-
-- **Nunca compita com o texto.** Atrás de texto corrido, opacidade máxima de 12%; como elemento isolado, pode ir a 100%.
-- **Um padrão por peça.**
-- **A cor do padrão segue a hierarquia da paleta.** Grove para nós/estrutura; **Lime exclusivamente para o que representa conquista real ou ação**, nunca decoração neutra.
-- **Contraste sempre AA no mínimo**, mesmo em elementos decorativos.
-
-### 5.5. Implementação (CSS / SVG)
-
-```css
-/* Nó-e-galho — token de fundo decorativo */
-.pattern-node-branch {
-  background-image:
-    radial-gradient(circle 2px at 20% 70%, var(--color-grove) 0, transparent 3px),
-    radial-gradient(circle 2px at 45% 55%, var(--color-grove) 0, transparent 3px),
-    radial-gradient(circle 2px at 70% 60%, var(--color-grove) 0, transparent 3px);
-  opacity: 0.12; /* 0.30–0.40 quando protagonista */
-}
-
-/* Grade de dados — dot grid */
-.pattern-data-grid {
-  background-image: radial-gradient(circle 1px, var(--color-mist) 1px, transparent 1px);
-  background-size: 14px 14px;
-  opacity: 0.5;
-}
-```
-
-```xml
-<!-- Linha de conquista — SVG standalone (v2.0: Lime, terminações retas) -->
-<polyline points="0,60 30,60 30,40 60,40 60,25 90,25 90,10 120,10"
-  fill="none" stroke="#CDF163" stroke-width="2"
-  stroke-linejoin="miter" stroke-linecap="square"/>
-```
-
-_(v2.0: `stroke-linejoin`/`linecap` passam a `miter`/`square` — os degraus acompanham os cantos retos do sistema.)_
+| Regra | Como se verifica |
+| --- | --- |
+| Ilustração nunca aparece em `apps/skill_test` ou no site | binário, por repositório/superfície — não por peça |
+| Toda ilustração é contida por um frame retangular, radius 0, hairline 1px | binário, olhando a borda |
+| Nada sangra para fora do frame | binário |
+| Sombra proibida nas duas camadas | binário: qualquer desfoque entre camadas reprova |
+| Amplitude cromática entre 3 e 7 cores ≥1% do quadro | numérico, por quantização (`illustration.maxColors`) |
+| Fundo ≥ 40% do quadro | numérico (`illustration.minBackground`) |
+| Lime ≤ 1% do quadro | numérico (`illustration.accent`, teto medido) |
+| Um matiz de pilha por peça | numérico, por matiz das cores dominantes (`illustration.maxHues`) |
+| Pattern: 0°, 90°, ±45°, comprimento múltiplo do módulo | binário, por linter |
+| Foco com área de perímetro de 2px | numérico (§8) |
 
 ---
 
-## 6. Aplicação em Materiais de Curso
+## 6. Sistema de padrões
 
-| Material                        | Elementos de marca aplicáveis                                                                          |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Notas de estudo (Tufte-handout) | Paleta v2.0, tipografia v2.0 (templates LaTeX a atualizar — §8)                                        |
-| Slides (Beamer/Metropolis)      | Paleta v2.0; `\titleframe`/`\sectionframe`/`\bignumbercard` candidatos ao nó-e-galho de fundo          |
-| Case (documento de decisão)     | Voz da Seção 3, sem padrão decorativo — formato de trabalho real (memorando, nota ao comitê)           |
-| Nota de Ensino                  | Tom técnico e direto, Space Mono para código/dado, sem padrão decorativo                               |
-| Certificado de módulo           | Linha de conquista (Lime) + nó-e-galho como moldura — único material onde os padrões são protagonistas |
+Duas famílias — `nodeBranch` e `reticula`. `growthLine` não é pattern: é marca de dado, sempre
+a 100%, nunca atrás de texto, sempre ligada a conquista verificável (`PriorityCareerSkills.tsx`
+é o uso real em produção).
+
+### 6.1. A geometria do símbolo — medida, não estimada
+
+`brand/LOGO/symbol-master.svg`, dois `<path>` em simetria rotacional de 180°. Lido diretamente
+do `d=` nesta rodada:
+
+| Elemento | Medida | Em módulos (M≈40,24u) |
+| --- | --- | --- |
+| Diagonal do chevron | 56,81u, a exatamente ±45,00° | M·√2 |
+| Segmento vertical | 41,42u | 1,03 M |
+| Barra horizontal | 40,45u | 1,00 M |
+| Quarto de arco | raio 38,92u | 0,97 M |
+
+Quatro medidas dentro de 3% do mesmo módulo. **O quarto de arco é a única curva que o sistema
+inteiro contém.** Preenchimento sólido, sem traço.
+
+### 6.2. `pattern.nodeBranch` — reconstruído sobre a gramática do símbolo
+
+| Propriedade | Regra |
+| --- | --- |
+| Ângulos permitidos | 0°, 90°, ±45° — nada mais |
+| Comprimento de galho | múltiplo inteiro do módulo `m` (token `pattern.nodeBranch.module`) |
+| Nó | a própria dobra — o vértice onde a diagonal encontra o ortogonal. Sem círculo |
+| Terminação | quarto de arco de raio `m` (`pattern.nodeBranch.arcRadius`), a única curva permitida |
+| Cor | `{color.grove.500}` |
+| Opacidade atrás de texto | 0,12, travada em código |
+| Opacidade decorativa | 0,25–0,40 |
+
+`nodeRadius` está `$deprecated` desde a rodada anterior — o nó deixou de ser círculo.
+
+### 6.3. `pattern.reticula` — um primitivo, escala como parâmetro (agora só sistema)
+
+Substitui `dataGrid` (`$deprecated`, ponteiro para `reticula.fine`, valores idênticos).
+
+| Escala | Uso | Estado |
+| --- | --- | --- |
+| `fine` (1px ponto / 14px espaçamento) | camada de sistema — fundo, opacidade 0,15–0,20, sempre dentro de retângulo de canto reto | ativa |
+| `coarse` (4px ponto / 48px espaçamento) | previa matéria de ilustração compartilhada | **`$deprecated` desde v2.3.0** — A6 (separação estrita) elimina o consumidor. Retícula de ilustração agora é construída peça a peça em `brand/ILUSTRACOES/_bloco-marca.md`, não recortada de um asset comum |
+
+### 6.4. Matriz de uso
+
+| Contexto | Pattern | Opacidade | Superfície |
+| --- | --- | --- | --- |
+| Banda escura em página | `nodeBranch`, campo ou canto | 0,25–0,40 | app, site |
+| Atrás de texto corrido | `nodeBranch` | 0,12 | app, site |
+| Respiro em conteúdo denso | `reticula.fine` | 0,15–0,20 | app, site |
+| Painel/tile texturizado dentro de retângulo de canto reto | `reticula.fine` | 0,15–0,20 | app, site |
+| Certificado | `nodeBranch` como moldura + `growthLine` | 1,0 | app |
+| Prova social / página de vendas | nenhum | — | — |
+
+### 6.5. Regra de uso — um pattern por peça
+
+Se uma composição tem padrão geométrico de fundo, é **um só**, na opacidade certa da matriz
+acima — nunca `nodeBranch` e `reticula` sobrepostos na mesma superfície. A exceção nomeada é o
+certificado, onde `nodeBranch` (moldura) e `growthLine` (marca de dado, não pattern) convivem
+por desenho — `growthLine` nunca é decorativo, então não conta como um segundo pattern
+disputando a mesma superfície. Verificável em CI: um componente não importa mais de uma família
+de pattern de `@/components/patterns`.
 
 ---
 
-## 7. Checklist Rápido
+## 7. Camada de ilustração — collage / paper cut
 
-Antes de publicar qualquer peça — copy, slide, case, e-mail, página web:
+**Escopo: `pipelines/hemingway` é o único consumidor.** Nunca `apps/skill_test`. Nunca o site.
+Esta seção descreve construção — a taxonomia e as regras de destino vivem em
+`brand/ILUSTRACOES/README.md` e `_bloco-marca.md`, autossuficientes para um ilustrador ou
+pipeline generativo externo.
 
-- [ ] A promessa de resultado é a da Seção 1.3 — nunca uma genérica?
-- [ ] O segmento de `AUDIENCES.md` está identificado e o eixo (FEAR/GREED) está puro?
-- [ ] O rigor acadêmico está intacto — toda afirmação numérica tem fonte rastreável?
-- [ ] A leveza aparece nos lugares certos (Seção 3.3)?
-- [ ] Nenhuma frase soaria condescendente dita a um colega de trabalho adulto?
-- [ ] Nomes comerciais estão em português?
-- [ ] Se houver padrão geométrico, é um só, na opacidade certa (Seção 5.4)?
-- [ ] A paleta é exatamente Forest/Grove/**Lime** + neutros — **zero Amber/Cream**, nenhuma cor nova?
-- [ ] Cantos retos em todos os componentes (0–2px) — nenhum radius "amigável" sobrou?
-- [ ] Texto sobre lime é Ink; lime-500 não aparece como texto pequeno sobre fundo claro?
-- [ ] A página usa ≥ 3 assinaturas da §4.4 — e o hero usa eyebrow, palavra-destaque e hairlines?
-- [ ] Nenhum item da lista de anti-padrões da §4.5 está presente?
-- [ ] Todo número-argumento está em Space Mono, em tamanho de protagonista?
+### 7.1. Mecanismo de profundidade — degrau de tom, nunca sombra
+
+Confirmado por medição (`01-referencias.md` §1.2, reproduzida nesta rodada): a paleta já
+contém a escada.
+
+| Papel na peça | Tokens | Degrau de luminância |
+| --- | --- | --- |
+| Pilha escura | Ink → Deep Forest → forest.700 → forest.500 | 0,029 · 0,028 · 0,046 |
+| Pilha clara | mist → mint → Chalk | 0,075 · 0,052 |
+| Figura, sobre a pilha | grove.500, grove.300 | +0,150 e +0,225 — salto, não degrau |
+| Acento | lime.500 | +0,283 |
+
+### 7.2. Regras numéricas
+
+1. Máximo um matiz de pilha por peça, mais um neutro estrutural (`illustration.maxHues`).
+2. Entre 3 e 7 cores acima de 1% do quadro (`illustration.maxColors`).
+3. Fundo ocupa no mínimo 40% do quadro (`illustration.minBackground`).
+4. Profundidade é degrau de tom — sombra é anti-padrão, sem exceção.
+5. Lime no máximo 1% do quadro, só em virada/conquista/ação (`illustration.accent`).
+6. Offset de registro tipo risograph, 2–4px, cor chapada.
+
+### 7.3. Borda, textura, granulação
+
+- **Corte a faca**: reto ou a 45°, nunca curva livre.
+- **Rasgo**: vocabulário base em capa editorial; nas demais taxonomias, um por peça.
+- **Retícula**: duas escalas de ponto permitidas na mesma peça quando codificam ordem de
+  camada — construída por peça, não derivada de `pattern.reticula.coarse` (§6.3).
+- **Granulação**: só no fundo, amplitude abaixo de 0,028 (um degrau da escada). Sobrevivência à
+  compressão de LinkedIn/YouTube segue como lacuna (§11).
+
+### 7.4. Escala pequena
+
+Abaixo de 96px não existe ilustração — existe símbolo (`brand/LOGO/`). Thumbnail de YouTube
+(acima do limiar) tem teto de três camadas visíveis.
+
+### 7.5. Descritores proibidos no prompt-kit generativo
+
+`drop shadow`, `soft shadow`, `blur`, `glow`, `rounded corners`, `organic curve`, `gradient`,
+`3D`, `bevel`, `emboss`, `handwritten`, `sketchy`, `text`, `lettering`, `typography`,
+`caricature`, `satirical`.
+
+### 7.6. Estado do kit
+
+Nenhuma peça de ilustração existe hoje. Peça nova é gerada quando houver necessidade real de
+publicação — nunca para preencher amostra (decisão do founder, 04/09/2026).
 
 ---
 
-## 8. Lacunas Abertas
+## 8. Acessibilidade — alvo declarado
 
-1. ~~**SVG master do logo**~~ — **Resolvido em 31/08/2026.** `brand/LOGO/symbol-master.svg`
-   (Forest) e `brand/LOGO/symbol-master-lime.svg` (variante Lime para fundo escuro) —
-   geometria extraída de `favicon.svg` e verificada por render comparativo, não redesenhada.
-   Ambos usáveis em qualquer tamanho e para impressão.
-2. **Nomes comerciais das trilhas** — decisão aberta; a regra (§3.4: português) já está cristalizada.
-3. **Certificado de conclusão** — formato final (PDF, badge digital, ambos) indefinido; na v2.0 usa linha de conquista Lime.
-4. **Migração Amber→Lime e da tipografia nos templates LaTeX** (`syntaxis-notas-v1.tex`, `syntaxis-beamer-v1.tex`) e demais materiais de curso — fora do escopo do app; agendar como revisão própria.
-5. **Assets generativos existentes** — o lote aprovado no pipeline agy foi gerado sob a paleta com Amber; os que contêm Amber precisam de regeração ou recolor (ver épico de implementação).
+**AA + SC 2.4.13**, confirmado por texto normativo do W3C/WAI reconfirmado nesta rodada
+(`02-pesquisa-e-plugins.md` P3).
+
+| Critério | Nível | O que impõe |
+| --- | --- | --- |
+| 1.4.1 Use of Color | A | Nenhum estado ou marcação só por cor — precisa de rótulo, número ou marcador junto |
+| 1.4.11 Non-text Contrast | AA | 3:1 contra cores adjacentes onde o hairline é a única fronteira de um controle |
+| 2.4.11 Focus Not Obscured | AA | Nenhum elemento fixo (faixa, banda) pode esconder o componente focado |
+| 2.4.13 Focus Appearance | AAA, adotado como alvo | Área do indicador ≥ perímetro de 2px do componente não-focado; contraste ≥3:1 entre estados |
+| 2.5.8 Target Size | AA | Alvo de toque mínimo 24×24 CSS px, com as cinco exceções nomeadas da spec |
+
+Nenhum dos cinco exige canto arredondado, sombra ou gradiente. Geometria reta não custa
+acessibilidade — o custo aparece só no indicador de foco, como regra de área.
 
 ---
 
-_Syntaxis DESIGN.md v2.0 · Forest e Grove intocados; Amber→Lime, cantos retos e tipografia grotesca moderna (Space Grotesk + Hanken Grotesk + Space Mono) por decisão do founder a partir de novas referências. Voz e padrões geométricos preservados._
+## 9. Aplicação em materiais de curso
+
+Segue `brand/APLICACAO.md` para composição de página por superfície. Regra geral: material de
+curso (slides, PDFs de aula) é camada de sistema — plano, reto, sem ilustração de collage. A
+camada LaTeX (`syntaxis.sty`, `beamerthemesyntaxis.sty`) não existe ainda; os dois `.tex`
+citados em rodadas anteriores nunca existiram (ver `04-cleanup.md` da rodada anterior).
+
+---
+
+## 10. Checklist rápido
+
+- [ ] Cor: só tokens de `brand/tokens/syntaxis.tokens.json`
+- [ ] Tipografia: Space Grotesk / Hanken Grotesk / Space Mono, sem exceção
+- [ ] Radius: 0–2px, exceções nomeadas em §4.3
+- [ ] Sem sombra difusa, glow, gradiente, glassmorphism — em nenhuma camada
+- [ ] Se houver padrão geométrico, é um só, na opacidade certa (§6.5)
+- [ ] Ilustração de collage: só em `pipelines/hemingway`, nunca em app ou site
+- [ ] Toda ilustração dentro de frame radius 0, hairline 1px, sem sangria
+- [ ] Texto nunca renderizado dentro de imagem gerada
+- [ ] Foco com perímetro de 2px e contraste 3:1 entre estados
+
+---
+
+## 11. Lacunas abertas
+
+| # | Lacuna | Por que trava |
+| --- | --- | --- |
+| 1 | Carlito em três lockups SVG legados (`logo_banner*.svg`) | decisão de arte, não tomada nesta rodada |
+| 2 | Pílulas no banner do YouTube — paths com arco, invisíveis a linter | redesenho de forma, não feito |
+| 3 | Proporção de tela e respiro ao redor da ilustração dentro de card real | parcialmente respondida por `design_stitch.md` (radius incompatível — ver `01-referencias.md` §3.3) |
+| 4 | Sobrevivência da granulação à compressão de LinkedIn/YouTube | nunca medida |
+| 5 | Merge/push das branches órfãs (`apps/skill_test@revisao/04-design-v21`, `pipelines/hemingway@marca/v3-camada-de-ilustracao`) | marcadas como descartadas nesta rodada (Fase 0) — decisão sobre o código que elas continham é da Fase 4 do prompt mestre, fora desta reconstrução de marca |
+| 6 | Sincronizar `apps/skill_test/DESIGN.md` e tokens com esta versão | é a Fase 4 do prompt mestre (refactor do Skill Check), não desta reconstrução |
+| 7 | `brand/.claude/skills/` (`brandkit`, `emil-design-eng`) | decisão do founder, Fase 6 |
+| 8 | Nível intermediário de luminância entre Chalk e Deep Forest | decisão de paleta — a escada atual já serve os dois usos (sistema e ilustração) sem token novo |

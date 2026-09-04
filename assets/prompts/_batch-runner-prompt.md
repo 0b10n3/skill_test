@@ -61,7 +61,7 @@ tem geração, incremente a versão (`-v2`, `-v3`...).
 Acrescente uma entrada em `history:` no frontmatter do
 `assets/prompts/<slug>.md` correspondente, com `decision: pending` (a
 aprovação fica para uma revisão humana separada, contra o checklist de
-`DESIGN.md` §7 — não decida aprovação sozinho). Formato exato da entrada
+`DESIGN.md` §10 — não decida aprovação sozinho). Formato exato da entrada
 em `.agents/skills/gerar-asset-marca/SKILL.md` (passo 5).
 
 ## Depois de gerar tudo

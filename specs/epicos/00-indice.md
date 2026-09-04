@@ -36,4 +36,18 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 
 Épicos 15 e 16 podem ser executados em paralelo (ambos dependem só do Épico 14). Todos os demais da Fase 2 e Fase 3 são sequenciais pelos mesmos motivos da Fase 1.
 
+Épicos 20–22 (refinamento anti-genérico, SEO técnico/analytics, Design v2.0 — Lime/cantos retos/tipografia grotesca) e 23 (transições explícitas) seguiram o mesmo ciclo; `epico-23-transicao-explicita.md` é o único arquivo de épico dessa faixa que continua na pasta.
+
+### Fase 4 — Sincronização com a marca reconstruída do zero (rodada 3, `brand/`) — em andamento
+
+**Fonte de verdade viva:** `brand/DESIGN.md` v3.0 e `brand/tokens/syntaxis.tokens.json` v2.3.0, no repositório `Syntaxis/` (raiz), reconstruídos do zero em `brand/revisao-2026/`. Mudança central: a camada de ilustração (collage/paper cut) passa a existir só em `pipelines/hemingway` — este app nunca a consumiu, então não há migração de ilustração aqui, só de patterns e tokens.
+
+24. `epico-24-sincronizacao-marca-v3.md` — Sincronização byte a byte de `DESIGN.md` e `tokens.json` com o SSOT
+25. `epico-25-simbolo-oficial.md` — Símbolo oficial (`symbol-master.svg`) substitui o wordmark placeholder, fecha lacuna aberta desde o Épico 14
+26. `epico-26-gramatica-node-branch.md` — `pattern.nodeBranch` reconstruído sobre a geometria medida do símbolo (0°/90°/±45°, módulo, quarto de arco)
+27. `epico-27-reticula.md` — `PatternDataGrid` renomeado para `PatternReticula` (rename puro, sem mudança visual)
+28. `epico-28-qa-golive-v3.md` — QA final, confirmação de zero regressão em GA4/Meta Pixel, deploy
+
+Épicos 24 → 25 → 26 → 27 → 28 são sequenciais: cada um depende do estado sincronizado do anterior. Nenhum é candidato a paralelismo — a mudança de símbolo (25) e de pattern (26) tocam os mesmos arquivos de referência visual que o QA final (28) precisa comparar.
+
 Cada arquivo segue o mesmo formato: Objetivo → Escopo → Critérios de aceite → Testes obrigatórios → Gate de validação → Boas práticas aplicadas.
