@@ -1,7 +1,7 @@
 # Syntaxis — DESIGN.md
 
 **Manual de Marca** · Fonte única da verdade para identidade visual, voz e aplicação de marca
-**v3.0** · 04/09/2026 — documento reescrito do zero, rodada 3.
+**v3.1** · 06/09/2026 — rodada 4, atualização escopada sobre a v3.0 (sem reescrita do zero).
 
 ---
 
@@ -44,14 +44,15 @@ reclassificada como marca de dado desde a rodada anterior.
 
 ### Histórico de versões
 
-| Versão                              | Mudança                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1.0                                | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber                                                                                                                                                                                                                                                                                                                                                                     |
-| v1.1                                | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA"                                                                                                                                                                                                                                                                                                                                                                                      |
-| v2.0                                | Amber → Lime (Forest/Grove intocados) · cantos retos · tipografia grotesca moderna                                                                                                                                                                                                                                                                                                                                                                                      |
-| v2.1                                | Revisão de coerência cross-superfície; `APLICACAO.md` passa a governar superfícies de terceiros                                                                                                                                                                                                                                                                                                                                                                         |
-| v3.0 (rodada 2)                     | Documento reescrito do zero. Patterns reconstruídos sobre a geometria do símbolo; contrato de camadas explícito; ilustração unificada em collage/paper cut (então ainda incluindo produto); alvo de acessibilidade declarado. Nunca chegou a sincronizar com `apps/skill_test/main` antes de a árvore ser esvaziada para esta rodada                                                                                                                                    |
-| **v3.0 (rodada 3, este documento)** | **Reescrito de novo do zero**, não emendado sobre a rodada anterior — o founder apagou a árvore de `brand/` inteira entre as duas rodadas e pediu reconstrução, confiando no histórico do git como arquivo. Mesmo número de versão maior (v3.0) porque nenhum consumidor real chegou a depender de uma v3.0 anterior publicada. Mudança de conteúdo: ilustração restrita a `hemingway` (item 2 acima); `reticula.coarse` depreciada; nenhuma peça de ilustração herdada |
+| Versão                              | Mudança                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.0                                | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| v1.1                                | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| v2.0                                | Amber → Lime (Forest/Grove intocados) · cantos retos · tipografia grotesca moderna                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| v2.1                                | Revisão de coerência cross-superfície; `APLICACAO.md` passa a governar superfícies de terceiros                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| v3.0 (rodada 2)                     | Documento reescrito do zero. Patterns reconstruídos sobre a geometria do símbolo; contrato de camadas explícito; ilustração unificada em collage/paper cut (então ainda incluindo produto); alvo de acessibilidade declarado. Nunca chegou a sincronizar com `apps/skill_test/main` antes de a árvore ser esvaziada para esta rodada                                                                                                                                                                                                                                                                                                                                                                    |
+| v3.0 (rodada 3)                     | Reescrito de novo do zero, não emendado sobre a rodada anterior — o founder apagou a árvore de `brand/` inteira entre as duas rodadas e pediu reconstrução, confiando no histórico do git como arquivo. Mesmo número de versão maior (v3.0) porque nenhum consumidor real chegou a depender de uma v3.0 anterior publicada. Mudança de conteúdo: ilustração restrita a `hemingway` (item 2 acima); `reticula.coarse` depreciada; nenhuma peça de ilustração herdada                                                                                                                                                                                                                                     |
+| **v3.1 (rodada 4, este documento)** | **Atualização escopada, não reescrita** — a Fase 0 desta rodada (`.claude/commands/marca-zero.md`) constatou que a marca chegou corrente, sem esvaziamento prévio, e o founder aprovou amplitude estreita (CHECKPOINT 0, `brand/revisao-2026/00-linha-zero.md`). Três mudanças: (1) §5 ganha um terceiro registro — **fotografia real** (Chassis D, `brand/INSTAGRAM.md`) — já em produção sem entrada aqui; (2) §5/§7 ganham exceção nomeada — a capa de `brand/templates/livro` usa collage, único ponto fora de `pipelines/hemingway` onde a ilustração existe, por pedido do founder; (3) §9 corrigida — a camada LaTeX, que a v3.0 registrava como inexistente, existe agora em `brand/templates/` |
 
 **Por que reescrever em vez de emendar, de novo.** O ledger desta rodada
 (`brand/_arquivo/DECISOES-HERDADAS.md`) registra 27 restrições medidas, 12 armadilhas de
@@ -307,35 +308,44 @@ ambiente atrás da composição, e só nos dois tokens declarados abaixo.
 
 ## 5. O contrato de camadas
 
-Duas camadas, com fronteira **checável**, não intenção de estilo:
+Três registros, com fronteira **checável**, não intenção de estilo:
 
 - **Camada de sistema** — UI de `apps/skill_test`, o site, componentes, tipografia, patterns
-  funcionais, tabelas, certificado. Plana, geométrica, reta, sem sombra. Sem exceção.
-- **Camada de ilustração** — collage / paper cut, §7. **Existe em um único lugar:
-  `pipelines/hemingway`** — capas editoriais, imagens de post e sua distribuição social
-  (LinkedIn, Instagram, thumbnail de YouTube). Não existe em `apps/skill_test`. Não existe no
-  site `syntaxis.com.br`.
+  funcionais, tabelas, certificado, material de curso (§9). Plana, geométrica, reta, sem
+  sombra. Sem exceção.
+- **Camada de ilustração** — collage / paper cut, §7. **Existe em `pipelines/hemingway`** —
+  capas editoriais, imagens de post e sua distribuição social (LinkedIn, Instagram, thumbnail
+  de YouTube. **Exceção nomeada única**: a capa de `brand/templates/livro`, por pedido explícito
+  do founder (04/09/2026) — ver §7.7. Fora dessas duas superfícies, não existe: não em
+  `apps/skill_test`, não no site `syntaxis.com.br`, não no restante de `brand/templates/`
+  (o tema Beamer usa superfície de uma cor só — sistema, não ilustração).
+- **Registro de fotografia** — imagem real de pessoa, objeto ou cena, sem paper cut e sem
+  vocabulário de UI. **Existe só na biblioteca comercial do Instagram** (Chassis D,
+  `brand/INSTAGRAM.md`) — retrato profissional com faixas de cor chapada acima/abaixo, ou
+  intervenção gráfica plana sobre a foto (nunca paper cut sobre fotografia). Nunca em
+  `apps/skill_test`, nunca no site, nunca como substituto de ilustração no pipeline editorial.
 
-Onde as duas se encontrariam, o sistema vence — mas na prática elas quase não se encontram
-mais: a restrição desta rodada elimina a maior parte da fronteira que rodadas anteriores
-precisavam policiar. O que sobra de fronteira real é a distribuição social do conteúdo
-editorial (um post do Substack compartilhado no LinkedIn, por exemplo), onde a ilustração
-segue as mesmas regras de §7 e nunca ganha chrome de produto ao redor.
+Onde dois registros se encontrariam, o sistema vence — mas na prática o encontro é raro e
+nomeado: a distribuição social do conteúdo editorial (um post do Substack compartilhado no
+LinkedIn, por exemplo), onde a ilustração segue as regras de §7 e nunca ganha chrome de produto
+ao redor; e a capa do livro (§7.7), onde o miolo do template continua sistema puro e o título
+fica sobre faixa sólida, nunca direto sobre a colagem.
 
 **Regras binárias, verificáveis:**
 
-| Regra                                                                     | Como se verifica                                                  |
-| ------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Ilustração nunca aparece em `apps/skill_test` ou no site                  | binário, por repositório/superfície — não por peça                |
-| Toda ilustração é contida por um frame retangular, radius 0, hairline 1px | binário, olhando a borda                                          |
-| Nada sangra para fora do frame                                            | binário                                                           |
-| Sombra proibida nas duas camadas                                          | binário: qualquer desfoque entre camadas reprova                  |
-| Amplitude cromática entre 3 e 7 cores ≥1% do quadro                       | numérico, por quantização (`illustration.maxColors`)              |
-| Fundo ≥ 40% do quadro                                                     | numérico (`illustration.minBackground`)                           |
-| Lime ≤ 1% do quadro                                                       | numérico (`illustration.accent`, teto medido)                     |
-| Um matiz de pilha por peça                                                | numérico, por matiz das cores dominantes (`illustration.maxHues`) |
-| Pattern: 0°, 90°, ±45°, comprimento múltiplo do módulo                    | binário, por linter                                               |
-| Foco com área de perímetro de 2px                                         | numérico (§8)                                                     |
+| Regra                                                                                                                                                   | Como se verifica                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Ilustração nunca aparece em `apps/skill_test` ou no site; fora de `pipelines/hemingway`, só existe na exceção nomeada de `brand/templates/livro` (§7.7) | binário, por repositório/superfície                               |
+| Fotografia (§5) nunca leva paper cut sobre a imagem; paper cut nunca embute fotografia                                                                  | binário — os dois registros não se misturam na mesma peça         |
+| Toda ilustração é contida por um frame retangular, radius 0, hairline 1px                                                                               | binário, olhando a borda                                          |
+| Nada sangra para fora do frame                                                                                                                          | binário                                                           |
+| Sombra proibida nas duas camadas                                                                                                                        | binário: qualquer desfoque entre camadas reprova                  |
+| Amplitude cromática entre 3 e 7 cores ≥1% do quadro                                                                                                     | numérico, por quantização (`illustration.maxColors`)              |
+| Fundo ≥ 40% do quadro                                                                                                                                   | numérico (`illustration.minBackground`)                           |
+| Lime ≤ 1% do quadro                                                                                                                                     | numérico (`illustration.accent`, teto medido)                     |
+| Um matiz de pilha por peça                                                                                                                              | numérico, por matiz das cores dominantes (`illustration.maxHues`) |
+| Pattern: 0°, 90°, ±45°, comprimento múltiplo do módulo                                                                                                  | binário, por linter                                               |
+| Foco com área de perímetro de 2px                                                                                                                       | numérico (§8)                                                     |
 
 ---
 
@@ -466,8 +476,27 @@ Abaixo de 96px não existe ilustração — existe símbolo (`brand/LOGO/`). Thu
 
 ### 7.6. Estado do kit
 
-Nenhuma peça de ilustração existe hoje. Peça nova é gerada quando houver necessidade real de
-publicação — nunca para preencher amostra (decisão do founder, 04/09/2026).
+Peça gerada quando houver necessidade real de publicação — nunca para preencher amostra
+(decisão do founder, 04/09/2026). Desde então, peças reais existem: biblioteca do Instagram
+(`brand/INSTAGRAM.md`), capas de Reels e a capa em collage de `brand/templates/livro` (§7.7).
+
+### 7.7. Exceção nomeada — capa de `brand/templates/livro`
+
+**Único ponto fora de `pipelines/hemingway` onde a camada de ilustração existe**, por pedido
+explícito do founder (04/09/2026, formalizado nesta rodada — v3.1). Regras, todas obrigatórias
+para a exceção valer:
+
+1. Vale só para a capa do template de livro (`assets/capa-collage.pdf`), nunca para o miolo —
+   o miolo permanece sistema puro: nenhuma colagem, nenhuma sombra de papel, nenhuma borda
+   rasgada.
+2. Onde as duas camadas se encontram, o sistema vence: o título da capa fica sobre uma **faixa
+   sólida**, nunca direto sobre a ilustração.
+3. A capa tem uma variante alternativa de sistema puro (paper cut é a **variante**, não o
+   único caminho) — `livro.pdf` (padrão) e `livro-collage.pdf`, selecionáveis por
+   `\syntaxiscapavariante` (`brand/templates/livro/README.md`).
+4. A exceção não se estende por semelhança a outra peça de material de curso — uma nova peça
+   de curso que queira collage é uma pergunta nova ao founder, não uma inferência a partir
+   desta.
 
 ---
 
@@ -492,9 +521,12 @@ acessibilidade — o custo aparece só no indicador de foco, como regra de área
 ## 9. Aplicação em materiais de curso
 
 Segue `brand/APLICACAO.md` para composição de página por superfície. Regra geral: material de
-curso (slides, PDFs de aula) é camada de sistema — plano, reto, sem ilustração de collage. A
-camada LaTeX (`syntaxis.sty`, `beamerthemesyntaxis.sty`) não existe ainda; os dois `.tex`
-citados em rodadas anteriores nunca existiram (ver `04-cleanup.md` da rodada anterior).
+curso (slides, PDFs de aula) é camada de sistema — plano, reto, sem ilustração de collage,
+**com a única exceção nomeada da capa de livro** (§7.7). A camada LaTeX existe desde
+04–05/09/2026: `brand/templates/beamer/` (`beamerthemesyntaxis.sty`) e `brand/templates/livro/`
+(`syntaxis-book.sty`) — os dois `.tex` citados em documentação anterior a essa data
+(`syntaxis-notas-v1.tex`, `syntaxis-beamer-v1.tex`) continuam não existindo; são nomes
+diferentes, não os mesmos arquivos.
 
 ---
 
@@ -515,13 +547,15 @@ citados em rodadas anteriores nunca existiram (ver `04-cleanup.md` da rodada ant
 
 ## 11. Lacunas abertas
 
-| #   | Lacuna                                                                                                                       | Por que trava                                                                                                                                              |
-| --- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Carlito em três lockups SVG legados (`logo_banner*.svg`)                                                                     | decisão de arte, não tomada nesta rodada                                                                                                                   |
-| 2   | Pílulas no banner do YouTube — paths com arco, invisíveis a linter                                                           | redesenho de forma, não feito                                                                                                                              |
-| 3   | Proporção de tela e respiro ao redor da ilustração dentro de card real                                                       | parcialmente respondida por `design_stitch.md` (radius incompatível — ver `01-referencias.md` §3.3)                                                        |
-| 4   | Sobrevivência da granulação à compressão de LinkedIn/YouTube                                                                 | nunca medida                                                                                                                                               |
-| 5   | Merge/push das branches órfãs (`apps/skill_test@revisao/04-design-v21`, `pipelines/hemingway@marca/v3-camada-de-ilustracao`) | marcadas como descartadas nesta rodada (Fase 0) — decisão sobre o código que elas continham é da Fase 4 do prompt mestre, fora desta reconstrução de marca |
-| 6   | Sincronizar `apps/skill_test/DESIGN.md` e tokens com esta versão                                                             | é a Fase 4 do prompt mestre (refactor do Skill Check), não desta reconstrução                                                                              |
-| 7   | `brand/.claude/skills/` (`brandkit`, `emil-design-eng`)                                                                      | decisão do founder, Fase 6                                                                                                                                 |
-| 8   | Nível intermediário de luminância entre Chalk e Deep Forest                                                                  | decisão de paleta — a escada atual já serve os dois usos (sistema e ilustração) sem token novo                                                             |
+| #     | Lacuna                                                                                                                                                      | Por que trava                                                                                                                                                                                                                                                      |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1     | Carlito em três lockups SVG legados (`logo_banner*.svg`)                                                                                                    | decisão de arte, não tomada nesta rodada                                                                                                                                                                                                                           |
+| 2     | Pílulas no banner do YouTube — paths com arco, invisíveis a linter                                                                                          | redesenho de forma, não feito                                                                                                                                                                                                                                      |
+| 3     | Proporção de tela e respiro ao redor da ilustração dentro de card real                                                                                      | parcialmente respondida por `design_stitch.md` (radius incompatível — ver `01-referencias.md` §3.3)                                                                                                                                                                |
+| 4     | Sobrevivência da granulação à compressão de LinkedIn/YouTube                                                                                                | nunca medida                                                                                                                                                                                                                                                       |
+| 5     | Merge/push das branches órfãs (`apps/skill_test@revisao/04-design-v21`, `pipelines/hemingway@marca/v3-camada-de-ilustracao`)                                | marcadas como descartadas — decisão sobre o código que elas continham é do founder, fora do escopo de marca                                                                                                                                                        |
+| ~~6~~ | ~~Sincronizar `apps/skill_test/DESIGN.md` e tokens com esta versão~~                                                                                        | **Resolvida (rodada 4).** `apps/skill_test/DESIGN.md` e `design/tokens.json` estão byte a byte idênticos aos de `brand/` — Épico 31 (`PatternNodeBranch`→`PatternMesh`) e Épico 32 (troca de tipografia), branch `main`. Verificado por `diff` direto nesta rodada |
+| 7     | `brand/.claude/skills/` (`brandkit`, `emil-design-eng`)                                                                                                     | decisão do founder, nunca revisitada                                                                                                                                                                                                                               |
+| 8     | Nível intermediário de luminância entre Chalk e Deep Forest                                                                                                 | decisão de paleta — a escada atual já serve os dois usos (sistema e ilustração) sem token novo                                                                                                                                                                     |
+| 9     | Sobrevivência da granulação e da compressão de paper cut ao pipeline real de publicação (LinkedIn, YouTube, Instagram)                                      | nunca medida — segue aberta desde a rodada 3, sem fato novo nesta rodada                                                                                                                                                                                           |
+| 10    | Governança do terceiro registro (fotografia) fora do Instagram — se `apps/skill_test` ou o site algum dia precisarem de foto real, a regra ainda não existe | fora do escopo desta rodada (P3 do CHECKPOINT 0 cobriu só o registro em produção hoje, no Instagram)                                                                                                                                                               |
