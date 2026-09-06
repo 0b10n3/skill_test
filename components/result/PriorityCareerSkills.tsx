@@ -3,7 +3,6 @@
 import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Eyebrow } from '@/components/ui/eyebrow';
-import { PatternGrowthLine } from '@/components/patterns';
 import {
   CATEGORY_LABEL,
   CATEGORY_LABEL_SHORT,
@@ -51,10 +50,6 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
         >
           Onde investir primeiro para chegar a {NEXT_LEVEL_LABEL[seniority]}
         </h2>
-        {/* Linha de conquista como protagonista (DESIGN.md §5.2/§5.4) —
-            os degraus ilustram "onde você está" → "próximo nível", nunca
-            decoração de fundo atrás de texto. */}
-        <PatternGrowthLine steps={3} className="h-12 w-40" />
       </div>
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
