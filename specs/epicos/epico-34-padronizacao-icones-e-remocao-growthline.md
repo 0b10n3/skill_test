@@ -24,10 +24,13 @@ sistema de patterns (H9, `pattern.nodeBranch` → `pattern.mesh`). Completá-las
 peças novas do zero, não aprovar as pendentes.
 
 **Decisão do founder:** reverter as 5 dimensões para ícone Lucide — tratamento único, sem
-depender de geração de imagem. Os 3 assets já aprovados (`assets/prompts/dimensao-*.md`,
-`public/img/dimensao-*`) não foram apagados; ficam sem consumidor neste componente.
-`DIMENSAO_ASSET_SLUG` (`content/landing.ts`) também fica sem consumidor em todo o app — a
-"landing (seção 'o que avaliamos')" citada no frontmatter dos prompts nunca foi construída.
+depender de geração de imagem. `DIMENSAO_ASSET_SLUG` (`content/landing.ts`) ficou sem
+consumidor em todo o app — a "landing (seção 'o que avaliamos')" citada no frontmatter dos
+prompts nunca foi construída — e o founder confirmou apagar em vez de reaproveitar: os 5
+conjuntos completos (3 aprovados + 2 pendentes) foram removidos num commit à parte — prompts,
+gerações raw, arquivos publicados e as 3 entradas correspondentes em `assets/manifest.json`.
+`assets:verify-manifest`/`assets:verify-palette` seguem verdes (8 assets restantes, nenhum
+órfão).
 Decisão sobre reaproveitar os 3 assets ali (ou apagá-los) é separada, fora deste épico.
 
 ## Problema 2 — padrão de escada (`PatternGrowthLine`) na seção "Prioridades"
@@ -57,11 +60,11 @@ por `__tests__/pattern-components.test.tsx`.
 
 **Fora de escopo, deliberadamente:**
 
-- Apagar os assets de ilustração de dimensão (`public/img/dimensao-*`,
-  `assets/prompts/dimensao-*.md`, `assets/generated/raw/dimensao-*`) ou o export
-  `DIMENSAO_ASSET_SLUG` — ficam órfãos, decisão de apagar é do founder, não inferida aqui.
 - Qualquer mudança em `PatternGrowthLine.tsx`, `ShareRadarButton.tsx` ou o gerador de layout —
   o primitivo continua igual, só um consumidor a menos.
+- `DIMENSAO_LANDING_DESCRICAO` (`content/landing.ts`) — achado colateral, também sem consumidor
+  (a mesma seção de landing nunca construída), mas não citado na decisão do founder; fica como
+  achado registrado, não apagado nesta rodada.
 - Regenerar `matematica-quant`/`dados-programacao` — descartado explicitamente pelo founder
   nesta decisão.
 
