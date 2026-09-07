@@ -38,11 +38,6 @@ function GeneratedPicture({ slug, widths, sizes, alt, className, variant }: Gene
   );
 }
 
-/** Asset sem variante de tema (ex.: ilustrações de dimensão). */
-export function GeneratedImage(props: Omit<GeneratedImageProps, 'variant'>) {
-  return <GeneratedPicture {...props} />;
-}
-
 /**
  * Asset com variantes light/dark (ex.: hero-landing, radar-card-textura)
  * — troca por CSS (`dark:`), nunca por JS, para não arriscar flash/
