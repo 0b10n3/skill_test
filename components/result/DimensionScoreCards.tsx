@@ -10,16 +10,19 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Progress } from '@/components/ui/progress';
-import { GeneratedImage } from '@/components/generated-image';
-import { DIMENSAO_ASSET_SLUG } from '@/content/landing';
 import { CATEGORY_LABEL, SCORE_CARD_COPY } from '@/content/relatorio';
 import type { DimensaoDiagnostico, DimensionEtiqueta } from '@/lib/diagnostico';
 import type { KnowledgeCategory } from '@/lib/types';
 
-// Ícone de fallback para as 2 dimensões sem ilustração aprovada do Épico
-// 16 ainda (dimensao-matematica-quant, dimensao-dados-programacao — achado
-// de cor de conquista fora de contexto, PR #20) — troca automática por
-// DIMENSAO_ASSET_SLUG assim que forem regeneradas e publicadas.
+// Ícone Lucide para as 5 dimensões — tratamento uniforme (Épico 34). Só 3
+// das 5 tinham ilustração gerada aprovada (Épico 16); as outras 2
+// (dimensao-matematica-quant, dimensao-dados-programacao) ficaram travadas
+// em "decision: pending" desde 11/08 por um achado de cor fora de contexto
+// (PR #20) e nunca foram completadas — resultado visual inconsistente: 3
+// cards com ícone-foto, 2 com ícone de linha. Revertido para ícone em
+// todos os 5; os 3 assets aprovados (assets/prompts/dimensao-*.md,
+// public/img/dimensao-*) não foram apagados — ficam sem consumidor aqui,
+// decisão do founder sobre reaproveitá-los (ex.: na landing) é separada.
 const CATEGORY_ICON: Record<KnowledgeCategory, LucideIcon> = {
   'mercados-produtos': Landmark,
   'matematica-quant': Sigma,
@@ -61,23 +64,10 @@ export function DimensionScoreCards({ dimensoes }: DimensionScoreCardsProps) {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {dimensoes.map((dimensao) => {
           const Icon = CATEGORY_ICON[dimensao.category];
-          const illustrationSlug = DIMENSAO_ASSET_SLUG[dimensao.category];
           return (
             <Card key={dimensao.category} size="sm" className="flex flex-col gap-2">
               <CardHeader className="flex flex-row items-center gap-2">
-                {illustrationSlug ? (
-                  <div className="size-6 shrink-0 overflow-hidden rounded-sm">
-                    <GeneratedImage
-                      slug={illustrationSlug}
-                      widths={[400]}
-                      sizes="24px"
-                      alt=""
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                ) : (
-                  <Icon aria-hidden className="size-4 shrink-0 text-muted-foreground" />
-                )}
+                <Icon aria-hidden className="size-4 shrink-0 text-muted-foreground" />
                 <CardTitle className="font-display text-sm text-foreground">
                   {CATEGORY_LABEL[dimensao.category]}
                 </CardTitle>
