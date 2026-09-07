@@ -352,8 +352,9 @@ fica sobre faixa sólida, nunca direto sobre a colagem.
 ## 6. Sistema de padrões
 
 Duas famílias — `mesh` e `reticula`. `growthLine` não é pattern: é marca de dado, sempre a
-100%, nunca atrás de texto, sempre ligada a conquista verificável (`PriorityCareerSkills.tsx`
-é o uso real em produção).
+100%, nunca atrás de texto, sempre ligada a conquista verificável (`ShareRadarButton.tsx` —
+card compartilhável, a peça real que a linha "Certificado" de §6.4 descreve — é o uso real em
+produção desde o Épico 34; `PriorityCareerSkills.tsx` removeu o uso decorativo que tinha antes).
 
 **`pattern.nodeBranch` está `$deprecated` desde 04/09/2026** — substituído por `pattern.mesh`
 (pedido direto do founder; ver `REVOGACOES.md`). Não tinha consumidor decorativo real em

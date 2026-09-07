@@ -63,7 +63,9 @@ for (const { local, canonical } of PAIRS) {
       `✗ ${path.relative(rootDir, local)} diverge de ${path.relative(monorepoBrandDir, canonical)} (brand/) — primeira diferença na linha ${line}.`,
     );
   } else {
-    console.log(`✓ ${path.relative(rootDir, local)} idêntico a brand/${path.relative(monorepoBrandDir, canonical)}.`);
+    console.log(
+      `✓ ${path.relative(rootDir, local)} idêntico a brand/${path.relative(monorepoBrandDir, canonical)}.`,
+    );
   }
 }
 
