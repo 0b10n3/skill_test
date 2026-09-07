@@ -14,16 +14,12 @@ export const leadSchema = z.object({
   }),
 });
 
-export type LeadInput = z.infer<typeof leadSchema>;
-
 export const submitPayloadSchema = z.object({
   answers: z
     .record(z.string(), z.string())
     .refine((answers) => Object.keys(answers).length > 0, 'Nenhuma resposta enviada'),
   lead: leadSchema,
 });
-
-export type SubmitPayload = z.infer<typeof submitPayloadSchema>;
 
 /**
  * Payload do botão "Receber este relatório por e-mail" (S7) — re-sincroniza
@@ -36,5 +32,3 @@ export const resendReportSchema = z.object({
   scoreGeral: z.number().min(0).max(100),
   classification: z.enum(['baixo', 'medio', 'alto']),
 });
-
-export type ResendReportPayload = z.infer<typeof resendReportSchema>;

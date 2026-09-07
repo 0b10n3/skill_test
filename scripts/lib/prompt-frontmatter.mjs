@@ -1,9 +1,7 @@
 /**
- * Leitura/escrita do frontmatter YAML dos arquivos assets/prompts/*.md
- * (Épico 16) — round-trip simples: parse do frontmatter + corpo,
- * serialização de volta preservando o corpo intacto.
+ * Leitura do frontmatter YAML dos arquivos assets/prompts/*.md (Épico 16).
  */
-import { parse, stringify } from 'yaml';
+import { parse } from 'yaml';
 
 const FRONTMATTER_PATTERN = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
 
@@ -15,8 +13,4 @@ export function parsePromptFile(source) {
   const frontmatter = parse(match[1]) ?? {};
   const body = match[2];
   return { frontmatter, body };
-}
-
-export function serializePromptFile(frontmatter, body) {
-  return `---\n${stringify(frontmatter).trimEnd()}\n---\n${body}`;
 }
