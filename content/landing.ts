@@ -28,20 +28,6 @@ export const DIMENSAO_LANDING_DESCRICAO: Record<KnowledgeCategory, string> = {
 };
 
 /**
- * Slug do asset gerado (Épico 16) por dimensão — só as dimensões com
- * asset aprovado e publicado aparecem aqui. dimensao-matematica-quant e
- * dimensao-dados-programacao ficam de fora até serem regeneradas (achado
- * de marca: Amber fora de contexto de conquista, ver PR #20) — a seção
- * usa esse mapa parcial para decidir onde mostrar imagem e onde mostrar
- * só o texto, sem quebrar quando as duas faltantes forem publicadas.
- */
-export const DIMENSAO_ASSET_SLUG: Partial<Record<KnowledgeCategory, string>> = {
-  'mercados-produtos': 'dimensao-mercados-produtos',
-  'ia-aplicada': 'dimensao-ia-aplicada',
-  'risco-regulacao': 'dimensao-risco-regulacao',
-};
-
-/**
  * Faixa de números da landing (DESIGN.md v1.1 §4.4.5) — cada item vira um
  * bloco `statNumber` (IBM Plex Mono) individual, não uma única linha de texto.
  * Os 5 níveis são os `SeniorityLevel` reais do produto (aspirante,
