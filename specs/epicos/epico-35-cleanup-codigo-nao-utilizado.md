@@ -39,12 +39,23 @@ contrato de componente do shadcn e removeria lógica viva.
 | `PatternMeshProps`, `PatternReticulaProps`, `PatternReticulaSlot`, `PatternGrowthLineProps`, `GradientAmbientProps`, `GradientAmbientTone`, `GradientAmbientCorner` | `components/patterns/*` | Tipos de prop de um conjunto de componentes de sistema de design — API pública do pacote de patterns, convenção de exportar mesmo sem consumidor externo hoje |
 | `QuestionType`, `Category`, `Difficulty`, `CognitiveLevel` | `lib/types.ts` | Usados internamente no mesmo arquivo para compor `Question`/`KnowledgeCategory` (este sim, consumido em toda a app) — vocabulário de domínio, não código morto |
 
+## Achado adicional, surgido no merge com `main`
+
+Ao atualizar esta branch com `main` (que já trazia os Épicos 33 e 34 mergeados), `knip`
+apontou um quinto item: `GeneratedImage` (`components/generated-image.tsx`) — a própria
+documentação da função já dizia "asset sem variante de tema (ex.: ilustrações de dimensão)".
+O Épico 34 removeu o único consumidor (`DimensionScoreCards.tsx`) ao reverter para ícone
+Lucide; `ThemedGeneratedImage` (usado por `HeroSection.tsx`) é independente e não depende de
+`GeneratedImage`. Removida a função; `GeneratedPicture` (helper interno que as duas
+compartilhavam) continua servindo `ThemedGeneratedImage`.
+
 ## Escopo
 
 - `content/landing.ts`
 - `lib/diagnostico/index.ts`
 - `scripts/lib/prompt-frontmatter.mjs`
 - `lib/validations.ts`
+- `components/generated-image.tsx` (achado pós-merge, ver acima)
 
 **Fora de escopo, deliberadamente:** todo item da segunda tabela — remover exigiria uma decisão
 de arquitetura (parar de seguir a convenção do shadcn, restringir a visibilidade de tipos de
