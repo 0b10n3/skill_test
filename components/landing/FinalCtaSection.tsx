@@ -12,7 +12,7 @@ export function FinalCtaSection() {
   return (
     <section className="grid w-full bg-neutral-ink lg:grid-cols-[1fr_600px]">
       <div className="flex flex-col gap-6 px-6 py-16 sm:px-10 lg:py-24 lg:pl-30">
-        <h2 className="font-display text-3xl font-extrabold text-balance text-neutral-chalk sm:text-5xl">
+        <h2 className="font-display text-3xl font-bold text-balance text-neutral-chalk sm:text-5xl">
           Descubra onde você está — e o próximo passo.
         </h2>
         <div className="flex flex-wrap items-center gap-4">

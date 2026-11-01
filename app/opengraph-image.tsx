@@ -20,24 +20,14 @@ function loadOgBackground(): string {
   return `data:image/png;base64,${buffer.toString('base64')}`;
 }
 
-async function loadGoogleFont(family: string, weight: number): Promise<ArrayBuffer> {
-  const cssUrl = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}:wght@${weight}`;
-  const css = await (await fetch(cssUrl)).text();
-  const match = css.match(/src: url\(([^)]+)\) format\('(?:opentype|truetype)'\)/);
-
-  if (!match) {
-    throw new Error(`Não foi possível localizar o arquivo da fonte "${family}" ${weight}`);
-  }
-
-  const fontResponse = await fetch(match[1]);
-  return fontResponse.arrayBuffer();
+/** TTF do repo (public/fonts, Épico 39): o Satori não lê woff2, e o build não busca mais no Google. */
+function loadFont(file: string): Buffer {
+  return readFileSync(path.join(process.cwd(), 'public/fonts', file));
 }
 
-export default async function OpengraphImage() {
-  const [montserratBold, sourceSans3Regular] = await Promise.all([
-    loadGoogleFont('Montserrat', 700),
-    loadGoogleFont('Source Sans 3', 400),
-  ]);
+export default function OpengraphImage() {
+  const montserratBold = loadFont('montserrat-700.ttf');
+  const sourceSans3Regular = loadFont('source-sans-3-400.ttf');
   const backgroundDataUri = loadOgBackground();
 
   return new ImageResponse(
