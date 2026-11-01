@@ -123,7 +123,7 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
     page,
   }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: 'Iniciar avaliação' }).click();
+    await page.getByRole('link', { name: 'Iniciar avaliação' }).first().click();
     await expect(page).toHaveURL(/\/quiz$/);
 
     await answerQuizDeterministically(page, 'pleno', 9);

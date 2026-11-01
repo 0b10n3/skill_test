@@ -25,7 +25,7 @@ test.describe('/ — landing page', () => {
   test('CTA "Iniciar avaliação" navega para /quiz', async ({ page }) => {
     await page.goto('/');
 
-    await page.getByRole('link', { name: 'Iniciar avaliação' }).click();
+    await page.getByRole('link', { name: 'Iniciar avaliação' }).first().click();
 
     await expect(page).toHaveURL(/\/quiz$/);
   });

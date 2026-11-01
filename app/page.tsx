@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { CredibilityBand } from '@/components/landing/CredibilityBand';
+import { FinalCtaSection } from '@/components/landing/FinalCtaSection';
+import { SiteFooter } from '@/components/site-footer';
 import { DimensionsSection } from '@/components/landing/DimensionsSection';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { StatsStripSection } from '@/components/landing/StatsStripSection';
@@ -70,6 +72,8 @@ export default function Home() {
       <DimensionsSection />
       <StatsStripSection />
       <CredibilityBand />
+      <FinalCtaSection />
+      <SiteFooter />
     </main>
   );
 }

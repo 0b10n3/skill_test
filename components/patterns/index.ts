@@ -11,3 +11,4 @@ export {
   type GradientAmbientTone,
   type GradientAmbientCorner,
 } from './GradientAmbient';
+export { PatternTruchet, type PatternTruchetProps } from './PatternTruchet';

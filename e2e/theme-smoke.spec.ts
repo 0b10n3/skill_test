@@ -30,7 +30,7 @@ for (const colorScheme of ['light', 'dark'] as const) {
       page,
     }) => {
       await page.goto('/');
-      await page.getByRole('link', { name: 'Iniciar avaliação' }).click();
+      await page.getByRole('link', { name: 'Iniciar avaliação' }).first().click();
       await expect(page).toHaveURL(/\/quiz$/);
 
       await page.waitForSelector('[data-slot="card-title"]');
