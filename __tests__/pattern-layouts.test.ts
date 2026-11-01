@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { generateGrowthLineLayout } from '@/components/patterns/lib/growth-line-layout';
 import { generateMeshLayout } from '@/components/patterns/lib/mesh-layout';
+import { generateTruchetLayout } from '@/components/patterns/lib/truchet-layout';
 
 const CELL = 32;
 
@@ -98,5 +99,23 @@ describe('generateGrowthLineLayout', () => {
 
   it('snapshot de geometria — 4 degraus', () => {
     expect(generateGrowthLineLayout(4)).toMatchSnapshot();
+  });
+});
+
+describe('generateTruchetLayout (DESIGN.md §6.6)', () => {
+  it('é determinístico e tem dois quartos de anel por célula', () => {
+    const a = generateTruchetLayout(5, 3);
+    expect(generateTruchetLayout(5, 3)).toEqual(a);
+    const aneis = `${a.d} ${a.dRaro}`.match(/M/g) ?? [];
+    expect(aneis).toHaveLength(5 * 3 * 2);
+    expect(a.viewBox).toBe('0 0 600 360');
+  });
+
+  it('nunca passa de 1 célula rara (grove.300) em 12, em qualquer semente', () => {
+    for (let seed = 0; seed < 50; seed++) {
+      const { dRaro } = generateTruchetLayout(6, 4, seed);
+      const celulasRaras = (dRaro.match(/M/g) ?? []).length / 2;
+      expect(celulasRaras).toBeLessThanOrEqual(2);
+    }
   });
 });

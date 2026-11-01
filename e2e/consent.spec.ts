@@ -100,7 +100,7 @@ test.describe('Consentimento LGPD (Épico 21) — GA4/Meta Pixel só carregam de
       };
     });
 
-    await page.getByRole('link', { name: 'Iniciar avaliação' }).click();
+    await page.getByRole('link', { name: 'Iniciar avaliação' }).first().click();
     await page.getByRole('radio').first().click();
     await page.getByRole('button', { name: 'Próxima' }).click();
     await expect(page.getByText('Pergunta 1 de 15')).toBeVisible({ timeout: 10_000 });

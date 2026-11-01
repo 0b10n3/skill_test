@@ -19,7 +19,8 @@ const SCAN_DIRS = ['app', 'components'];
 // GradientAmbient (Épico 29) não entra aqui: não é um dos dois padrões
 // geométricos, é a exceção de camada de ambiente (DESIGN.md §4.5) — pode
 // conviver com um pattern no mesmo arquivo sem violar "um pattern por peça".
-const PATTERN_NAMES = ['PatternMesh', 'PatternReticula', 'PatternGrowthLine'];
+// Épico 38: PatternTruchet (DESIGN.md §6.6 — nunca junto de mesh/retícula no mesmo bloco).
+const PATTERN_NAMES = ['PatternMesh', 'PatternReticula', 'PatternGrowthLine', 'PatternTruchet'];
 
 // O próprio diretório de definição dos padrões não conta — só composições
 // (páginas/componentes que os consomem). O catálogo /dev/ui também é

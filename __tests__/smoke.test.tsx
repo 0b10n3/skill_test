@@ -8,9 +8,9 @@ describe('smoke — landing page', () => {
     expect(
       screen.getByRole('heading', { name: /descubra seu nível técnico em finanças/i }),
     ).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /iniciar avaliação/i })).toHaveAttribute(
-      'href',
-      '/quiz',
-    );
+    // Épico 38: o CTA final repete o do hero — os dois levam ao quiz.
+    const ctas = screen.getAllByRole('link', { name: /iniciar avaliação/i });
+    expect(ctas).toHaveLength(2);
+    for (const cta of ctas) expect(cta).toHaveAttribute('href', '/quiz');
   });
 });
