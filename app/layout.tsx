@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import { SpeedInsights as VercelSpeedInsights } from '@vercel/speed-insights/next';
-import { IBM_Plex_Mono, Montserrat, Source_Sans_3 } from 'next/font/google';
+import { preload } from 'react-dom';
 import { AnalyticsProvider } from '@/components/analytics/AnalyticsProvider';
 import { ConsentBanner } from '@/components/analytics/ConsentBanner';
 import { SiteHeader } from '@/components/site-header';
@@ -10,29 +10,12 @@ import { QuizAnswersProvider } from '@/lib/quiz-context';
 import { getSiteUrl } from '@/lib/site-url';
 import './globals.css';
 
-const montserrat = Montserrat({
-  variable: '--font-montserrat',
-  subsets: ['latin'],
-  weight: ['500', '700'],
-  display: 'swap',
-  fallback: ['Arial', 'sans-serif'],
-});
-
-const sourceSans3 = Source_Sans_3({
-  variable: '--font-source-sans-3',
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  display: 'swap',
-  fallback: ['system-ui', 'sans-serif'],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: '--font-ibm-plex-mono',
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-  fallback: ['Courier New', 'monospace'],
-});
+const FONTES = [
+  'montserrat-latin.woff2',
+  'source-sans-3-latin.woff2',
+  'ibm-plex-mono-400-latin.woff2',
+  'ibm-plex-mono-700-latin.woff2',
+];
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -46,12 +29,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Fontes servidas do repo (public/fonts, @font-face em globals.css — Épico 39): o build não
+  // depende mais do Google Fonts. Preload dos quatro arquivos, como o next/font fazia.
+  for (const arquivo of FONTES) {
+    preload(`/fonts/${arquivo}`, { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
+  }
   return (
-    <html
-      lang="pt-BR"
-      className={`${montserrat.variable} ${sourceSans3.variable} ${ibmPlexMono.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className="font-sans antialiased">
         <ThemeProvider>
           <SiteHeader />
