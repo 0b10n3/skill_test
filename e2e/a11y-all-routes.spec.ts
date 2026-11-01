@@ -65,6 +65,9 @@ test.describe('navegação manual por teclado (além do /quiz, já coberto no É
     // regressão: os dois elementos precisam ser alcançáveis por teclado
     // tanto quanto o CTA (confirmado manualmente, tab order estável:
     // header → toggle → CTA).
+    // Épico 40: o menu (C1) entra entre o logo e o toggle — logo, dois links e o
+    // CTA do menu: quatro Tabs até o primeiro "Iniciar avaliação".
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');

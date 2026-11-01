@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
 import { ThemeToggle } from '@/components/theme-toggle';
 
@@ -20,14 +24,42 @@ import { ThemeToggle } from '@/components/theme-toggle';
  * single-viewport do `/quiz` (Épico 4) depende de `h-dvh` não ganhar
  * altura extra por causa do header — um elemento fora do fluxo do
  * documento não conta pra `scrollHeight`.
+ *
+ * Épico 40: menu C1 (`brand/APLICACAO.md` §1.2) — marca, links e um CTA, borda
+ * inferior como hairline, sem sombra. Só links que existem (âncoras da landing).
+ * No funil (quiz, lead, resultado) o menu some: lá o CTA levaria a recomeçar.
  */
+const FUNIL = ['/quiz', '/lead', '/resultado'];
+const LINKS = [
+  { href: '/#o-que-avaliamos', rotulo: 'O que avaliamos' },
+  { href: '/#metodologia', rotulo: 'Metodologia' },
+];
+
 export function SiteHeader() {
+  const pathname = usePathname();
+  const noFunil = FUNIL.some((rota) => pathname.startsWith(rota));
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-border bg-card px-4 py-3 print:hidden sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-border bg-card px-4 print:hidden sm:px-6">
       <Link href="/" aria-label="Syntaxis — página inicial" className="flex items-center">
         <Logo />
       </Link>
-      <ThemeToggle />
+      <div className="flex items-center gap-6">
+        {!noFunil && (
+          <>
+            <nav aria-label="Principal" className="hidden gap-6 text-sm md:flex">
+              {LINKS.map((link) => (
+                <Link key={link.href} href={link.href} className="text-foreground hover:underline">
+                  {link.rotulo}
+                </Link>
+              ))}
+            </nav>
+            <Button variant="default" className="h-9 px-4" render={<Link href="/quiz" />}>
+              Iniciar avaliação
+            </Button>
+          </>
+        )}
+        <ThemeToggle />
+      </div>
     </header>
   );
 }
