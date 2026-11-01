@@ -2,7 +2,6 @@ import { Badge } from '@/components/ui/badge';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Logo } from '@/components/logo';
 import { CLASSIFICATION_CONTEXT, CLASSIFICATION_LABEL, SENIORITY_LABEL } from '@/content/relatorio';
-import { cn } from '@/lib/utils';
 import type { Classification, SeniorityLevel } from '@/lib/types';
 
 const CLASSIFICATION_BADGE_VARIANT: Record<
@@ -66,10 +65,9 @@ export function ReportHeader({
         <Badge
           data-testid="score-classificacao"
           variant={CLASSIFICATION_BADGE_VARIANT[classificacao]}
-          // shadow.lime é exclusivo do selo ALTO (DESIGN.md §5.4: Lime é
-          // conquista real) — única aparição de sombra colorida fora do
-          // Card padrão (shadow.syntaxis).
-          className={cn('text-sm', classificacao === 'alto' && 'shadow-lime')}
+          // Lime (variante achievement) é exclusivo do selo ALTO — DESIGN.md
+          // §4.1: conquista real. Sem sombra: o grupo shadow saiu nos tokens v3.0.0.
+          className="text-sm"
         >
           {CLASSIFICATION_LABEL[classificacao]}
         </Badge>

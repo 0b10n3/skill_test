@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { MarkerHighlight } from '@/components/ui/marker-highlight';
-import { ThemedGeneratedImage } from '@/components/generated-image';
+import { GeneratedPicture } from '@/components/generated-image';
 import { GradientAmbient } from '@/components/patterns';
 import { HERO_PROMISE } from '@/content/landing';
 
@@ -31,6 +31,9 @@ import { HERO_PROMISE } from '@/content/landing';
  * claro que o fundo da página, luz virava mais escura que o fundo — ver
  * `assets/prompts/hero-landing-pessoas.md` e o par correto de
  * `hero-landing` dark, reaproveitado).
+ *
+ * Épico 37 (DESIGN.md v4.1 §5.1 regra 4): fotografia em cor natural, nunca
+ * duotone — um arquivo só para os dois temas, sem variante light/dark.
  */
 export function HeroSection() {
   return (
@@ -64,9 +67,9 @@ export function HeroSection() {
           caber sem rolagem (regra "single-viewport por seção", app desde
           o Épico 4); a partir de sm ela cabe. */}
       <div className="relative hidden aspect-[4/5] w-full overflow-hidden sm:block lg:max-w-md">
-        <ThemedGeneratedImage
+        <GeneratedPicture
           slug="hero-landing-pessoas"
-          widths={[640, 1024, 1920]}
+          widths={[640, 1024]}
           sizes="(min-width: 1024px) 28rem, 100vw"
           alt=""
           className="h-full w-full object-cover"

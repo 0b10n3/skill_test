@@ -32,18 +32,15 @@ describe('ReportHeader — regra de Lime/destructive por classificação (S1)', 
     },
   );
 
-  it('classificação "alto" usa a variante achievement (Lime) com shadow-lime', () => {
+  it('classificação "alto" usa a variante achievement (Lime)', () => {
     renderHeader('alto');
-    const badge = screen.getByTestId('score-classificacao');
-    expect(badge.dataset.variant).toBe('achievement');
-    expect(badge.className).toContain('shadow-lime');
+    expect(screen.getByTestId('score-classificacao').dataset.variant).toBe('achievement');
   });
 
-  it('classificações não-alto nunca têm a classe shadow-lime', () => {
-    for (const classificacao of ['baixo', 'medio'] as const) {
+  it('nenhuma classificação usa sombra (DESIGN.md v4.0)', () => {
+    for (const classificacao of ['baixo', 'medio', 'alto'] as const) {
       const { unmount } = renderHeader(classificacao);
-      const badge = screen.getByTestId('score-classificacao');
-      expect(badge.className).not.toContain('shadow-lime');
+      expect(screen.getByTestId('score-classificacao').className).not.toMatch(/shadow/);
       unmount();
     }
   });

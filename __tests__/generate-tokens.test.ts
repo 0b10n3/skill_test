@@ -145,8 +145,8 @@ describe('generateCss', () => {
     expect(css).not.toMatch(/--spacing-[a-z0-9]+:/);
   });
 
-  it('gera a sombra com a cor rgba embutida', () => {
-    expect(css).toContain('--shadow-syntaxis: 0px 4px 16px 0px rgba(27, 106, 69, 0.08);');
+  it('não gera sombra, nem com um grupo shadow nos tokens (tokens v3.0.0 removeram o grupo; DESIGN.md v4.0: nenhuma sombra)', () => {
+    expect(css).not.toContain('--shadow-');
   });
 
   it('gera uma classe utilitária por token de typography.scale', () => {
