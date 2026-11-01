@@ -2,8 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { MarkerHighlight } from '@/components/ui/marker-highlight';
-import { GeneratedPicture } from '@/components/generated-image';
-import { GradientAmbient } from '@/components/patterns';
+import { PatternTruchet } from '@/components/patterns';
 import { HERO_PROMISE } from '@/content/landing';
 
 /**
@@ -34,20 +33,24 @@ import { HERO_PROMISE } from '@/content/landing';
  *
  * Épico 37 (DESIGN.md v4.1 §5.1 regra 4): fotografia em cor natural, nunca
  * duotone — um arquivo só para os dois temas, sem variante light/dark.
+ *
+ * Épico 40: pedido do founder — o hero passa ao formato do CTA final (H11/C14,
+ * `brand/APLICACAO.md` §1.1–1.2): texto à esquerda e o mosaico Truchet como bloco
+ * próprio à direita, seguindo o tema; a foto e o gradiente de ambiente saíram
+ * (o Truchet nunca divide o bloco com outro padrão). Abaixo de `sm` o mosaico some,
+ * como a foto sumia: o hero precisa caber em 375×667 sem rolagem.
  */
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-dvh flex-col justify-center gap-6 overflow-hidden px-6 py-8 sm:px-10 sm:py-10 lg:flex-row lg:items-center lg:gap-12">
-      <GradientAmbient tone="forest" corner="top-right" />
-
-      <div className="flex max-w-xl flex-col gap-5 lg:flex-1 lg:border-r lg:border-border lg:pr-12">
+    <section className="grid min-h-dvh pt-14 lg:grid-cols-[1fr_600px]">
+      <div className="flex flex-col justify-center gap-5 px-6 py-8 sm:px-10 sm:py-10 lg:pl-30">
         <Eyebrow>Syntaxis Skill Check</Eyebrow>
         <h1 className="font-display text-[40px] leading-[1.05] text-balance text-foreground sm:text-[64px]">
           Descubra seu <MarkerHighlight>nível</MarkerHighlight> técnico em finanças em alguns
           minutos
         </h1>
-        <p className="text-base text-pretty text-foreground">{HERO_PROMISE}</p>
-        <p className="text-sm text-pretty text-muted-foreground">
+        <p className="max-w-xl text-base text-pretty text-foreground">{HERO_PROMISE}</p>
+        <p className="max-w-xl text-sm text-pretty text-muted-foreground">
           Uma avaliação adaptativa sobre renda fixa, matemática financeira, dados e IA aplicada ao
           mercado — calibrada para o seu momento de carreira.
         </p>
@@ -60,21 +63,20 @@ export function HeroSection() {
           </p>
         </div>
       </div>
-
-      {/* Escondido no menor breakpoint: com título + promessa + CTA, o hero
-          já ultrapassa um viewport de 667px de altura se a imagem também
-          empilhar embaixo do texto — a tela de entrada do funil precisa
-          caber sem rolagem (regra "single-viewport por seção", app desde
-          o Épico 4); a partir de sm ela cabe. */}
-      <div className="relative hidden aspect-[4/5] w-full overflow-hidden sm:block lg:max-w-md">
-        <GeneratedPicture
-          slug="hero-landing-pessoas"
-          widths={[640, 1024]}
-          sizes="(min-width: 1024px) 28rem, 100vw"
-          alt=""
-          className="h-full w-full object-cover"
-        />
-      </div>
+      <PatternTruchet
+        cols={5}
+        rows={7}
+        seed={11}
+        tom="tema"
+        className="hidden h-full w-full lg:block"
+      />
+      <PatternTruchet
+        cols={8}
+        rows={2}
+        seed={11}
+        tom="tema"
+        className="hidden h-40 w-full sm:block lg:hidden"
+      />
     </section>
   );
 }

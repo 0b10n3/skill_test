@@ -20,7 +20,10 @@ import { METODOLOGIA_RESUMO } from '@/content/relatorio';
  */
 export function CredibilityBand() {
   return (
-    <section className="relative w-full overflow-hidden bg-neutral-deep-forest px-6 py-24 sm:px-10 sm:py-32">
+    <section
+      id="metodologia"
+      className="relative w-full scroll-mt-14 overflow-hidden bg-neutral-deep-forest px-6 py-24 sm:px-10 sm:py-32"
+    >
       <GradientAmbient tone="forest" corner="bottom-right" />
       <PatternReticula slot="margin-left" />
       <PatternReticula slot="margin-right" />
