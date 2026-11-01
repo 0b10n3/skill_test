@@ -19,7 +19,14 @@ interface GeneratedImageProps {
   variant?: string;
 }
 
-function GeneratedPicture({ slug, widths, sizes, alt, className, variant }: GeneratedImageProps) {
+export function GeneratedPicture({
+  slug,
+  widths,
+  sizes,
+  alt,
+  className,
+  variant,
+}: GeneratedImageProps) {
   const fallbackWidth = widths[widths.length - 1];
   const fallbackPrefix = variant ? `${variant}-` : '';
 

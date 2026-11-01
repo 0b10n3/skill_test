@@ -3,7 +3,7 @@ slug: hero-landing-pessoas
 usage: 'Landing (/) — caixa lateral ao lado do headline/CTA, coluna própria (não fundo full-bleed). Substitui hero-landing (Épico 29).'
 aspectRatio: '4:5'
 minResolution: '1536x1920'
-variants: [light, dark]
+variants: []
 weightBudgetKb: 120
 history:
   - date: 2026-09-04
@@ -29,8 +29,8 @@ Vista de três-quartos ou de lado, foco no gesto de estudo real: anotações à 
 lado do laptop, xícara de café, uma régua ou calculadora financeira física por perto. A tela do
 laptop mostra dados/gráficos genéricos, fora de foco o bastante para não ser lido como texto
 real (nunca uma interface reconhecível ou marca de terceiro). Luz natural de janela lateral,
-sombras reais e suaves (a peça inteira passa por correção de duotone depois — a fotografia
-bruta não precisa nem deve tentar caber nos hexes da marca).
+sombras reais e suaves. A foto é publicada em cor natural (DESIGN.md v4.1 §5.1 regra 4, Épico 37):
+não tente caber nos hexes da marca nem pedir tom monocromático.
 
 **Enquadramento (v2, corrigido — DESIGN.md/Épico 30):** vertical, proporção 4:5, não 16:9. A
 peça é usada como caixa lateral ao lado do texto (não como fundo full-bleed atrás do headline),
@@ -43,9 +43,9 @@ horizontal simplesmente cortada nas laterais.
 Registro: sério, focado, sem sorriso performático para câmera — a pessoa está genuinamente
 concentrada, não posando. Sem contato visual com a câmera.
 
-**Variante light e dark:** a mesma fotografia (ambiente com luz natural, tons neutros) —
-`assets:process` aplica dois duotones diferentes (`#1B6A45`/`#F7F7F5` para light,
-`#1B6A45`/`#141414` para dark) sobre o mesmo raw, mesmo mecanismo do asset anterior.
+**Um arquivo para os dois temas:** a mesma fotografia, em cor natural, serve o claro e o escuro —
+`assets:process` publica com `--cor natural` (sem duotone; até o Épico 36 eram dois duotones,
+`#1B6A45`/`#F7F7F5` e `#1B6A45`/`#141414`, revogados pela rodada 5 da marca).
 
 ## Restrições negativas específicas
 

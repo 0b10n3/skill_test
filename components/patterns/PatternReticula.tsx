@@ -25,6 +25,8 @@ const SLOT_CLASS: Record<PatternReticulaSlot, string> = {
  * muda — `pattern.reticula.fine` é o mesmo grupo que `pattern.dataGrid`
  * era, byte a byte, agora com a escala como grupo explícito no token
  * (`fine`/`coarse`) em vez de implícita no nome do componente.
+ * Tokens v3.0.0: a cor depende do tema — `colorLight` (slate) sobre Chalk,
+ * `colorOnDark` (mist) no escuro; `color` está depreciado.
  */
 export function PatternReticula({ slot, className }: PatternReticulaProps) {
   return (
@@ -32,10 +34,14 @@ export function PatternReticula({ slot, className }: PatternReticulaProps) {
       aria-hidden="true"
       data-pattern="reticula"
       data-pattern-slot={slot}
-      className={cn('pointer-events-none', SLOT_CLASS[slot], className)}
+      className={cn(
+        'pointer-events-none [--reticula-cor:var(--pattern-reticula-fine-color-light)] dark:[--reticula-cor:var(--pattern-reticula-fine-color-on-dark)]',
+        SLOT_CLASS[slot],
+        className,
+      )}
       style={{
         backgroundImage:
-          'radial-gradient(circle var(--pattern-reticula-fine-dot-radius), var(--pattern-reticula-fine-color) var(--pattern-reticula-fine-dot-radius), transparent var(--pattern-reticula-fine-dot-radius))',
+          'radial-gradient(circle var(--pattern-reticula-fine-dot-radius), var(--reticula-cor) var(--pattern-reticula-fine-dot-radius), transparent var(--pattern-reticula-fine-dot-radius))',
         backgroundSize: 'var(--pattern-reticula-fine-spacing) var(--pattern-reticula-fine-spacing)',
         opacity: 'var(--pattern-reticula-fine-opacity-max)',
       }}

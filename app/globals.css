@@ -40,11 +40,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --shadow-syntaxis-sm: var(--shadow-syntaxis-sm);
-  --shadow-syntaxis: var(--shadow-syntaxis);
-  --shadow-syntaxis-lg: var(--shadow-syntaxis-lg);
-  --shadow-lime: var(--shadow-lime);
-
   --font-display: var(--font-montserrat);
   --font-heading: var(--font-montserrat);
   --font-sans: var(--font-source-sans-3);

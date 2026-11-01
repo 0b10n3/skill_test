@@ -15,6 +15,8 @@
 // __tests__/process-asset.test.ts para o caso que motivou essa escolha).
 // Um asset publicado sem `duotone` no manifest (processado por outro
 // método, se algum dia existir) cai no fallback de paleta geral.
+// Fotografia com `cor: "natural"` (Épico 37, DESIGN.md v4.1 §5.1 regra 4)
+// não é medida contra a paleta: a regra é justamente não recolorir a foto.
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -62,6 +64,7 @@ const palette = brandPaletteHexes();
 
 const failures = [];
 for (const asset of manifest.assets) {
+  if (asset.cor === 'natural') continue;
   for (const file of asset.publishedFiles ?? []) {
     const fullPath = path.join(rootDir, file.path);
     const pixels = await samplePixels(fullPath);

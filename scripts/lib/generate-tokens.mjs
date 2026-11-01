@@ -25,15 +25,6 @@ export function kebabCase(name) {
   return name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-function shadowToCss(tokens, shadowValue) {
-  const offsetX = resolveValue(tokens, shadowValue.offsetX);
-  const offsetY = resolveValue(tokens, shadowValue.offsetY);
-  const blur = resolveValue(tokens, shadowValue.blur);
-  const spread = resolveValue(tokens, shadowValue.spread);
-  const color = resolveValue(tokens, shadowValue.color);
-  return `${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
-}
-
 /** Gera o conteúdo completo de app/tokens.generated.css a partir do objeto de tokens. */
 export function generateCss(tokens) {
   const lines = [];
@@ -99,10 +90,6 @@ export function generateCss(tokens) {
   for (const [name, def] of Object.entries(tokens.color.theme.light)) {
     if (name.startsWith('$')) continue;
     lines.push(`  --${kebabCase(name)}: ${resolveValue(tokens, def.$value)};`);
-  }
-  for (const [name, def] of Object.entries(tokens.shadow)) {
-    if (name.startsWith('$')) continue;
-    lines.push(`  --shadow-${kebabCase(name)}: ${shadowToCss(tokens, def.$value)};`);
   }
   lines.push('}');
   lines.push('');

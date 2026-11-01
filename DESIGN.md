@@ -1,7 +1,7 @@
 # Syntaxis — DESIGN.md
 
 **Manual de Marca** · Fonte única da verdade para identidade visual, voz e aplicação de marca
-**v3.1** · 06/09/2026 — rodada 4, atualização escopada sobre a v3.0 (sem reescrita do zero).
+**v4.1** · 31/10/2026 — rodada 5 + imagem no app e no site. Tokens: `brand/tokens/syntaxis.tokens.json` **v3.1.0**.
 
 ---
 
@@ -17,60 +17,67 @@
 7. [Camada de ilustração — collage / paper cut](#7-camada-de-ilustração--collage--paper-cut)
 8. [Acessibilidade — alvo declarado](#8-acessibilidade--alvo-declarado)
 9. [Aplicação em materiais de curso](#9-aplicação-em-materiais-de-curso)
-10. [Checklist rápido](#10-checklist-rápido)
-11. [Lacunas abertas](#11-lacunas-abertas)
+10. [Canais sociais](#10-canais-sociais)
+11. [Checklist rápido](#11-checklist-rápido)
+12. [Lacunas abertas](#12-lacunas-abertas)
 
 ---
 
 ## 0. O que esta versão é
 
-### Escopo da reescrita
+### Autoridade e escopo
 
-Esta é a terceira reescrita completa da marca a partir de evidência, não a primeira — e a
-segunda vez que a árvore de `brand/` é esvaziada e reconstruída do zero em vez de emendada.
-Nenhum invariante mudou nesta rodada: Forest, Grove e Lime, o trio tipográfico, a voz da §3, a
-promessa da §1.3 e o conceito unificador nó-e-galho seguem exatamente os mesmos que a rodada
-anterior já havia herdado da v1.0/v1.1. O que mudou, e por quê:
+A v4.0 é **autossuficiente**: toda regra que continua valendo está escrita aqui ou nos
+documentos que ela nomeia (`SOCIAL.md`, `APLICACAO.md`, `ILUSTRACOES/`, `CHECKLIST-PR.md`). O
+que não está na v4.0 nem tem veredito MANTER no inventário da rodada 5
+(`revisao-2026-r5/lab/src/dados/inventario.json`) não vale mais. O que caiu está em
+`REVOGACOES.md`, seção "Rodada 5 (v4.0)", com o caminho onde vivia.
 
-| #   | O que mudou                                                                                                                                                                                          | Por quê                                                                                                                                                                                          |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | O sistema de padrões continua reconstruído sobre a geometria **medida diretamente** do símbolo (não herdada como afirmação) — módulo M≈40,24u, ângulos 0°/90°/±45°, terminação em quarto de arco     | remedido nesta rodada a partir do `d=` de `symbol-master.svg`: quatro medidas caem dentro de 3% do módulo, e o pattern em produção não compartilhava nenhuma delas (§6.1)                        |
-| 2   | A camada de ilustração — collage/paper cut, profundidade por degrau de tom, sem sombra — **passa a existir só em `pipelines/hemingway`**                                                             | decisão do founder, 03–04/09/2026: nunca em `apps/skill_test`, nunca no site. Substitui a versão anterior, que incluía ilustração de produto (estados de app, hero de site) no mesmo vocabulário |
-| 3   | O sistema de padrões continua em **duas** famílias (`nodeBranch`, `reticula`), mas `reticula` volta a ser **só sistema** — a variante grossa como matéria de ilustração compartilhada foi depreciada | com a ilustração restrita a `hemingway`, a ponte que justificava um pattern com dupla expressão perdeu o consumidor (`03-proposta.md` A6)                                                        |
-| 4   | Nenhuma peça de ilustração herdada de rodada anterior é reaproveitada — todo o kit de collage começa vazio                                                                                           | decisão do founder: peça nova só é gerada por necessidade real de publicação, nunca para preencher amostra                                                                                       |
+A rodada 5 teve autoridade para revogar qualquer decisão anterior, inclusive o que os
+documentos chamavam de "invariante". Amplitude aprovada pelo founder: **estreita** — a
+identidade (paleta, trio tipográfico, voz, símbolo) resistiu à auditoria e ao benchmark; o que
+falhava era a aplicação. Toda regra recebeu veredito explícito (184 regras: MANTER, ALTERAR
+ou REVOGAR, com justificativa).
 
-O sistema de padrões segue em **duas** famílias, não três — `growthLine` continua fora dele,
-reclassificada como marca de dado desde a rodada anterior.
+### O que mudou na v4.0 e por quê
+
+| # | Mudança | Por quê |
+| --- | --- | --- |
+| 1 | Nenhuma regra é imune por ser "invariante": Forest, Grove e Lime ficam por terem resistido à crítica, e a §4.1 diz o que justificaria mudá-las | mandato da rodada 5; a cláusula de imunidade não era regra de cor (R-005) |
+| 2 | Os canais sociais ganham documento próprio, `SOCIAL.md`, que substitui `INSTAGRAM.md` e cobre Instagram, Facebook e LinkedIn | o Facebook não existia em nenhum documento; o LinkedIn só como "distribuição editorial" (A6); o 1:1 do Instagram partia de premissa falsa — o grid é 3:4 desde jan/2025 (A2) |
+| 3 | Escala medida no aparelho: o piso de texto é 12 px na tela do celular, não um número em 1080 | todas as peças sociais da v3.1 tinham texto de 7,9–10,1 px no feed; a hairline media 1,03:1 e sumia (C19, C26) |
+| 4 | O contrato de camadas passa a nomear **superfícies**, não repositórios; produtor de ilustração = `pipelines/portinari` | o `pipelines/hemingway` saiu da ilustração em 09/09/2026 e a regra apontava para ele (R-054) |
+| 5 | A ilustração tem **uma governança só, vinculante**: não existe "padrão sobreponível" | o Portinari tratava sombra e tetos como aviso; o bloco injetado nem carregava a regra anti-sombra (lição S7, de novo) |
+| 6 | Fotografia e ilustração podem entrar em qualquer seção do app e do site (v4.1), com as regras da §5.1; imagem gerada fotorrealista conta como fotografia, com registro de origem | decisão do founder de 31/10/2026 (revoga I8 e o CP1 Q3) e CP3 Q7 |
+| 7 | Tamanho do símbolo se mede pelo **glifo**, não pela caixa do SVG | o glifo ocupa 57% da caixa de `symbol-master.svg`: o "símbolo de 24 px" era um glifo de 13,8 px (§6.1) |
+| 8 | Tokens v3.0.0: removidos os depreciados (sombra, `nodeBranch`, `dataGrid`, `reticula.coarse`); entram pesos 600/800, cor da retícula por tema, hairline social e o grupo `social.*` | §4, §6; changelog em `$extensions` |
+| 9 | Correções: checklist com o trio de fonte antigo (A1), linha órfã de anti-padrão (A3), §0 com famílias de pattern trocadas (A4), versões de tokens divergentes entre documentos (A5) | erros, não regras |
+
+Relatórios da rodada: `brand/revisao-2026-r5/0{0,1,2,3}-*.md`; laboratório de medição em
+`brand/revisao-2026-r5/lab/`.
 
 ### Histórico de versões
 
-| Versão                              | Mudança                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1.0                                | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| v1.1                                | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| v2.0                                | Amber → Lime (Forest/Grove intocados) · cantos retos · tipografia grotesca moderna                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| v2.1                                | Revisão de coerência cross-superfície; `APLICACAO.md` passa a governar superfícies de terceiros                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| v3.0 (rodada 2)                     | Documento reescrito do zero. Patterns reconstruídos sobre a geometria do símbolo; contrato de camadas explícito; ilustração unificada em collage/paper cut (então ainda incluindo produto); alvo de acessibilidade declarado. Nunca chegou a sincronizar com `apps/skill_test/main` antes de a árvore ser esvaziada para esta rodada                                                                                                                                                                                                                                                                                                                                                                    |
-| v3.0 (rodada 3)                     | Reescrito de novo do zero, não emendado sobre a rodada anterior — o founder apagou a árvore de `brand/` inteira entre as duas rodadas e pediu reconstrução, confiando no histórico do git como arquivo. Mesmo número de versão maior (v3.0) porque nenhum consumidor real chegou a depender de uma v3.0 anterior publicada. Mudança de conteúdo: ilustração restrita a `hemingway` (item 2 acima); `reticula.coarse` depreciada; nenhuma peça de ilustração herdada                                                                                                                                                                                                                                     |
-| **v3.1 (rodada 4, este documento)** | **Atualização escopada, não reescrita** — a Fase 0 desta rodada (`.claude/commands/marca-zero.md`) constatou que a marca chegou corrente, sem esvaziamento prévio, e o founder aprovou amplitude estreita (CHECKPOINT 0, `brand/revisao-2026/00-linha-zero.md`). Três mudanças: (1) §5 ganha um terceiro registro — **fotografia real** (Chassis D, `brand/INSTAGRAM.md`) — já em produção sem entrada aqui; (2) §5/§7 ganham exceção nomeada — a capa de `brand/templates/livro` usa collage, único ponto fora de `pipelines/hemingway` onde a ilustração existe, por pedido do founder; (3) §9 corrigida — a camada LaTeX, que a v3.0 registrava como inexistente, existe agora em `brand/templates/` |
-
-**Por que reescrever em vez de emendar, de novo.** O ledger desta rodada
-(`brand/_arquivo/DECISOES-HERDADAS.md`) registra 27 restrições medidas, 12 armadilhas de
-varredura e a autocrítica de 5 pontos que a rodada anterior deixou escrita sobre sua própria
-proposta — inclusive o risco, nomeado por ela mesma, de que collage destoe do posicionamento de
-rigor técnico se a fronteira entre camadas não for policiada. A decisão desta rodada de
-restringir ilustração a um único repositório é, em parte, resposta a esse risco: menos
-superfície onde a fronteira pode vazar.
+| Versão | Mudança |
+| --- | --- |
+| v1.0 | Consolidação do pivô (newsletter → plataforma): voz, padrões geométricos, paleta Forest/Grove/Amber |
+| v1.1 | Regras de composição digital: assinaturas visuais e anti-padrões de "design de IA" |
+| v2.0 | Amber → Lime (Forest/Grove intocados) · cantos retos · tipografia grotesca moderna |
+| v2.1 | Revisão de coerência cross-superfície; `APLICACAO.md` passa a governar superfícies de terceiros |
+| v3.0 (rodadas 2 e 3) | Reescrita do zero. Patterns reconstruídos sobre a geometria medida do símbolo; contrato de camadas explícito; ilustração em collage/paper cut, restrita a canais editoriais; alvo de acessibilidade declarado; `nodeBranch` → `mesh`; trio Montserrat / Source Sans 3 / IBM Plex Mono |
+| v3.1 (rodada 4) | Atualização escopada: registro de fotografia (Chassis D do Instagram); exceção nomeada da capa do livro; camada LaTeX registrada |
+| v4.0 (rodada 5) | Autossuficiente. Sistema social de três canais (`SOCIAL.md`); escala medida no aparelho; contrato de camadas por superfície; ilustração vinculante; tokens v3.0.0 |
+| **v4.1 (31/10–01/11/2026, este documento)** | Fotografia e ilustração liberadas em qualquer seção do app e do site (§5.1), fotografia em cor natural, nenhum hero só com o logo; mosaico Truchet (§6.6); família `grafo` com movimento (§6.7); catálogo de heros e componentes de landing (`APLICACAO.md` §1.1–1.2), a partir de mecanismos de `supahero.io` e validado pelo founder no laboratório; tokens v3.1.0 |
 
 ### O pivô de produto (mantido desde a v1.0)
 
-| Antes (Substack de investimentos)                | Agora (plataforma de treinamento)                                            |
-| ------------------------------------------------ | ---------------------------------------------------------------------------- |
-| Público: investidores pessoa física              | Público: estagiários e analistas do mercado de capitais brasileiro           |
-| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA   |
-| Formato: newsletter editorial                    | Formato: aulas expositivas + cases reais + skills de IA entregáveis          |
-| Metodologia implícita                            | Metodologia explícita e rigorosa (`education/METHODOLOGY.md`)                |
-| Voz: analítica e humana                          | Voz: técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada |
+| Antes (Substack de investimentos) | Agora (plataforma de treinamento) |
+| --- | --- |
+| Público: investidores pessoa física | Público: estagiários e analistas do mercado de capitais brasileiro |
+| Promessa: conectar portfólio a objetivos de vida | Promessa: skills técnicas aplicáveis no trabalho, incluindo fluência em IA |
+| Formato: newsletter editorial | Formato: aulas expositivas + cases reais + skills de IA entregáveis |
+| Metodologia implícita | Metodologia explícita e rigorosa (`education/METHODOLOGY.md`) |
+| Voz: analítica e humana | Voz: técnica e precisa, no estado da arte acadêmico, mas leve e bem-humorada |
 
 ---
 
@@ -86,30 +93,25 @@ trabalho.
 
 ### 1.2. Estrutura Estratégica
 
-| Pilar               | Definição                                                                                                                                                                                                              |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Propósito**       | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real.  |
-| **Visão**           | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo.                                                    |
-| **Missão**          | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as skills de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
-| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing.                                              |
+| Pilar | Definição |
+| --- | --- |
+| **Propósito** | Ensinar as skills técnicas que o mercado de capitais brasileiro realmente usa — modelagem, dados, renda fixa, IA aplicada — através de professores que somam carreira acadêmica sólida a experiência de mercado real. |
+| **Visão** | Ser a referência brasileira em formação técnica para o mercado financeiro, reconhecida por ensinar através de decisões reais, não de exercícios de enunciado limpo. |
+| **Missão** | Projetar cada aula e cada case com backward design a partir de uma competência observável no trabalho, entregando ao final de cada módulo as skills de IA e os arquivos de contexto que o aluno leva para o dia a dia. |
+| **Mecanismo único** | Professor híbrido (acadêmico + mercado) · case brasileiro real com tensão institucional (CVM, CMN) · AI-first como competência entregável, não como enfeite de marketing. |
 
 ### 1.3. Promessa de Resultado
 
 > _Skills e ferramentas de trabalho real — incluindo IA — para alcançar o próximo nível da
 > carreira._
 
-Esta é a promessa-guia definida em `MARKETING_REVIEW.md` §4 e deve substituir qualquer
-formulação genérica ("aprenda finanças", "domine investimentos") em toda peça de copy, aula ou
-material de curso.
+Promessa-guia de `strategy/MARKETING.md` §4 (a formulação operacional por segmento está em
+`strategy/FUNIL.md` §1). Substitui qualquer formulação genérica ("aprenda finanças", "domine
+investimentos") em toda peça de copy, aula ou material de curso.
 
 **Regra de verificabilidade:** a promessa é checável na prática do próprio trabalho do aluno
 (ele sabe se passou a usar a skill ou não) — nunca prometemos número de salário ou promoção que
 a Syntaxis não controla. Linha vermelha, não sugestão de estilo.
-
-> **Nota de ponteiro (mantida desde a v3.0 anterior).** O texto acima é reposto **verbatim** por
-> ser invariante, e por isso a citação `MARKETING_REVIEW.md` foi preservada como está. Esse
-> arquivo não existe com esse nome: o documento é [`strategy/MARKETING.md`](../strategy/MARKETING.md).
-> A promessa e a regra de verificabilidade são o invariante; o caminho não é.
 
 ### 1.4. Valores Fundamentais
 
@@ -131,10 +133,12 @@ A leveza vive no _como_ se diz, nunca no _o quê_ se afirma — §3.3.
 
 ## 2. Público — a moldura de marca sobre `AUDIENCES.md`
 
-`strategy/AUDIENCES.md` é o SSOT de segmentação para copy de vendas e continua sendo. Os quatro
-segmentos seguem governando estrutura de argumento em qualquer peça comercial.
+`strategy/AUDIENCES.md` é o SSOT de segmentação para copy de vendas. Os quatro segmentos
+(`#GENZ-FEAR`, `#GENZ-GREED`, `#Millennials-FEAR`, `#Millennials-GREED`) governam a estrutura
+de argumento de qualquer peça comercial; `strategy/FUNIL.md` diz qual segmento é prioritário em
+cada estágio.
 
-O que este documento acrescenta é a moldura comum que sobrevive acima dos quatro eixos:
+O que este documento acrescenta é a moldura comum aos quatro:
 
 - O público é sempre um **profissional adulto**, mesmo o estagiário de 19 anos — tratamento
   andragógico sem exceção.
@@ -150,14 +154,11 @@ nunca são usados isoladamente.
 
 ## 3. Personalidade e Voz
 
-_(Inalterada da v1.0/v1.1 — reproduzida integralmente por ser SSOT.)_
-
 > **Distinção de escopo:** esta seção é a voz de **marca e produto** — como a Syntaxis fala em
-> copy, curso e material comercial. Não é a mesma coisa que a voz **autoral** de quem escreve o
-> Substack, documentada em `pipelines/hemingway/estilo/estilo-autoral.md` (a prosa
-> ensaística/pessoal de um autor específico). Os dois convivem porque descrevem coisas
-> diferentes — nenhum substitui o outro. Ao escrever copy/produto, use esta seção; ao escrever
-> um post de Substack, use `estilo-autoral.md`.
+> copy, curso, peça social e material comercial. Não é a voz **autoral** de quem escreve o
+> Substack, documentada em `pipelines/hemingway/estilo/estilo-autoral.md`. As duas convivem
+> porque descrevem coisas diferentes: ao escrever copy, produto ou peça social, use esta seção;
+> ao escrever um post de Substack, use `estilo-autoral.md`.
 
 ### 3.1. Arquétipo: O Professor Híbrido
 
@@ -171,24 +172,24 @@ nenhuma necessidade de provar isso sendo solene. É competência confortável co
 **Técnico e preciso, no estado da arte da academia — sem perder a leveza e o bom humor.** Dois
 eixos independentes, não um meio-termo:
 
-| Eixo                | O que significa                                                                                                  | O que NÃO significa                                                              |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| **Rigor acadêmico** | Toda afirmação tem lastro — bibliografia real, dado com fonte, verbo de Bloom correto no objetivo de aprendizado | Jargão por jargão; complicar para parecer inteligente                            |
-| **Leveza e humor**  | Analogias vívidas, autoironia ocasional sobre o próprio mercado financeiro, ritmo de frase que não cansa         | Piada forçada; meme; infantilização; humor que descredibiliza o conteúdo técnico |
+| Eixo | O que significa | O que NÃO significa |
+| --- | --- | --- |
+| **Rigor acadêmico** | Toda afirmação tem lastro — bibliografia real, dado com fonte, verbo de Bloom correto no objetivo de aprendizado | Jargão por jargão; complicar para parecer inteligente |
+| **Leveza e humor** | Analogias vívidas, autoironia ocasional sobre o próprio mercado financeiro, ritmo de frase que não cansa | Piada forçada; meme; infantilização; humor que descredibiliza o conteúdo técnico |
 
 A regra de ouro: **o rigor nunca é sacrificado pela leveza, e a leveza nunca é sacrificada pelo
 rigor.**
 
 ### 3.3. Onde o humor vive (e onde não vive)
 
-| Local                                                 | Humor permitido?                                               |
-| ----------------------------------------------------- | -------------------------------------------------------------- |
+| Local | Humor permitido? |
+| --- | --- |
 | Abertura de aula ("por que isso importa no trabalho") | Sim — lugar ideal para analogia leve antes do conteúdo técnico |
-| Transições entre blocos de conteúdo                   | Sim, com moderação                                             |
-| Objeções de venda ("acho que já é tarde para mim")    | Sim — reconhecer com leveza antes de responder com dado real   |
-| A tensão institucional de um case                     | **Não** — a ambiguidade regulatória é o ponto pedagógico       |
-| Dado numérico ou afirmação técnica                    | **Não** — precisão em números e fontes é inegociável           |
-| Nota de Ensino (documento para o professor)           | Tom direto e técnico; humor mínimo                             |
+| Transições entre blocos de conteúdo | Sim, com moderação |
+| Objeções de venda ("acho que já é tarde para mim") | Sim — reconhecer com leveza antes de responder com dado real |
+| A tensão institucional de um case | **Não** — a ambiguidade regulatória é o ponto pedagógico |
+| Dado numérico ou afirmação técnica | **Não** — precisão em números e fontes é inegociável |
+| Nota de Ensino (documento para o professor) | Tom direto e técnico; humor mínimo |
 
 ### 3.4. Regras de Vocabulário
 
@@ -198,12 +199,13 @@ rigor.**
   mas nunca vaza para a página de vendas ou para o aluno.
 - **Tratamento: "você".** Direto, sem formalidade excessiva.
 - **Sem emoji em material técnico.** Emoji apenas em canais informais.
-- **Todo percentual leva fonte.** Regra universal de marca.
+- **Todo percentual leva fonte.** Regra universal de marca — na peça social, a fonte vai no
+  próprio slide.
 
 ### 3.5. A voz também é pedagógica
 
 - **Abrir por relevância, não por definição** — nunca comece explicando "o que é" antes de "por
-  que importa agora, no seu trabalho".
+  que importa agora, no seu trabalho". No carrossel, é a regra do slide 1 (`SOCIAL.md` §9).
 - **Reduzir carga cognitiva extrínseca** — ruído visual e jargão desnecessário são o mesmo erro
   em contextos diferentes.
 - **Não infantilizar o adulto profissional** — se uma frase soaria estranha dita a um colega de
@@ -211,14 +213,14 @@ rigor.**
 
 ### 3.6. Guia rápido Do / Don't
 
-| Faça                                                       | Não faça                                                 |
-| ---------------------------------------------------------- | -------------------------------------------------------- |
-| Abrir com o problema de mercado antes da definição técnica | Abrir com "Hoje vamos aprender sobre..."                 |
-| Citar a fonte de todo dado numérico                        | Afirmar percentual sem origem rastreável                 |
-| Usar analogia leve para destravar um conceito difícil      | Usar piada que trivializa o risco ou a tensão de um case |
-| Tratar o aluno como colega júnior competente               | Tratar o aluno como leigo total ou como criança          |
-| Nomear trilhas e produtos em português                     | Misturar inglês de vaidade em nome comercial             |
-| Reconhecer a objeção do aluno com leveza antes de rebater  | Ignorar a objeção e insistir só com entusiasmo           |
+| Faça | Não faça |
+| --- | --- |
+| Abrir com o problema de mercado antes da definição técnica | Abrir com "Hoje vamos aprender sobre..." |
+| Citar a fonte de todo dado numérico | Afirmar percentual sem origem rastreável |
+| Usar analogia leve para destravar um conceito difícil | Usar piada que trivializa o risco ou a tensão de um case |
+| Tratar o aluno como colega júnior competente | Tratar o aluno como leigo total ou como criança |
+| Nomear trilhas e produtos em português | Misturar inglês de vaidade em nome comercial |
+| Reconhecer a objeção do aluno com leveza antes de rebater | Ignorar a objeção e insistir só com entusiasmo |
 
 ---
 
@@ -226,225 +228,310 @@ rigor.**
 
 ### 4.1. Paleta — camada semântica, SSOT em `brand/tokens/syntaxis.tokens.json`
 
-| Papel                         | Token                      | Hex       |
-| ----------------------------- | -------------------------- | --------- |
-| Âncora institucional          | `color.forest.500`         | `#1B6A45` |
-| Estrutura em movimento        | `color.grove.500`          | `#2D9E67` |
-| Acento único (ação/conquista) | `color.lime.500`           | `#CDF163` |
-| Fundo claro                   | `color.neutral.chalk`      | `#F7F7F5` |
-| Fundo escuro (banda, prancha) | `color.neutral.deepForest` | `#0F3D27` |
-| Fundo escuro máximo contraste | `color.neutral.ink`        | `#141414` |
-| Secundário / traço neutro     | `color.neutral.slate`      | `#4A5568` |
-| Hairline / divisor            | `color.neutral.mist`       | `#E2E8F0` |
-| Superfície suave              | `color.neutral.mint`       | `#E6F4EE` |
+| Papel | Token | Hex |
+| --- | --- | --- |
+| Âncora institucional | `color.forest.500` | `#1B6A45` |
+| Estrutura em movimento | `color.grove.500` | `#2D9E67` |
+| Acento único (ação/conquista) | `color.lime.500` | `#CDF163` |
+| Fundo claro | `color.neutral.chalk` | `#F7F7F5` |
+| Fundo escuro (banda, prancha, peça social) | `color.neutral.deepForest` | `#0F3D27` |
+| Fundo escuro máximo contraste | `color.neutral.ink` | `#141414` |
+| Fundo do tema escuro do app | `color.theme.dark.background` | `#00120A` |
+| Secundário / traço neutro | `color.neutral.slate` | `#4A5568` |
+| Hairline do app / divisor | `color.neutral.mist` | `#E2E8F0` |
+| Superfície suave | `color.neutral.mint` | `#E6F4EE` |
 
-Forest, Grove e Lime são **invariantes travados**. Qualquer proposta de mudar um hex para
-melhor combinar com uma referência externa (`design_stitch.md` incluído — ver
-`01-referencias.md` I9) é incompatibilidade a registrar, nunca argumento de mudança.
+**O que justifica mudar uma cor-âncora.** Forest, Grove e Lime ficam porque resistiram à
+auditoria da rodada 5: o benchmark de setor converge no mesmo eixo (minimalismo suíço) e o
+Forest diferencia a marca do navy corporativo e do dourado do setor
+(`revisao-2026-r5/01-auditoria.md` §7). Uma mudança futura exige evidência registrada de
+legibilidade (contraste medido, teste no aparelho) ou de público — nunca "combinar melhor com
+uma referência externa".
+
+**Tons e escopos.**
+- Rampas `forest`, `grove` e `lime` (100–900): use o tom pelo contraste medido contra o fundo
+  real, nunca por estimativa.
+- Eyebrow: `component.eyebrow.colorLight` (`grove.700`, 4,95:1 sobre Chalk) e `.colorOnDark`
+  (`lime.300`, 10,46:1 sobre Deep Forest) no app; na peça social, no escuro,
+  `social.eyebrowOnDark` (`grove.300`, 6,23:1 sobre Deep Forest), para o Lime aparecer só no CTA.
+- Cores semânticas (`color.semantic.*`: success, error, warning, info) são **só estados do
+  app**, nunca peça social nem ilustração.
+- `#00120A` é o fundo do tema escuro do app; na peça social, só em post sobre o produto
+  (`SOCIAL.md` §5.1). Mede 1,04:1 contra Ink: não serve para separar duas áreas.
+
+**Lime — acento único.** Marca ação ou conquista real, nunca cor ambiente; uma ocorrência por
+peça. Teto de área: **ilustração ≤1% do quadro** (`illustration.accentMaxCoverage`, medido
+0,35% na referência aprovada); **peça de sistema ≤5%** (`social.accentMaxCoverageSystem`;
+botão de CTA medido em 4,0–5,0%). O Lime do símbolo (variante escura do logo, `LOGO/README.md`)
+é marca, não acento, e não conta.
 
 ### 4.2. Tipografia
 
-| Papel                 | Família       |
-| --------------------- | ------------- |
-| Display (títulos)     | Montserrat    |
-| Corpo                 | Source Sans 3 |
-| Dados / código / mono | IBM Plex Mono |
+| Papel | Família | Pesos |
+| --- | --- | --- |
+| Display (títulos) | Montserrat | 500, 600, 700, 800 |
+| Corpo | Source Sans 3 | 400, 600 (700 e 800 disponíveis) |
+| Dados / código / mono / eyebrow | IBM Plex Mono | 400, 500, 700 |
 
-Trio fechado. Sem serif, sem itálico como ênfase (a assinatura "palavra-destaque em serif
-itálico" é revogada desde a v2.0 e continua morta — ver `REVOGACOES.md`).
+Trio fechado, escolhido por disponibilidade no Canva e suporte a pdfLaTeX (`montserrat`,
+`sourcesanspro`, `plex` no CTAN) — `REVOGACOES.md` H10. Sem serif, sem itálico como ênfase.
+Números de destaque sempre em Plex Mono (`typography.scale.statNumber`).
+
+**Duas famílias no texto de leitura.** Uma peça usa no máximo duas famílias no texto corrido;
+Plex Mono em papel de dado (eyebrow, número, rótulo de gráfico, handle) não conta.
+
+Escala de produto: `typography.scale.*` nos tokens. Escala de peça social: `social.type.*` e
+`SOCIAL.md` §4 (piso de 12 px no aparelho).
 
 ### 4.3. Geometria — camada de sistema
 
-- **Cantos retos, 0–2px.** Exceção nomeada: avatar e o símbolo circular do logo. Controles de
-  seleção nativos (radio, ponto do switch) ganham a mesma exceção estreita, nunca estendida a
-  checkbox, botão, card, input ou tag (decisão do founder, rodada 2, mantida por não haver fato
-  novo que a conteste).
-- **Sem sombra como recurso principal.** Hairline (1px, `mist`) é o divisor. Sombra difusa e
-  glassmorphism são anti-padrão em qualquer camada — inclusive na ilustração (§7). Gradiente e
-  glow têm uma exceção estreita e nomeada — §4.5.
-- **Contraste por cor chapada, nunca por luz — exceto na camada de ambiente da §4.5.** Nenhum
+- **Cantos retos, 0–2px.** Exceções nomeadas: avatar, o símbolo circular do logo e os controles
+  de seleção nativos (radio, ponto do switch) — nunca estendidas a checkbox, botão, card,
+  input, tag ou bento.
+- **Sem sombra.** Em nenhuma camada, em nenhum componente. O divisor é a hairline:
+  - **app e site:** `component.hairline.colorLight` (Mist) 1 px no claro e `.colorOnDark`
+    (`#25372F`, calibrado para `#00120A`) 1 px no escuro;
+  - **peça social:** `component.hairline.colorSocial` (`grove.500`) 3 px a 1080, a única cor
+    de token ≥3:1 nos três fundos sociais.
+- **Contraste por cor chapada, nunca por luz** — exceto a camada de ambiente da §4.5. Nenhum
   brilho, nenhum halo, em componente ou texto.
-- **Um acento por composição.** Lime marca ação ou conquista real — nunca cor ambiente.
+- **Profundidade por degrau de tom**, nunca por sombra ou escala: um tile promovido muda de
+  preenchimento (com rótulo ou marcador junto — SC 1.4.1).
 
-### 4.4. Anti-padrões — escopados por camada desde a redação
+### 4.4. Anti-padrões — escopados por camada
 
-| Anti-padrão                                               | Onde vale                | Por quê                                                                                                                                     |
-| --------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gradiente contínuo em componente ou atrás de texto direto | sistema                  | não tem par de token; sai do gate de contraste automatizado (R6/R7 do ledger). Exceção estreita para camada de ambiente de fundo — §4.5     |
-| Radius acima de 2px fora das exceções nomeadas            | sistema                  | assinatura revogada — "botão pílula" e radius alto liam como template genérico                                                              |
-| Sombra difusa, glassmorphism                              | sistema **e** ilustração | proibido nas duas — na ilustração, profundidade é degrau de tom (§7.2), nunca sombra. Glow tem a mesma exceção estreita de gradiente — §4.5 |
-| Palavra-destaque em serif itálico                         | sistema                  | revogada na v2.0                                                                                                                            |
-| Curva orgânica livre                                      | sistema **e** ilustração | a única curva do sistema é o quarto de arco do símbolo (§6.1); corte de papel é reto ou a 45° (§7.5)                                        |
+| Anti-padrão | Onde vale | Por quê |
+| --- | --- | --- |
+| Gradiente contínuo em componente ou atrás de texto direto | sistema | não tem par de token e sai do gate de contraste automatizado. Única exceção: camada de ambiente (§4.5) |
+| Radius acima de 2px fora das exceções nomeadas | sistema | "botão pílula" e radius alto liam como template genérico |
+| Sombra (difusa, chapada, de contato), glassmorphism, glow | sistema **e** ilustração | profundidade é degrau de tom (§7.1). Glow tem só a exceção de ambiente da §4.5 |
+| Palavra-destaque em serif itálico | sistema | revogada na v2.0 |
+| Curva orgânica livre | sistema **e** ilustração | a única curva da marca é o quarto de arco do símbolo (§6.1); corte de papel é reto ou a 45° (§7.3) |
+| Texto renderizado dentro de imagem gerada | ilustração | o gerador erra tipografia; a marca tem tipografia própria — o alt-text e a faixa sólida carregam a informação verbal |
+| Template de skill de terceiro aplicado sem adaptação (ex.: bento com radius e sombra) | sistema | a skill é lente, não autoridade; desvio declarado em `SOCIAL.md` §6 |
 
 ### 4.5. Exceção nomeada — gradiente e glow ambiente de fundo
 
-**Revogação de 04/09/2026** (`REVOGACOES.md` H8): a proibição total de gradiente/glow no
-sistema, em vigor desde a v2.0, é substituída por uma exceção estreita — mecanismo adotado de
-`design_stitch.md` ("glow ambient lights", radial-gradient de baixa opacidade atrás da
-composição), adaptado para não reabrir R6/R7 do ledger (gradiente sem par de token escapando do
-gate de contraste automatizado).
-
-Regras, todas obrigatórias para a exceção valer:
+Desde 04/09/2026 (`REVOGACOES.md` H8). Regras, todas obrigatórias para a exceção valer:
 
 1. **Só como camada de ambiente**, na base do empilhamento visual (abaixo de todo conteúdo) —
-   nunca em card, botão, input, badge, tag ou pattern. Continua proibido em qualquer componente
-   interativo ou de conteúdo, sem exceção.
-2. **Nunca atrás de texto direto.** Todo texto precisa continuar resolvendo contraste contra um
-   fundo sólido de token conhecido — se a região tem texto, ela tem uma superfície sólida entre
-   o texto e o gradiente (um card, uma banda de cor chapada), nunca o gradiente cru atrás da
-   letra. Isso é o que impede o gate de contraste de ficar cego: nenhum texto real se apoia na
-   cor do gradiente.
-3. **Radial, baixa opacidade, cor de token — nunca hex novo.** Tokens `illustration`-like:
-   grupo `gradient.ambient.*` (§ tokens), alias de cor existente (`forest.700`, `lime.500`),
-   opacidade máxima 0,25, raio generoso (blur forte — é ambiente, não forma).
-4. **Um por seção**, no máximo dois em cantos opostos (mecanismo do hero de `design_stitch.md`)
-   — nunca um campo de gradientes cobrindo tudo.
+   nunca em card, botão, input, badge, tag, pattern ou peça social.
+2. **Nunca atrás de texto direto.** Todo texto resolve contraste contra um fundo sólido de token
+   conhecido; se a região tem texto, há uma superfície sólida entre o texto e o gradiente.
+3. **Radial, baixa opacidade, cor de token** — grupo `gradient.ambient.*`, alias de cor
+   existente, opacidade máxima 0,25, raio generoso. Nunca hex novo.
+4. **Um por seção**, no máximo dois em cantos opostos.
 
-Isto não reabre glassmorphism nem sombra difusa em componente: a exceção é só para a camada de
-ambiente atrás da composição, e só nos dois tokens declarados abaixo.
-| Texto renderizado dentro de imagem gerada | ilustração | gerador erra tipografia; a marca tem tipografia própria — o alt-text carrega a informação verbal |
+Isto não reabre glassmorphism nem sombra em componente.
 
 ---
 
 ## 5. O contrato de camadas
 
-Três registros, com fronteira **checável**, não intenção de estilo:
+Três registros, com fronteira **checável**, decididos **por superfície e por peça** — não por
+repositório.
 
-- **Camada de sistema** — UI de `apps/skill_test`, o site, componentes, tipografia, patterns
-  funcionais, tabelas, certificado, material de curso (§9). Plana, geométrica, reta, sem
-  sombra. Sem exceção.
-- **Camada de ilustração** — collage / paper cut, §7. **Existe em `pipelines/hemingway`** —
-  capas editoriais, imagens de post e sua distribuição social (LinkedIn, Instagram, thumbnail
-  de YouTube. **Exceção nomeada única**: a capa de `brand/templates/livro`, por pedido explícito
-  do founder (04/09/2026) — ver §7.7. Fora dessas duas superfícies, não existe: não em
-  `apps/skill_test`, não no site `syntaxis.com.br`, não no restante de `brand/templates/`
-  (o tema Beamer usa superfície de uma cor só — sistema, não ilustração).
-- **Registro de fotografia** — imagem real de pessoa, objeto ou cena, sem paper cut e sem
-  vocabulário de UI. **Existe só na biblioteca comercial do Instagram** (Chassis D,
-  `brand/INSTAGRAM.md`) — retrato profissional com faixas de cor chapada acima/abaixo, ou
-  intervenção gráfica plana sobre a foto (nunca paper cut sobre fotografia). Nunca em
-  `apps/skill_test`, nunca no site, nunca como substituto de ilustração no pipeline editorial.
+- **Camada de sistema** — UI de `apps/skill_test`, o site, componentes, tipografia, patterns,
+  tabelas, gráficos, certificado, material de curso (§9) e os slides tipográficos, de dado e de
+  bento das peças sociais. Plana, geométrica, reta, sem sombra. É a moldura onde as outras duas
+  camadas entram.
+- **Camada de ilustração** — collage / paper cut (§7). Existe em: Substack (capa editorial,
+  retrato de dado, cabeçalho de e-mail), peças sociais de Instagram, Facebook e LinkedIn, capa
+  de Reels, thumbnail de YouTube e — exceção nomeada — a capa de `brand/templates/livro`
+  (§7.7), **qualquer seção do app e do site** (§5.1). Produtor atual: `pipelines/portinari`.
+  Nunca no miolo de material de curso.
+- **Registro de fotografia** — imagem de pessoa, objeto ou cena, sem paper cut e sem
+  vocabulário de UI. Existe nas peças sociais (Chassi D, `SOCIAL.md` §8) e em **qualquer seção
+  do app e do site** (§5.1). Nunca em material de curso. Imagem gerada
+  fotorrealista conta como fotografia, com registro de origem (modelo e prompt); depoimento
+  nunca leva foto de pessoa inventada (`SOCIAL.md` §6).
 
-Onde dois registros se encontrariam, o sistema vence — mas na prática o encontro é raro e
-nomeado: a distribuição social do conteúdo editorial (um post do Substack compartilhado no
-LinkedIn, por exemplo), onde a ilustração segue as regras de §7 e nunca ganha chrome de produto
-ao redor; e a capa do livro (§7.7), onde o miolo do template continua sistema puro e o título
-fica sobre faixa sólida, nunca direto sobre a colagem.
+**Onde dois registros se encontram, o sistema vence:** texto sobre ilustração ou foto vai numa
+faixa sólida de token, nunca direto sobre a imagem. Numa peça social de vários slides, cada
+slide tem **um** registro; o carrossel combina registros entre slides.
+
+### 5.1. Imagem no app e no site
+
+Desde a v4.1, fotografia e ilustração podem entrar em **qualquer seção** do app e do site — hero,
+banner de seção, onboarding, estados (vazio, erro, carregando, conquista), resultado,
+certificado — para dar impacto onde a página pede. Regras, todas obrigatórias:
+
+1. **Um registro por bloco.** Um componente ou seção usa fotografia **ou** ilustração, nunca as
+   duas na mesma imagem; pattern nunca por cima da imagem.
+2. **Texto nunca direto sobre a imagem.** O texto fica ao lado (coluna própria, como no hero da
+   landing) ou sobre uma superfície sólida de token. Contraste se mede contra essa superfície.
+3. **Moldura reta, sem sombra.** Retângulo com radius 0–2 px; a imagem pode sangrar até a borda
+   da seção (a borda da seção é o frame) ou ficar emoldurada com hairline 1 px. Nenhuma sombra,
+   brilho ou desfoque.
+4. **Par claro/escuro.** A ilustração tem a pilha clara e a escura. A **fotografia é em cor
+   natural** — nunca monocromática nem duotone (decisão do founder, 01/11/2026) — e a mesma foto
+   serve aos dois temas.
+5. **A imagem nunca é a única portadora de informação.** Estado de erro, vazio ou conquista
+   tem texto que diz o que aconteceu; `alt=""` quando a imagem é decorativa, alt descritivo
+   quando ela informa (SC 1.1.1).
+6. **A imagem não fica entre o usuário e a ação.** Nunca atrás de um controle, nunca empurra o
+   CTA principal para fora da primeira tela.
+7. **Escala pequena:** abaixo de 96 px é símbolo ou ícone, não ilustração (§7.4).
+8. **Origem.** Ilustração pelo `_bloco-marca.md` (vinculante); fotografia gerada com o prompt
+   versionado junto do asset; depoimento nunca com foto de pessoa inventada.
+9. **Nenhum hero só com o logo.** O símbolo sozinho não sustenta um hero: entra foto,
+   ilustração, Truchet (§6.6), grafo (§6.7) ou a tela do produto.
 
 **Regras binárias, verificáveis:**
 
-| Regra                                                                                                                                                   | Como se verifica                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Ilustração nunca aparece em `apps/skill_test` ou no site; fora de `pipelines/hemingway`, só existe na exceção nomeada de `brand/templates/livro` (§7.7) | binário, por repositório/superfície                               |
-| Fotografia (§5) nunca leva paper cut sobre a imagem; paper cut nunca embute fotografia                                                                  | binário — os dois registros não se misturam na mesma peça         |
-| Toda ilustração é contida por um frame retangular, radius 0, hairline 1px                                                                               | binário, olhando a borda                                          |
-| Nada sangra para fora do frame                                                                                                                          | binário                                                           |
-| Sombra proibida nas duas camadas                                                                                                                        | binário: qualquer desfoque entre camadas reprova                  |
-| Amplitude cromática entre 3 e 7 cores ≥1% do quadro                                                                                                     | numérico, por quantização (`illustration.maxColors`)              |
-| Fundo ≥ 40% do quadro                                                                                                                                   | numérico (`illustration.minBackground`)                           |
-| Lime ≤ 1% do quadro                                                                                                                                     | numérico (`illustration.accent`, teto medido)                     |
-| Um matiz de pilha por peça                                                                                                                              | numérico, por matiz das cores dominantes (`illustration.maxHues`) |
-| Pattern: 0°, 90°, ±45°, comprimento múltiplo do módulo                                                                                                  | binário, por linter                                               |
-| Foco com área de perímetro de 2px                                                                                                                       | numérico (§8)                                                     |
+| Regra | Como se verifica |
+| --- | --- |
+| Ilustração e fotografia nunca no miolo de material de curso | binário, por superfície |
+| No app e no site, imagem segue a §5.1 (texto fora da imagem, moldura reta, par claro/escuro) | binário, por componente |
+| Fotografia nunca leva paper cut sobre a imagem; paper cut nunca embute fotografia | binário — um registro por peça ou slide |
+| Ilustração dentro de página: frame retangular, radius 0, hairline 1 px, nada sangra. Ilustração em quadro social inteiro: a borda da peça é o frame | binário, olhando a borda |
+| Texto nunca direto sobre ilustração ou foto | binário — faixa sólida de token |
+| Sombra proibida nas duas camadas | binário: qualquer desfoque, sombra ou parede de recorte reprova (`checks.mjs → sem_sombra` no DOM; inspeção nas imagens geradas) |
+| Amplitude cromática entre 3 e 7 cores ≥1% do quadro | numérico, por token mais próximo (`illustration.maxColors`) |
+| Fundo ≥ 40% do quadro | numérico (`illustration.minBackground`) |
+| Lime ≤ 1% (ilustração) / ≤ 5% (peça de sistema) | numérico, contagem de pixels |
+| Um matiz de pilha por peça | numérico (`illustration.maxHues`) |
+| Pattern: 0°, 90°, ±45°, comprimento múltiplo do módulo | binário, por linter |
+| Foco com área de perímetro de 2px | numérico (§8) |
 
 ---
 
 ## 6. Sistema de padrões
 
-Duas famílias — `mesh` e `reticula`. `growthLine` não é pattern: é marca de dado, sempre a
-100%, nunca atrás de texto, sempre ligada a conquista verificável (`ShareRadarButton.tsx` —
-card compartilhável, a peça real que a linha "Certificado" de §6.4 descreve — é o uso real em
-produção desde o Épico 34; `PriorityCareerSkills.tsx` removeu o uso decorativo que tinha antes).
-
-**`pattern.nodeBranch` está `$deprecated` desde 04/09/2026** — substituído por `pattern.mesh`
-(pedido direto do founder; ver `REVOGACOES.md`). Não tinha consumidor decorativo real em
-produção no momento da troca (removido do app em rodada anterior); o único uso funcional —
-moldura do certificado/card compartilhável — migrou para `mesh`.
+Três famílias — `mesh`, `reticula` e `grafo` (§6.7, v4.1). `growthLine` não é pattern: é **marca de dado**, sempre a
+100%, nunca atrás de texto, sempre ligada a conquista verificável (uso real em produção:
+`ShareRadarButton.tsx`, o card compartilhável do resultado do Skill Check).
 
 ### 6.1. A geometria do símbolo — medida, não estimada
 
-`brand/LOGO/symbol-master.svg`, dois `<path>` em simetria rotacional de 180°. Lido diretamente
-do `d=` nesta rodada:
+`brand/LOGO/symbol-master.svg`, dois `<path>` em simetria rotacional de 180°. Lido do `d=`:
 
-| Elemento            | Medida                       | Em módulos (M≈40,24u) |
-| ------------------- | ---------------------------- | --------------------- |
-| Diagonal do chevron | 56,81u, a exatamente ±45,00° | M·√2                  |
-| Segmento vertical   | 41,42u                       | 1,03 M                |
-| Barra horizontal    | 40,45u                       | 1,00 M                |
-| Quarto de arco      | raio 38,92u                  | 0,97 M                |
+| Elemento | Medida | Em módulos (M≈40,24u) |
+| --- | --- | --- |
+| Diagonal do chevron | 56,81u, a exatamente ±45,00° | M·√2 |
+| Segmento vertical | 41,42u | 1,03 M |
+| Barra horizontal | 40,45u | 1,00 M |
+| Quarto de arco | raio 38,92u | 0,97 M |
 
 Quatro medidas dentro de 3% do mesmo módulo. **O quarto de arco é a única curva que o sistema
 inteiro contém.** Preenchimento sólido, sem traço.
 
-### 6.2. `pattern.mesh` — malha quadriculada, escala do próprio grid de espaçamento
+**O glifo mede 3 M × 3 M**, e é por ele que se mede o tamanho do símbolo. O viewBox do master
+(16 × 15,8) contém o glifo em (3,405; 3,40)–(12,594; 12,40): o glifo ocupa 57% da caixa, e o
+respiro de ~1,12 M por lado **é a área de proteção** (clearspace ≥ 1 M, o miolo central).
+"Símbolo de 48 px" quer dizer glifo de 48 px (caixa ≈ 84 px). Mínimo digital: glifo de 18 px
+na tela (caixa de 32 px).
 
-Substitui `pattern.nodeBranch` (04/09/2026, ver acima e `REVOGACOES.md`). Referência de
-composição: `.technical-grid-bg` em `brand/revisao-2026/refs/design_stitch.md` — mesma
-proporção de célula (32px), mas o número não veio de lá por cópia: 32px já é `{spacing.lg}` no
-nosso próprio `tokens.json` (escala de 8px), então a malha é, por construção, múltiplo do grid
-de espaçamento do sistema — o Stitch só confirmou que a proporção funciona bem como textura.
+**O símbolo gera a geometria.** Quando M é múltiplo da célula do mesh, o glifo assenta na
+malha — vértices do chevron, miolo e arcos em nós. No app, M = 128 px = 4 × `{spacing.lg}`
+(`revisao-2026-r5/img/02-hero.png`).
 
-| Propriedade              | Regra                                                                                                                                                                                                                            |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ângulos permitidos       | 0°, 90° — só linhas retas, nenhuma diagonal, nenhuma curva                                                                                                                                                                       |
-| Célula                   | `{spacing.lg}` = 32px (`pattern.mesh.cellSize`)                                                                                                                                                                                  |
-| Espessura de traço       | 1px (`pattern.mesh.strokeWidth`)                                                                                                                                                                                                 |
-| Cor                      | `{color.grove.500}` — testado sobre Chalk _e_ Deep Forest nesta rodada: é a única cor de pattern que lê com contraste suficiente nos dois sem precisar de token por tema (Mist, a cor da retícula, quase desaparece sobre Chalk) |
-| Opacidade atrás de texto | 0,12 — mesmo valor de `nodeBranch`, reaproveitado: peso visual equivalente confirmado por preview real                                                                                                                           |
-| Opacidade decorativa     | 0,25–0,40 — idem                                                                                                                                                                                                                 |
+### 6.2. `pattern.mesh` — malha quadriculada
 
-Nenhuma curva: reforça que o quarto de arco do símbolo (§6.1) continua sendo a única curva do
-sistema inteiro — o mesh não disputa essa exceção.
+| Propriedade | Regra |
+| --- | --- |
+| Ângulos | 0°, 90° — só linhas retas, nenhuma diagonal, nenhuma curva |
+| Célula | `{spacing.lg}` = 32 px no app (`pattern.mesh.cellSize`); ×3 na peça social (96 px) |
+| Traço | 1 px no app (`pattern.mesh.strokeWidth`); 3 px na peça social |
+| Cor | `{color.grove.500}` — a única cor de pattern que lê sobre Chalk e Deep Forest sem token por tema |
+| Opacidade atrás de texto | 0,12 |
+| Opacidade decorativa | 0,25–0,40 |
 
-### 6.3. `pattern.reticula` — um primitivo, escala como parâmetro (agora só sistema)
+### 6.3. `pattern.reticula.fine` — retícula de sistema
 
-Substitui `dataGrid` (`$deprecated`, ponteiro para `reticula.fine`, valores idênticos).
+Ponto de 1 px a cada 14 px no app (×3 na peça social: raio 3, passo 42), opacidade 0,15–0,20,
+**sempre dentro de retângulo de canto reto, nunca atrás de texto corrido**. Cor por tema:
+`colorLight` = slate no claro (1,25–1,35:1) e `colorOnDark` = Mist no escuro (1,50–1,72:1).
+O antigo `color` (Mist nos dois) fica `$deprecated`: sobre Chalk media 1,02–1,03:1 e sumia.
 
-| Escala                                  | Uso                                                                                      | Estado                                                                                                                                                                                                      |
-| --------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fine` (1px ponto / 14px espaçamento)   | camada de sistema — fundo, opacidade 0,15–0,20, sempre dentro de retângulo de canto reto | ativa                                                                                                                                                                                                       |
-| `coarse` (4px ponto / 48px espaçamento) | previa matéria de ilustração compartilhada                                               | **`$deprecated` desde v2.3.0** — A6 (separação estrita) elimina o consumidor. Retícula de ilustração agora é construída peça a peça em `brand/ILUSTRACOES/_bloco-marca.md`, não recortada de um asset comum |
+A retícula da ilustração é construída peça a peça (§7.3), não derivada deste token.
 
 ### 6.4. Matriz de uso
 
-| Contexto                                                  | Pattern                            | Opacidade | Superfície |
-| --------------------------------------------------------- | ---------------------------------- | --------- | ---------- |
-| Banda escura em página                                    | `mesh`, campo ou canto             | 0,25–0,40 | app, site  |
-| Atrás de texto corrido                                    | `mesh`                             | 0,12      | app, site  |
-| Respiro em conteúdo denso                                 | `reticula.fine`                    | 0,15–0,20 | app, site  |
-| Painel/tile texturizado dentro de retângulo de canto reto | `reticula.fine`                    | 0,15–0,20 | app, site  |
-| Certificado                                               | `mesh` como moldura + `growthLine` | 1,0       | app        |
-| Prova social / página de vendas                           | nenhum                             | —         | —          |
+| Contexto | Pattern | Opacidade | Superfície |
+| --- | --- | --- | --- |
+| Banda escura em página | `mesh`, campo ou canto | 0,25–0,40 | app, site |
+| Atrás de texto corrido | `mesh` | 0,12 | app, site |
+| Respiro em conteúdo denso | `reticula.fine` | 0,15–0,20 | app, site |
+| Painel/tile texturizado em retângulo reto | `reticula.fine` | 0,15–0,20 | app, site |
+| Hero ou banner com grafo (§6.7) | `grafo`: rede a 1, campo a 0,35–0,60, atrás do texto 0,12 | ver §6.7 | app, site |
+| Hero, banner ou CTA com Truchet (§6.6) | nenhum pattern no mesmo bloco | — | app, site |
+| Certificado e card compartilhável | `mesh` de canto como moldura + `growthLine` | 1,0 | app |
+| Prova social / página de vendas | nenhum | — | — |
+| Slide de ideia ou número, fundo escuro | `mesh`, campo superior, nunca atrás do número | 0,25 | social (×3) |
+| Cartão claro | `reticula.fine` slate, painel fora do texto | 0,20 | social (×3) |
+| Capa ilustrada, bento, gráfico, CTA | nenhum | — | social |
+| Capa de Reels tipográfica | `mesh`, campo | 0,25–0,40 | social (×3) |
 
 ### 6.5. Regra de uso — um pattern por peça
 
-Se uma composição tem padrão geométrico de fundo, é **um só**, na opacidade certa da matriz
-acima — nunca `mesh` e `reticula` sobrepostos na mesma superfície. A exceção nomeada é o
-certificado, onde `mesh` (moldura) e `growthLine` (marca de dado, não pattern) convivem por
-desenho — `growthLine` nunca é decorativo, então não conta como um segundo pattern disputando
-a mesma superfície. Verificável em CI: um componente não importa mais de uma família de pattern
-de `@/components/patterns`.
+Se uma composição tem padrão geométrico de fundo, é **um só** (na peça social, um por slide),
+na opacidade da matriz — nunca `mesh` e `reticula` sobrepostos. No certificado, `mesh` e
+`growthLine` convivem por desenho: `growthLine` é marca de dado, não segundo pattern.
+Verificável em CI no app: um componente não importa mais de uma família de
+`@/components/patterns`.
+
+### 6.6. Mosaico Truchet — composição de hero, banner e CTA (v4.1)
+
+Grade de células quadradas em que cada célula leva **dois quartos de anel em cantos opostos**,
+girada ao acaso (semente fixa): as células vizinhas se ligam em curvas contínuas. É o único
+mosaico da marca — a única curva que ele usa é o quarto de arco do símbolo (§6.1). As outras
+versões testadas (sorteio de formas, tonal, hierárquica, dissolve, super-glifo) foram rejeitadas
+pelo founder em 01/11/2026. Exemplos aprovados: hero de captura (H11) e CTA final (C14) no
+laboratório da rodada 5 (`/landing`).
+
+| Regra | Valor |
+| --- | --- |
+| Célula | múltiplo de 8 px; 120 px no desktop, 64–72 px no celular |
+| Faixa | largura 22% da célula, centrada no raio de meia célula |
+| Cor | faixa `forest.500` sobre Chalk (claro) ou `grove.500` sobre Deep Forest (escuro); no máximo 1 célula em 12 em `grove.300`; **sem Lime** |
+| Onde | hero, banner e CTA final de app e site; um bloco próprio, como uma imagem (§5.1) |
+| Nunca | atrás de texto; na peça social; junto com `mesh`, `reticula` ou `grafo` no mesmo bloco |
+
+### 6.7. `grafo` — rede na malha, com movimento (v4.1)
+
+Terceira família de pattern. Revisita parte da ideia do nó-e-galho revogado em H9, com a
+gramática do símbolo: nós em uma malha de 64 px, arestas só a 0°, 90° e ±45°, nó quadrado de
+8 px (P1: o nó não é círculo). Aprovados pelo founder em 01/11/2026: **malha viva** (G1),
+**campo de fundo** (G4) e, com o campo do G4 atrás, **rede de skills** (G2) e **nó-e-galho** (G3)
+— laboratório `/grafos`.
+
+| Propriedade | Regra |
+| --- | --- |
+| Malha | 64 px; arestas 0°, 90°, ±45° entre nós vizinhos |
+| Traço e nó | aresta 1,5 px `grove.500` a 0,55; nó quadrado 8 px `forest.500` (claro) ou `grove.300` (escuro) |
+| Opacidade | 0,12 atrás de texto (como o `mesh`); 0,35–0,60 como campo no lado sem texto; rede principal a 1 |
+| Rótulos (rede de skills) | IBM Plex Mono 14 px; no celular a rede de skills cai para a malha sem rótulos |
+| Movimento | pulsos de 28 px percorrendo caminhos da rede, 3–6 s por ciclo, defasados; **nada se move** com `prefers-reduced-motion`; o primeiro quadro já mostra a rede inteira |
+| Nunca | Lime; junto com `mesh` ou `reticula` no mesmo bloco; animação que bloqueie leitura ou CTA |
 
 ---
 
 ## 7. Camada de ilustração — collage / paper cut
 
-**Escopo: `pipelines/hemingway` é o único consumidor.** Nunca `apps/skill_test`. Nunca o site.
-Esta seção descreve construção — a taxonomia e as regras de destino vivem em
-`brand/ILUSTRACOES/README.md` e `_bloco-marca.md`, autossuficientes para um ilustrador ou
-pipeline generativo externo.
+**Escopo por superfície (§5).** Este capítulo é a regra; `brand/ILUSTRACOES/` é a especificação
+executável — `_bloco-marca.md` (bloco injetável no prompt), `meta-prompt-collage-paper-cut.md`
+(só cor), `estilos/` (os 14 estilos de referência traduzidos para o paper cut), `FORMATOS.md`
+(tamanho por uso). O produtor atual, `pipelines/portinari`, lê esses arquivos em runtime.
+
+**Governança: tudo neste capítulo é vinculante.** Não existe "padrão sobreponível": o pedido do
+autor não desliga sombra, tetos, corte, frame ou descritores. Uma exceção é pergunta ao founder
+e, se aprovada, exceção nomeada aqui (como a §7.7).
 
 ### 7.1. Mecanismo de profundidade — degrau de tom, nunca sombra
 
-Confirmado por medição (`01-referencias.md` §1.2, reproduzida nesta rodada): a paleta já
-contém a escada.
+A paleta já contém a escada. Luminância relativa medida dos tokens
+(`revisao-2026-r5/lab/src/dados/medidas-fase2.json`):
 
-| Papel na peça         | Tokens                                      | Degrau de luminância                |
-| --------------------- | ------------------------------------------- | ----------------------------------- |
-| Pilha escura          | Ink → Deep Forest → forest.700 → forest.500 | 0,029 · 0,028 · 0,046               |
-| Pilha clara           | mist → mint → Chalk                         | 0,075 · 0,052                       |
-| Figura, sobre a pilha | grove.500, grove.300                        | +0,150 e +0,225 — salto, não degrau |
-| Acento                | lime.500                                    | +0,283                              |
+| Papel na peça | Tokens | Degrau de luminância |
+| --- | --- | --- |
+| Pilha escura | Ink → Deep Forest → forest.700 → forest.500 | 0,029 · 0,028 · 0,046 |
+| Pilha clara | mist → mint → Chalk | 0,075 · 0,052 |
+| Figura, sobre a pilha | grove.500, grove.300 | +0,150 sobre forest.500; +0,225 sobre grove.500 — salto, não degrau |
+| Acento | lime.500 (pilha escura) · lime.700 (pilha clara) | +0,283 sobre grove.300 |
+
+O degrau entre camadas adjacentes vai de **0,028 a 0,075**; o menor, 0,028, é também o teto da
+granulação. Os números de figura e acento são encadeados (cada um sobre o anterior).
 
 ### 7.2. Regras numéricas
 
@@ -452,111 +539,133 @@ contém a escada.
 2. Entre 3 e 7 cores acima de 1% do quadro (`illustration.maxColors`).
 3. Fundo ocupa no mínimo 40% do quadro (`illustration.minBackground`).
 4. Profundidade é degrau de tom — sombra é anti-padrão, sem exceção.
-5. Lime no máximo 1% do quadro, só em virada/conquista/ação (`illustration.accent`).
-6. Offset de registro tipo risograph, 2–4px, cor chapada.
+5. Lime no máximo 1% do quadro, só em virada/conquista/ação (`illustration.accentMaxCoverage`).
+6. Offset de registro tipo risograph, 2–4 px, cor chapada.
 
-### 7.3. Borda, textura, granulação
+### 7.3. Borda, forma, textura
 
-- **Corte a faca**: reto ou a 45°, nunca curva livre.
+- **Corte a faca**: reto ou a 45°, nunca curva livre. Objeto naturalmente curvo (roda, cabeça,
+  mão, moeda) é recortado como polígono, e o pedido **nomeia o polígono** — o gerador ignora um
+  "sem curvas" genérico (gerações de teste da rodada 5).
+- **Vista frontal, chapada**, como elevação: nada em perspectiva, nenhuma porta ou folha
+  entreaberta (a folha girada mostra a espessura do papel).
 - **Rasgo**: vocabulário base em capa editorial; nas demais taxonomias, um por peça.
-- **Retícula**: duas escalas de ponto permitidas na mesma peça quando codificam ordem de
-  camada — construída por peça, não derivada de `pattern.reticula.coarse` (§6.3).
-- **Granulação**: só no fundo, amplitude abaixo de 0,028 (um degrau da escada). Sobrevivência à
-  compressão de LinkedIn/YouTube segue como lacuna (§11).
+- **Retícula**: até duas escalas de ponto na mesma peça, só quando codificam ordem de camada.
+- **Granulação**: só no fundo, amplitude abaixo de 0,028; sobrevive 47–59% da amplitude à
+  compressão de LinkedIn, YouTube e Instagram (medido em
+  `pipelines/hemingway/pesquisa/epico-sobrevivencia-graos/00-medicao.md`) — mire a metade
+  superior da faixa.
 
-### 7.4. Escala pequena
+### 7.4. Escala pequena e quadro
 
-Abaixo de 96px não existe ilustração — existe símbolo (`brand/LOGO/`). Thumbnail de YouTube
-(acima do limiar) tem teto de três camadas visíveis.
+Abaixo de 96 px não existe ilustração — existe símbolo (`brand/LOGO/`). Thumbnail de YouTube e
+capa de Reels vista no grid: no máximo três camadas visíveis. Ilustração em quadro social
+inteiro: a borda da peça é o frame, e o pedido declara a zona livre para a faixa de texto em
+porcentagem do quadro final (`SOCIAL.md` §7).
 
-### 7.5. Descritores proibidos no prompt-kit generativo
+### 7.5. Descritores proibidos no prompt
 
-`drop shadow`, `soft shadow`, `blur`, `glow`, `rounded corners`, `organic curve`, `gradient`,
-`3D`, `bevel`, `emboss`, `handwritten`, `sketchy`, `text`, `lettering`, `typography`,
-`caricature`, `satirical`.
+`drop shadow`, `soft shadow`, `cast shadow`, `contact shadow`, `blur`, `glow`,
+`rounded corners`, `organic curve`, `gradient`, `3D`, `bevel`, `emboss`, `depth of field`,
+`handwritten`, `sketchy`, `text`, `lettering`, `typography`, `caricature`, `satirical`.
+
+São lint da parte criativa do prompt, **inclusive negados** ("no glow" reprova): as negações
+moram no bloco de marca, que não passa pelo lint.
 
 ### 7.6. Estado do kit
 
-Peça gerada quando houver necessidade real de publicação — nunca para preencher amostra
-(decisão do founder, 04/09/2026). Desde então, peças reais existem: biblioteca do Instagram
-(`brand/INSTAGRAM.md`), capas de Reels e a capa em collage de `brand/templates/livro` (§7.7).
+Peça gerada quando há necessidade real de publicação — nunca para preencher amostra. O
+entregável do Portinari é o prompt (um por modo, escuro e claro), validado por uma geração. O
+gate de ilustração é a rubrica do Portinari; o gate da peça social que usa a ilustração são os
+checks de `SOCIAL.md` §13.
 
 ### 7.7. Exceção nomeada — capa de `brand/templates/livro`
 
-**Único ponto fora de `pipelines/hemingway` onde a camada de ilustração existe**, por pedido
-explícito do founder (04/09/2026, formalizado nesta rodada — v3.1). Regras, todas obrigatórias
-para a exceção valer:
+Único ponto de material de curso onde a camada de ilustração existe, por pedido do founder
+(04/09/2026). Regras, todas obrigatórias:
 
-1. Vale só para a capa do template de livro (`assets/capa-collage.pdf`), nunca para o miolo —
-   o miolo permanece sistema puro: nenhuma colagem, nenhuma sombra de papel, nenhuma borda
-   rasgada.
-2. Onde as duas camadas se encontram, o sistema vence: o título da capa fica sobre uma **faixa
-   sólida**, nunca direto sobre a ilustração.
-3. A capa tem uma variante alternativa de sistema puro (paper cut é a **variante**, não o
-   único caminho) — `livro.pdf` (padrão) e `livro-collage.pdf`, selecionáveis por
-   `\syntaxiscapavariante` (`brand/templates/livro/README.md`).
-4. A exceção não se estende por semelhança a outra peça de material de curso — uma nova peça
-   de curso que queira collage é uma pergunta nova ao founder, não uma inferência a partir
-   desta.
+1. Vale só para a capa (`assets/capa-collage.pdf`), nunca para o miolo — o miolo permanece
+   sistema puro: nenhuma colagem, nenhuma sombra de papel, nenhuma borda rasgada.
+2. O título da capa fica sobre uma **faixa sólida**, nunca direto sobre a ilustração.
+3. A capa tem variante de sistema puro: `livro.pdf` (padrão) e `livro-collage.pdf`,
+   selecionáveis por `\syntaxiscapavariante` (`brand/templates/livro/README.md`).
+4. A exceção não se estende por semelhança a outra peça de curso — uma nova peça que queira
+   collage é pergunta nova ao founder.
 
 ---
 
 ## 8. Acessibilidade — alvo declarado
 
-**AA + SC 2.4.13**, confirmado por texto normativo do W3C/WAI reconfirmado nesta rodada
-(`02-pesquisa-e-plugins.md` P3).
+**AA + SC 2.4.13.**
 
-| Critério                  | Nível                  | O que impõe                                                                                 |
-| ------------------------- | ---------------------- | ------------------------------------------------------------------------------------------- |
-| 1.4.1 Use of Color        | A                      | Nenhum estado ou marcação só por cor — precisa de rótulo, número ou marcador junto          |
-| 1.4.11 Non-text Contrast  | AA                     | 3:1 contra cores adjacentes onde o hairline é a única fronteira de um controle              |
-| 2.4.11 Focus Not Obscured | AA                     | Nenhum elemento fixo (faixa, banda) pode esconder o componente focado                       |
-| 2.4.13 Focus Appearance   | AAA, adotado como alvo | Área do indicador ≥ perímetro de 2px do componente não-focado; contraste ≥3:1 entre estados |
-| 2.5.8 Target Size         | AA                     | Alvo de toque mínimo 24×24 CSS px, com as cinco exceções nomeadas da spec                   |
+| Critério | Nível | O que impõe |
+| --- | --- | --- |
+| 1.4.1 Use of Color | A | Nenhum estado ou marcação só por cor — precisa de rótulo, número ou marcador junto |
+| 1.4.3 Contrast (Minimum) | AA | 4,5:1 para texto; 3:1 para texto grande. Na peça social, "grande" se mede **no aparelho** (≥24 px, ou ≥18,66 px em 700) |
+| 1.4.11 Non-text Contrast | AA | 3:1 contra cores adjacentes onde a hairline é a única fronteira de um controle |
+| 2.4.11 Focus Not Obscured | AA | Nenhum elemento fixo (faixa, banda) pode esconder o componente focado |
+| 2.4.13 Focus Appearance | AAA, adotado como alvo | Área do indicador ≥ perímetro de 2 px do componente não-focado; contraste ≥3:1 entre estados |
+| 2.5.8 Target Size | AA | Alvo de toque mínimo 24×24 CSS px, com as cinco exceções da spec |
 
-Nenhum dos cinco exige canto arredondado, sombra ou gradiente. Geometria reta não custa
-acessibilidade — o custo aparece só no indicador de foco, como regra de área.
+**Peça social:** nenhum texto abaixo de 12 px na tela do celular (34 px a 1080); alt-text em
+toda imagem; gráfico com legenda e rótulo direto (§10). Nenhum dos critérios exige canto
+arredondado, sombra ou gradiente.
 
 ---
 
 ## 9. Aplicação em materiais de curso
 
-Segue `brand/APLICACAO.md` para composição de página por superfície. Regra geral: material de
-curso (slides, PDFs de aula) é camada de sistema — plano, reto, sem ilustração de collage,
-**com a única exceção nomeada da capa de livro** (§7.7). A camada LaTeX existe desde
-04–05/09/2026: `brand/templates/beamer/` (`beamerthemesyntaxis.sty`) e `brand/templates/livro/`
-(`syntaxis-book.sty`) — os dois `.tex` citados em documentação anterior a essa data
-(`syntaxis-notas-v1.tex`, `syntaxis-beamer-v1.tex`) continuam não existindo; são nomes
-diferentes, não os mesmos arquivos.
+Segue `brand/APLICACAO.md`. Material de curso (slides, PDFs de aula) é camada de sistema —
+plano, reto, sem collage, com a única exceção da capa do livro (§7.7). Camada LaTeX:
+`brand/templates/beamer/` (`beamerthemesyntaxis.sty`) e `brand/templates/livro/`
+(`syntaxis-book.sty`), com `build.sh` e `check-deps.sh` próprios.
 
 ---
 
-## 10. Checklist rápido
+## 10. Canais sociais
 
-- [ ] Cor: só tokens de `brand/tokens/syntaxis.tokens.json`
-- [ ] Tipografia: Space Grotesk / Hanken Grotesk / Space Mono, sem exceção
+Instagram, Facebook e LinkedIn seguem **`brand/SOCIAL.md`** — papel de cada canal no funil,
+formato-mestre 4:5 com derivação por re-renderização, elementos de reconhecimento que
+sobrevivem ao recorte 3:4 do grid, escala tipográfica com piso no aparelho, chassis (A capa
+ilustrada, B tipografia escura, C cartão claro, D fotografia, E bento), arquitetura do
+carrossel, gráficos, legenda por canal e checks automáticos. A produção é HTML/CSS com tokens,
+exportado para PNG e PDF (`brand/.claude/skills/syntaxis-social/`).
+
+**Prioridade em conflito na peça social:** clareza ≥ consistência > reconhecimento > estética >
+variedade.
+
+**Gráficos, em qualquer superfície:** a paleta é monocromática e nenhum par de tokens passa
+como paleta categórica no validador da skill `dataviz`. A forma da marca é **ênfase** — a série
+que é o ponto em `grove.500`, contexto em `slate`, sobre Chalk; duas séries de peso igual viram
+dois gráficos ou rótulo direto. Um gráfico por slide.
+
+---
+
+## 11. Checklist rápido
+
+- [ ] Cor: só tokens de `brand/tokens/syntaxis.tokens.json` (v3.1.0)
+- [ ] Tipografia: Montserrat / Source Sans 3 / IBM Plex Mono; duas famílias no texto de leitura
 - [ ] Radius: 0–2px, exceções nomeadas em §4.3
-- [ ] Sem sombra difusa nem glassmorphism — em nenhuma camada. Gradiente/glow só na camada de
-      ambiente de fundo (§4.5), nunca em componente, nunca atrás de texto direto
-- [ ] Se houver padrão geométrico, é um só, na opacidade certa (§6.5)
-- [ ] Ilustração de collage: só em `pipelines/hemingway`, nunca em app ou site
-- [ ] Toda ilustração dentro de frame radius 0, hairline 1px, sem sangria
+- [ ] Nenhuma sombra, em nenhuma camada. Gradiente/glow só na camada de ambiente (§4.5)
+- [ ] Um pattern por peça (por slide, no social), na opacidade da matriz (§6.4)
+- [ ] Imagem (foto ou ilustração) no app e no site segue a §5.1: um registro por bloco, texto fora da imagem, moldura reta, par claro/escuro; nunca no miolo de curso
+- [ ] Fotografia gerada só com registro de origem
+- [ ] Lime: uma ocorrência; ≤1% em ilustração, ≤5% em peça de sistema
 - [ ] Texto nunca renderizado dentro de imagem gerada
+- [ ] Peça social: `SOCIAL.md` §13 (checks) verde
 - [ ] Foco com perímetro de 2px e contraste 3:1 entre estados
 
 ---
 
-## 11. Lacunas abertas
+## 12. Lacunas abertas
 
-| #     | Lacuna                                                                                                                                                      | Por que trava                                                                                                                                                                                                                                                                                                                                    |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1     | Carlito em três lockups SVG legados (`logo_banner*.svg`)                                                                                                    | decisão de arte, não tomada nesta rodada                                                                                                                                                                                                                                                                                                         |
-| 2     | Pílulas no banner do YouTube — paths com arco, invisíveis a linter                                                                                          | redesenho de forma, não feito                                                                                                                                                                                                                                                                                                                    |
-| 3     | Proporção de tela e respiro ao redor da ilustração dentro de card real                                                                                      | parcialmente respondida por `design_stitch.md` (radius incompatível — ver `01-referencias.md` §3.3)                                                                                                                                                                                                                                              |
-| ~~4~~ | ~~Sobrevivência da granulação à compressão de LinkedIn/YouTube~~                                                                                            | **Resolvida.** Medida em `pipelines/hemingway/pesquisa/epico-sobrevivencia-graos/00-medicao.md` (06/09/2026) — grão sobrevive 47,3%–59,4% da amplitude original em LinkedIn/YouTube/Instagram. Teto de `illustration.grainMaxLuminanceAmplitude` mantido; `estilos-ilustracao.md` ganhou instrução de mirar a metade superior da faixa aceitável |
-| 5     | Merge/push das branches órfãs (`apps/skill_test@revisao/04-design-v21`, `pipelines/hemingway@marca/v3-camada-de-ilustracao`)                                | marcadas como descartadas — decisão sobre o código que elas continham é do founder, fora do escopo de marca                                                                                                                                                                                                                                      |
-| ~~6~~ | ~~Sincronizar `apps/skill_test/DESIGN.md` e tokens com esta versão~~                                                                                        | **Resolvida (rodada 4).** `apps/skill_test/DESIGN.md` e `design/tokens.json` estão byte a byte idênticos aos de `brand/` — Épico 31 (`PatternNodeBranch`→`PatternMesh`), Épico 32 (troca de tipografia) e Épico 33 (`check-brand-sync.mjs`, PR #45), branch `main`. Verificado por `diff` direto nesta rodada                                    |
-| 7     | `brand/.claude/skills/` (`brandkit`, `emil-design-eng`)                                                                                                     | decisão do founder, nunca revisitada                                                                                                                                                                                                                                                                                                             |
-| 8     | Nível intermediário de luminância entre Chalk e Deep Forest                                                                                                 | decisão de paleta — a escada atual já serve os dois usos (sistema e ilustração) sem token novo                                                                                                                                                                                                                                                   |
-| ~~9~~ | ~~Sobrevivência da granulação e da compressão de paper cut ao pipeline real de publicação (LinkedIn, YouTube, Instagram)~~                                  | Duplicata do item 4 — **resolvida junto**, ver item 4                                                                                                                                                                                                                                                                                            |
-| 10    | Governança do terceiro registro (fotografia) fora do Instagram — se `apps/skill_test` ou o site algum dia precisarem de foto real, a regra ainda não existe | fora do escopo desta rodada (P3 do CHECKPOINT 0 cobriu só o registro em produção hoje, no Instagram)                                                                                                                                                                                                                                             |
+| # | Lacuna | Situação |
+| --- | --- | --- |
+| 1 | Carlito em três lockups SVG legados (`LOGO/logo_banner*.svg`) | decisão de arte, não tomada |
+| 2 | Pílulas no banner do YouTube — paths com arco, invisíveis a linter | redesenho de forma, não feito |
+| 3 | Nomes de arquivo errados em `LOGO/` (`logo_chalk_grove_banner.png` e `logo_ink_grove_banner.png` são idênticos e têm fundo Deep Forest) | renomear exige decidir o nome certo (`LOGO/README.md`) |
+| 4 | Duas regras novas do prompt-kit (polígono nomeado, vista frontal) | sem geração de teste que as valide |
+| 5 | Margens de segurança do Reels na base (420) e à direita (130) | de fontes secundárias; reverificar na primeira publicação |
+| 6 | Papel do Facebook | proposto por argumento, sem dado de campanha (`[VERIFICAR]`) |
+| 7 | Branches órfãs (`apps/skill_test@revisao/04-design-v21`, `pipelines/hemingway@marca/v3-camada-de-ilustracao`) | decisão do founder sobre o código, fora do escopo de marca |
+| 8 | Respiro entre o mesh e o título nos slides B da peça social (crítica independente da Fase 5) | aceito na v4.0; testar mesh até a metade do quadro antes de mudar a regra |

@@ -4,3 +4,5 @@ next-env.d.ts
 package-lock.json
 specs/
 design/contrast-report.md
+# cópia byte a byte de brand/DESIGN.md (gate check-brand-sync, Épico 37): formatar quebraria a cópia
+DESIGN.md

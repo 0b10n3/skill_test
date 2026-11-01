@@ -10,6 +10,9 @@
 //     --raw assets/generated/raw/<slug>/<data>-vN.png \
 //     --dark "#1B6A45" --light "#F7F7F5" \
 //     --widths 400,800,1600 [--formats avif,webp] [--variant light]
+//
+// Fotografia em cor natural (DESIGN.md v4.1 §5.1 regra 4 — nunca duotone):
+//   troque --dark/--light por --cor natural (Épico 37).
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -35,8 +38,14 @@ function parseArgs(argv) {
     else if (key === 'formats') args.formats = value.split(',');
     else args[key] = value;
   }
-  if (!args.raw || !args.dark || !args.light || !args.widths) {
-    throw new Error('Faltam argumentos obrigatórios: --raw, --dark, --light, --widths.');
+  const natural = args.cor === 'natural';
+  if (!args.raw || !args.widths || (!natural && (!args.dark || !args.light))) {
+    throw new Error(
+      'Faltam argumentos obrigatórios: --raw, --widths e (--dark + --light, ou --cor natural).',
+    );
+  }
+  if (natural && (args.dark || args.light)) {
+    throw new Error('--cor natural não aceita --dark/--light: fotografia nunca leva duotone.');
   }
   return args;
 }
@@ -59,7 +68,10 @@ function updateManifest(args, publishedFiles, weightBudgetKb) {
     // Guardado para a verificação de paleta (scripts/verify-asset-palette.mjs):
     // um asset corrigido por duotone tem seus pixels sobre o SEGMENTO
     // entre dark/light, não perto de uma cor discreta da paleta geral.
-    duotone: { dark: args.dark, light: args.light },
+    // Fotografia em cor natural fica marcada e fora dessa verificação.
+    ...(args.cor === 'natural'
+      ? { cor: 'natural' }
+      : { duotone: { dark: args.dark, light: args.light } }),
     weightBudgetKb,
     publishedFiles,
     usedIn: [],

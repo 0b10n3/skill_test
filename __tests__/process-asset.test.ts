@@ -108,4 +108,25 @@ describe('processAssetToFiles (entrada de referência → variantes, formatos e 
       expect(passesAdherence(adherence)).toBe(true);
     },
   );
+
+  it('sem dark/light publica a fotografia em cor natural — os pixels não são recoloridos (Épico 37)', async () => {
+    const results = await processAssetToFiles({
+      rawPath,
+      outDir,
+      slug: 'hero-landing-pessoas',
+      variant: undefined,
+      dark: undefined,
+      light: undefined,
+      widths: [200],
+      formats: ['png'],
+    });
+    expect(results.map((r) => r.path)).toEqual(['public/img/hero-landing-pessoas/200.png']);
+    const { data } = await sharp(path.join(outDir, '200.png'))
+      .removeAlpha()
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    // o gradiente cinza de entrada continua cinza e vai do preto ao branco
+    expect([data[0], data[1], data[2]]).toEqual([0, 0, 0]);
+    expect([data[597], data[598], data[599]]).toEqual([255, 255, 255]);
+  });
 });
