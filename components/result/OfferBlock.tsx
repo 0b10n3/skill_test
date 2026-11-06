@@ -31,7 +31,11 @@ export function OfferBlock({ classification, seniority }: OfferBlockProps) {
       </CardHeader>
       <CardContent>
         {hasRealLink ? (
-          <Button size="lg" onClick={handleCtaClick} render={<Link href={offer.ctaHref} />}>
+          <Button
+            size="lg"
+            onClick={handleCtaClick}
+            render={<Link href={offer.ctaHref} target="_blank" rel="noopener noreferrer" />}
+          >
             {offer.ctaLabel}
           </Button>
         ) : (

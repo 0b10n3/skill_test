@@ -8,27 +8,19 @@ export interface Offer {
 }
 
 /**
- * Conteúdo definido em prompt-syntaxis-skill-check.md, seção 6 — os textos e
- * links reais de cada oferta ainda não foram fornecidos; os placeholders
- * abaixo são exatamente os marcados na especificação, não inventados aqui.
+ * Decisão de 05/11/2026 (`strategy/DECISOES_2026-11.md`, decisões 11 e 12): o
+ * Skill Check é captura gratuita e convida os leads ao Substack. Enquanto a
+ * isca e o FVDT não estão à venda, a newsletter é a única oferta disponível.
  */
+const newsletter = {
+  description:
+    'A newsletter da Syntaxis conecta instrumentos financeiros ao dia a dia do mercado brasileiro e à progressão de carreira, com rigor e sem hype. É gratuita.',
+  ctaLabel: 'Assinar a newsletter',
+  ctaHref: 'https://syntaxis.substack.com',
+};
+
 export const offers: Record<Classification, Offer> = {
-  baixo: {
-    title: 'Comece pelo essencial',
-    description: '[placeholder] curso introdutório gratuito da Syntaxis',
-    ctaLabel: 'Começar grátis',
-    ctaHref: '[placeholder-link]',
-  },
-  medio: {
-    title: 'Avance na trilha técnica',
-    description: '[placeholder] curso pago da Syntaxis',
-    ctaLabel: 'Ver curso',
-    ctaHref: '[placeholder-link]',
-  },
-  alto: {
-    title: 'Você está pronto para o próximo nível',
-    description: '[placeholder] mentoria avançada Syntaxis',
-    ctaLabel: 'Aplicar para mentoria',
-    ctaHref: '[placeholder-link]',
-  },
+  baixo: { title: 'Comece pelo essencial', ...newsletter },
+  medio: { title: 'Siga reforçando a base técnica', ...newsletter },
+  alto: { title: 'Continue aprofundando', ...newsletter },
 };
