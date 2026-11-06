@@ -145,7 +145,7 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
     await expectAllReportSectionsInOrder(page);
   });
 
-  test('15 acertos em 15 exibe classificação Alto, com oferta de mentoria e todas as seções do relatório', async ({
+  test('15 acertos em 15 exibe classificação Alto, com convite à newsletter e todas as seções do relatório', async ({
     page,
   }) => {
     await answerQuizDeterministically(page, 'senior', 15);
@@ -153,7 +153,7 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
 
     await expect(page.getByTestId('score-geral')).toHaveText('100% de acerto geral');
     await expect(page.getByTestId('score-classificacao')).toHaveText('Alto');
-    await expect(page.getByText('Aplicar para mentoria')).toBeVisible();
+    await expect(page.locator('a[href="https://syntaxis.substack.com"]')).toBeVisible();
     await expectAllReportSectionsInOrder(page);
   });
 
@@ -178,7 +178,7 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
 
     await page.emulateMedia({ media: 'print' });
 
-    await expect(page.getByRole('button', { name: 'Ver curso' })).toBeHidden();
+    await expect(page.getByText('Assinar a newsletter')).toBeHidden();
     await expect(page.locator('[data-slot="accordion-content"]')).toBeVisible();
   });
 });
