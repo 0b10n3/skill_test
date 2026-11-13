@@ -37,6 +37,11 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
         errors[String(issue.path[0])] = issue.message;
       }
       setFieldErrors(errors);
+      // No celular os erros podem empurrar o formulário para fora da tela: o foco leva ao primeiro.
+      const primeiro = parsed.error.issues[0]?.path[0];
+      document
+        .getElementById(primeiro === 'optIn' ? 'lead-optin' : `lead-${String(primeiro)}`)
+        ?.focus();
       return;
     }
     setFieldErrors({});
@@ -66,15 +71,19 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
   }
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md shrink-0">
       <CardHeader>
         {/* h1 real, não a CardTitle padrão (<div>) — /lead é a única "página"
             desse passo do funil (Épico 21, higiene técnica: 1 h1 por rota).
             data-slot="card-title" preservado: é o seletor de teste usado
             em vários specs E2E para "a página do card carregou". */}
         <h1 data-slot="card-title" className="font-display text-xl text-foreground">
-          Quase lá
+          Seu diagnóstico está pronto.
         </h1>
+        <p className="text-sm text-muted-foreground">
+          Informe seu nome e e-mail para ver o relatório: radar das 5 dimensões, suas 2 prioridades
+          e o gabarito comentado.
+        </p>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
@@ -91,11 +100,17 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
               id="lead-name"
               name="name"
               autoComplete="name"
+              className="h-11"
               value={name}
               onChange={(event) => setName(event.target.value)}
               aria-invalid={Boolean(fieldErrors.name)}
+              aria-describedby={fieldErrors.name ? 'lead-name-error' : undefined}
             />
-            {fieldErrors.name && <p className="text-xs text-error-text">{fieldErrors.name}</p>}
+            {fieldErrors.name && (
+              <p id="lead-name-error" className="text-sm text-error-text">
+                {fieldErrors.name}
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-1.5">
@@ -107,34 +122,68 @@ export function LeadForm({ seniorityLabel }: LeadFormProps) {
               name="email"
               type="email"
               autoComplete="email"
+              inputMode="email"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              enterKeyHint="go"
+              className="h-11"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               aria-invalid={Boolean(fieldErrors.email)}
+              aria-describedby={fieldErrors.email ? 'lead-email-error' : undefined}
             />
-            {fieldErrors.email && <p className="text-xs text-error-text">{fieldErrors.email}</p>}
+            {fieldErrors.email && (
+              <p id="lead-email-error" className="text-sm text-error-text">
+                {fieldErrors.email}
+              </p>
+            )}
           </div>
 
           <label className="flex items-start gap-2 text-sm text-foreground">
             <Checkbox
+              id="lead-optin"
               checked={optIn}
               onCheckedChange={setOptIn}
               aria-invalid={Boolean(fieldErrors.optIn)}
+              aria-describedby={fieldErrors.optIn ? 'lead-optin-error' : undefined}
             />
             Quero receber por e-mail novidades de cursos e conteúdo técnico da Syntaxis
           </label>
-          {fieldErrors.optIn && <p className="text-xs text-error-text">{fieldErrors.optIn}</p>}
+          {fieldErrors.optIn && (
+            <p id="lead-optin-error" className="text-sm text-error-text">
+              {fieldErrors.optIn}
+            </p>
+          )}
 
-          {submitError && <p className="text-sm text-error-text">{submitError}</p>}
+          {submitError && (
+            <p role="alert" className="text-sm text-error-text">
+              {submitError}
+            </p>
+          )}
 
           <Button
             type="submit"
             variant="default"
             size="lg"
             disabled={isSubmitting}
-            className="self-end"
+            className="w-full sm:w-auto sm:self-end"
           >
             {isSubmitting ? 'Enviando…' : 'Ver meu resultado'}
           </Button>
+          <p className="text-xs text-muted-foreground sm:text-right">
+            Seus dados são tratados conforme a{' '}
+            <a
+              href="/privacidade"
+              target="_blank"
+              rel="noopener"
+              className="text-link-foreground underline underline-offset-2"
+            >
+              política de privacidade
+              <span className="sr-only"> (abre em nova aba)</span>
+            </a>
+            .
+          </p>
         </form>
       </CardContent>
     </Card>

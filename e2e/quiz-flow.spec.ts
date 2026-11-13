@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import questionsBank from '../content/questions.json';
 
 const TOTAL_QUESTIONS = 15;
 
@@ -71,6 +72,88 @@ test.describe('/quiz — fluxo completo (mouse)', () => {
   });
 });
 
+// Épico 45 (F3/F10): a pergunta mais longa do banco (enunciado + alternativas) é o pior caso.
+const maisLonga = questionsBank
+  .filter((q) => q.type === 'knowledge')
+  .sort(
+    (a, b) =>
+      b.question.length +
+      b.options.reduce((n, o) => n + o.text.length, 0) -
+      (a.question.length + a.options.reduce((n, o) => n + o.text.length, 0)),
+  )[0];
+
+test.describe('/quiz — chassi (Épico 45)', () => {
+  for (const viewport of [
+    { width: 360, height: 640 },
+    { width: 375, height: 667 },
+    { width: 390, height: 844 },
+  ]) {
+    test(`pergunta mais longa em ${viewport.width}×${viewport.height}: página não rola e "Próxima" fica visível`, async ({
+      page,
+    }) => {
+      await page.setViewportSize(viewport);
+      await page.goto('/quiz');
+      await page.getByRole('radio').first().click();
+      await page.getByRole('button', { name: 'Próxima' }).click();
+      await expect(page.getByText(`Pergunta 1 de ${TOTAL_QUESTIONS}`)).toBeVisible({
+        timeout: 10_000,
+      });
+
+      // Troca o texto da pergunta sorteada pelo da mais longa: o layout é o mesmo para todas.
+      await page.evaluate(
+        ({ question, options }) => {
+          document.querySelector('[data-slot="card-title"]')!.textContent = question;
+          document.querySelectorAll('[data-slot="radio-group"] label').forEach((label, i) => {
+            label.lastChild!.textContent = options[i];
+          });
+        },
+        { question: maisLonga.question, options: maisLonga.options.map((o) => o.text) },
+      );
+
+      await assertNoVerticalScroll(page);
+      await expect(page.getByRole('button', { name: 'Próxima' })).toBeInViewport({ ratio: 1 });
+      // Só a faixa do meio rola: a última alternativa é alcançável rolando ela.
+      const ultima = page.locator('[data-slot="radio-group"] label').last();
+      await ultima.scrollIntoViewIfNeeded();
+      await expect(ultima).toBeInViewport();
+      await assertNoVerticalScroll(page);
+    });
+  }
+
+  test('o logo não é link dentro do funil', async ({ page }) => {
+    await page.goto('/quiz');
+    await expect(page.getByRole('banner').getByRole('img', { name: 'Syntaxis' })).toBeVisible();
+    await expect(page.getByRole('banner').getByRole('link')).toHaveCount(0);
+  });
+
+  test('recarregar no meio do quiz pede confirmação', async ({ page }) => {
+    await page.goto('/quiz');
+    await page.getByRole('radio').first().click();
+    await page.getByRole('button', { name: 'Próxima' }).click();
+    await expect(page.getByText(`Pergunta 1 de ${TOTAL_QUESTIONS}`)).toBeVisible({
+      timeout: 10_000,
+    });
+
+    const dialogo = page.waitForEvent('dialog');
+    void page.reload().catch(() => {});
+    const d = await dialogo;
+    expect(d.type()).toBe('beforeunload');
+    await d.dismiss();
+  });
+
+  test('a senioridade aparece na ordem de carreira', async ({ page }) => {
+    await page.goto('/quiz');
+    await expect(page.getByText('Antes de começar')).toBeVisible();
+    await expect(page.locator('[data-slot="radio-group"] label')).toHaveText([
+      /Aspirante/,
+      'Estagiário',
+      'Analista Júnior',
+      'Analista Pleno',
+      'Analista Sênior',
+    ]);
+  });
+});
+
 test.describe('/quiz — prefers-reduced-motion', () => {
   test('nenhuma animação de transição é aplicada entre perguntas quando reduced-motion está ativo', async ({
     page,
@@ -84,7 +167,7 @@ test.describe('/quiz — prefers-reduced-motion', () => {
       timeout: 10_000,
     });
 
-    const card = page.locator('[data-slot="card"]');
+    const card = page.getByTestId('quiz-question');
     const runningAnimations = await card.evaluate((el) => el.getAnimations().length);
 
     expect(runningAnimations, 'não deveria haver animação rodando com reduced-motion').toBe(0);
