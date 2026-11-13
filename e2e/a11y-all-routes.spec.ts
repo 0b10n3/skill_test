@@ -82,6 +82,8 @@ test.describe('navegação manual por teclado (além do /quiz, já coberto no É
     // header → toggle → CTA).
     // Épico 40: o menu (C1) entra entre o logo e o toggle — logo, dois links e o
     // CTA do menu: quatro Tabs até o primeiro "Iniciar avaliação".
+    // Épico 46: o link "Como funciona" entra no menu — cinco Tabs.
+    await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
     await page.keyboard.press('Tab');
