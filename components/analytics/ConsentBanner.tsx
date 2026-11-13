@@ -42,7 +42,7 @@ export function ConsentBanner() {
     <div
       role="region"
       aria-label="Consentimento de cookies e analytics"
-      className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4"
+      className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4 print:hidden"
     >
       <div className="flex w-full max-w-2xl flex-col gap-3 rounded-sm border border-border bg-card p-4 text-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <p className="text-foreground">

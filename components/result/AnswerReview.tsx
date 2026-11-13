@@ -92,7 +92,7 @@ export function AnswerReview({ gabarito }: AnswerReviewProps) {
   const [openValues, setOpenValues] = usePrintOpensAccordion();
 
   return (
-    <section aria-labelledby="answer-review-heading" className="w-full max-w-4xl">
+    <section aria-labelledby="answer-review-heading" className="w-full">
       <h2 id="answer-review-heading" className="sr-only">
         Gabarito comentado
       </h2>

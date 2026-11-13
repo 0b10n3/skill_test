@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { RadarSection } from '@/components/result/RadarSection';
-import { CATEGORY_LABEL, RADAR_SUMMARY } from '@/content/relatorio';
+import { CATEGORY_LABEL, RADAR_SUMMARY, RADAR_SUMMARY_SEM_DESTAQUE } from '@/content/relatorio';
 import type { DimensaoDiagnostico } from '@/lib/diagnostico';
 
 const dimensoes: DimensaoDiagnostico[] = [
@@ -39,9 +39,15 @@ describe('RadarSection', () => {
     });
   });
 
-  it('exibe a frase-resumo correspondente à dimensão dominante informada', () => {
+  it('exibe a frase-resumo correspondente à dimensão dominante quando ela é "forte"', () => {
+    render(<RadarSection dimensoes={dimensoes} dimensaoDominante="matematica-quant" />);
+    expect(screen.getByText(RADAR_SUMMARY['matematica-quant'])).toBeInTheDocument();
+  });
+
+  it('não afirma ponto forte quando a dimensão dominante não é "forte" (Épico 43)', () => {
     render(<RadarSection dimensoes={dimensoes} dimensaoDominante="dados-programacao" />);
-    expect(screen.getByText(RADAR_SUMMARY['dados-programacao'])).toBeInTheDocument();
+    expect(screen.getByText(RADAR_SUMMARY_SEM_DESTAQUE)).toBeInTheDocument();
+    expect(screen.queryByText(RADAR_SUMMARY['dados-programacao'])).not.toBeInTheDocument();
   });
 
   // A cor da série "Seu perfil" (Grove fixo — S2, Épico 18) não é
