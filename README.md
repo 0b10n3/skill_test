@@ -28,6 +28,16 @@ Abra [http://localhost:3000](http://localhost:3000).
 
 Copie `.env.example` para `.env.local` e preencha as variáveis necessárias (ver seção abaixo).
 
+**Leads de teste:** a `.env.local` tem a `MAILERLITE_API_KEY` real. Toda execução local que envia
+o formulário de `/lead` (dev, `npm run test:e2e`, Lighthouse do fluxo) deve levar
+`MAILERLITE_API_KEY=e2e-invalid` no comando — a variável do shell vence a do arquivo, e a falha
+do MailerLite não bloqueia o fluxo. Sem isso, cada rodada grava leads `@example.com` na conta
+real:
+
+```bash
+MAILERLITE_API_KEY=e2e-invalid npm run test:e2e
+```
+
 ## Scripts disponíveis
 
 | Script                              | Descrição                                                                                                           |
@@ -231,6 +241,14 @@ sitemap. JSON-LD `Organization`+`WebSite` na home (`app/page.tsx`).
 production URL → Vercel URL → localhost), fonte única para
 `metadataBase`, sitemap, robots e JSON-LD.
 
+**Épico 42.** Eventos do funil: `quiz_start` → `question_answered` (só GA4) → `quiz_complete`
+→ `lead_submitted` (`generate_lead`/`Lead`) → `report_viewed` → `next_step_click` (ponte para a
+página final) → `cta_offer_click` (clique que sai para o Substack, com `posicao`). O GA4 não
+recebe `page_view` manual: a Medição Otimizada do fluxo conta as trocas de rota; o Meta recebe
+`PageView` manual a cada troca. A contagem com os IDs reais se verifica com
+`e2e/analytics-count.spec.ts` (ver `GOLIVE.md`). O link de inscrição vem de
+`lib/substack.ts`, com UTMs. "Preferências de cookies", no rodapé, reabre a escolha.
+
 `scripts/lighthouse-flow-check.mjs` exige SEO ≥ 95 na home, mas não cobra
 SEO nas 3 rotas `noindex` — o próprio audit `is-crawlable` do Lighthouse
 reprova qualquer página `noindex` por definição, então cobrar SEO ali
@@ -260,7 +278,7 @@ O botão "Receber este relatório por e-mail" do relatório (`/resultado`, Épic
 ## Deploy
 
 - Preview: gerado automaticamente pela Vercel a cada Pull Request.
-- Produção: https://skill-test-mocha.vercel.app/
+- Produção: https://skill.syntaxis.com.br/ (alias: https://skill-test-mocha.vercel.app/)
 
 Variáveis de ambiente de produção são configuradas em Vercel → Settings →
 Environment Variables (nunca via `.env` commitado). Passos completos de

@@ -110,4 +110,23 @@ test.describe('Consentimento LGPD (Épico 21) — GA4/Meta Pixel só carregam de
     expect(serialized.toLowerCase()).not.toContain('"name"');
     expect(serialized.toLowerCase()).not.toContain('"nome"');
   });
+
+  test('"Preferências de cookies" no rodapé traz o banner de volta; recusar depois zera as requisições (Épico 42)', async ({
+    page,
+  }) => {
+    const requests = await trackAnalyticsRequests(page);
+
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Aceitar' }).click();
+    await expect.poll(() => requests.length, { timeout: 5000 }).toBeGreaterThan(0);
+
+    await page.getByRole('button', { name: 'Preferências de cookies' }).click();
+    await expect(page.getByRole('button', { name: 'Aceitar' })).toBeVisible();
+
+    await page.getByRole('button', { name: 'Recusar' }).click();
+    requests.length = 0;
+    await page.reload();
+    await page.waitForTimeout(1000);
+    expect(requests).toEqual([]);
+  });
 });

@@ -49,6 +49,7 @@ Estas regras vêm das especificações e valem para qualquer épico em que se ap
 - **Falha na chamada ao MailerLite não pode bloquear a exibição do resultado** ao usuário (Épico 7) — trate como erro não-fatal, logado, não propagado como falha do fluxo principal.
 - **Não altere o conteúdo de `questions.json`** (perguntas, alternativas, `targetSeniority`, faixas de classificação) por conta própria. Se notar um problema real (ex: pergunta ambígua, erro de português), sinalize no relatório em vez de corrigir silenciosamente.
 - **Nenhuma resposta do quiz é persistida em `localStorage`/`sessionStorage`.**
+- **Toda execução local que envia o formulário de `/lead` leva `MAILERLITE_API_KEY=e2e-invalid` no comando** (dev, E2E, Lighthouse do fluxo). A `.env.local` tem a chave real; sem isso, cada rodada grava leads de teste na conta de produção.
 - Todas as rotas públicas devem respeitar a regra de single-viewport e a paleta/tipografia do sistema "O Sinal no Escuro" definidos no Épico 2 — não introduza cores ou fontes fora dos tokens.
 
 ---
