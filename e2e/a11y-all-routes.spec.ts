@@ -30,6 +30,17 @@ for (const colorScheme of ['light', 'dark'] as const) {
     expect(results.violations, JSON.stringify(results.violations, null, 2)).toHaveLength(0);
   });
 
+  for (const rota of ['/newsletter', '/newsletter?n=junior&d=matematica-quant&c=baixo']) {
+    test(`${rota} — sem violações de acessibilidade (axe-core, wcag2aa) — ${colorScheme}`, async ({
+      page,
+    }) => {
+      await page.emulateMedia({ colorScheme });
+      await page.goto(rota);
+      const results = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
+      expect(results.violations, JSON.stringify(results.violations, null, 2)).toHaveLength(0);
+    });
+  }
+
   test(`/quiz — sem violações de acessibilidade (axe-core, wcag2aa) — ${colorScheme}`, async ({
     page,
   }) => {

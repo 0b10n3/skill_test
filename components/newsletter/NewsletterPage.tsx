@@ -47,7 +47,7 @@ export function NewsletterPage({ perfilQuery }: { perfilQuery: PerfilNewsletter 
 
   return (
     <main className="flex flex-col">
-      <section className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-6 pt-20 pb-14 sm:px-10 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16 lg:pb-20">
+      <section className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-6 pt-[72px] pb-14 sm:px-10 sm:pt-28 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16 lg:pb-20">
         <div className="flex flex-col gap-5">
           {comDiagnostico && perfil.nivel && perfil.dimensao && (
             <p className="font-mono text-sm text-muted-foreground">
@@ -55,8 +55,12 @@ export function NewsletterPage({ perfilQuery }: { perfilQuery: PerfilNewsletter 
               {CATEGORY_LABEL[perfil.dimensao]}
             </p>
           )}
-          <Eyebrow>{hero.eyebrow}</Eyebrow>
-          <h1 className="font-display text-[30px] leading-[1.1] text-balance text-foreground sm:text-5xl">
+          {/* Com a linha de contexto, o eyebrow só aparece a partir de sm: no celular os dois
+              diziam o mesmo e empurravam o botão para baixo do banner de cookies. */}
+          <Eyebrow className={comDiagnostico ? 'hidden sm:block' : undefined}>
+            {hero.eyebrow}
+          </Eyebrow>
+          <h1 className="font-display text-[28px] leading-[1.1] text-balance text-foreground sm:text-5xl">
             {hero.titulo}
           </h1>
           <p className="max-w-xl text-base text-pretty text-foreground sm:text-lg">{hero.apoio}</p>

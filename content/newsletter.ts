@@ -112,7 +112,8 @@ export const PERGUNTAS: { pergunta: string; resposta: string }[] = [
 
 /** Bloco 6 — fechamento. O P.S. cita o primeiro texto da curadoria. */
 export const FECHAMENTO = {
-  titulo: 'O próximo texto chega no seu e-mail. O primeiro você pode ler agora.',
+  // Hífen que não quebra (U+2011): sem ele, "e-mail" partia em duas linhas no celular.
+  titulo: 'O próximo texto chega no seu e\u2011mail. O primeiro você pode ler agora.',
   psAntes: 'P.S. Quer testar antes? Comece por «',
   psDepois: '».',
   notaLegal: 'Conteúdo educacional e informativo. Não é recomendação de investimento.',

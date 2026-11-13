@@ -16,5 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 1,
     },
+    // Épico 44: página final da newsletter, indexável.
+    {
+      url: `${getSiteUrl()}/newsletter`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 }

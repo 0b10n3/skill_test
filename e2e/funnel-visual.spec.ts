@@ -39,6 +39,19 @@ for (const colorScheme of ['light', 'dark'] as const) {
       });
     });
 
+    // Épico 44: página final, na variante vinda de link (determinística).
+    test(`newsletter — ${colorScheme} @ ${viewport.name}px`, async ({ page }) => {
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
+      await page.goto('/newsletter?n=junior&d=matematica-quant&c=baixo');
+      await page.evaluate(() => document.fonts.ready);
+
+      await expect(page).toHaveScreenshot(`newsletter-${colorScheme}-${viewport.name}.png`, {
+        fullPage: true,
+        maxDiffPixelRatio: 0.02,
+      });
+    });
+
     test(`quiz — ${colorScheme} @ ${viewport.name}px`, async ({ page }) => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
