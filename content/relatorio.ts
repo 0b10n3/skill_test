@@ -128,7 +128,7 @@ export const SCORE_CARD_COPY: Record<KnowledgeCategory, Record<DimensionEtiqueta
     neutro:
       'Você reconhece os riscos principais, mas a leitura de regulação/compliance ainda é superficial.',
     atencao:
-      'Risco e regulação (marcação a mercado, CVM/BCB/ANBIMA) são um ponto cego que pesa no seu nível.',
+      'Risco e regulação (marcação a mercado, CVM/BCB) são um ponto cego que pesa no seu nível.',
   },
 };
 
@@ -326,6 +326,6 @@ export const METODOLOGIA_MANCHETE =
 export const METODOLOGIA_RESUMO: string[] = [
   'O Syntaxis Skill Check não mede "quanto você sabe de finanças" em abstrato — mede a distância entre o seu perfil atual e o perfil que o mercado espera para o próximo degrau da sua carreira. É essa moldura, "para um analista do seu nível, o mercado espera...", que dá sentido ao resultado.',
   'As 15 questões cobrem 5 dimensões de competência (Mercados & Produtos, Matemática & Quant, Dados & Programação, IA Aplicada e Risco & Regulação), com 3 itens por dimensão, calibradas para a expectativa de cada nível declarado — de aspirante a sênior.',
-  'O quadro de competências foi ancorado em referenciais reconhecidos do mercado brasileiro: a nova grade de certificações da ANBIMA (por competência prática, não por cargo), o Candidate Body of Knowledge do CFA Institute e levantamentos de demanda técnica do setor financeiro, que combinam análise de dados, gestão de risco, regulação e IA aplicada.',
+  'O quadro de competências foi ancorado em referenciais reconhecidos do mercado brasileiro: as novas certificações do mercado brasileiro (por competência prática, não por cargo), o Candidate Body of Knowledge do CFA Institute e levantamentos de demanda técnica do setor financeiro, que combinam análise de dados, gestão de risco, regulação e IA aplicada.',
   'Cada dimensão carrega um peso de impacto diferente por nível — o quanto ela pesa para o próximo degrau, não para o nível atual. É esse peso, multiplicado pelo gap entre o seu score e a expectativa, que define as duas dimensões apontadas como prioridade no relatório.',
 ];
