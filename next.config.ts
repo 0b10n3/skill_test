@@ -31,6 +31,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Épico 44: a /newsletter é dinâmica (lê ?n&d&c no servidor) e o Next 15 manda os metadados
+  // de página dinâmica no <body> para quem não está na lista de robôs. Todos os metadados do
+  // app são estáticos, então segurá-los no <head> não custa nada — e o <head> fica igual para
+  // qualquer cliente (Lighthouse, redes sociais, buscadores fora da lista).
+  htmlLimitedBots: /.*/,
   async headers() {
     return [
       {

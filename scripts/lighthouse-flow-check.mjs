@@ -119,6 +119,9 @@ async function runFlow() {
     await page.waitForSelector('[data-testid="score-geral"]', { timeout: 10_000 });
     await flow.endTimespan();
     await flow.snapshot({ name: '/resultado (a11y/best-practices/seo)' });
+
+    // Épico 44: página final, indexável — SEO ≥ 95 como a home.
+    await flow.navigate(`${BASE_URL}/newsletter`, { name: '/newsletter' });
   } catch (error) {
     await browser.disconnect();
     await chrome.kill();
@@ -159,7 +162,9 @@ function printAndCheck(flowResult) {
       const score = Math.round(category.score * 100);
       const isSeoOnNoindexRoute = key === 'seo' && NOINDEX_STEP_NAMES.has(step.name);
       const threshold =
-        key === 'seo' && step.name === '/ (landing)' ? HOME_SEO_THRESHOLD : THRESHOLD;
+        key === 'seo' && ['/ (landing)', '/newsletter'].includes(step.name)
+          ? HOME_SEO_THRESHOLD
+          : THRESHOLD;
       const passed = score >= threshold;
 
       if (isSeoOnNoindexRoute) {
@@ -171,6 +176,15 @@ function printAndCheck(flowResult) {
       const status = passed ? 'OK ' : 'FAIL';
       if (!passed) anyFailed = true;
       console.log(`  [${status}] ${category.title}: ${score}`);
+      if (!passed) {
+        // Lista as auditorias que derrubaram a categoria — sem isso, a falha não diz o que corrigir.
+        for (const ref of category.auditRefs) {
+          const audit = step.lhr.audits[ref.id];
+          if (ref.weight > 0 && audit?.score !== null && audit?.score < 1) {
+            console.log(`         - ${ref.id}: ${audit.title}`);
+          }
+        }
+      }
     }
     console.log('');
   }

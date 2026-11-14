@@ -23,6 +23,9 @@ export function SiteFooter() {
           <Link href="/" className="text-foreground hover:underline">
             Skill Check
           </Link>
+          <Link href="/newsletter" className="text-foreground hover:underline">
+            Newsletter
+          </Link>
           <Link href="/privacidade" className="text-foreground hover:underline">
             Privacidade
           </Link>

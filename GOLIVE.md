@@ -932,3 +932,29 @@ PLAYWRIGHT_BASE_URL=http://localhost:3200 ANALYTICS_REAL_IDS=1 \
 - [ ] GA4 → Administrador → Eventos: `generate_lead` e `cta_offer_click` como eventos-chave.
 - [x] Substack → Configurações → Analytics: mesmo Pixel e mesmo GA4 (founder, 13/11/2026).
 - [ ] Meta → Públicos: públicos de `Lead` e de `cta_offer_click` (180 dias).
+
+## Go-live do Épico 44 — página final `/newsletter`
+
+Página que faz a ponte entre o diagnóstico e a inscrição no Substack. Personalização, nesta
+ordem: diagnóstico em memória (vindo de `/resultado`), query `?n=<nível>&d=<dimensão>&c=<classificação>`
+(links de e-mail), versão genérica. O segmento de `strategy/AUDIENCES.md` sai de
+`lib/newsletter-perfil.ts`; a copy, aprovada pelo founder em 13/11/2026, mora em
+`content/newsletter.ts`; a bio, em `content/author.ts`.
+
+- Indexável, no `sitemap.xml`, canonical sem query.
+- `next.config.ts` → `htmlLimitedBots: /.*/`: a página é dinâmica e o Next 15 mandava os
+  metadados para o `<body>` de quem não está na lista de robôs. Todo metadado do app é
+  estático, então não há custo.
+- Lighthouse: desempenho 100, acessibilidade 100, SEO 100, nos dois temas.
+- Em 375×667, o botão de inscrição fica acima do banner de cookies. Em 360×640, com
+  diagnóstico, sobram 12 px de sobreposição, que o Épico 45 resolve ao encurtar o banner.
+
+### Pendências do founder
+
+- [ ] Retrato real em `public/img/autor/` e `foto` em `content/author.ts`. Até lá, o símbolo
+      da marca ocupa o lugar — nunca a foto de outra pessoa.
+- [ ] Confirmar ou trocar a curadoria de posts por dimensão (`CURADORIA` em
+      `content/newsletter.ts`).
+- [ ] MailerLite (painel, sem código): nos e-mails da automação do Skill Check, o link para a
+      página pode levar os campos do assinante:
+      `https://skill.syntaxis.com.br/newsletter?n={$seniority}&d={$perfil_tecnico}&c={$classificacao}&utm_source=mailerlite&utm_medium=email&utm_campaign=diagnostico`
