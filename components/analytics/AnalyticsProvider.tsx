@@ -9,17 +9,19 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 /**
- * Dispara um page_view (GA4) / PageView (Meta) a cada troca de rota via SPA
- * navigation — o `gtag('config', ...)`/`fbq('init', ...)` inicial só cobre o
- * primeiro carregamento real de página (epico-21 §"Instalação GA4":
- * "send_page_view automático nas 4 rotas, SPA navigation incluída").
+ * Dispara um PageView (Meta) a cada troca de rota via SPA navigation — o
+ * `fbq('track', 'PageView')` inicial só cobre o primeiro carregamento.
+ *
+ * O GA4 não recebe page_view manual (Épico 42): a Medição Otimizada do fluxo
+ * real conta as trocas de histórico sozinha, e o envio manual dobrava o
+ * page_view em /quiz e /resultado — medido com os IDs reais em
+ * e2e/analytics-count.spec.ts (6 page_view para 4 telas). O Meta foi medido
+ * no mesmo teste com 1 PageView por tela e fica como está.
  */
 function PageviewTracker() {
   const pathname = usePathname();
-  // A primeira rota já é coberta pelo `gtag('config', ...)`/`fbq('track',
-  // 'PageView')` do script de inicialização — só as trocas de rota
-  // seguintes (SPA navigation) precisam do evento manual, senão a
-  // primeira página conta pageview em dobro.
+  // A primeira rota já é coberta pelo `fbq('track', 'PageView')` do script
+  // de inicialização — só as trocas de rota seguintes precisam do evento.
   const isFirstRender = useRef(true);
 
   useEffect(() => {
@@ -27,7 +29,6 @@ function PageviewTracker() {
       isFirstRender.current = false;
       return;
     }
-    window.gtag?.('event', 'page_view', { page_path: pathname });
     window.fbq?.('track', 'PageView');
   }, [pathname]);
 
@@ -70,7 +71,12 @@ export function AnalyticsProvider() {
               function gtag(){window.dataLayer.push(arguments);}
               window.gtag = gtag;
               gtag('js', new Date());
-              gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'granted' });
+              gtag('consent', 'default', {
+                analytics_storage: 'granted',
+                ad_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted',
+              });
               gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: true });`}
           </Script>
         </>

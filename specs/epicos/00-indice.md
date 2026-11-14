@@ -60,3 +60,16 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 32. `epico-32-troca-tipografia.md` — Space Grotesk/Hanken Grotesk/Space Mono → Montserrat/Source Sans 3/IBM Plex Mono, sincronizando a revogação já formalizada em `brand/DESIGN.md` §4.2 (REVOGACOES.md H10)
 
 Cada arquivo segue o mesmo formato: Objetivo → Escopo → Critérios de aceite → Testes obrigatórios → Gate de validação → Boas práticas aplicadas.
+
+### Fase 6 — Revisão de UI/UX, conversão e medição (novembro de 2026) — a executar
+
+**Achados e plano:** [`revisao-2026-11-ui-ux.md`](revisao-2026-11-ui-ux.md). **Prompt de execução:** [`../prompt-execucao-epicos-42-47.md`](../prompt-execucao-epicos-42-47.md). Os épicos 33–41 têm arquivo próprio nesta pasta e não entram em fase numerada.
+
+42. `epico-42-medicao-ga4-pixel.md` — Contagem única de eventos no GA4 e no Meta Pixel, Pixel ID correto na documentação, link do Substack com UTM, preferências de cookies
+43. `epico-43-relatorio-hierarquia-e-ponte.md` — Veredito e radar na primeira tela, prioridades antes do detalhe, ponte para a página final
+44. `epico-44-pagina-newsletter.md` — Página final `/newsletter`, com copy por segmento e CTA de inscrição no Substack
+45. `epico-45-chassi-do-funil.md` — Quiz legível no celular, senioridade em ordem, formulário de lead, banner de cookies, foco, 404
+46. `epico-46-landing-conversao.md` — Hero com o botão na primeira tela, "como funciona", perguntas frequentes, metodologia reestruturada
+47. `epico-47-qa-golive.md` — QA visual, acessibilidade, desempenho e go-live da revisão
+
+42 → 43 → 44 são sequenciais. 45 → 46 são sequenciais entre si e independentes de 43 e 44. O 47 fecha tudo.

@@ -153,7 +153,9 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
 
     await expect(page.getByTestId('score-geral')).toHaveText('100% de acerto geral');
     await expect(page.getByTestId('score-classificacao')).toHaveText('Alto');
-    await expect(page.locator('a[href="https://syntaxis.substack.com"]')).toBeVisible();
+    await expect(
+      page.locator('a[href^="https://syntaxis.substack.com/subscribe?utm_source=skill-check"]'),
+    ).toBeVisible();
     await expectAllReportSectionsInOrder(page);
   });
 

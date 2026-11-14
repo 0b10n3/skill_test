@@ -18,6 +18,7 @@ export type FunnelEvent =
   | 'quiz_complete'
   | 'lead_submitted'
   | 'report_viewed'
+  | 'next_step_click'
   | 'cta_offer_click'
   | 'radar_shared';
 
@@ -46,6 +47,10 @@ const EVENT_MAP: Record<FunnelEvent, EventMapping> = {
   quiz_complete: { ga4: 'quiz_complete', meta: 'quiz_complete' },
   lead_submitted: { ga4: 'generate_lead', meta: 'Lead', metaStandard: true },
   report_viewed: { ga4: 'report_viewed', meta: 'report_viewed' },
+  // Ponte do resultado para a página final (Épico 42): report_viewed →
+  // next_step_click → page_view (/newsletter) → cta_offer_click.
+  next_step_click: { ga4: 'next_step_click', meta: 'next_step_click' },
+  // Clique que sai para o Substack; params: nivel, classificacao, posicao.
   cta_offer_click: { ga4: 'cta_offer_click', meta: 'cta_offer_click' },
   radar_shared: { ga4: 'radar_shared', meta: 'radar_shared' },
 };

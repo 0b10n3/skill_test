@@ -1,3 +1,4 @@
+import { substackSubscribeUrl } from '@/lib/substack';
 import type { Classification } from '@/lib/types';
 
 export interface Offer {
@@ -16,7 +17,7 @@ const newsletter = {
   description:
     'A newsletter da Syntaxis conecta instrumentos financeiros ao dia a dia do mercado brasileiro e à progressão de carreira, com rigor e sem hype. É gratuita.',
   ctaLabel: 'Assinar a newsletter',
-  ctaHref: 'https://syntaxis.substack.com',
+  ctaHref: substackSubscribeUrl('resultado'),
 };
 
 export const offers: Record<Classification, Offer> = {

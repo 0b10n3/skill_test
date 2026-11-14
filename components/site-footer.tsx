@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CookiePreferencesButton } from '@/components/analytics/CookiePreferencesButton';
 import { Logo } from '@/components/logo';
 
 /**
@@ -15,13 +16,17 @@ export function SiteFooter() {
           <Logo />
           <p className="text-sm text-muted-foreground">Estrutura que vira competência.</p>
         </div>
-        <nav aria-label="Rodapé" className="flex gap-8 text-sm">
+        <nav
+          aria-label="Rodapé"
+          className="flex flex-wrap gap-x-8 gap-y-3 text-sm whitespace-nowrap"
+        >
           <Link href="/" className="text-foreground hover:underline">
             Skill Check
           </Link>
           <Link href="/privacidade" className="text-foreground hover:underline">
             Privacidade
           </Link>
+          <CookiePreferencesButton />
         </nav>
       </div>
       <p className="mx-auto mt-8 w-full max-w-6xl font-mono text-xs text-muted-foreground">

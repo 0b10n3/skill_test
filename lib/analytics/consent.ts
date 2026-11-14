@@ -34,3 +34,14 @@ export function subscribeToConsent(listener: (value: ConsentValue) => void): () 
   window.addEventListener(CONSENT_EVENT, handler);
   return () => window.removeEventListener(CONSENT_EVENT, handler);
 }
+
+/**
+ * Apaga a escolha (Épico 42 — "Preferências de cookies" no rodapé). Quem chama
+ * recarrega a página: scripts de GA4/Meta já carregados só saem com o reload,
+ * e o banner volta porque o estado passa a "unset".
+ */
+export function resetConsent(): void {
+  if (typeof window === 'undefined') return;
+  window.localStorage.removeItem(STORAGE_KEY);
+  window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: 'unset' }));
+}

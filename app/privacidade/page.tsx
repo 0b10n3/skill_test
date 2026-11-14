@@ -79,7 +79,8 @@ export default function PrivacidadePage() {
             <p className="text-muted-foreground">
               A escolha feita no banner fica salva no seu navegador (armazenamento local) e vale até
               você limpar os dados do site ou trocar de dispositivo. Recusar não impede o uso do
-              diagnóstico — apenas desativa a medição de analytics/anúncios.
+              diagnóstico — apenas desativa a medição de analytics/anúncios. Para mudar a escolha a
+              qualquer momento, use o botão &ldquo;Preferências de cookies&rdquo; no rodapé.
             </p>
           </div>
 

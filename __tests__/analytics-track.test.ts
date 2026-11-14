@@ -59,6 +59,13 @@ describe('track', () => {
     expect(fbq).not.toHaveBeenCalled();
   });
 
+  it('mapeia next_step_click (Épico 42) e preserva posicao', () => {
+    const params = { nivel: 'junior', classificacao: 'baixo', posicao: 'meio' };
+    track('next_step_click', params);
+    expect(gtag).toHaveBeenCalledWith('event', 'next_step_click', params);
+    expect(fbq).toHaveBeenCalledWith('trackCustom', 'next_step_click', params);
+  });
+
   it('nunca envia PII para gtag/fbq mesmo se o chamador passar por engano', () => {
     track('lead_submitted', { name: 'Maria Teste', email: 'maria@example.com', nivel: 'pleno' });
     expect(gtag).toHaveBeenCalledWith('event', 'generate_lead', { nivel: 'pleno' });

@@ -544,7 +544,7 @@ documentada nos go-lives anteriores.
   disparados só via `track()` (`lib/analytics/track.ts`), nunca `gtag`/
   `fbq` direto nos componentes.
 - **IDs reais fornecidos pelo founder** (GA4 `G-H0NTV61JS6`, Meta Pixel
-  `852035937455815`) — entram só como variável de ambiente na Vercel
+  `2151084515475904`, corrigido no Épico 42) — entram só como variável de ambiente na Vercel
   (`NEXT_PUBLIC_GA_MEASUREMENT_ID`/`NEXT_PUBLIC_META_PIXEL_ID`), nunca no
   git. Testados localmente com IDs falsos (`playwright.config.ts`
   `webServer.env` — nunca aplicado a um deployment real).
@@ -572,7 +572,9 @@ segredo — ver `.env.example`): `NEXT_PUBLIC_GA_MEASUREMENT_ID`,
 
 ## Pendências que exigem uma pessoa — Épicos 20-21
 
-- ⬜ **Domínio final do app** — o fluxo GA4 fornecido pelo founder aponta
+- ✅ **Domínio final do app** — resolvido: produção responde em
+  `https://skill.syntaxis.com.br`, com canonical correto (conferido no Épico 42). Registro
+  original: o fluxo GA4 fornecido pelo founder aponta
   para `syntaxis.com.br`, mas o app está em `skill-test-mocha.vercel.app`.
   Definir o domínio final (ex.: `skillcheck.syntaxis.com.br`), configurá-lo
   na Vercel, e confirmar que o stream GA4/Pixel passam a medir o domínio
@@ -604,7 +606,7 @@ segredo — ver `.env.example`): `NEXT_PUBLIC_GA_MEASUREMENT_ID`,
 
 1. **Vercel → Project → Settings → Environment Variables**: adicionar
    `NEXT_PUBLIC_GA_MEASUREMENT_ID` (`G-H0NTV61JS6`) e
-   `NEXT_PUBLIC_META_PIXEL_ID` (`852035937455815`) em **Production**
+   `NEXT_PUBLIC_META_PIXEL_ID` (`2151084515475904`) em **Production**
    (deixar em branco em Preview, de propósito — ver `.env.example`).
    Como são `NEXT_PUBLIC_*`, ficam embutidas no bundle **no momento do
    build** — salvar as variáveis e então gerar um novo deploy (redeploy
@@ -648,8 +650,7 @@ o deploy.
       aceite, e zero PII em qualquer payload de evento (revisão + teste).
 - [x] Regras de indexação (só `/` indexável), sitemap, robots e JSON-LD
       implementados e verificados localmente.
-- [ ] Domínio final configurado e stream GA4/Pixel medindo produção —
-      **pendente do founder**.
+- [x] Domínio final configurado (`skill.syntaxis.com.br`) — ver Épico 42.
 - [ ] Validação em produção (GA4 DebugView, Meta Test Events, Search
       Console, Rich Results Test) — **pendente, depende do domínio final**.
 - [ ] Fluxo completo em mobile real e leitor de tela real, nos 2 temas —
@@ -880,3 +881,54 @@ era esperar.
 por CI/E2E — símbolo, pattern e tokens sincronizados de ponta a ponta, com prova automatizada
 de que nenhuma regressão passou despercebida. A aprovação visual do founder e a decisão de
 promover a produção são os gates finais e exigem uma pessoa.**
+
+## Go-live do Épico 42 — medição: GA4, Meta Pixel e atribuição
+
+### Contagem de eventos com os IDs reais (linha de base e correção)
+
+`e2e/analytics-count.spec.ts` percorre o funil com os IDs de produção e responde localmente a
+toda requisição de coleta (nada chega ao Google nem à Meta). Rotas visitadas: `/`, `/quiz`,
+`/lead`, `/resultado`.
+
+|                         | GA4 `page_view`                        | Meta `PageView` |
+| ----------------------- | -------------------------------------- | --------------- |
+| Antes (main, `431e182`) | 6 — em dobro em `/quiz` e `/resultado` | 4               |
+| Depois                  | 4                                      | 4               |
+
+Causa: a Medição Otimizada do fluxo GA4 já conta trocas de histórico, e o app enviava outro
+`page_view` à mão. O envio manual saiu; o do Meta ficou (já era 1 por tela). Os demais eventos
+saem uma vez cada (`question_answered` 15 vezes, só no GA4), sem nome nem e-mail em nenhum
+parâmetro. A Medição Otimizada descarta uma troca de rota seguida de outra em menos de ~1 s; o
+teste espera 4 s em `/lead`, como uma pessoa lendo o formulário.
+
+Como rodar:
+
+```bash
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-H0NTV61JS6 NEXT_PUBLIC_META_PIXEL_ID=2151084515475904 \
+  MAILERLITE_API_KEY=e2e-invalid npx next build --turbopack
+MAILERLITE_API_KEY=e2e-invalid RATE_LIMIT_MAX_REQUESTS=1000 npx next start -p 3200 &
+PLAYWRIGHT_BASE_URL=http://localhost:3200 ANALYTICS_REAL_IDS=1 \
+  npx playwright test e2e/analytics-count.spec.ts
+```
+
+### Outras mudanças
+
+- Consentimento envia os quatro sinais do Consent Mode v2 (`ad_user_data` e
+  `ad_personalization` entraram).
+- Link da newsletter: `https://syntaxis.substack.com/subscribe` com `utm_source=skill-check`,
+  `utm_medium=app`, `utm_campaign=diagnostico`, `utm_content=<posição do botão>`
+  (`lib/substack.ts`).
+- Evento novo `next_step_click`; `cta_offer_click` ganha `posicao`.
+- "Preferências de cookies" no rodapé apaga a escolha e recarrega a página.
+- Pixel documentado corrigido para `2151084515475904`; domínio final resolvido.
+
+### Conferência humana
+
+- [ ] Vercel (Production): `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-H0NTV61JS6` e
+      `NEXT_PUBLIC_META_PIXEL_ID=2151084515475904`; em Preview, em branco.
+- [ ] Meta → Gerenciador de Eventos → Testar eventos, em `skill.syntaxis.com.br`: um `PageView`
+      por tela e `Lead` no envio.
+- [ ] GA4 → DebugView: um `page_view` por tela e os eventos do funil em ordem.
+- [ ] GA4 → Administrador → Eventos: `generate_lead` e `cta_offer_click` como eventos-chave.
+- [x] Substack → Configurações → Analytics: mesmo Pixel e mesmo GA4 (founder, 13/11/2026).
+- [ ] Meta → Públicos: públicos de `Lead` e de `cta_offer_click` (180 dias).

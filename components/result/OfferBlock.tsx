@@ -19,8 +19,12 @@ export function OfferBlock({ classification, seniority }: OfferBlockProps) {
   const hasRealLink = !isPlaceholderLink(offer.ctaHref);
 
   function handleCtaClick() {
-    // cta_offer_click (epico-21): nível × classificação, params: nível, classificação — nunca PII.
-    track('cta_offer_click', { nivel: seniority, classificacao: classification });
+    // cta_offer_click: clique que sai para o Substack — nunca PII. `posicao` desde o Épico 42.
+    track('cta_offer_click', {
+      nivel: seniority,
+      classificacao: classification,
+      posicao: 'resultado',
+    });
   }
 
   return (

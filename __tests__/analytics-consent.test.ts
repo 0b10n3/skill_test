@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { getConsent, setConsent, subscribeToConsent } from '../lib/analytics/consent';
+import { getConsent, resetConsent, setConsent, subscribeToConsent } from '../lib/analytics/consent';
 
 describe('consent', () => {
   beforeEach(() => {
@@ -33,5 +33,15 @@ describe('consent', () => {
     unsubscribe();
     setConsent('denied');
     expect(listener).toHaveBeenCalledTimes(1);
+  });
+
+  it('resetConsent volta a "unset" e avisa os assinantes', () => {
+    setConsent('granted');
+    const listener = vi.fn();
+    const unsubscribe = subscribeToConsent(listener);
+    resetConsent();
+    expect(getConsent()).toBe('unset');
+    expect(listener).toHaveBeenCalledWith('unset');
+    unsubscribe();
   });
 });
