@@ -34,6 +34,7 @@ for (const colorScheme of ['light', 'dark'] as const) {
     '/newsletter',
     '/newsletter?n=junior&d=matematica-quant&c=baixo',
     '/pagina-que-nao-existe',
+    '/privacidade',
   ]) {
     test(`${rota} — sem violações de acessibilidade (axe-core, wcag2aa) — ${colorScheme}`, async ({
       page,

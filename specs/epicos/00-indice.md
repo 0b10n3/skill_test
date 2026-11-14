@@ -61,7 +61,7 @@ Ordem de execução recomendada (cada épico tem seu próprio gate de validaçã
 
 Cada arquivo segue o mesmo formato: Objetivo → Escopo → Critérios de aceite → Testes obrigatórios → Gate de validação → Boas práticas aplicadas.
 
-### Fase 6 — Revisão de UI/UX, conversão e medição (novembro de 2026) — a executar
+### Fase 6 — Revisão de UI/UX, conversão e medição (novembro de 2026) — concluída em 13/11/2026 (PRs #54–#59; conferência humana em `GOLIVE.md`)
 
 **Achados e plano:** [`revisao-2026-11-ui-ux.md`](revisao-2026-11-ui-ux.md). **Prompt de execução:** [`../prompt-execucao-epicos-42-47.md`](../prompt-execucao-epicos-42-47.md). Os épicos 33–41 têm arquivo próprio nesta pasta e não entram em fase numerada.
 

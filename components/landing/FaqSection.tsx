@@ -8,7 +8,7 @@ export function FaqSection() {
     <section
       id="perguntas"
       aria-labelledby="perguntas-heading"
-      className="w-full scroll-mt-14 px-6 py-14 sm:px-10 sm:py-20"
+      className="w-full px-6 py-14 sm:px-10 sm:py-20"
     >
       <div className="mx-auto flex max-w-2xl flex-col gap-2">
         <Eyebrow>Perguntas</Eyebrow>

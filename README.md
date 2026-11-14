@@ -6,6 +6,22 @@ Quiz adaptativo de diagnóstico de conhecimento técnico em finanças/matemátic
 
 Especificação completa do produto em [`/specs`](./specs).
 
+## Rotas
+
+| Rota           | O que é                                                                                        | Indexável |
+| -------------- | ---------------------------------------------------------------------------------------------- | --------- |
+| `/`            | Landing: hero, como funciona, o que avaliamos, metodologia, quem escreve, perguntas frequentes | sim       |
+| `/quiz`        | Senioridade + 15 questões, em três faixas dentro de `h-dvh`                                    | não       |
+| `/lead`        | Nome, e-mail e opt-in (MailerLite)                                                             | não       |
+| `/resultado`   | Relatório: veredito, radar, prioridades, ponte para a página final, gabarito                   | não       |
+| `/newsletter`  | Página final: inscrição no Substack, personalizada pelo diagnóstico                            | sim       |
+| `/privacidade` | Política de privacidade                                                                        | sim       |
+| qualquer outra | 404 da marca (`app/not-found.tsx`)                                                             | não       |
+
+Respostas e resultado vivem só em memória (`lib/quiz-context.tsx`); com respostas e sem
+resultado, recarregar a página pede confirmação. Toda execução local que envia o `/lead` leva
+`MAILERLITE_API_KEY=e2e-invalid` — a chave real criaria inscritos de teste no MailerLite.
+
 ## Stack
 
 - Next.js 15 (App Router) + TypeScript estrito
@@ -235,8 +251,8 @@ IDs via `NEXT_PUBLIC_GA_MEASUREMENT_ID`/`NEXT_PUBLIC_META_PIXEL_ID` (ver
 
 `/quiz`, `/lead` e `/resultado` têm `metadata.robots: noindex` (conteúdo
 transacional/pessoal); `app/robots.ts` e `app/sitemap.ts` (gerados pelo
-framework) refletem a mesma regra — só `/` é indexável e listada no
-sitemap. JSON-LD `Organization`+`WebSite` na home (`app/page.tsx`).
+framework) refletem a mesma regra — `/` e `/newsletter` estão no sitemap;
+`/privacidade` é indexável, fora do sitemap. JSON-LD `Organization`+`WebSite` na home (`app/page.tsx`).
 `lib/site-url.ts` centraliza a resolução do domínio ativo (Vercel
 production URL → Vercel URL → localhost), fonte única para
 `metadataBase`, sitemap, robots e JSON-LD.

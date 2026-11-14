@@ -78,7 +78,7 @@ export function QuizFlow({ seniorityQuestion }: QuizFlowProps) {
     <main className="flex h-dvh flex-col pt-14">
       <div className="px-4 pt-4 sm:px-6">
         <div className="mx-auto flex w-full max-w-lg flex-col gap-2">
-          <Eyebrow>
+          <Eyebrow data-testid="quiz-eyebrow">
             {isSeniorityStep
               ? 'Antes de começar'
               : CATEGORY_LABEL[currentQuestion.category as KnowledgeCategory]}

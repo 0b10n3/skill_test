@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function PrivacidadePage() {
   return (
     <>
-      <main className="mx-auto flex w-full max-w-2xl flex-col gap-6 px-6 py-14 sm:px-10">
+      <main className="mx-auto flex w-full max-w-2xl flex-col gap-6 px-6 pt-20 pb-14 sm:px-10 sm:pt-24">
         <div className="flex flex-col gap-2">
           <p className="text-eyebrow text-grove-700 dark:text-lime-300">Política de privacidade</p>
           <h1 className="font-display text-3xl text-foreground">
@@ -31,8 +31,9 @@ export default function PrivacidadePage() {
           <p>
             Esta página descreve o que o Syntaxis Skill Check coleta durante a avaliação (
             <code className="font-data">/</code>, <code className="font-data">/quiz</code>,{' '}
-            <code className="font-data">/lead</code> e <code className="font-data">/resultado</code>
-            ) e como o seu consentimento controla essa coleta.
+            <code className="font-data">/lead</code>, <code className="font-data">/resultado</code>{' '}
+            e <code className="font-data">/newsletter</code>) e como o seu consentimento controla
+            essa coleta.
           </p>
 
           <div className="flex flex-col gap-1.5">
