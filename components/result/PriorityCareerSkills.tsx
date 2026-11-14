@@ -1,6 +1,6 @@
 'use client';
 
-import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import {
@@ -9,6 +9,7 @@ import {
   NEXT_LEVEL_LABEL,
   POR_QUE_IMPORTA,
   PRIMEIRO_PASSO,
+  PRIORIDADE_LEGENDA,
 } from '@/content/relatorio';
 import type { PrioridadeDimensao } from '@/lib/diagnostico';
 import type { SeniorityLevel } from '@/lib/types';
@@ -38,7 +39,7 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
       // theme-aware (bg-card), então continuam legíveis dentro da banda em
       // qualquer tema. Neutralizado na impressão (print:*) — o relatório
       // sempre imprime em fundo claro (ver app/resultado/page.tsx).
-      className="flex w-full max-w-4xl flex-col gap-3 rounded-none bg-neutral-deep-forest px-6 py-8 print:bg-transparent print:px-0 print:py-0 sm:px-10 sm:py-10"
+      className="flex w-full flex-col gap-3 rounded-none bg-neutral-deep-forest px-6 py-8 print:bg-transparent print:px-0 print:py-0 sm:px-10 sm:py-10"
     >
       <div className="flex flex-col gap-2">
         <Eyebrow onDark className="print:text-grove-700">
@@ -80,14 +81,16 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
         ))}
       </div>
 
-      <Card>
+      {/* Abaixo de md o gráfico sai (Épico 43): repete a ordem das duas prioridades já
+          numeradas e empurrava a ponte para além de três telas em 375×667. */}
+      <Card className="hidden md:flex">
         <CardHeader>
           <CardTitle className="font-display text-sm text-foreground">
             Impacto no próximo degrau, por dimensão
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-40 w-full">
+          <div inert className="h-40 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} layout="vertical" margin={{ left: 8, right: 32 }}>
                 <XAxis type="number" hide />
@@ -104,21 +107,34 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
                       fill={entry.destaque ? 'var(--color-semantic-progress-bar)' : 'var(--border)'}
                     />
                   ))}
-                  <LabelList
-                    dataKey="prioridade"
-                    position="right"
-                    style={{
-                      fontFamily: 'var(--font-data)',
-                      fontSize: 11,
-                      fill: 'var(--muted-foreground)',
-                    }}
-                  />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
+          <p className="mt-2 text-xs text-muted-foreground">{PRIORIDADE_LEGENDA}</p>
         </CardContent>
       </Card>
+      {/* Sem rótulo numérico no gráfico (Épico 43): o peso cru não diz nada ao leitor. A
+          ordem e o destaque ficam na tabela para leitor de tela. */}
+      <div className="sr-only">
+        <table>
+          <caption>Dimensões em ordem de impacto no próximo degrau</caption>
+          <thead>
+            <tr>
+              <th scope="col">Dimensão</th>
+              <th scope="col">Entre as duas prioridades</th>
+            </tr>
+          </thead>
+          <tbody>
+            {prioridades.map((p, index) => (
+              <tr key={p.category}>
+                <th scope="row">{CATEGORY_LABEL[p.category]}</th>
+                <td>{index < TOP_PRIORITY_COUNT ? 'Sim' : 'Não'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

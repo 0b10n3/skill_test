@@ -8,6 +8,7 @@ import {
   CATEGORY_LABEL_SHORT,
   EXPECTATIVA_DO_NIVEL,
   RADAR_SUMMARY,
+  RADAR_SUMMARY_SEM_DESTAQUE,
 } from '@/content/relatorio';
 import type { DimensaoDiagnostico } from '@/lib/diagnostico';
 import type { KnowledgeCategory } from '@/lib/types';
@@ -22,7 +23,10 @@ import {
 
 interface RadarSectionProps {
   dimensoes: DimensaoDiagnostico[];
-  /** Dimensão dominante (`diagnostico.fortes[0]`) — ancora a frase-resumo do formato do radar. */
+  /**
+   * Dimensão dominante (`diagnostico.fortes[0]`) — ancora a frase-resumo. O motor sempre devolve
+   * uma, mesmo sem nenhuma dimensão "forte"; nesse caso o resumo não afirma ponto forte (Épico 43).
+   */
   dimensaoDominante: KnowledgeCategory;
 }
 
@@ -42,6 +46,7 @@ function usePrefersReducedMotion(): boolean {
 
 export function RadarSection({ dimensoes, dimensaoDominante }: RadarSectionProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
+  const temDestaque = dimensoes.find((d) => d.category === dimensaoDominante)?.etiqueta === 'forte';
   const data = dimensoes.map((d) => ({
     dimensao: CATEGORY_LABEL_SHORT[d.category],
     seuPerfil: Math.round(d.score * 100),
@@ -49,7 +54,7 @@ export function RadarSection({ dimensoes, dimensaoDominante }: RadarSectionProps
   }));
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full">
       <CardHeader>
         <Eyebrow>Radar</Eyebrow>
         <CardTitle className="font-display text-lg text-foreground">
@@ -66,7 +71,7 @@ export function RadarSection({ dimensoes, dimensaoDominante }: RadarSectionProps
         */}
         <div
           inert
-          className="h-64 w-full motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700"
+          className="h-56 w-full sm:h-80 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700"
         >
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart
@@ -108,7 +113,9 @@ export function RadarSection({ dimensoes, dimensaoDominante }: RadarSectionProps
           </ResponsiveContainer>
         </div>
 
-        <p className="text-sm text-foreground">{RADAR_SUMMARY[dimensaoDominante]}</p>
+        <p className="text-sm text-foreground">
+          {temDestaque ? RADAR_SUMMARY[dimensaoDominante] : RADAR_SUMMARY_SEM_DESTAQUE}
+        </p>
 
         {/*
           Alternativa textual acessível — mesmos dados do gráfico, sempre

@@ -91,12 +91,13 @@ async function expectAllReportSectionsInOrder(page: Page) {
     .locator('h1, h2, [data-slot="card-title"], [data-slot="accordion-trigger"]')
     .allTextContents();
 
+  // Ordem do Épico 43: veredito e radar, prioridades e ponte, depois o detalhe.
   const sectionOrder = [
-    /Diagnóstico de Competências/, // S1
+    /seu perfil/, // S1 — veredito (h1)
     /Radar de competências/, // S2
+    /Onde investir primeiro/, // S5
     /Desempenho por dimensão/, // S3
     /O que te destaca/, // S4
-    /Onde investir primeiro/, // S5
     /Revisar minhas respostas/, // S6
   ];
 
@@ -129,8 +130,8 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
     await answerQuizDeterministically(page, 'pleno', 9);
     await submitLead(page, `e2e-medio-${Date.now()}@example.com`);
 
-    await expect(page.getByTestId('score-geral')).toHaveText('60% de acerto geral');
-    await expect(page.getByTestId('score-classificacao')).toHaveText('Médio');
+    await expect(page.getByTestId('score-geral')).toHaveText('9/15questões certas · 60% de acerto');
+    await expect(page.getByTestId('score-classificacao')).toHaveText('Dentro da expectativa');
     await expectAllReportSectionsInOrder(page);
   });
 
@@ -140,22 +141,33 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
     await answerQuizDeterministically(page, 'aspirante', 0);
     await submitLead(page, `e2e-baixo-${Date.now()}@example.com`);
 
-    await expect(page.getByTestId('score-geral')).toHaveText('0% de acerto geral');
-    await expect(page.getByTestId('score-classificacao')).toHaveText('Baixo');
+    await expect(page.getByTestId('score-geral')).toHaveText('0/15questões certas · 0% de acerto');
+    await expect(page.getByTestId('score-classificacao')).toHaveText('Abaixo da expectativa');
     await expectAllReportSectionsInOrder(page);
+
+    // Épico 43: com zero acertos, nada afirma ponto forte.
+    await expect(page.getByText(/Seu perfil é mais forte em/)).toHaveCount(0);
+    await expect(page.getByText(/Ainda não há um ponto forte claro/)).toBeVisible();
   });
 
-  test('15 acertos em 15 exibe classificação Alto, com convite à newsletter e todas as seções do relatório', async ({
+  test('15 acertos em 15 exibe classificação Alto, com a ponte para a página final e todas as seções do relatório', async ({
     page,
   }) => {
     await answerQuizDeterministically(page, 'senior', 15);
     await submitLead(page, `e2e-alto-${Date.now()}@example.com`);
 
-    await expect(page.getByTestId('score-geral')).toHaveText('100% de acerto geral');
-    await expect(page.getByTestId('score-classificacao')).toHaveText('Alto');
-    await expect(
-      page.locator('a[href^="https://syntaxis.substack.com/subscribe?utm_source=skill-check"]'),
-    ).toBeVisible();
+    await expect(page.getByTestId('score-geral')).toHaveText(
+      '15/15questões certas · 100% de acerto',
+    );
+    await expect(page.getByTestId('score-classificacao')).toHaveText('Acima da expectativa');
+
+    // Ponte (Épico 43): botão principal e repetição no fim, os dois para /newsletter.
+    const ponte = page.getByRole('link', { name: 'Ver o próximo passo' });
+    await expect(ponte).toHaveCount(2);
+    for (const link of await ponte.all()) {
+      await expect(link).toHaveAttribute('href', '/newsletter');
+    }
+    await expect(page.getByText(/Nenhuma dimensão ficou abaixo da expectativa/)).toBeVisible();
     await expectAllReportSectionsInOrder(page);
   });
 
@@ -180,7 +192,7 @@ test.describe('Fluxo completo — Landing → Quiz → Lead → Resultado', () =
 
     await page.emulateMedia({ media: 'print' });
 
-    await expect(page.getByText('Assinar a newsletter')).toBeHidden();
+    await expect(page.getByRole('link', { name: 'Ver o próximo passo' }).first()).toBeHidden();
     await expect(page.locator('[data-slot="accordion-content"]')).toBeVisible();
   });
 });

@@ -47,11 +47,39 @@ export const CLASSIFICATION_LABEL: Record<Classification, string> = {
   alto: 'Alto',
 };
 
-/** S1 — microcopy de uma linha ao lado do selo, sempre com a moldura "para [nível]". */
-export const CLASSIFICATION_CONTEXT: Record<Classification, (nivelLabel: string) => string> = {
-  alto: (nivel) => `Perfil acima da expectativa para ${nivel}.`,
-  medio: (nivel) => `Perfil dentro da expectativa para ${nivel}, com gaps específicos.`,
-  baixo: (nivel) => `Gaps estruturais em relação à expectativa para ${nivel}.`,
+/** S1 (Épico 43) — selo relativo ao nível. O rótulo curto acima continua no card compartilhável. */
+export const CLASSIFICATION_LABEL_LONGO: Record<Classification, string> = {
+  baixo: 'Abaixo da expectativa',
+  medio: 'Dentro da expectativa',
+  alto: 'Acima da expectativa',
+};
+
+/** S1 (Épico 43) — título do veredito, depois de "{primeiro nome}, ". Sempre na moldura "para [nível]". */
+export const VEREDITO_TITULO: Record<Classification, (nivel: string) => string> = {
+  alto: (nivel) => `seu perfil está acima da expectativa para ${nivel}.`,
+  medio: (nivel) => `seu perfil está dentro da expectativa para ${nivel}, com gaps específicos.`,
+  baixo: (nivel) => `seu perfil ainda tem gaps estruturais para ${nivel}.`,
+};
+
+/** S2 (Épico 43) — quando a dimensão dominante não chega a "forte", o resumo não afirma ponto forte. */
+export const RADAR_SUMMARY_SEM_DESTAQUE =
+  'Nenhuma dimensão passou da expectativa do seu nível desta vez — as prioridades abaixo mostram por onde começar.';
+
+/** S4 (Épico 43) — listas vazias depois de filtrar pela etiqueta real da dimensão. */
+export const FORTES_VAZIO =
+  'Ainda não há um ponto forte claro — é comum em quem está começando. As prioridades acima são o melhor ponto de partida.';
+export const ATENCAO_VAZIO = 'Nenhuma dimensão ficou abaixo da expectativa do seu nível.';
+
+/** S5 (Épico 43) — legenda do gráfico de impacto, no lugar dos pesos crus. */
+export const PRIORIDADE_LEGENDA =
+  'Quanto cada dimensão pesa para o próximo degrau, já considerando o seu gap. Em destaque, as duas prioridades.';
+
+/** S7 (Épico 43) — ponte para a página final. O título vem de CTA_HEADLINE. */
+export const PROXIMO_PASSO = {
+  eyebrow: 'Próximo passo',
+  apoio: 'A newsletter gratuita da Syntaxis é onde esse caminho continua.',
+  cta: 'Ver o próximo passo',
+  repeticao: 'Leu tudo? O próximo passo está aqui.',
 };
 
 /**
