@@ -26,7 +26,7 @@ export function LeadPageClient() {
   }
 
   return (
-    <main className="flex h-dvh flex-col items-center justify-center gap-3 px-6 py-4">
+    <main className="relative flex h-dvh flex-col items-center justify-center-safe gap-3 overflow-y-auto px-4 pt-[72px] pb-4 sm:px-6">
       <Eyebrow className="text-center">Último passo</Eyebrow>
       <LeadForm seniorityLabel={SENIORITY_LABEL[seniority]} />
     </main>

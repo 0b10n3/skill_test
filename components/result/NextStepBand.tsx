@@ -38,7 +38,7 @@ export function NextStepBand(props: NextStepProps) {
   return (
     <section
       aria-labelledby="next-step-heading"
-      className="flex w-full flex-col gap-4 bg-neutral-ink px-6 py-10 print:hidden sm:px-10 sm:py-12"
+      className="on-dark flex w-full flex-col gap-4 bg-neutral-ink px-6 py-10 print:hidden sm:px-10 sm:py-12"
     >
       <Eyebrow onDark>{PROXIMO_PASSO.eyebrow}</Eyebrow>
       <h2

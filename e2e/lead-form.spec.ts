@@ -37,6 +37,29 @@ test.describe('/lead', () => {
 
     await expect(page).toHaveURL(/\/lead$/);
     await expect(page.getByText(/e-mail inválido/i)).toBeVisible();
+    // Épico 45 (F6): o erro fica ligado ao campo para o leitor de tela.
+    await expect(page.locator('#lead-email')).toHaveAttribute(
+      'aria-describedby',
+      'lead-email-error',
+    );
+    await expect(page.locator('#lead-email-error')).toHaveText(/e-mail inválido/i);
+  });
+
+  test('erros ligados aos campos e envio com Enter (Épico 45)', async ({ page }) => {
+    await completeQuiz(page);
+
+    await page.locator('#lead-email').press('Enter');
+    await expect(page.locator('#lead-name')).toHaveAttribute('aria-describedby', 'lead-name-error');
+    await expect(page.locator('#lead-email')).toHaveAttribute(
+      'aria-describedby',
+      'lead-email-error',
+    );
+
+    await page.locator('#lead-name').fill('Fulano de Tal');
+    await page.locator('#lead-email').fill('fulano@example.com');
+    await page.getByRole('checkbox').click();
+    await page.locator('#lead-email').press('Enter');
+    await expect(page).toHaveURL(/\/resultado$/, { timeout: 10_000 });
   });
 
   test('formulário válido com opt-in navega para /resultado sem deixar dados em storage', async ({

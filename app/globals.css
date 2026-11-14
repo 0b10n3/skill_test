@@ -144,7 +144,18 @@ html {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+  }
+  /* Foco visível (Épico 45, F8): anel sólido de 2px. O antigo ring-ring/50
+     media ~2,2:1 contra o fundo nos dois temas; --ring sólido mede 4,6–6,6:1.
+     Bandas escuras (.on-dark) trocam --ring por Chalk: Forest sobre Ink
+     mediria 2,8:1. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .on-dark {
+    --ring: var(--color-neutral-chalk);
   }
   body {
     @apply bg-background text-foreground;

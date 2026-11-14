@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import type { AnswerMap, SubmitResult } from './types';
 
 interface QuizAnswersContextValue {
@@ -35,6 +35,15 @@ export function QuizAnswersProvider({ children }: { children: React.ReactNode })
     setResultState(newResult);
     setLeadEmail(newLeadEmail);
   }, []);
+
+  // Épico 45 (F5): com respostas e sem resultado, recarregar ou fechar a aba pede confirmação.
+  const emAndamento = Object.keys(answers).length > 0 && !result;
+  useEffect(() => {
+    if (!emAndamento) return;
+    const confirmar = (event: BeforeUnloadEvent) => event.preventDefault();
+    window.addEventListener('beforeunload', confirmar);
+    return () => window.removeEventListener('beforeunload', confirmar);
+  }, [emAndamento]);
 
   const reset = useCallback(() => {
     setAnswers({});

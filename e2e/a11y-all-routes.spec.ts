@@ -30,7 +30,11 @@ for (const colorScheme of ['light', 'dark'] as const) {
     expect(results.violations, JSON.stringify(results.violations, null, 2)).toHaveLength(0);
   });
 
-  for (const rota of ['/newsletter', '/newsletter?n=junior&d=matematica-quant&c=baixo']) {
+  for (const rota of [
+    '/newsletter',
+    '/newsletter?n=junior&d=matematica-quant&c=baixo',
+    '/pagina-que-nao-existe',
+  ]) {
     test(`${rota} — sem violações de acessibilidade (axe-core, wcag2aa) — ${colorScheme}`, async ({
       page,
     }) => {

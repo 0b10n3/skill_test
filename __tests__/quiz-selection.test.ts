@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildQuizSession } from '@/lib/quiz-selection';
+import { buildQuizSession, getSeniorityQuestion } from '@/lib/quiz-selection';
 import type { SeniorityLevel } from '@/lib/types';
 
 const ALL_SENIORITY_LEVELS: SeniorityLevel[] = [
@@ -73,5 +73,18 @@ describe('buildQuizSession', () => {
     }
 
     expect(orders.size).toBeGreaterThan(1);
+  });
+
+  it('mantém a senioridade na ordem de carreira do banco em 50 execuções (Épico 45)', () => {
+    const naOrdem = 'aspirante,estagiario,junior,pleno,senior';
+    for (let i = 0; i < 50; i += 1) {
+      const ids = buildQuizSession('junior').seniorityQuestion.options.map((o) => o.id);
+      expect(ids.join(',')).toBe(naOrdem);
+      expect(
+        getSeniorityQuestion()
+          .options.map((o) => o.id)
+          .join(','),
+      ).toBe(naOrdem);
+    }
   });
 });
