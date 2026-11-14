@@ -49,7 +49,7 @@ export function DimensionsSection() {
   return (
     <section
       id="o-que-avaliamos"
-      className="relative flex w-full scroll-mt-14 flex-col gap-6 px-6 py-14 sm:px-10"
+      className="relative flex w-full flex-col gap-6 px-6 py-14 sm:px-10"
     >
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-2">
         <Eyebrow>O que avaliamos</Eyebrow>

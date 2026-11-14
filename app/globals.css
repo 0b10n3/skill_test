@@ -133,6 +133,9 @@
 html {
   /* O app nunca tem scroll horizontal por design (single-viewport por seção). */
   overflow-x: hidden;
+  /* Épico 47 (SC 2.4.11): âncoras e foco param abaixo do cabeçalho fixo (h-14). O banner de
+     cookies acrescenta o scroll-padding-bottom enquanto está aberto. */
+  scroll-padding-top: 3.5rem;
 }
 
 /* Todo número-métrica (score, progresso, "N de 15") usa IBM Plex Mono e

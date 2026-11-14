@@ -103,7 +103,7 @@ export function MiniRadarTile({ highlight }: { highlight: KnowledgeCategory }) {
             textAnchor="middle"
             dominantBaseline="middle"
             className="fill-muted-foreground font-data"
-            style={{ fontSize: '9px', fontWeight: category === highlight ? 700 : 400 }}
+            style={{ fontSize: '11px', fontWeight: category === highlight ? 700 : 400 }}
           >
             {CATEGORY_LABEL_SHORT[category]}
           </text>

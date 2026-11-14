@@ -88,7 +88,7 @@ export function DimensionScoreCards({ dimensoes }: DimensionScoreCardsProps) {
                 value={dimensao.score * 100}
                 aria-label={`Progresso em ${CATEGORY_LABEL[dimensao.category]}`}
               />
-              <p className="text-sm text-muted-foreground lg:text-xs">
+              <p className="text-sm text-muted-foreground">
                 {SCORE_CARD_COPY[dimensao.category][dimensao.etiqueta]}
               </p>
             </li>

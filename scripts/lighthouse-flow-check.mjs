@@ -186,6 +186,13 @@ function printAndCheck(flowResult) {
         }
       }
     }
+    // Épico 47: LCP e CLS das navegações, para comparar com a linha de base (informativo).
+    if (step.lhr.gatherMode === 'navigation') {
+      const lcp = step.lhr.audits['largest-contentful-paint']?.numericValue;
+      const cls = step.lhr.audits['cumulative-layout-shift']?.numericValue;
+      if (lcp !== undefined) console.log(`  [--] LCP: ${Math.round(lcp)} ms`);
+      if (cls !== undefined) console.log(`  [--] CLS: ${cls.toFixed(3)}`);
+    }
     console.log('');
   }
 

@@ -139,7 +139,25 @@ e linha de conquista (progresso), radar em Grove fixo e a classificação do
 resultado — serve de referência de composição para quando o certificado de
 curso completo for especificado.
 
-## 7. Evidência de go-live
+## 7. Componentes da revisão de novembro de 2026 (Épicos 43–46)
+
+| Componente                                                               | Onde               | Regra                                                                                                                                                                    |
+| ------------------------------------------------------------------------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `NextStepBand` / `NextStepRepeat` (`components/result/NextStepBand.tsx`) | `/resultado`       | Banda Ink logo depois da banda Deep Forest das prioridades; único botão Lime da página. A repetição no fim é outline.                                                    |
+| `SaveShareRow` (`components/result/SaveShareRow.tsx`)                    | `/resultado`       | Reenvio por e-mail, card do radar, PDF. Só outline.                                                                                                                      |
+| `NewsletterPage` (`components/newsletter/`)                              | `/newsletter`      | Hero com posts reais, bloco por segmento (um eixo, FEAR ou GREED), "o que chega", quem escreve, perguntas, fechamento Ink com Truchet. `SubscribeButton` é o único Lime. |
+| `AuthorBlock` (`components/newsletter/AuthorBlock.tsx`)                  | `/newsletter`, `/` | Moldura reta, hairline. Sem retrato, o símbolo da marca em Chalk sobre Deep Forest — nunca foto de outra pessoa. Some quando `author` é `null`.                          |
+| `HowItWorksSection` (`components/landing/HowItWorksSection.tsx`)         | `/`                | Três passos numerados em Plex Mono, hairline entre eles, sem ícone nem pattern.                                                                                          |
+| `FaqSection` (`components/landing/FaqSection.tsx`)                       | `/`                | `details`/`summary` nativos, coluna de leitura, sem pattern.                                                                                                             |
+| `QuestionCard` (`components/quiz/QuestionCard.tsx`)                      | `/quiz`            | Faixas do meio (rola só ela) e da base (botão fixo). Alternativas de 14/16px, linha de 44px, anel de foco na linha inteira.                                              |
+| `app/not-found.tsx`                                                      | 404                | Eyebrow, título, botão. Sem imagem.                                                                                                                                      |
+
+**Foco (Épico 45):** contorno sólido de 2px com offset de 2px em `--ring` (4,6–6,6:1). Bandas
+escuras levam a classe `.on-dark`, que troca `--ring` por Chalk. **Banner de cookies:** sem
+Lime; enquanto aberto, reserva a própria altura em `scroll-padding-bottom` e no fim do `body`,
+para o foco nunca ficar atrás dele (SC 2.4.11).
+
+## 8. Evidência de go-live
 
 Auditoria completa (Lighthouse 4 rotas × 2 temas, axe-core, cross-device,
 checklist editorial `DESIGN.md` §10, orçamento de peso de assets) documentada

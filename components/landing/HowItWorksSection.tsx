@@ -7,7 +7,7 @@ export function HowItWorksSection() {
     <section
       id="como-funciona"
       aria-labelledby="como-funciona-heading"
-      className="w-full scroll-mt-14 px-6 py-14 sm:px-10"
+      className="w-full px-6 py-14 sm:px-10"
     >
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
         <div className="flex flex-col gap-2">

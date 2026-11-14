@@ -82,7 +82,7 @@ export function StrengthsAndFocus({ diagnostico, seniority }: StrengthsAndFocusP
 
             {diagnostico.topicosParaRevisar.length > 0 && (
               <div className="flex flex-col gap-2 border-t border-border pt-3">
-                <p className="text-xs font-medium text-muted-foreground">Vale revisitar</p>
+                <p className="text-sm font-medium text-muted-foreground">Vale revisitar</p>
                 <ul className="flex list-disc flex-col gap-1.5 pl-5 text-sm text-foreground">
                   {diagnostico.topicosParaRevisar.map((topico) => (
                     <li key={topico}>{topico}</li>
