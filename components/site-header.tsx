@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
+import { SubscribeButton } from '@/components/newsletter/SubscribeButton';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 /**
@@ -44,7 +45,14 @@ export function SiteHeader() {
         <Logo />
       </Link>
       <div className="flex items-center gap-6">
-        {!noFunil && (
+        {pathname === '/newsletter' && (
+          // Épico 44: na página final o CTA do cabeçalho é a inscrição, não recomeçar o quiz.
+          <SubscribeButton posicao="newsletter-header" size="default" className="h-9 w-fit px-4">
+            <span className="sm:hidden">Assinar</span>
+            <span className="hidden sm:inline">Assinar a newsletter</span>
+          </SubscribeButton>
+        )}
+        {!noFunil && pathname !== '/newsletter' && (
           <>
             <nav aria-label="Principal" className="hidden gap-6 text-sm md:flex">
               {LINKS.map((link) => (

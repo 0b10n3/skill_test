@@ -241,6 +241,10 @@ sitemap. JSON-LD `Organization`+`WebSite` na home (`app/page.tsx`).
 production URL → Vercel URL → localhost), fonte única para
 `metadataBase`, sitemap, robots e JSON-LD.
 
+**Épico 44.** `/newsletter` é a página final do funil: personalizada pelo diagnóstico em
+memória ou pela query `?n&d&c`, indexável. Copy em `content/newsletter.ts`, bio em
+`content/author.ts`, segmento em `lib/newsletter-perfil.ts`.
+
 **Épico 42.** Eventos do funil: `quiz_start` → `question_answered` (só GA4) → `quiz_complete`
 → `lead_submitted` (`generate_lead`/`Lead`) → `report_viewed` → `next_step_click` (ponte para a
 página final) → `cta_offer_click` (clique que sai para o Substack, com `posicao`). O GA4 não

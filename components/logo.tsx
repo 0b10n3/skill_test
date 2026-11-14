@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
  * dentro do path"). Inline em vez de `<img>`/`next/image` para herdar cor
  * do texto ao redor sem gerar um segundo arquivo por tema.
  */
-function Symbol({ className }: { className?: string }) {
+export function LogoSymbol({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 16 15.798396" fill="currentColor" className={className} aria-hidden="true">
       <g transform="matrix(0.05011035,0,0,0.05011035,0.39952,0.3814727)">
@@ -40,7 +40,7 @@ export function Logo({ className }: { className?: string }) {
       role="img"
       aria-label="Syntaxis"
     >
-      <Symbol className="h-6 w-6 shrink-0" />
+      <LogoSymbol className="h-6 w-6 shrink-0" />
       <span className="font-display text-xl font-bold">Syntaxis</span>
     </span>
   );
