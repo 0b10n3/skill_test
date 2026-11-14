@@ -7,7 +7,6 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { Progress } from '@/components/ui/progress';
 import { CATEGORY_LABEL, SCORE_CARD_COPY } from '@/content/relatorio';
@@ -54,45 +53,48 @@ interface DimensionScoreCardsProps {
 
 export function DimensionScoreCards({ dimensoes }: DimensionScoreCardsProps) {
   return (
-    <section aria-labelledby="score-cards-heading" className="flex w-full max-w-4xl flex-col gap-3">
+    <section aria-labelledby="score-cards-heading" className="flex w-full flex-col gap-3">
       <div className="flex flex-col gap-1">
         <Eyebrow>Por dimensão</Eyebrow>
         <h2 id="score-cards-heading" className="font-display text-lg text-foreground">
           Desempenho por dimensão
         </h2>
       </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      {/* Épico 43: até lg, uma lista única com hairline entre as linhas (cinco cartões
+          empilhados ocupavam ~700 px no celular); a partir de lg, cinco colunas. */}
+      <ul className="grid grid-cols-1 divide-y divide-border border border-border bg-card lg:grid-cols-5 lg:gap-3 lg:divide-y-0 lg:border-0 lg:bg-transparent">
         {dimensoes.map((dimensao) => {
           const Icon = CATEGORY_ICON[dimensao.category];
           return (
-            <Card key={dimensao.category} size="sm" className="flex flex-col gap-2">
-              <CardHeader className="flex flex-row items-center gap-2">
+            <li
+              key={dimensao.category}
+              className="flex flex-col gap-2 p-4 lg:border lg:border-border lg:bg-card"
+            >
+              <div className="flex items-center gap-2">
                 <Icon aria-hidden className="size-4 shrink-0 text-muted-foreground" />
-                <CardTitle className="font-display text-sm text-foreground">
+                <h3 className="font-display text-sm text-foreground">
                   {CATEGORY_LABEL[dimensao.category]}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-data-xl text-foreground">
-                    {dimensao.acertos}/{dimensao.total}
-                  </span>
-                  <Badge variant={ETIQUETA_BADGE_VARIANT[dimensao.etiqueta]}>
-                    {ETIQUETA_LABEL[dimensao.etiqueta]}
-                  </Badge>
-                </div>
-                <Progress
-                  value={dimensao.score * 100}
-                  aria-label={`Progresso em ${CATEGORY_LABEL[dimensao.category]}`}
-                />
-                <p className="text-xs text-muted-foreground">
-                  {SCORE_CARD_COPY[dimensao.category][dimensao.etiqueta]}
-                </p>
-              </CardContent>
-            </Card>
+                </h3>
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="text-data-xl text-foreground">
+                  {dimensao.acertos}/{dimensao.total}
+                </span>
+                <Badge variant={ETIQUETA_BADGE_VARIANT[dimensao.etiqueta]}>
+                  {ETIQUETA_LABEL[dimensao.etiqueta]}
+                </Badge>
+              </div>
+              <Progress
+                value={dimensao.score * 100}
+                aria-label={`Progresso em ${CATEGORY_LABEL[dimensao.category]}`}
+              />
+              <p className="text-sm text-muted-foreground lg:text-xs">
+                {SCORE_CARD_COPY[dimensao.category][dimensao.etiqueta]}
+              </p>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </section>
   );
 }

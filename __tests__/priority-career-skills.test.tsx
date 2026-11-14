@@ -33,4 +33,13 @@ describe('PriorityCareerSkills (S5, Épico 18)', () => {
     expect(screen.getByText('1')).toBeInTheDocument();
     expect(screen.getByText('2')).toBeInTheDocument();
   });
+
+  it('não mostra pesos crus; a ordem fica numa tabela para leitor de tela (Épico 43)', () => {
+    render(<PriorityCareerSkills prioridades={prioridades} seniority="pleno" />);
+    for (const p of prioridades) {
+      expect(screen.queryByText(String(p.prioridade))).not.toBeInTheDocument();
+    }
+    const table = screen.getByRole('table', { hidden: true });
+    expect(table).toHaveTextContent('Dimensões em ordem de impacto');
+  });
 });

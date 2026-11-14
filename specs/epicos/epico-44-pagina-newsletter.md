@@ -250,7 +250,7 @@ export const author = {
   papel: 'Matemático e analista quantitativo',
   bio: [
     'Bacharel e mestre em matemática, deu aulas de cálculo, álgebra linear e estatística na UFES, na USF e na PUC-Campinas antes de ir para o mercado financeiro como analista quantitativo.',
-    'Desenvolveu estratégias quantitativas e backtests, precificou títulos públicos e crédito privado na plataforma de consolidação de carteiras do Modal e da XP, validou modelos de risco de mercado e de precificação no Bradesco e hoje é analista sênior de preços e índices na ANBIMA.',
+    'Desenvolveu estratégias quantitativas e backtests, precificou títulos públicos e crédito privado na plataforma de consolidação de carteiras do Modal e da XP, validou modelos de risco de mercado e de precificação no Bradesco e hoje trabalha com precificação e índices de renda fixa.',
     'Escreve a Syntaxis para entregar o material que gostaria de ter lido quando era júnior.',
   ],
   nota: 'As opiniões publicadas são pessoais e não representam a posição de empregadores atuais ou anteriores.',
@@ -262,4 +262,5 @@ export const author = {
   lugar da foto, não a foto de outra pessoa. Retrato de um desconhecido apresentado como o autor
   seria foto de pessoa inventada (`DESIGN.md` §5.1 regra 8). Quando a foto chegar, ela entra em
   `public/img/autor/` e `foto` passa a `{ src, alt: 'Retrato de Silvano Junior' }`.
+- O empregador atual **não é citado** (decisão do founder, 13/11/2026).
 - Pixel e GA4 no Substack conferidos pelo founder (Épico 42, conferência humana item 5).

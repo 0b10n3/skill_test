@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 import {
   CATEGORY_LABEL,
   CATEGORY_LABEL_SHORT,
-  CLASSIFICATION_CONTEXT,
   CTA_HEADLINE,
   NEXT_LEVEL_LABEL,
   POR_QUE_IMPORTA,
@@ -10,6 +9,7 @@ import {
   RADAR_SUMMARY,
   SCORE_CARD_COPY,
   SENIORITY_LABEL,
+  VEREDITO_TITULO,
 } from '@/content/relatorio';
 import type { Classification, KnowledgeCategory, SeniorityLevel } from '@/lib/types';
 
@@ -81,9 +81,9 @@ describe('content/relatorio — matriz editorial completa', () => {
     }
   });
 
-  it('microcopy de classificação (S1) sempre menciona o nível interpolado', () => {
+  it('título do veredito (S1) sempre menciona o nível interpolado', () => {
     for (const classification of CLASSIFICATIONS) {
-      const text = CLASSIFICATION_CONTEXT[classification]('Analista Pleno');
+      const text = VEREDITO_TITULO[classification]('Analista Pleno');
       expect(text).toContain('Analista Pleno');
     }
   });

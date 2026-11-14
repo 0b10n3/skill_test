@@ -5,10 +5,11 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { AnswerReview } from '@/components/result/AnswerReview';
-import { CtaSection } from '@/components/result/CtaSection';
 import { DimensionScoreCards } from '@/components/result/DimensionScoreCards';
 import { MethodFooter } from '@/components/result/MethodFooter';
+import { NextStepBand, NextStepRepeat } from '@/components/result/NextStepBand';
 import { ReportHeader } from '@/components/result/ReportHeader';
+import { SaveShareRow } from '@/components/result/SaveShareRow';
 import { StrengthsAndFocus } from '@/components/result/StrengthsAndFocus';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { track } from '@/lib/analytics/track';
@@ -19,11 +20,11 @@ import { useQuizAnswers } from '@/lib/quiz-context';
 // crítico da transição /lead → /resultado (achado de Lighthouse do Épico 13).
 const RadarSection = dynamic(
   () => import('@/components/result/RadarSection').then((mod) => mod.RadarSection),
-  { loading: () => <div className="h-64 w-full max-w-md" aria-hidden /> },
+  { loading: () => <div className="h-[26rem] w-full" aria-hidden /> },
 );
 const PriorityCareerSkills = dynamic(
   () => import('@/components/result/PriorityCareerSkills').then((mod) => mod.PriorityCareerSkills),
-  { loading: () => <div className="h-40 w-full max-w-4xl" aria-hidden /> },
+  { loading: () => <div className="h-96 w-full" aria-hidden /> },
 );
 
 export function ResultadoPageClient() {
@@ -80,36 +81,46 @@ export function ResultadoPageClient() {
 
   const { diagnostico } = result;
 
+  // Ordem do Épico 43: veredito e radar → prioridades → ponte para a página final → detalhe
+  // (dimensões, fortes e atenção, gabarito) → guardar → repetição do convite → metodologia.
+  // Uma largura só (max-w-4xl); pt-24 deixa o topo fora do cabeçalho fixo de 56 px.
   return (
-    <main className="flex min-h-dvh flex-col items-center gap-8 px-6 py-10 print:gap-4 print:px-0">
-      <ReportHeader
-        participantName={result.participantName}
-        seniority={result.seniority}
-        submittedAt={result.submittedAt}
-        classificacao={diagnostico.classificacao}
-        scoreGlobal={diagnostico.scoreGlobal}
-      />
+    <main className="mx-auto flex min-h-dvh w-full max-w-4xl flex-col gap-10 px-6 pt-20 pb-16 sm:gap-12 sm:pt-24 sm:px-10 lg:px-0 print:gap-4 print:px-0 print:pt-0">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-12">
+        <ReportHeader
+          participantName={result.participantName}
+          seniority={result.seniority}
+          submittedAt={result.submittedAt}
+          classificacao={diagnostico.classificacao}
+          scoreGlobal={diagnostico.scoreGlobal}
+          acertos={diagnostico.acertos}
+          totalQuestoes={diagnostico.totalQuestoes}
+        />
+        <RadarSection dimensoes={diagnostico.dimensoes} dimensaoDominante={diagnostico.fortes[0]} />
+      </div>
 
-      <RadarSection dimensoes={diagnostico.dimensoes} dimensaoDominante={diagnostico.fortes[0]} />
+      {/* Prioridades (Deep Forest) e ponte (Ink) coladas: degrau de luminância, sem vão. */}
+      <div className="flex flex-col">
+        <PriorityCareerSkills prioridades={diagnostico.prioridades} seniority={result.seniority} />
+        <NextStepBand diagnostico={diagnostico} seniority={result.seniority} />
+      </div>
 
       <DimensionScoreCards dimensoes={diagnostico.dimensoes} />
 
       <StrengthsAndFocus diagnostico={diagnostico} seniority={result.seniority} />
 
-      <PriorityCareerSkills prioridades={diagnostico.prioridades} seniority={result.seniority} />
-
       <AnswerReview gabarito={result.gabarito} />
 
-      <div className="print:hidden">
-        <CtaSection
-          diagnostico={diagnostico}
-          seniority={result.seniority}
-          participantName={result.participantName}
-          leadEmail={leadEmail}
-        />
-      </div>
+      <SaveShareRow
+        diagnostico={diagnostico}
+        seniority={result.seniority}
+        participantName={result.participantName}
+        leadEmail={leadEmail}
+      />
 
-      <div className="flex w-full max-w-md flex-col gap-2">
+      <NextStepRepeat diagnostico={diagnostico} seniority={result.seniority} />
+
+      <div className="flex w-full flex-col gap-2">
         <Eyebrow>Metodologia</Eyebrow>
         <MethodFooter />
       </div>
