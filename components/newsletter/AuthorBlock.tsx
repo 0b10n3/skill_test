@@ -6,7 +6,7 @@ import type { Author } from '@/content/author';
 /**
  * Quem escreve (C8, Épicos 44 e 46). Moldura reta com hairline, sem sombra.
  * Sem retrato real, o símbolo da marca ocupa o lugar — nunca a foto de outra
- * pessoa (DESIGN.md §5.1, regra 8).
+ * pessoa (DESIGN.md §5.1, regra 8). Símbolo em Chalk: o Lime é do CTA (Épico 46).
  */
 export function AuthorBlock({ author }: { author: Author }) {
   return (
@@ -23,7 +23,7 @@ export function AuthorBlock({ author }: { author: Author }) {
             />
           ) : (
             <div className="flex size-full items-center justify-center bg-neutral-deep-forest">
-              <LogoSymbol className="size-16 text-lime-500" />
+              <LogoSymbol className="size-16 text-neutral-chalk" />
             </div>
           )}
         </div>

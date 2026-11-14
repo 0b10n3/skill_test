@@ -1,5 +1,6 @@
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { MiniRadarTile } from '@/components/landing/evidence/MiniRadarTile';
+import { DIMENSOES_APOIO } from '@/content/landing';
 import { CATEGORY_LABEL } from '@/content/relatorio';
 import {
   countBankItemsByCategory,
@@ -25,7 +26,7 @@ function TileShell({
     <div
       className={`flex flex-col gap-3 rounded-none border border-border bg-card p-5 sm:p-6 ${className ?? ''}`}
     >
-      <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
+      <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">
         {CATEGORY_LABEL[category]}
       </p>
       {children}
@@ -55,10 +56,7 @@ export function DimensionsSection() {
         <h2 className="font-display text-3xl text-foreground sm:text-4xl">
           O que o diagnóstico avalia
         </h2>
-        <p className="max-w-md text-sm text-muted-foreground">
-          15 questões, 3 por dimensão, calibradas para a expectativa do seu nível declarado — a
-          prova é o próprio conteúdo do banco, não uma promessa em prosa.
-        </p>
+        <p className="max-w-md text-base text-muted-foreground">{DIMENSOES_APOIO}</p>
       </div>
 
       <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-4 sm:[grid-auto-rows:minmax(200px,auto)]">
@@ -69,7 +67,7 @@ export function DimensionsSection() {
           <div className="flex flex-1 flex-col items-center justify-center gap-2">
             <MiniRadarTile highlight="mercados-produtos" />
           </div>
-          <p className="text-center text-xs text-muted-foreground">
+          <p className="text-center text-sm text-muted-foreground">
             O radar de competências que você recebe no relatório final — formato ilustrativo, o seu
             vem das suas respostas.
           </p>
@@ -77,7 +75,7 @@ export function DimensionsSection() {
 
         <TileShell category="matematica-quant" className="sm:col-span-2">
           <p className="font-display text-sm text-foreground">{quantQuestion.question}</p>
-          <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground">
+          <ul className="flex flex-col gap-1.5 text-sm text-muted-foreground">
             {quantQuestion.options.map((option) => (
               <li key={option.id} className="flex gap-2">
                 <span className="font-data text-grove-700 dark:text-grove-300">{option.id})</span>
@@ -89,7 +87,7 @@ export function DimensionsSection() {
 
         <TileShell category="dados-programacao" className="sm:col-span-2">
           <p className="text-sm text-foreground">{dadosQuestion.question}</p>
-          <ul className="flex flex-col gap-1.5 font-data text-xs text-muted-foreground">
+          <ul className="flex flex-col gap-1.5 font-data text-sm text-muted-foreground">
             {dadosQuestion.options.map((option) => (
               <li key={option.id} className="rounded-sm bg-muted px-2 py-1 text-foreground">
                 {option.text}
@@ -105,7 +103,7 @@ export function DimensionsSection() {
           <p className="border-l-2 border-border pl-3 font-display text-sm text-pretty text-foreground">
             &ldquo;{iaExplanation}&rdquo;
           </p>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Trecho real do gabarito comentado que acompanha o seu resultado.
           </p>
         </TileShell>
@@ -113,7 +111,7 @@ export function DimensionsSection() {
         <TileShell category="risco-regulacao" className="items-center justify-center sm:col-span-2">
           <div className="flex flex-1 flex-col items-center justify-center gap-1">
             <span className="text-stat-number text-foreground">{riscoBankCount}</span>
-            <p className="text-center text-xs text-muted-foreground">
+            <p className="text-center text-sm text-muted-foreground">
               questões no banco de risco &amp; regulação — 3 caem no seu diagnóstico
             </p>
           </div>

@@ -17,7 +17,7 @@ export function StatsStripSection() {
               <dd className="font-data text-[32px] leading-none font-bold tracking-tight text-foreground sm:text-[44px]">
                 {item.value}
               </dd>
-              <dt className="text-xs text-muted-foreground uppercase">{item.label}</dt>
+              <dt className="text-center text-xs text-muted-foreground uppercase">{item.label}</dt>
             </div>
           ))}
         </dl>

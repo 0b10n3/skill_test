@@ -32,6 +32,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
  */
 const FUNIL = ['/quiz', '/lead', '/resultado'];
 const LINKS = [
+  { href: '/#como-funciona', rotulo: 'Como funciona' },
   { href: '/#o-que-avaliamos', rotulo: 'O que avaliamos' },
   { href: '/#metodologia', rotulo: 'Metodologia' },
 ];

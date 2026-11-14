@@ -5,12 +5,16 @@ import { SiteFooter } from '@/components/site-footer';
 import { DimensionsSection } from '@/components/landing/DimensionsSection';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { StatsStripSection } from '@/components/landing/StatsStripSection';
+import { FaqSection } from '@/components/landing/FaqSection';
+import { HowItWorksSection } from '@/components/landing/HowItWorksSection';
+import { AuthorBlock } from '@/components/newsletter/AuthorBlock';
+import { author } from '@/content/author';
 import { getSiteUrl } from '@/lib/site-url';
 
 export function generateMetadata(): Metadata {
   const title = 'Syntaxis Skill Check — Descubra seu nível técnico em finanças';
   const description =
-    'Avaliação adaptativa de 10 a 15 minutos sobre renda fixa, matemática financeira, dados e IA aplicada ao mercado financeiro. Descubra seu nível e receba uma trilha personalizada.';
+    'Avaliação gratuita de 10 a 15 minutos sobre renda fixa, matemática financeira, dados e IA aplicada ao mercado financeiro. Descubra seu nível e veja suas prioridades de desenvolvimento.';
 
   return {
     title,
@@ -69,9 +73,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
       />
       <HeroSection />
+      <HowItWorksSection />
       <DimensionsSection />
       <StatsStripSection />
       <CredibilityBand />
+      {/* Quem escreve (Épico 46): só existe com dados reais em content/author.ts. */}
+      {author && <AuthorBlock author={author} />}
+      <FaqSection />
       <FinalCtaSection />
       <SiteFooter />
     </main>

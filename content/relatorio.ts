@@ -128,7 +128,7 @@ export const SCORE_CARD_COPY: Record<KnowledgeCategory, Record<DimensionEtiqueta
     neutro:
       'Você reconhece os riscos principais, mas a leitura de regulação/compliance ainda é superficial.',
     atencao:
-      'Risco e regulação (marcação a mercado, CVM/BCB/ANBIMA) são um ponto cego que pesa no seu nível.',
+      'Risco e regulação (marcação a mercado, CVM/BCB) são um ponto cego que pesa no seu nível.',
   },
 };
 
@@ -319,9 +319,13 @@ export const METODOLOGIA_LIMITACOES =
   'Este diagnóstico usa 15 questões — suficiente para um retrato direcional, não para uma medida de precisão certificatória (a confiabilidade de um teste cresce com o número de itens; instrumentos certificatórios usam de 50 a 120). Múltipla escolha mede conhecimento e julgamento aplicado, não a habilidade prática de programar, modelar ou comunicar — por isso as recomendações são passos práticos, não um veredito de aprovação. A senioridade é autodeclarada: leia o resultado sempre em relação à expectativa do nível que você informou.';
 
 /** S8 — corpo do modal/página "Como funciona a metodologia", condensado de AVALIACAO.md. */
+/** Manchete da banda de metodologia da landing (Épico 46, L3). */
+export const METODOLOGIA_MANCHETE =
+  'Não medimos quanto você sabe de finanças. Medimos a distância até o próximo degrau da sua carreira.';
+
 export const METODOLOGIA_RESUMO: string[] = [
   'O Syntaxis Skill Check não mede "quanto você sabe de finanças" em abstrato — mede a distância entre o seu perfil atual e o perfil que o mercado espera para o próximo degrau da sua carreira. É essa moldura, "para um analista do seu nível, o mercado espera...", que dá sentido ao resultado.',
   'As 15 questões cobrem 5 dimensões de competência (Mercados & Produtos, Matemática & Quant, Dados & Programação, IA Aplicada e Risco & Regulação), com 3 itens por dimensão, calibradas para a expectativa de cada nível declarado — de aspirante a sênior.',
-  'O quadro de competências foi ancorado em referenciais reconhecidos do mercado brasileiro: a nova grade de certificações da ANBIMA (por competência prática, não por cargo), o Candidate Body of Knowledge do CFA Institute e levantamentos de demanda técnica do setor financeiro, que combinam análise de dados, gestão de risco, regulação e IA aplicada.',
+  'O quadro de competências foi ancorado em referenciais reconhecidos do mercado brasileiro: as novas certificações do mercado brasileiro (por competência prática, não por cargo), o Candidate Body of Knowledge do CFA Institute e levantamentos de demanda técnica do setor financeiro, que combinam análise de dados, gestão de risco, regulação e IA aplicada.',
   'Cada dimensão carrega um peso de impacto diferente por nível — o quanto ela pesa para o próximo degrau, não para o nível atual. É esse peso, multiplicado pelo gap entre o seu score e a expectativa, que define as duas dimensões apontadas como prioridade no relatório.',
 ];
