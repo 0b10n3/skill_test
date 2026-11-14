@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { MarkerHighlight } from '@/components/ui/marker-highlight';
 import { PatternTruchet } from '@/components/patterns';
-import { HERO_PROMISE } from '@/content/landing';
+import { HERO_APOIO, HERO_MICROCOPY, HERO_PROMISE } from '@/content/landing';
 
 /**
  * Hero da landing (Épico 17, redesign Épico 20, tipografia/cor Épico 22 —
@@ -39,29 +39,28 @@ import { HERO_PROMISE } from '@/content/landing';
  * próprio à direita, seguindo o tema; a foto e o gradiente de ambiente saíram
  * (o Truchet nunca divide o bloco com outro padrão). Abaixo de `sm` o mosaico some,
  * como a foto sumia: o hero precisa caber em 375×667 sem rolagem.
+ *
+ * Épico 46: botão antes do parágrafo de apoio; microcopy com o custo ("Gratuito").
  */
 export function HeroSection() {
+  // Épico 46 (L1): no celular a seção tem altura natural e o texto começa no topo — h1, promessa
+  // e botão cabem em 375×667 acima do banner de cookies aberto.
   return (
-    <section className="grid min-h-dvh pt-14 lg:grid-cols-[1fr_600px]">
-      <div className="flex flex-col justify-center gap-5 px-6 py-8 sm:px-10 sm:py-10 lg:pl-30">
+    <section className="grid pt-14 sm:min-h-dvh lg:grid-cols-[1fr_600px]">
+      <div className="flex flex-col gap-5 px-6 py-8 sm:justify-center sm:px-10 sm:py-10 lg:pl-30">
         <Eyebrow>Syntaxis Skill Check</Eyebrow>
-        <h1 className="font-display text-[40px] leading-[1.05] text-balance text-foreground sm:text-[64px]">
+        <h1 className="font-display text-[32px] leading-[1.05] text-balance text-foreground sm:text-[64px]">
           Descubra seu <MarkerHighlight>nível</MarkerHighlight> técnico em finanças em alguns
           minutos
         </h1>
         <p className="max-w-xl text-base text-pretty text-foreground">{HERO_PROMISE}</p>
-        <p className="max-w-xl text-sm text-pretty text-muted-foreground">
-          Uma avaliação adaptativa sobre renda fixa, matemática financeira, dados e IA aplicada ao
-          mercado — calibrada para o seu momento de carreira.
-        </p>
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
           <Button variant="default" size="lg" render={<Link href="/quiz" />}>
             Iniciar avaliação
           </Button>
-          <p className="font-mono text-sm text-muted-foreground">
-            10–15 min · 15 perguntas · múltipla escolha
-          </p>
+          <p className="font-mono text-sm text-muted-foreground">{HERO_MICROCOPY}</p>
         </div>
+        <p className="max-w-xl text-sm text-pretty text-muted-foreground">{HERO_APOIO}</p>
       </div>
       <PatternTruchet
         cols={5}
@@ -76,6 +75,14 @@ export function HeroSection() {
         seed={11}
         tom="tema"
         className="hidden h-40 w-full sm:block lg:hidden"
+      />
+      {/* celular: faixa de uma célula (~68px, DESIGN.md §6.6) depois do texto */}
+      <PatternTruchet
+        cols={6}
+        rows={1}
+        seed={11}
+        tom="tema"
+        className="h-[68px] w-full sm:hidden"
       />
     </section>
   );

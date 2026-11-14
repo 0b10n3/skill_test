@@ -1,7 +1,7 @@
 import { Eyebrow } from '@/components/ui/eyebrow';
 import { MethodFooter } from '@/components/result/MethodFooter';
 import { GradientAmbient, PatternReticula } from '@/components/patterns';
-import { METODOLOGIA_RESUMO } from '@/content/relatorio';
+import { METODOLOGIA_MANCHETE, METODOLOGIA_RESUMO } from '@/content/relatorio';
 
 /**
  * Banda Deep Forest (DESIGN.md v1.1 §4.4.4, assinatura 4): seção-statement
@@ -29,10 +29,11 @@ export function CredibilityBand() {
       <PatternReticula slot="margin-right" />
       <div className="relative mx-auto flex w-full max-w-3xl flex-col gap-6">
         <Eyebrow onDark>Metodologia</Eyebrow>
-        <p className="font-display text-2xl text-pretty text-neutral-chalk sm:text-3xl">
-          {METODOLOGIA_RESUMO[0]}
-        </p>
-        <p className="text-sm text-pretty text-neutral-chalk/80">{METODOLOGIA_RESUMO[2]}</p>
+        <h2 className="font-display text-2xl text-balance text-neutral-chalk sm:text-3xl">
+          {METODOLOGIA_MANCHETE}
+        </h2>
+        <p className="text-base text-pretty text-neutral-chalk/90">{METODOLOGIA_RESUMO[0]}</p>
+        <p className="text-base text-pretty text-neutral-chalk/80">{METODOLOGIA_RESUMO[2]}</p>
         <MethodFooter onDark />
       </div>
     </section>

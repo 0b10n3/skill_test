@@ -18,7 +18,7 @@ export function MethodFooter({ onDark }: MethodFooterProps) {
   return (
     <footer
       className={cn(
-        'flex w-full max-w-md flex-col gap-2 border-t pt-4 text-xs',
+        'flex w-full max-w-md flex-col gap-2 border-t pt-4 text-sm',
         onDark
           ? 'border-neutral-chalk/20 text-neutral-chalk/70'
           : 'border-border text-muted-foreground',
