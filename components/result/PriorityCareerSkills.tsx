@@ -97,7 +97,7 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
                 <YAxis
                   type="category"
                   dataKey="dimensao"
-                  tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
+                  tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
                   width={64}
                 />
                 <Bar dataKey="prioridade" radius={0}>
@@ -111,7 +111,7 @@ export function PriorityCareerSkills({ prioridades, seniority }: PriorityCareerS
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <p className="mt-2 text-xs text-muted-foreground">{PRIORIDADE_LEGENDA}</p>
+          <p className="mt-2 text-sm text-muted-foreground">{PRIORIDADE_LEGENDA}</p>
         </CardContent>
       </Card>
       {/* Sem rótulo numérico no gráfico (Épico 43): o peso cru não diz nada ao leitor. A

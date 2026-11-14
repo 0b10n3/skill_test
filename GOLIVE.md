@@ -958,3 +958,75 @@ ordem: diagnóstico em memória (vindo de `/resultado`), query `?n=<nível>&d=<d
 - [ ] MailerLite (painel, sem código): nos e-mails da automação do Skill Check, o link para a
       página pode levar os campos do assinante:
       `https://skill.syntaxis.com.br/newsletter?n={$seniority}&d={$perfil_tecnico}&c={$classificacao}&utm_source=mailerlite&utm_medium=email&utm_campaign=diagnostico`
+
+## Go-live da revisão de novembro de 2026 (Épicos 42–47)
+
+PRs empilhados, nesta ordem: #54 (42) → #55 (43) → #56 (44) → #57 (45) → #58 (46) → #59 (47).
+#55 e #56 entram juntos: o botão do resultado leva a `/newsletter`.
+
+### Regressão completa (13/11/2026)
+
+| Item                                                                               | Resultado                                                                      |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `prebuild` (tokens, brand-sync, banco, cores, contraste, patterns, radius, assets) | verde                                                                          |
+| `lint`, `typecheck`, `format:check`                                                | verde                                                                          |
+| `npm test`                                                                         | 238 testes                                                                     |
+| `npm run test:e2e` (`MAILERLITE_API_KEY=e2e-invalid`)                              | 219 passaram, 1 pulado (contagem com IDs reais, só com `ANALYTICS_REAL_IDS=1`) |
+| `npm run test:lighthouse:flow`                                                     | verde nos dois temas                                                           |
+
+### Matriz visual
+
+`e2e/matriz-visual.spec.ts`: 104 capturas da primeira tela — `/`, `/quiz` (senioridade, `q27`,
+pergunta mais curta), `/lead` (vazio e com erros) em 360×640, 375×667, 390×844, 768×1024 e
+1440×900, nos dois temas; `/resultado` (alto, baixo, zero acertos) e `/newsletter` (genérica e as
+4 variantes) em 375, 768 e 1440; `/privacidade` e 404. Cada captura afirma: sem rolagem
+horizontal, `h1` abaixo do cabeçalho fixo e, onde o épico exige, o botão principal inteiro acima
+do banner de cookies. A página inteira continua em `e2e/funnel-visual.spec.ts`.
+
+Defeitos achados e corrigidos: título de `/privacidade` colado no cabeçalho; texto abaixo de
+12 px no radar do resultado (11 px) e no mini-radar da landing (9 px); legendas de 12 px no
+resultado.
+
+### Marca (varredura de estilos computados, todas as rotas, dois temas)
+
+- Sombra: nenhuma. Radius acima de 2 px: nenhum (o rádio do quiz é a exceção documentada).
+- Gradiente: só o marcador sob "nível" no hero.
+- Fontes: Montserrat, Source Sans 3 e IBM Plex Mono. Itálico: nenhum.
+- Lime: botões de ação (cabeçalho, hero, CTA final, "Próxima", "Ver meu resultado", "Ver o
+  próximo passo", "Assinar a newsletter", 404), marcador sob "nível", selo "Acima da
+  expectativa" e eyebrows sobre fundo escuro (Lime-300, regra do componente).
+- Abaixo de 14 px: eyebrows, rótulos em caixa alta, selos, nota de privacidade do lead, nota
+  legal da newsletter e o © do rodapé, todos em 12 px. Nada abaixo de 12 px.
+
+### Acessibilidade
+
+- axe (wcag2aa) sem violações em `/`, `/quiz`, `/lead`, `/resultado`, `/newsletter` (duas
+  variantes), `/privacidade` e 404, nos dois temas.
+- `e2e/a11y-golive.spec.ts`: funil inteiro só com teclado, da landing ao botão de inscrição;
+  foco nunca atrás do cabeçalho ou do banner (SC 2.4.11); nenhuma animação com
+  `prefers-reduced-motion`; zoom de 200% em 1280 px sem rolagem horizontal.
+- Defeito achado e corrigido: com o banner aberto, o foco descia para trás dele. Agora o banner
+  reserva a própria altura (`scroll-padding-bottom` e fim do `body`), e o cabeçalho, a dele
+  (`scroll-padding-top`).
+- Anel de foco: 4,6–6,6:1 nos dois temas (antes ~2,2:1).
+
+### Desempenho (Lighthouse, landing)
+
+|                                            | Desempenho | LCP                    | CLS   |
+| ------------------------------------------ | ---------- | ---------------------- | ----- |
+| Antes do Épico 42 (`main`, claro / escuro) | 94 / 94    | 3.102 / 3.096 ms       | 0 / 0 |
+| Depois do Épico 47 (claro / escuro)        | 94 / 94–97 | 3.104 / 2.588–3.106 ms | 0 / 0 |
+
+`/newsletter`: desempenho 98–100, SEO 100, LCP ~1,2 s. SEO 100 também em `/`.
+
+### Conferência humana
+
+- [ ] Produção, depois do deploy: funil até o clique de inscrição com **Testar eventos** (Meta)
+      e **DebugView** (GA4) abertos. Esperado: um `PageView` por tela, `Lead`,
+      `report_viewed`, `next_step_click`, `cta_offer_click`.
+- [ ] Substack: inscrição de teste vinda do botão aparece com `utm_source=skill-check`.
+- [ ] iPhone (Safari) e Android (Chrome), dois temas: quiz, formulário (teclado virtual),
+      resultado, página final; faixa do "Próxima" com a barra do navegador.
+- [ ] VoiceOver ou TalkBack no quiz e no resultado.
+- [ ] Retrato real do autor (`content/author.ts`) — até lá, o símbolo da marca.
+- [ ] Contato de privacidade em `/privacidade` (hoje "a definir").

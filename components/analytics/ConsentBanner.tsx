@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -27,11 +27,29 @@ export function ConsentBanner() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
 
+  const ref = useRef<HTMLDivElement>(null);
+  const aberto = visible && !ROUTES_WITHOUT_BANNER.includes(pathname);
+
   useEffect(() => {
     setVisible(getConsent() === 'unset');
   }, []);
 
-  if (!visible || ROUTES_WITHOUT_BANNER.includes(pathname)) return null;
+  // Épico 47 (SC 2.4.11): com o banner aberto, o foco que rola a página para abaixo dele.
+  // ponytail: altura medida uma vez; se o banner mudar de altura sem fechar, o recuo fica antigo.
+  useEffect(() => {
+    if (!aberto || !ref.current) return;
+    const raiz = document.documentElement;
+    const altura = `${ref.current.offsetHeight}px`;
+    raiz.style.scrollPaddingBottom = altura;
+    // O fim da página (rodapé) também precisa poder subir acima do banner.
+    document.body.style.paddingBottom = altura;
+    return () => {
+      raiz.style.scrollPaddingBottom = '';
+      document.body.style.paddingBottom = '';
+    };
+  }, [aberto]);
+
+  if (!aberto) return null;
 
   function handleChoice(value: 'granted' | 'denied') {
     setConsent(value);
@@ -40,6 +58,7 @@ export function ConsentBanner() {
 
   return (
     <div
+      ref={ref}
       role="region"
       aria-label="Consentimento de cookies e analytics"
       className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4 print:hidden"
