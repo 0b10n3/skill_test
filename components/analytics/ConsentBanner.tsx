@@ -44,20 +44,35 @@ export function ConsentBanner() {
       aria-label="Consentimento de cookies e analytics"
       className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4 print:hidden"
     >
-      <div className="flex w-full max-w-2xl flex-col gap-3 rounded-sm border border-border bg-card p-4 text-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
+      {/* Épico 45 (F1/F7): sem Lime (o Lime é do CTA do produto), botões de mesmo tamanho e
+          texto curto no celular — até 132px de altura em 375px. */}
+      <div className="flex w-full max-w-2xl flex-col gap-3 rounded-sm border border-border bg-card p-3 text-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <p className="text-foreground">
-          Usamos analytics para entender como o diagnóstico é usado. Nenhum dado pessoal é
-          compartilhado antes do seu aceite — veja nossa{' '}
+          <span className="sm:hidden">
+            Usamos analytics para entender o uso do diagnóstico. Veja a{' '}
+          </span>
+          <span className="hidden sm:inline">
+            Usamos analytics para entender como o diagnóstico é usado. Nenhum dado pessoal é
+            compartilhado antes do seu aceite — veja nossa{' '}
+          </span>
           <Link href="/privacidade" className="text-link-foreground underline underline-offset-2">
             política de privacidade
           </Link>
           .
         </p>
-        <div className="flex shrink-0 items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => handleChoice('denied')}>
+        <div className="grid shrink-0 grid-cols-2 gap-2">
+          <Button
+            variant="outline"
+            className="h-11 px-4 sm:h-9"
+            onClick={() => handleChoice('denied')}
+          >
             Recusar
           </Button>
-          <Button variant="default" size="sm" onClick={() => handleChoice('granted')}>
+          <Button
+            variant="secondary"
+            className="h-11 px-4 sm:h-9"
+            onClick={() => handleChoice('granted')}
+          >
             Aceitar
           </Button>
         </div>

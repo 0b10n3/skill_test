@@ -41,9 +41,16 @@ export function SiteHeader() {
   const noFunil = FUNIL.some((rota) => pathname.startsWith(rota));
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-border bg-card px-4 print:hidden sm:px-6">
-      <Link href="/" aria-label="Syntaxis — página inicial" className="flex items-center">
-        <Logo />
-      </Link>
+      {noFunil ? (
+        // Épico 45 (F4): no funil o logo não é link — um toque errado apagaria as respostas.
+        <span className="flex items-center">
+          <Logo />
+        </span>
+      ) : (
+        <Link href="/" aria-label="Syntaxis — página inicial" className="flex items-center">
+          <Logo />
+        </Link>
+      )}
       <div className="flex items-center gap-6">
         {pathname === '/newsletter' && (
           // Épico 44: na página final o CTA do cabeçalho é a inscrição, não recomeçar o quiz.

@@ -6,9 +6,10 @@ import { fetchRestOfSession } from './actions';
 import { ProgressBar } from '@/components/quiz/ProgressBar';
 import { QuestionCard } from '@/components/quiz/QuestionCard';
 import { Eyebrow } from '@/components/ui/eyebrow';
+import { CATEGORY_LABEL } from '@/content/relatorio';
 import { track } from '@/lib/analytics/track';
 import { useQuizAnswers } from '@/lib/quiz-context';
-import type { ClientQuestion, SeniorityLevel } from '@/lib/types';
+import type { ClientQuestion, KnowledgeCategory, SeniorityLevel } from '@/lib/types';
 
 interface QuizFlowProps {
   seniorityQuestion: ClientQuestion;
@@ -60,7 +61,7 @@ export function QuizFlow({ seniorityQuestion }: QuizFlowProps) {
 
   if (isLoadingRest) {
     return (
-      <main className="flex h-dvh flex-col items-center justify-center gap-4 px-6">
+      <main className="flex h-dvh flex-col items-center justify-center gap-4 px-6 pt-14">
         <p className="font-mono text-sm text-muted-foreground" role="status" aria-live="polite">
           Preparando suas próximas perguntas…
         </p>
@@ -73,9 +74,18 @@ export function QuizFlow({ seniorityQuestion }: QuizFlowProps) {
   const isSeniorityStep = currentQuestion.type === 'seniority';
 
   return (
-    <main className="flex h-dvh flex-col items-center justify-center gap-3 px-6 py-3">
-      <Eyebrow className="text-center">Avaliação Syntaxis</Eyebrow>
-      {!isSeniorityStep && <ProgressBar currentQuestionNumber={currentIndex} />}
+    // Três faixas abaixo do cabeçalho fixo (pt-14): topo, pergunta (rola só ela) e botão.
+    <main className="flex h-dvh flex-col pt-14">
+      <div className="px-4 pt-4 sm:px-6">
+        <div className="mx-auto flex w-full max-w-lg flex-col gap-2">
+          <Eyebrow>
+            {isSeniorityStep
+              ? 'Antes de começar'
+              : CATEGORY_LABEL[currentQuestion.category as KnowledgeCategory]}
+          </Eyebrow>
+          {!isSeniorityStep && <ProgressBar currentQuestionNumber={currentIndex} />}
+        </div>
+      </div>
       <QuestionCard key={currentQuestion.id} question={currentQuestion} onAnswer={handleAnswer} />
     </main>
   );

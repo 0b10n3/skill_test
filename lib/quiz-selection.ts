@@ -26,7 +26,8 @@ function toClientQuestion(question: Question): ClientQuestion {
   const { correctOptionId: _correctOptionId, ...clientQuestion } = question;
   return {
     ...clientQuestion,
-    options: shuffle(question.options),
+    // Senioridade sai na ordem de carreira do banco (Épico 45, F2); só as de conhecimento embaralham.
+    options: question.type === 'seniority' ? [...question.options] : shuffle(question.options),
   };
 }
 

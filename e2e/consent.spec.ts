@@ -33,6 +33,27 @@ test.describe('Consentimento LGPD (Épico 21) — GA4/Meta Pixel só carregam de
     expect(requests).toEqual([]);
   });
 
+  test('no celular o banner tem até 132px, botões de 44px do mesmo tamanho e nenhum Lime (Épico 45)', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+    const caixa = page.getByRole('region', { name: /consentimento/i }).locator('> div');
+    const altura = (await caixa.boundingBox())!.height;
+    expect(altura).toBeLessThanOrEqual(132);
+
+    const aceitar = (await page.getByRole('button', { name: 'Aceitar' }).boundingBox())!;
+    const recusar = (await page.getByRole('button', { name: 'Recusar' }).boundingBox())!;
+    expect(aceitar.height).toBeGreaterThanOrEqual(44);
+    expect(aceitar.width).toBe(recusar.width);
+    expect(aceitar.height).toBe(recusar.height);
+
+    const fundo = await page
+      .getByRole('button', { name: 'Aceitar' })
+      .evaluate((el) => getComputedStyle(el).backgroundColor);
+    expect(fundo).not.toBe('rgb(205, 241, 99)'); // lime-500
+  });
+
   test('recusar mantém zero requisições, some o banner e persiste entre reloads', async ({
     page,
   }) => {
